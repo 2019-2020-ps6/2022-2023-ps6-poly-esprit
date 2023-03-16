@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {QuizService} from "../../../services/quiz.service";
+import { FormBuilder, FormGroup } from '@angular/forms'
 
+import {QuizService} from "../../../services/quiz.service";
+import {Quiz} from "../../../models/quiz.model"
+import {Question} from "../../../models/question.model"
 
 @Component({
   selector: 'app-create-quiz',
@@ -9,16 +12,22 @@ import {QuizService} from "../../../services/quiz.service";
 })
 export class CreateQuizComponent implements OnInit {
   private QCService: QuizService;
+  public quizForm: FormGroup;
 
-  constructor(private quizCreateService: QuizService) {
-    this.QCService = quizCreateService;
+  constructor(public quizCreateService: QuizService, public formBuilder: FormBuilder) {
+    this.quizForm = this.formBuilder.group({
+      name: [''],
+      theme: ['']
+    });
+    this.QCService=quizCreateService;
   }
 
   ngOnInit(): void {
   }
 
-  addQuiz(name: string, theme: string, id:string, questions: []){
-    this.QCService.addQuiz({questions: questions, name:name, theme:theme, id:id});
+  addQuiz(){
+    const quizToCreate: Quiz = this.quizForm.getRawValue() as Quiz;
+    this.QCService.addQuiz(quizToCreate);
   }
 
 }

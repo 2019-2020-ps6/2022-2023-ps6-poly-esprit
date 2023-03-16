@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {CreateQuizComponent} from "./create-quiz-component/create-quiz.component";
 import {QuizService} from "../../services/quiz.service";
-
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -14,7 +14,8 @@ import {QuizService} from "../../services/quiz.service";
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [QuizService],
   bootstrap: [AppComponent]
