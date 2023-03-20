@@ -7,20 +7,24 @@ import {GamePageComponentComponent} from "./game-page-component/game-page-compon
 import { CreateQuizComponent } from './create-quiz-component/create-quiz.component';
 import {QuizListDisplayComponent} from "./quiz-list-display/quiz-list-display.component";
 import {AppComponent} from "./app.component";
+import {
+    ThemeListDisplayComponentComponent
+} from "./theme-list-display-component/theme-list-display-component.component";
 
 const routes: Routes = [
 
-  {path: 'game-answer-component', component: GameAnswerComponentComponent},
-  {path: 'game-question-component', component: GameQuestionComponentComponent},
-  {path: 'game-page/:id', component: GamePageComponentComponent},
-  {path: 'create-quiz', component: CreateQuizComponent },
-  {path: '', component: QuizListDisplayComponent },
+    {path: 'game-answer-component', component: GameAnswerComponentComponent},
+    {path: 'game-question-component', component: GameQuestionComponentComponent},
+    {path: 'game-page/:id', component: GamePageComponentComponent},
+    {path: 'create-quiz', component: CreateQuizComponent },
+    {path: '', component: ThemeListDisplayComponentComponent},
+    {path: 'quizz-list-page/:idTheme', component: QuizListDisplayComponent },
 
 
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -7,6 +7,7 @@ import {Quiz} from "../../models/quizz.models";
   templateUrl: './quiz-list-display.component.html',
   styleUrls: ['./quiz-list-display.component.scss']
 })
+
 export class QuizListDisplayComponent implements OnInit {
   quizzes: any[] = [];
 
