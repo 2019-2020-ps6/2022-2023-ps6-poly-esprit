@@ -23,6 +23,9 @@ export class GamePageComponentComponent  {
       this.currentQuiz = quizzes[id-1];
     });
   }
+  public select(){
+
+  }
 
 
 

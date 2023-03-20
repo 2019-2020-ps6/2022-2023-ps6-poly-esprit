@@ -13,7 +13,7 @@ export const Quizz = [
   },
   {
     id: '3',
-    name: 'La révolition française',
+    name: 'La révolution française',
     theme: 'Histoire',
     questions: [Question[0]],
   }
