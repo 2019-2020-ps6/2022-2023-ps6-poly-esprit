@@ -1,4 +1,4 @@
-import { Question } from './question.mock';
+import { Questions } from './question.mock';
 export const Quizz = [
   {
     id: '1',
@@ -15,6 +15,6 @@ export const Quizz = [
     id: '3',
     name: 'La révolution française',
     theme: 'Histoire',
-    questions: [Question[0]],
+    questions: [Questions[0]],
   }
 ];

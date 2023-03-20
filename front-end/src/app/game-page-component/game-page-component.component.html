@@ -1,8 +1,9 @@
 <h1>JOUER A UN QUIZ</h1>
 
-<app-game-question-component [quiz]="currentQuiz"></app-game-question-component>
+<app-game-question-component [quiz]="currentQuiz" [currentIndex]="currentIndex"></app-game-question-component>
+
 <div class="centre">
-  <button style="font-size: 15px;">
+  <button (click)="incrementIndexQuestion()" style="font-size: 15px;">
     Valider
   </button>
 </div>
