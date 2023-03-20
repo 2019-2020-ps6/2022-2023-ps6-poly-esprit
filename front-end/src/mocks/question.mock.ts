@@ -23,7 +23,7 @@ export const Answer = [
 export const Question = [
   {
     id: '1',
-    label: 'A quel date il y a eu la révolution française',
+    label: 'A quelle date il y a eu la révolution française',
     answers: [Answer[0],Answer[1],Answer[2], Answer[3]]
   },
 ];

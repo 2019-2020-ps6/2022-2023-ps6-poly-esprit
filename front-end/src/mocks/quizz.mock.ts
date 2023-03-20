@@ -9,6 +9,7 @@ export const Quizz = [
   {
     id: '2',
     name: 'Les technos WEB',
+    theme: 'Technologie',
     questions: [],
   },
   {
