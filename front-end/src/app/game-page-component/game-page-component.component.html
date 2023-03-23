@@ -3,8 +3,11 @@
 <app-game-question-component [quiz]="currentQuiz" [currentIndex]="currentIndex"></app-game-question-component>
 
 <div class="centre">
-  <button (click)="incrementIndexQuestion()" style="font-size: 15px;">
+  <button class="valider" (click)="incrementIndexQuestion()" style="font-size: 15px;">
     Valider
+  </button>
+  <button class="retour" >
+    Retour
   </button>
 </div>
 

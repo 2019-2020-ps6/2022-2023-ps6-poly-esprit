@@ -6,10 +6,11 @@
   <p>Voici le thème actuel : {{quiz.theme}}</p>
 
 
-  <p *ngIf="currentQuestion">Question : {{currentQuestion.label}}</p>
+  <p id="question" *ngIf="currentQuestion"> {{currentQuestion.label}}</p>
 
   <article id="answers" *ngIf="currentQuestion">
     <div *ngFor="let answer of currentQuestion.answers">
+
       <app-game-answer-component [answer]="answer" [isSelected]="currentValue==answer.value" (selected)="onSelected($event)" class="answer"></app-game-answer-component>
     </div>
   </article>
