@@ -1,50 +1,21 @@
-body{
-  margin: 0px;
-
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  vertical-align: baseline;
+  background: transparent;
 }
-.header{
-  background-color: #183446;
-  font-size: 20px;
-  color: #333;
-  display: flex;
-  height: 70px;
-
-}
-.title{
-  width: 80%;
-  height: 60%;
-  border-radius:20px;
-  margin:auto;
-  text-align: center;
-  background-color: #C3D5D0;
-}
-h1{
-  font-family: 'Roboto', sans-serif;
-  font-size: 20px;
-  font-weight: bold;
-  color: #183446;
-}
-.parameter{
-  background-image: url(assets/parametre.png);
-  background-color: #C3D5D0FF;
-  background-size: 100% 100%;
-  width: 5%;
-  height: 80%;
-  margin-top:auto;
-  margin-bottom:auto;
-  margin-left: auto;
-  position: relative;
-}
-.logout{
-  background-image: url(assets/logout.png);
-  background-color: #C3D5D0FF;
-  background-size: 100% 100%;
-  width: 5%;
-  height: 80%;
-  margin-top:auto;
-  margin-bottom:auto;
-  margin-right: auto;
-  position: relative;
+body {
+  line-height: 1;
 }
 html{
   background-color: #CCE2F5;
