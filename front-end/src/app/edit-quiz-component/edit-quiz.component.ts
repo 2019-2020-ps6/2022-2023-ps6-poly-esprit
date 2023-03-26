@@ -32,7 +32,7 @@ export class EditQuizComponent{
     const id = Number(this.route.snapshot.paramMap.get('id'));
     console.log(id)
     this.quizService.getQuizzes().subscribe((quizzes) => {
-      this.currentQuiz = quizzes[id-1];
+      this.currentQuiz = quizzes[id];
     });
   }
 
@@ -54,7 +54,7 @@ export class EditQuizComponent{
           {type: 'text', value: this.formulaire.value.bad_answer3, isCorrect: false}
         ]});
     console.log("Done");
-    alert("Question ajoutée ! ");
+    alert("Question ajoutée ! Le quizz possède maintenant "+this.currentQuiz?.questions.length+" questions");
     this.formulaire.reset();
 
   }

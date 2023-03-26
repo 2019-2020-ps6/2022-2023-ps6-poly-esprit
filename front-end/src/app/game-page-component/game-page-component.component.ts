@@ -20,7 +20,7 @@ export class GamePageComponentComponent  {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     console.log(id)
     this.quizService.getQuizzes().subscribe((quizzes) => {
-      this.currentQuiz = quizzes[id-1];
+      this.currentQuiz = quizzes[id];
     });
   }
 
