@@ -11,6 +11,7 @@ import {CreateQuizComponent} from "./create-quiz-component/create-quiz.component
 import {QuizService} from "../service/quiz.service";
 import { QuizListDisplayComponent } from './quiz-list-display/quiz-list-display.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import {EditQuizComponent} from "./edit-quiz-component/edit-quiz.component";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     GameAnswerComponentComponent,
     GameQuestionComponentComponent,
     CreateQuizComponent,
-    QuizListDisplayComponent
+    QuizListDisplayComponent,
+    EditQuizComponent
   ],
   imports: [
     BrowserModule,

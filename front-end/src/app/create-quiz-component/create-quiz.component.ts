@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms'
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup} from '@angular/forms'
 
 import {QuizService} from "../../service/quiz.service";
 import {Quiz} from "../../models/quizz.models";
@@ -28,6 +28,8 @@ export class CreateQuizComponent implements OnInit {
 
   addQuiz(){
     const quizToCreate: Quiz = this.quizForm.getRawValue() as Quiz;
+    quizToCreate.id=(this.quizCreateService.quizzes.length).toString();
+    quizToCreate.questions=[];
     this.QCService.addQuiz(quizToCreate);
   }
 
