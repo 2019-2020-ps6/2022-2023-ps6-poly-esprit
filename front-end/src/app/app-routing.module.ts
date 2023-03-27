@@ -8,6 +8,7 @@ import { CreateQuizComponent } from './create-quiz-component/create-quiz.compone
 import {QuizListDisplayComponent} from "./quiz-list-display/quiz-list-display.component";
 import {AppComponent} from "./app.component";
 import {EditQuizComponent} from "./edit-quiz-component/edit-quiz.component";
+import {ParameterPageComponent} from "./parameter-page/parameter-page.component";
 
 const routes: Routes = [
 
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: 'create-quiz', component: CreateQuizComponent },
   {path: 'edit-quiz/:id', component: EditQuizComponent},
   {path: '', component: QuizListDisplayComponent },
+  {path: 'parametre', component:ParameterPageComponent}
 
 
 ];
