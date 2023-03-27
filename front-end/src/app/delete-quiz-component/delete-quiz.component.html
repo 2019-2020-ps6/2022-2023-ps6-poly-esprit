@@ -1,0 +1,12 @@
+<h1>Voulez vraiment supprimer le quiz ?</h1>
+<form [formGroup]="formulaire" (ngSubmit)="onSubmit()">
+  <button type="submit">Oui</button>
+  <br>
+  <a class="navigation" [routerLink]="['/']">
+    <button>Non</button>
+  </a>
+  <br>
+  <a class="navigation" [routerLink]="['/']">
+    <button>Retour à la page principale</button>
+  </a>
+</form>
