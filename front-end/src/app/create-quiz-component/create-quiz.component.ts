@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms'
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup} from '@angular/forms'
 
 import {QuizService} from "../../service/quiz.service";
-import {Quiz} from "../../../models/quiz.model"
-import {Question} from "../../../models/question.model"
+import {Quiz} from "../../models/quizz.models";
+
 
 @Component({
   selector: 'app-create-quiz',
@@ -17,7 +17,8 @@ export class CreateQuizComponent implements OnInit {
   constructor(public quizCreateService: QuizService, public formBuilder: FormBuilder) {
     this.quizForm = this.formBuilder.group({
       name: [''],
-      theme: ['']
+      theme: [''],
+
     });
     this.QCService=quizCreateService;
   }
@@ -27,6 +28,8 @@ export class CreateQuizComponent implements OnInit {
 
   addQuiz(){
     const quizToCreate: Quiz = this.quizForm.getRawValue() as Quiz;
+    quizToCreate.id=(this.quizCreateService.quizzes.length).toString();
+    quizToCreate.questions=[];
     this.QCService.addQuiz(quizToCreate);
   }
 

@@ -4,6 +4,10 @@
     <a class="navigation" [routerLink]="['/game-page', quiz.id]">
       {{ quiz.name }}
     </a>
+    <a class="navigation" [routerLink]="['/edit-quiz', quiz.id]">
+      <button>Modifier le quiz</button>
+    </a>
+    <button>Supprimer le quiz</button>
   </li>
 
 </ul>

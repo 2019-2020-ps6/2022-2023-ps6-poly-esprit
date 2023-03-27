@@ -23,7 +23,7 @@ export class GamePageComponentComponent  implements OnInit{
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.quizService.getQuizzes().subscribe((quizzes) => {
-      this.currentQuiz = quizzes[id-1];
+      this.currentQuiz = quizzes[id];
     });
     this.questionService.getQuestions().subscribe((questions) => {
       this.currentQuestion = questions[this.currentIndex];
