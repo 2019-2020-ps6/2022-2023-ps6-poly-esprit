@@ -1,39 +1,20 @@
-export const ListUser = [
+import {User} from "../models/user.model";
+
+export const mockUser: User[] = [
+  {
+    isAdmin: false,
+    nom: "Dupont",
+    prenom: "Jean",
+    age: 35,
+    sex: "Male",
+    pathology: 2
+  },
   {
     isAdmin: true,
-    name: 'Simon',
-    surname: 'Beurel',
+    nom: "Beurel",
+    prenom: "Simon",
     age: 21,
-    bestTheme: [],
-    sex: 'Male',
+    sex: "Male",
     pathology: 0
-  },
-  {
-    isAdmin: false,
-    name: 'Maurois',
-    surname: 'Quentin',
-    age: 35,
-    bestTheme: [],
-    sex: 'Male',
-    pathology: 1
-  },
-  {
-    isAdmin: false,
-    name: 'Théa',
-    surname: 'Delias',
-    age: 85,
-    bestTheme: [],
-    sex: 'Female',
-    pathology: 3
-  },
-  {
-    isAdmin: false,
-    name: 'Lorenzo',
-    surname: 'Fromant',
-    age: 95,
-    bestTheme: [],
-    sex: 'Male',
-    pathology: 4
   }
-
-]
+];
