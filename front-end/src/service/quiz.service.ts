@@ -29,6 +29,12 @@ export class QuizService {
     return this.quizzes$
   }
 
+  deleteQuiz(id: String){
+    //delete the quiz on the specific id
+    this.quizzes = this.quizzes.filter(quiz => quiz.id !== id);
+    console.log("Le mock possède maintenant:" +this.quizzes.length +"questions");
+  }
+
 
 
 }

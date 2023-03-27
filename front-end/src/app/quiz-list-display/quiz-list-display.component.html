@@ -7,7 +7,9 @@
     <a class="navigation" [routerLink]="['/edit-quiz', quiz.id]">
       <button>Modifier le quiz</button>
     </a>
-    <button>Supprimer le quiz</button>
+    <a class="navigation" [routerLink]="['/delete-quiz', quiz.id]">
+      <button>Supprimer le quiz</button>
+    </a>
   </li>
 
 </ul>
