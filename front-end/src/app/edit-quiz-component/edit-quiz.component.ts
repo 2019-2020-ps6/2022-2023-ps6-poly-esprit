@@ -11,7 +11,7 @@ import {ActivatedRoute} from "@angular/router";
   templateUrl:  'edit-quiz.component.html',
   styleUrls: ['./edit-quiz.component.scss']
 })
-export class EditQuizComponent{
+export class EditQuizComponent {
   public currentQuiz?:Quiz ;
   private QCService: QuizService;
   formulaire: FormGroup;

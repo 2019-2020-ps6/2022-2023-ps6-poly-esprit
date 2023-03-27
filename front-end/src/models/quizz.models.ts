@@ -1,4 +1,4 @@
-import { Question } from './question.models';
+import {Question} from "./question.models";
 
 export interface Quiz {
   id: string;

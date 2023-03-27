@@ -1,7 +1,8 @@
 <app-header [title]="title"></app-header>
 
-<app-game-question-component [quiz]="currentQuiz" [question]="currentQuestion"></app-game-question-component>
-
+<div *ngIf="currentQuiz">
+  <app-game-question-component [quiz]="currentQuiz" [question]="currentQuiz.questions[currentIndex]"></app-game-question-component>
+</div>
 <div class="centre">
   <button class="valider" (click)="incrementIndexQuestion()" style="font-size: 15px;">
     Valider

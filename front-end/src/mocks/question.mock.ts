@@ -38,7 +38,6 @@ export const Answer = [
   },
 ];
 export const Questions = [
-
   {
     id: '1',
     label: 'A quelle date il y a eu la révolution française',

@@ -22,7 +22,7 @@ import {EditQuizComponent} from "./edit-quiz-component/edit-quiz.component";
     GameQuestionComponentComponent,
     CreateQuizComponent,
     QuizListDisplayComponent,
-    HeaderComponent
+    HeaderComponent,
     EditQuizComponent
   ],
   imports: [
