@@ -1,0 +1,10 @@
+
+<h2>Statistiques</h2>
+<ul>
+  <li *ngFor="let stat of stats">
+    <p>{{stat.user}}</p>
+    <p *ngFor="let quizStat of stat.quizStats">
+      {{quizStat.date}} : {{quizStat.pourcentageClicksRates + "" }}
+    </p>
+  </li>
+</ul>
