@@ -1,7 +1,7 @@
 import { Quiz } from "./quizz.models";
 
 export interface Theme {
-    id: String;
+    id: number;
     name: String;
     quizzes?: Quiz[];
 }

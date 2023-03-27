@@ -17,8 +17,8 @@ const routes: Routes = [
     {path: 'game-question-component', component: GameQuestionComponentComponent},
     {path: 'game-page/:id', component: GamePageComponentComponent},
     {path: 'create-quiz', component: CreateQuizComponent },
-    {path: '', component: ThemeListDisplayComponentComponent},
-    {path: 'quizz-list-page/:idTheme', component: QuizListDisplayComponent },
+    {path: 'themes', component: ThemeListDisplayComponentComponent},
+    {path: 'themes/:idTheme', component: QuizListDisplayComponent },
 
 
 ];
