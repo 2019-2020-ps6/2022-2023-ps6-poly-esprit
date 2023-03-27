@@ -15,7 +15,7 @@ export class GamePageComponentComponent  implements OnInit{
   public currentQuiz?:Quiz ;
   public currentQuestion?:Question;
   public currentIndex:number=0;
-  title = 'Jouer a un quizz';
+  title = 'Jouer à un quizz';
 
   constructor(private quizService: QuizService, private route: ActivatedRoute, private questionService: QuestionService) {
   }
