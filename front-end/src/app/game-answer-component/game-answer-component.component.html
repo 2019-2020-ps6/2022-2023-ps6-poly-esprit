@@ -1,3 +1,3 @@
 <div *ngIf="answer">
-  <button [ngClass]="{'selected':isSelected}" class="buttonAnswer"  (click)="select(answer.value)">{{answer.value}}</button>
+  <button [ngStyle]="{'background-color': getButtonColor(), 'color':getFontColor()}" class="buttonAnswer"  (click)="select(answer.value)">{{answer.value}}</button>
 </div>
