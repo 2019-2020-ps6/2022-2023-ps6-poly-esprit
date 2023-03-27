@@ -1,5 +1,16 @@
-<h1>JOUER A UN QUIZ</h1>
+<app-header [title]="title"></app-header>
 
-<app-game-question-component [quiz]="currentQuiz"></app-game-question-component>
+<div *ngIf="currentQuiz">
+  <app-game-question-component [quiz]="currentQuiz" [question]="currentQuiz.questions[currentIndex]"></app-game-question-component>
+</div>
+<div class="centre">
+  <button class="valider" (click)="incrementIndexQuestion()" style="font-size: 15px;">
+    Valider
+  </button>
+  <button class="retour" (click)="decrementIndexQuestion()" [disabled]="currentIndex === 0" [ngClass]="{'no-hover': currentIndex === 0}" >
+    Retour
+  </button>
+</div>
+
 
 

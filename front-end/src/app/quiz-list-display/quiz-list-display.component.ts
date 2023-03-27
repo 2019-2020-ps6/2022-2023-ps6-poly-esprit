@@ -9,6 +9,7 @@ import {Quiz} from "../../models/quizz.models";
 })
 export class QuizListDisplayComponent implements OnInit {
   quizzes: any[] = [];
+  title = 'Liste de quizz';
 
   constructor(private quizService: QuizService) { }
 

@@ -1,16 +1,15 @@
 <div *ngIf="quiz">
-
-
-  <h2>Vous jouer au quiz : {{quiz.name}}</h2>
+  <h2>Vous jouez au quiz : {{quiz.name}}</h2>
 
   <p>Voici le thème actuel : {{quiz.theme}}</p>
 
+  <p id="question" *ngIf="question"> {{question.label}}</p>
 
-  <p *ngIf="quiz.questions[0]">Question : {{quiz.questions[0].label}}</p>
-
-  <article id="answers">
-    <div *ngFor="let answer of quiz.questions[0].answers">
-      <app-game-answer-component [answer]="answer" class="answer"></app-game-answer-component>
+  <article id="answers" *ngIf="question">
+    <div *ngFor="let answer of question.answers">
+      <app-game-answer-component [answer]="answer" [isSelected]="currentValue==answer.value" (selected)="onSelected($event)"></app-game-answer-component>
     </div>
   </article>
 </div>
+
+

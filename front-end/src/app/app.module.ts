@@ -11,6 +11,7 @@ import {CreateQuizComponent} from "./create-quiz-component/create-quiz.component
 import {QuizService} from "../service/quiz.service";
 import { QuizListDisplayComponent } from './quiz-list-display/quiz-list-display.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import { HeaderComponent } from './header/header.component';
 import {EditQuizComponent} from "./edit-quiz-component/edit-quiz.component";
 import {DeleteQuizComponent} from "./delete-quiz-component/delete-quiz.component";
 
@@ -22,6 +23,7 @@ import {DeleteQuizComponent} from "./delete-quiz-component/delete-quiz.component
     GameQuestionComponentComponent,
     CreateQuizComponent,
     QuizListDisplayComponent,
+    HeaderComponent,
     EditQuizComponent,
     DeleteQuizComponent
   ],

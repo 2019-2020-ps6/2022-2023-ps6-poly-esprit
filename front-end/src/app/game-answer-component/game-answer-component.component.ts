@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {} from "../../models/quizz.models"
 import {Answer} from "../../models/question.models";
 
@@ -9,4 +9,12 @@ import {Answer} from "../../models/question.models";
 })
 export class GameAnswerComponentComponent {
   @Input() answer?: Answer;
+  @Output() selected=new EventEmitter<string>();
+  @Input() isSelected=false
+  public select(value: string){
+    console.log(value)
+    this.isSelected=true
+    this.selected.emit(value)
+  }
 }
+
