@@ -11,6 +11,9 @@ export class GameAnswerComponentComponent {
   @Input() answer?: Answer;
   @Output() selected=new EventEmitter<string>();
   @Input() isSelected=false
+
+
+
   public select(value: string){
     console.log(value)
     this.isSelected=true

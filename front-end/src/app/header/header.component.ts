@@ -10,8 +10,4 @@ export class HeaderComponent {
   @Input() title?: string;
 
 
-
-
-
-
 }
