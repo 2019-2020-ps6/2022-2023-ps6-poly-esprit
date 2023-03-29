@@ -3,9 +3,10 @@ import { Question, Answer } from './question.models';
 export interface GameInstance {
   Id: string;
   quizId:string;
-  gameQuestionsAnswers: GameQuestionAnswer[ ];
+  gameQuestionsAnswers: GameQuestionAnswer[];
   startTime: Date;
   endTime: Date;
+  score: number;
 }
 
 export interface GameQuestionAnswer {

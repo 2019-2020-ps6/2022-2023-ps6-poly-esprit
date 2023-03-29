@@ -7,8 +7,11 @@
 
   <article id="answers" *ngIf="question">
     <div *ngFor="let answer of question.answers">
-      <app-game-answer-component [answer]="answer" [isSelected]="currentValue==answer.value" (selected)="onSelected($event)"></app-game-answer-component>
+      <app-game-answer-component  [answer]="answer" [isBadSelected]="!answer.isCorrect" [isGoodSelected]="answer.isCorrect" [isSelected]="currentValue==answer.value" (selected)="onSelected($event)"></app-game-answer-component>
     </div>
+  </article>
+  <article id="score" *ngIf="!question">
+    <p>Score : test</p>
   </article>
 </div>
 
