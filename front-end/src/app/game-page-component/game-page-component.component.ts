@@ -5,6 +5,8 @@ import {ActivatedRoute} from "@angular/router";
 import {QuestionService} from "../../service/question.service";
 import {Question} from "../../models/question.models";
 import {Answer} from "../../mocks/question.mock";
+import {GameInstanceService} from "../../service/gameInstance.service";
+import {GameInstance, GameQuestionAnswer} from "../../models/gameInstance.models";
 
 
 @Component({
@@ -17,12 +19,15 @@ export class GamePageComponentComponent  implements OnInit{
   public currentQuestion:Question | undefined;
   public currentIndex:number=0;
   public validateClicked:boolean=false;
-  title = 'Jouer à un quizz';
-  somethingSelected: boolean = true;
-  selectedValue?: string;
+  public title = 'Jouer à un quizz';
+  public somethingSelected: boolean = true;
+  public selectedValue?: string;
+  public gameInstance: GameInstance = {} as GameInstance;
+  private gameQuestionAnswers: GameQuestionAnswer[] = [];
+  private score: number = 0;
 
 
-  constructor(private quizService: QuizService, private route: ActivatedRoute, private questionService: QuestionService) {
+  constructor(private quizService: QuizService, private route: ActivatedRoute, private questionService: QuestionService, private gameInstanceService: GameInstanceService) {
   }
 
   ngOnInit(): void {
@@ -42,6 +47,15 @@ export class GamePageComponentComponent  implements OnInit{
     this.questionService.getQuestions().subscribe((questions) => {
       this.currentQuestion = questions[this.currentIndex];
     });
+    if(this.currentQuiz && !this.currentQuiz.questions[this.currentIndex]){
+      this.gameInstance.Id = "1";
+      this.gameInstance.quizId = this.currentQuiz.id;
+      this.gameInstance.gameQuestionsAnswers = this.gameQuestionAnswers;
+      this.gameInstance.startTime = new Date();
+      this.gameInstance.endTime = new Date();
+      this.gameInstance.score = this.score;
+      this.gameInstanceService.addGameInstance(this.gameInstance);
+    }
   }
 
 
@@ -52,19 +66,25 @@ export class GamePageComponentComponent  implements OnInit{
 
   validate() {
     this.validateClicked = true;
+    let isCorrect;
     if (document.getElementsByClassName("goodAnswer")[0].innerHTML === this.selectedValue) {
       console.log("good")
       alert("Bonne réponse")
+      isCorrect = true;
+      this.score++;
 
-    }else {
+    } else {
       console.log("bad")
       alert("Mauvaise réponse")
+      isCorrect = false;
     }
-
-   // si on regarde si this .selected value correspond à la bonne réponse, si c'est le cas on affiche un message de succès sinon on affiche un message d'échec
-    // @ts-ignore
-
-
+    this.gameQuestionAnswers.push({
+      startDate: new Date(),
+      submissionDate: new Date(),
+      questionValue: this.currentQuestion?.label||"",
+      answerValue:this.selectedValue||"",
+      isCorrect: isCorrect,
+    });
 
   }
 

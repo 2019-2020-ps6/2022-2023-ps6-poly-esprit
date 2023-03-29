@@ -1,105 +1,81 @@
 export const Answer = [
   {
-    type: 'Histoire',
     value: '1880',
     isCorrect: false,
   }, {
-    type: "Histoire",
     value: "1980",
     isCorrect: false,
   }, {
-    type: "Histoire",
     value: "1889",
     isCorrect: false,
   }, {
-    type: "Histoire",
     value: "1789",
     isCorrect: true,
   }, {
-    type: "Histoire",
     value: "Couronnement de Charlemagne",
     isCorrect: false,
   },{
-    type: "Histoire",
     value: "Fin de la Seconde Guerre Mondiale",
     isCorrect: true,
   },{
-    type: "Histoire",
     value: "Date de la prise de la Bastille",
     isCorrect: false,
   },{
-    type: "Histoire",
     value: "Armistice de la Première Guerre Mondiale",
     isCorrect: false,
   },{
-    type: "Histoire",
     value: "15 Juillet 1789",
     isCorrect: false,
   },{
-    type: "Histoire",
     value: "14 Juillet 1789",
     isCorrect: true,
   },{
-    type: "Histoire",
     value: "14 Août 1789",
     isCorrect: false,
   }, {
-    type: "Histoire",
     value: "15 Août 1789",
     isCorrect: false,
   },{
-    type: "Actor",
     value: "Will Smith",
     isCorrect: false,
   },{
-    type: "Actor",
     value: "Jean Reno",
     isCorrect: false,
   },{
-    type: "Actor",
     value: "François Cluzet",
     isCorrect: true,
   }, {
-    type: "Actor",
     value: "Jean Dujardin",
     isCorrect: false,
   }, {
-    type: "Actor",
     value: "Men in Black",
     isCorrect: true,
   },
   {
-    type: "Actor",
     value: "Iron Man",
     isCorrect: false,
   },
   {
-    type: "Actor",
     value: "Le Parrain",
     isCorrect: false,
   },
   {
-    type: "Actor",
     value: "Winnie l'ourson",
     isCorrect: false,
   },
   {
-    type: "Techno Web",
     value: "React",
     isCorrect: false,
   },
   {
-    type: "Techno Web",
     value: "Angular",
     isCorrect: true,
   },
   {
-    type: "Techno Web",
     value: "Vue",
     isCorrect: false,
   },
   {
-    type: "Techno Web",
     value: "Svelte",
     isCorrect: false,
   },
