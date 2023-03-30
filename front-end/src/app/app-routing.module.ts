@@ -15,12 +15,12 @@ const routes: Routes = [
 
   {path: 'game-answer-component', component: GameAnswerComponentComponent},
   {path: 'game-question-component', component: GameQuestionComponentComponent},
-  {path: 'game-page/:id', component: GamePageComponentComponent},
+  {path: 'game-page/:idQuiz/:idUser', component: GamePageComponentComponent},
   {path: 'create-quiz', component: CreateQuizComponent },
   {path: 'edit-quiz/:id', component: EditQuizComponent},
   {path: 'delete-quiz/:id', component: DeleteQuizComponent},
-  {path: 'user-list', component: UserListDisplayComponent},
-  {path: '', component: QuizListDisplayComponent },
+  {path: '', component: UserListDisplayComponent},
+  {path: 'quiz-list/:idUser', component: QuizListDisplayComponent },
 
 
 ];

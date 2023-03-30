@@ -1,7 +1,7 @@
 <app-header [title]="title"></app-header>
 <ul>
   <li *ngFor="let quiz of quizzes">
-    <a class="navigation" [routerLink]="['/game-page', quiz.id]">
+    <a class="navigation" [routerLink]="['/game-page', quiz.id, idUser]">
       {{ quiz.name }}
     </a>
     <a class="navigation" [routerLink]="['/edit-quiz', quiz.id]">
