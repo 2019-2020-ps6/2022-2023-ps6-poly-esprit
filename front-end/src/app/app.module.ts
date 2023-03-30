@@ -28,7 +28,7 @@ import {UserListDisplayComponent} from "./user-list-display/user-list-display.co
     HeaderComponent,
     EditQuizComponent,
     DeleteQuizComponent,
-    GameEndComponentComponent
+    GameEndComponentComponent,
     UserListDisplayComponent,
     DeleteQuizComponent
   ],
