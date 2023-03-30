@@ -1,16 +1,28 @@
 <app-header [title]="title"></app-header>
 
-<div *ngIf="currentQuiz">
-  <app-game-question-component [quiz]="currentQuiz" [question]="currentQuiz.questions[currentIndex]"></app-game-question-component>
+<div *ngIf="currentQuiz && currentQuestion">
+  <app-game-question-component  (whoIsSelected)="onWhoIsSelected($event)" (somethingSelected)="onSomethingSelected($event)" [quiz]="currentQuiz" [question]="currentQuiz.questions[currentIndex]"></app-game-question-component>
 </div>
+<div *ngIf="currentQuiz && !currentQuiz.questions[currentIndex]">
+  <app-game-end-component [gameInstance]="gameInstance"></app-game-end-component>
+</div>
+
 <div class="centre">
-  <button class="valider" (click)="incrementIndexQuestion()" style="font-size: 15px;">
+
+  <button class="valider"  [ngStyle]="getDisable()" [disabled]="somethingSelected" (click)="validate()">
     Valider
   </button>
-  <button class="retour" (click)="decrementIndexQuestion()" [disabled]="currentIndex === 0" [ngClass]="{'no-hover': currentIndex === 0}" >
-    Retour
+
+  <a href="#">
+    <button class="retour" [ngStyle]="getDisable()">
+      Retour
+    </button>
+  </a>
+  <button [ngStyle]="getDisableQuestion()" id="questionSuivante" (click)="incrementIndexQuestion()" >
+    Question suivante
   </button>
 </div>
+
 
 
 
