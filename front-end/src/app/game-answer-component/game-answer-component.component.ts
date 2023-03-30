@@ -11,10 +11,27 @@ export class GameAnswerComponentComponent {
   @Input() answer?: Answer;
   @Output() selected=new EventEmitter<string>();
   @Input() isSelected=false
+  @Input() isGoodSelected=false;
+  @Input() isBadSelected=false;
   public select(value: string){
-    console.log(value)
     this.isSelected=true
     this.selected.emit(value)
+
+  }
+
+
+  getButtonColor() {
+    if(this.isSelected){
+      return "#7BA398"
+    }
+    return "#C3D5D0"
+  }
+
+  getFontColor() {
+    if(this.isSelected){
+      return "white";
+    }
+    return "black";
   }
 }
 

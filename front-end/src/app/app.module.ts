@@ -14,7 +14,9 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { HeaderComponent } from './header/header.component';
 import {EditQuizComponent} from "./edit-quiz-component/edit-quiz.component";
 import {DeleteQuizComponent} from "./delete-quiz-component/delete-quiz.component";
+import {GameEndComponentComponent} from "./game-end-component/game-end-component.component";
 import {UserListDisplayComponent} from "./user-list-display/user-list-display.component";
+import {AddUserComponent} from "./add-user-component/add-user-component";
 
 @NgModule({
   declarations: [
@@ -26,8 +28,11 @@ import {UserListDisplayComponent} from "./user-list-display/user-list-display.co
     QuizListDisplayComponent,
     HeaderComponent,
     EditQuizComponent,
+    DeleteQuizComponent,
+    GameEndComponentComponent,
     UserListDisplayComponent,
-    DeleteQuizComponent
+    DeleteQuizComponent,
+    AddUserComponent
   ],
   imports: [
     BrowserModule,
