@@ -1,19 +1,26 @@
 <app-header [title]="title"></app-header>
-<ul>
-  <li *ngFor="let quiz of quizzes">
-    <a class="navigation" [routerLink]="['/game-page', quiz.id]">
-      {{ quiz.name }}
-    </a>
-    <a class="navigation" [routerLink]="['/edit-quiz', quiz.id]">
-      <button>Modifier le quiz</button>
-    </a>
-    <a class="navigation" [routerLink]="['/delete-quiz', quiz.id]">
-      <button>Supprimer le quiz</button>
-    </a>
-  </li>
-
-</ul>
-
+<div class="selection_box">
+  <div>
+    <h1>Quiz</h1>
+    <hr>
+    <input type="text">
+  </div>
+  <ul>
+    <li *ngFor="let quiz of quizzes">
+      <div class="button_container">
+        <a class="navigation" id="quiz_selection" [routerLink]="['/game-page', quiz.id]">
+          <button class="quiz_selection">{{ quiz.name }}</button>
+        </a>
+        <a class="navigation" [routerLink]="['/edit-quiz', quiz.id]">
+          <button class="gestion_admin">Modifier le quiz</button>
+        </a>
+        <a class="navigation" [routerLink]="['/delete-quiz', quiz.id]">
+          <button class="gestion_admin">Supprimer le quiz</button>
+        </a>
+      </div>
+    </li>
+  </ul>
+</div>
 <app-create-quiz></app-create-quiz>
 
 
