@@ -10,6 +10,7 @@ import {AppComponent} from "./app.component";
 import {EditQuizComponent} from "./edit-quiz-component/edit-quiz.component";
 import {DeleteQuizComponent} from "./delete-quiz-component/delete-quiz.component";
 import {UserListDisplayComponent} from "./user-list-display/user-list-display.component";
+import {AddUserComponent} from "./add-user-component/add-user-component";
 
 const routes: Routes = [
 
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path: 'edit-quiz/:id', component: EditQuizComponent},
   {path: 'delete-quiz/:id', component: DeleteQuizComponent},
   {path: 'user-list', component: UserListDisplayComponent},
+  {path: 'user-create', component: AddUserComponent},
   {path: '', component: QuizListDisplayComponent },
 
 
