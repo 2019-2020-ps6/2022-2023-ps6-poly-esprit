@@ -11,9 +11,13 @@
       <button>Supprimer le quiz</button>
     </a>
   </li>
-
 </ul>
 
 <app-create-quiz></app-create-quiz>
 
-
+<a class="navigation" [routerLink]="['/user-create']">
+  <button>Ajouter un utilisateur</button>
+</a>
+<a class="navigation" [routerLink]="['/user-list']">
+  <button>Liste des utilisateurs</button>
+</a>

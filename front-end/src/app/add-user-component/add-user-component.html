@@ -1,0 +1,47 @@
+<form [formGroup]="formulaire" (ngSubmit)="onSubmit()">
+  <label for="nom">Nom de l'utilisateur :</label>
+  <input type="text" id="nom" formControlName="nom">
+  <br>
+  <label for="prenom">Prénom :</label>
+  <input type="text" id="prenom" formControlName="prenom">
+  <br>
+  <label for="age">Age :</label>
+  <input type="number" id="age" formControlName="age">
+  <br>
+
+  <label>
+    <input type="checkbox" formControlName="male"> Male
+  </label>
+  <label>
+    <input type="checkbox" formControlName="female"> Female
+  </label>
+
+  <br><br>
+  <h3>Stade de parkinson : </h3>
+
+  <label>
+    <input type="checkbox" formControlName="stade0"> Stade 0
+  </label>
+  <label>
+    <input type="checkbox" formControlName="stade1"> Stade 1
+  </label>
+  <label>
+    <input type="checkbox" formControlName="stade23"> Stade 2 & 3
+  </label>
+  <label>
+    <input type="checkbox" formControlName="stade4"> Stade 4
+  </label>
+  <br>
+
+  <label>
+    <input type="checkbox" formControlName="administrator"> Cocher si ce nouveau compte est un compte administrateur :
+  </label>
+  <br>
+
+  <button type="submit">Créer le nouvel utilisateur</button>
+  <br>
+</form>
+<br>
+<a class="navigation" [routerLink]="['/']">
+  <button>Retour</button>
+</a>
