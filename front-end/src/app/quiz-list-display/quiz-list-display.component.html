@@ -1,4 +1,4 @@
-<h2>Liste des quizs du thème {{ quizzes }}</h2>
+<h2>Liste des quizs du thème {{themeName}}</h2>
 <ul>
     <li *ngFor="let quiz of quizzes">
         <a class="navigation" [routerLink]="['/game-page', quiz.id]">
