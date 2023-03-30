@@ -1,8 +1,16 @@
-<h2>Liste des thèmes :</h2>
-<ul>
-  <li *ngFor="let theme of themes">
-    <a class="navigation" [routerLink]="['/themes/', theme.id]">
-          {{ theme.name }}
-    </a>
-  </li>
-</ul>
+<div class="selection_box">
+  <div>
+    <h1>Liste des thèmes :</h1>
+    <hr>
+    <input type="text">
+  </div>
+  <ul>
+    <li *ngFor="let theme of themes">
+      <div class="button_container">
+        <a class="navigation" id="theme_selection" [routerLink]="['/themes/', theme.id]">
+          <button class="theme_selection">{{ theme.name }}</button>
+        </a>
+      </div>
+    </li>
+  </ul>
+</div>
