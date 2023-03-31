@@ -13,6 +13,7 @@ export class GameAnswerComponentComponent {
   @Input() isSelected=false
   @Input() isGoodSelected=false;
   @Input() isBadSelected=false;
+
   public select(value: string){
     this.isSelected=true
     this.selected.emit(value)
@@ -25,6 +26,20 @@ export class GameAnswerComponentComponent {
       return "#7BA398"
     }
     return "#C3D5D0"
+  }
+
+  getFontColor() {
+    if(this.isSelected){
+      return "white";
+    }
+    return "black";
+  }
+
+  getButtonColor() {
+    if(this.isSelected){
+      return "#7BA398";
+    }
+    return "#C3D5D0";
   }
 
   getFontColor() {

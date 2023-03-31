@@ -8,9 +8,11 @@ import { CreateQuizComponent } from './create-quiz-component/create-quiz.compone
 import {QuizListDisplayComponent} from "./quiz-list-display/quiz-list-display.component";
 import {AppComponent} from "./app.component";
 import {EditQuizComponent} from "./edit-quiz-component/edit-quiz.component";
+import {ParameterPageComponent} from "./parameter-page/parameter-page.component";
 import {DeleteQuizComponent} from "./delete-quiz-component/delete-quiz.component";
 import {UserListDisplayComponent} from "./user-list-display/user-list-display.component";
 import {AddUserComponent} from "./add-user-component/add-user-component";
+
 
 const routes: Routes = [
 
@@ -23,6 +25,7 @@ const routes: Routes = [
   {path: 'user-list', component: UserListDisplayComponent},
   {path: 'user-create', component: AddUserComponent},
   {path: '', component: QuizListDisplayComponent },
+  {path: 'parametre', component:ParameterPageComponent}
 
 
 ];
