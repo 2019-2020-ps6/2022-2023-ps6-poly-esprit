@@ -35,18 +35,5 @@ export class GameAnswerComponentComponent {
     return "black";
   }
 
-  getButtonColor() {
-    if(this.isSelected){
-      return "#7BA398";
-    }
-    return "#C3D5D0";
-  }
-
-  getFontColor() {
-    if(this.isSelected){
-      return "white";
-    }
-    return "black";
-  }
 }
 
