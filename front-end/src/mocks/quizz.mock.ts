@@ -1,18 +1,20 @@
-import { Question } from './question.mock';
+import {Questions} from "./question.mock";
+
 export const Quizz = [
   {
-    id: '1',
+    id: '0',
     name: 'Les Acteurs',
-    questions: [],
+    questions: [Questions[3], Questions[4]]
+  },
+  {
+    id: '1',
+    name: 'Les technos WEB',
+    questions: [Questions[5], Questions[6]],
   },
   {
     id: '2',
-    name: 'Les technos WEB',
-    questions: [],
-  },
-  {
-    id: '3',
     name: 'La révolition française',
-    questions: [Question[0]],
+    questions: [Questions[0], Questions[1], Questions[2]]
   }
+
 ];

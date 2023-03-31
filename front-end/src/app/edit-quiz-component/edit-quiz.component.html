@@ -1,0 +1,23 @@
+<form [formGroup]="formulaire" (ngSubmit)="onSubmit()">
+  <label for="title">Intitulé de la question :</label>
+  <input type="text" id="title" formControlName="title">
+  <br>
+  <label for="good_answer">Bonne réponse :</label>
+  <input type="text" id="good_answer" formControlName="good_answer">
+  <br>
+  <label for="bad_answer1">Mauvaise réponse 1 :</label>
+  <input type="text" id="bad_answer1" formControlName="bad_answer1">
+  <br>
+  <label for="bad_answer2">Mauvaise réponse 2 :</label>
+  <input type="text" id="bad_answer2" formControlName="bad_answer2">
+  <br>
+  <label for="bad_answer3">Mauvaise réponse 3 :</label>
+  <input type="text" id="bad_answer3" formControlName="bad_answer3">
+  <br>
+  <button type="submit">Envoyer</button>
+  <br>
+</form>
+<br>
+<a class="navigation" [routerLink]="['/']">
+  <button>Retour</button>
+</a>

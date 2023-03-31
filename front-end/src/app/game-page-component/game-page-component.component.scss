@@ -1,0 +1,38 @@
+.centre{
+  text-align: center;
+  margin-top: 50px;
+
+}
+.retour{
+  border-radius: 15%;
+  width: 200px;
+  height: 100px;
+  background-color: #C3D5D0;
+  margin-left: 60px
+}
+
+.valider{
+  font-size: 15px;
+  border-radius: 15%;
+  width: 200px;
+  height: 100px;
+  background-color: #C3D5D0;
+}
+
+.valider:hover, .retour:hover, #questionSuivante:hover{
+  transform: scale(1.5);
+  transition: 0.2s;
+}
+
+#questionSuivante{
+  display: none;
+  margin: auto;
+  font-size: 15px;
+  border-radius: 15%;
+  width: 200px;
+  height: 100px;
+  background-color: #C3D5D0;
+
+}
+
+

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
-import { Quiz } from '../../models/quiz.model';
 import {Quizz} from "../mocks/quizz.mock";
+import {Quiz} from "../models/quizz.models";
 @Injectable({
   providedIn: 'root'
 })
@@ -27,6 +27,12 @@ export class QuizService {
 
   getQuizzes(): Observable<any> {
     return this.quizzes$
+  }
+
+  deleteQuiz(id: String){
+    //delete the quiz on the specific id
+    this.quizzes = this.quizzes.filter(quiz => quiz.id !== id);
+    console.log("Le mock possède maintenant:" +this.quizzes.length +"questions");
   }
 
 

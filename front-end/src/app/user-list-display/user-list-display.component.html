@@ -1,0 +1,13 @@
+<app-header [title]="title"></app-header>
+<h1>Voici la liste : </h1>
+<ul>
+  <li *ngFor="let user of users">
+    <a class="navigation" [routerLink]="['/']">
+      Utilisateur : {{ user.nom }}
+    </a>
+  </li>
+</ul>
+<br>
+<a class="navigation" [routerLink]="['/']">
+  <button>Retour</button>
+</a>

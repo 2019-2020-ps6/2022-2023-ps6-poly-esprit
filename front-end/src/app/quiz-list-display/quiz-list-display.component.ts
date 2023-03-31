@@ -14,7 +14,7 @@ export class QuizListDisplayComponent implements OnInit {
   themeName: String = "";
   themeId: number = 0;
   quizzes: Quiz[] | undefined = [];
-
+  title = 'Liste de quizz';
 
   constructor(private quizService: QuizService, private themeService: ThemeService, private route: ActivatedRoute) { }
 

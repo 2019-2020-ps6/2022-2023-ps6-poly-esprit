@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {} from "../../models/quizz.models"
 import {Answer} from "../../models/question.models";
 
@@ -9,4 +9,29 @@ import {Answer} from "../../models/question.models";
 })
 export class GameAnswerComponentComponent {
   @Input() answer?: Answer;
+  @Output() selected=new EventEmitter<string>();
+  @Input() isSelected=false
+  @Input() isGoodSelected=false;
+  @Input() isBadSelected=false;
+  public select(value: string){
+    this.isSelected=true
+    this.selected.emit(value)
+
+  }
+
+
+  getButtonColor() {
+    if(this.isSelected){
+      return "#7BA398"
+    }
+    return "#C3D5D0"
+  }
+
+  getFontColor() {
+    if(this.isSelected){
+      return "white";
+    }
+    return "black";
+  }
 }
+
