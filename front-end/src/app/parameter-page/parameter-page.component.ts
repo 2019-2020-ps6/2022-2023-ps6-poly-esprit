@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import {ConfigurationService} from "../../service/configuration.service";
 
 @Component({
   selector: 'app-parameter-page',
@@ -13,42 +14,32 @@ export class ParameterPageComponent implements OnInit {
   boutonNormal = "";
   boutonGros = "";
 
-  isTextNormalSelected = true;
-  isTextGrosSelected = false;
-  isButtonNormalSelected = true;
-  isButtonGrosSelected = false;
+  isTextNormalSelected=false;
+  isTextGrosSelected=false;
+  isButtonNormalSelected=false;
+  isButtonGrosSelected=false;
   @Input() tailleBouton?: string;
 
   ngOnInit() {
-    const textMode = localStorage.getItem('textMode');
-    const buttonMode = localStorage.getItem('buttonMode');
+    this.configService.quizConfigurations$.subscribe((quizConfigurations)=>{
+      this.isTextNormalSelected=quizConfigurations.isTextNormalSelected;
+      this.isTextGrosSelected=quizConfigurations.isTextGrosSelected;
+      this.isButtonNormalSelected=quizConfigurations.isButtonNormalSelected;
+      this.isButtonGrosSelected=quizConfigurations.isButtonGrosSelected;
+    })
 
-    if (textMode === 'normal') {
-      this.isTextNormalSelected = true;
-      this.isTextGrosSelected = false;
-    } else {
-      this.isTextNormalSelected = false;
-      this.isTextGrosSelected = true;
-    }
 
-    if (buttonMode === 'normal') {
-      this.isButtonNormalSelected = true;
-      this.isButtonGrosSelected = false;
-    } else {
-      this.isButtonNormalSelected = false;
-      this.isButtonGrosSelected = true;
-    }
   }
 
   public selectText(value: string) {
     if (value === 'normal') {
       this.isTextNormalSelected = true;
       this.isTextGrosSelected = false;
-      localStorage.setItem('textMode', 'normal');
+      this.configService.updateConfigration(true, false,this.isButtonNormalSelected, this.isButtonGrosSelected)
     } else {
       this.isTextNormalSelected = false;
       this.isTextGrosSelected = true;
-      localStorage.setItem('textMode', 'gros');
+      this.configService.updateConfigration(false, true ,this.isButtonNormalSelected, this.isButtonGrosSelected)
     }
   }
 
@@ -56,15 +47,18 @@ export class ParameterPageComponent implements OnInit {
     if (value === 'normal') {
       this.isButtonNormalSelected = true;
       this.isButtonGrosSelected = false;
-      localStorage.setItem('buttonMode', 'normal');
+      this.configService.updateConfigration(this.isTextNormalSelected, this.isTextGrosSelected,true, false);
     } else {
       this.isButtonNormalSelected = false;
       this.isButtonGrosSelected = true;
-      localStorage.setItem('buttonMode', 'gros');
+      this.configService.updateConfigration(this.isTextNormalSelected, this.isTextGrosSelected,false, true);
+
     }
   }
 
-  constructor(private location: Location) {}
+  constructor(private location: Location, private configService:ConfigurationService) {
+
+  }
 
   goBack() {
     this.location.back();

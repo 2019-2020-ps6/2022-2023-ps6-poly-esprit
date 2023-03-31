@@ -14,6 +14,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { HeaderComponent } from './header/header.component';
 import {EditQuizComponent} from "./edit-quiz-component/edit-quiz.component";
 import { ParameterPageComponent } from './parameter-page/parameter-page.component';
+import {AdaptConfigDirective} from "../Directives/adapt-config.directive";
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ParameterPageComponent } from './parameter-page/parameter-page.componen
     QuizListDisplayComponent,
     HeaderComponent,
     EditQuizComponent,
-    ParameterPageComponent
+    ParameterPageComponent,
+    AdaptConfigDirective
   ],
   imports: [
     BrowserModule,
