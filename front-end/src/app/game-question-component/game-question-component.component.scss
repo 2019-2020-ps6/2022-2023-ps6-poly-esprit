@@ -24,8 +24,6 @@
   width: 90%;
   margin: 1% 5%;
   padding-top: 1%;
-  padding-left: 1%;
-  padding-right: 1%;
   border-radius: 15px;
   display: flex;
   align-items: center;
@@ -36,4 +34,11 @@
 #libele_quiz>p {
   margin-top: 5px;
   margin-bottom: 1%;
+  padding-left: 2%;
+  padding-right: 2%;
+}
+
+#libele_quiz>h2 {
+  padding-left: 2%;
+  padding-right: 2%;
 }

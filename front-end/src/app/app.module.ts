@@ -27,7 +27,7 @@ import {AddUserComponent} from "./add-user-component/add-user-component";
     GameQuestionComponentComponent,
     CreateQuizComponent,
     QuizListDisplayComponent,
-    ThemeListDisplayComponentComponent
+    ThemeListDisplayComponentComponent,
     HeaderComponent,
     EditQuizComponent,
     DeleteQuizComponent,
