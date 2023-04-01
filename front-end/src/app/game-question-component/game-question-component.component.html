@@ -1,15 +1,22 @@
 <div *ngIf="quiz">
   <div id="libele_quiz">
     <h2>Vous jouez au quiz : {{quiz.name}}</h2>
-
     <p>Voici le thème actuel : {{quiz.theme}}</p>
-
     <h3 id="question" *ngIf="question"> {{question.label}}</h3>
   </div>
-  <article id="answers" *ngIf="question">
-    <div *ngFor="let answer of question.answers">
+<article [ngClass]="{'isVisible': answerIsDuo}" class="answers">
+    <div *ngFor="let answer of getAnswerDuo()">
       <app-game-answer-component  [answer]="answer" [isBadSelected]="!answer.isCorrect" [isGoodSelected]="answer.isCorrect" [isSelected]="currentValue==answer.value" (selected)="onSelected($event)"></app-game-answer-component>
     </div>
+  </article>
+  <article [ngClass]="{'isVisible': answerIsCarre}" class="answers">
+    <div *ngFor="let answer of getAnswerCarre()">
+      <app-game-answer-component  [answer]="answer" [isBadSelected]="!answer.isCorrect" [isGoodSelected]="answer.isCorrect" [isSelected]="currentValue==answer.value" (selected)="onSelected($event)"></app-game-answer-component>
+    </div>
+  </article>
+  <article [ngClass]="{'isVisible': answerIsChoice}" class="answers" id="choice">
+    <button (click)="isCarre()" class="buttonChoice">carre</button>
+    <button (click)="isDuo()" class="buttonChoice">duo</button>
   </article>
 </div>
 

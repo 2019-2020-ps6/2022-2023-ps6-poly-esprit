@@ -25,13 +25,16 @@ export class GamePageComponentComponent  implements OnInit{
   public gameInstance: GameInstance = {} as GameInstance;
   private gameQuestionAnswers: GameQuestionAnswer[] = [];
   private score: number = 0;
+  public userId:number;
 
 
   constructor(private quizService: QuizService, private route: ActivatedRoute, private questionService: QuestionService, private gameInstanceService: GameInstanceService) {
+    this.userId = Number(this.route.snapshot.paramMap.get('idUser'));
+
   }
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
+    const id = Number(this.route.snapshot.paramMap.get('idQuiz'));
     this.quizService.getQuizzes().subscribe((quizzes) => {
       this.currentQuiz = quizzes[id];
     });
@@ -56,6 +59,7 @@ export class GamePageComponentComponent  implements OnInit{
       this.gameInstance.score = this.score;
       this.gameInstanceService.addGameInstance(this.gameInstance);
     }
+
   }
 
 

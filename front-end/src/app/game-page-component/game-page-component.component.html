@@ -13,7 +13,8 @@
     Valider
   </button>
 
-  <a href="#">
+
+  <a [routerLink]="['/quiz-list/', userId]">
     <button class="retour" appAdaptConfig [ngStyle]="getDisable()">
       Retour
     </button>

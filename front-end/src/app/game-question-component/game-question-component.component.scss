@@ -1,13 +1,6 @@
-#answers{
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
-  gap: 30px;
-  align-items: center;
-  justify-items: center;
-  margin : 20px 120px 20px 120px;
-
+.answers{
+  display: none;
 }
-
 #question{
   text-align: center;
   width: 100%;
@@ -19,7 +12,24 @@
   background-color: #C3D5D0;
   border-radius: 15px;
 }
-
+.isVisible{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 30px;
+  align-items: center;
+  justify-items: center;
+  margin : 20px 120px 20px 120px;
+}
+.buttonChoice{
+  border-radius: 15%;
+  width: 350px;
+  height: 150px;
+  background-color: #C3D5D0;
+}
+.buttonChoice:hover {
+  transform: scale(1.5);
+  transition: 0.2s;
+}
 #libele_quiz {
   width: 90%;
   margin: 1% 5%;
@@ -32,7 +42,6 @@
   flex-direction: column;
   background-color: #D9D9D9;
 }
-
 #libele_quiz>p {
   margin-top: 5px;
   margin-bottom: 1%;

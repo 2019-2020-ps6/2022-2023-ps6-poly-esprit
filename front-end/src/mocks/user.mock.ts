@@ -21,7 +21,7 @@ export const mockUser: User[] = [
   },
   {
     id: '2',
-    isAdmin: true,
+    isAdmin: false,
     nom: "Maurois",
     prenom: "Quentin",
     age: 85,
@@ -30,7 +30,7 @@ export const mockUser: User[] = [
   },
   {
     id: '3',
-    isAdmin: true,
+    isAdmin: false,
     nom: "Thea",
     prenom: "Delias",
     age: 95,
