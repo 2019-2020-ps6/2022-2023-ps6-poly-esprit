@@ -42,6 +42,4 @@ export class AddUserComponent implements OnInit {
   }
 }
 
-//A CONTINUER
-// FAIRE LES CHECK BOX ETC
-// DECRIRE SI UN UTILISATEUR EST ADMIN OU PAS
+

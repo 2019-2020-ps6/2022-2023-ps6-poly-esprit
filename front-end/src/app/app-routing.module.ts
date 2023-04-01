@@ -13,6 +13,7 @@ import {ParameterPageComponent} from "./parameter-page/parameter-page.component"
 import {DeleteQuizComponent} from "./delete-quiz-component/delete-quiz.component";
 import {UserListDisplayComponent} from "./user-list-display/user-list-display.component";
 import {AddUserComponent} from "./add-user-component/add-user-component";
+import {UserEditComponent} from "./user-edit-component/user-edit.component";
 
 
 const routes: Routes = [
@@ -26,9 +27,11 @@ const routes: Routes = [
   {path: '', component: UserListDisplayComponent},
   {path: 'quiz-list/:idUser', component: QuizListDisplayComponent },
   {path: 'user-create', component: AddUserComponent},
+  {path: 'user-list/user-edit/:id', component: UserEditComponent},
   {path: 'themes/:idUser', component: ThemeListDisplayComponentComponent},
   {path: 'themes/:idTheme/:idUser', component: QuizListDisplayComponent },
   {path: 'parametre', component:ParameterPageComponent}
+
 ];
 
 
