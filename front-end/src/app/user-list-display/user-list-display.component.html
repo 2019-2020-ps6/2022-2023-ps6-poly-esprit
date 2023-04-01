@@ -2,7 +2,7 @@
 <h1>Voici la liste : </h1>
 <ul>
   <li *ngFor="let user of users">
-    <a class="navigation" [routerLink]="['/']">
+    <a class="navigation" [routerLink]="['/quiz-list',user.id]">
       Utilisateur : {{ user.nom }}
     </a>
   </li>

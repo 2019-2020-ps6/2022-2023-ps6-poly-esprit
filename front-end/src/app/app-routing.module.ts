@@ -9,24 +9,26 @@ import {QuizListDisplayComponent} from "./quiz-list-display/quiz-list-display.co
 import {AppComponent} from "./app.component";
 import {ThemeListDisplayComponentComponent} from "./theme-list-display-component/theme-list-display-component.component";
 import {EditQuizComponent} from "./edit-quiz-component/edit-quiz.component";
+import {ParameterPageComponent} from "./parameter-page/parameter-page.component";
 import {DeleteQuizComponent} from "./delete-quiz-component/delete-quiz.component";
 import {UserListDisplayComponent} from "./user-list-display/user-list-display.component";
 import {AddUserComponent} from "./add-user-component/add-user-component";
+
 
 const routes: Routes = [
 
   {path: 'game-answer-component', component: GameAnswerComponentComponent},
   {path: 'game-question-component', component: GameQuestionComponentComponent},
-  {path: 'game-page/:id', component: GamePageComponentComponent},
+  {path: 'game-page/:idQuiz/:idUser', component: GamePageComponentComponent},
   {path: 'create-quiz', component: CreateQuizComponent },
   {path: 'edit-quiz/:id', component: EditQuizComponent},
   {path: 'delete-quiz/:id', component: DeleteQuizComponent},
-  {path: 'user-list', component: UserListDisplayComponent},
+  {path: '', component: UserListDisplayComponent},
+  {path: 'quiz-list/:idUser', component: QuizListDisplayComponent },
   {path: 'user-create', component: AddUserComponent},
-  {path: '', component: ThemeListDisplayComponentComponent},
-  {path: 'themes/:idTheme', component: QuizListDisplayComponent },
-  {path: 'create-quiz', component: CreateQuizComponent}
-
+  {path: 'themes', component: ThemeListDisplayComponentComponent},
+  {path: 'themes/:idTheme/:idUser', component: QuizListDisplayComponent },
+  {path: 'parametre', component:ParameterPageComponent}
 ];
 
 

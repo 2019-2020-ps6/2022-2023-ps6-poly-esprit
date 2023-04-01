@@ -9,12 +9,13 @@
 
 <div class="centre">
 
-  <button class="valider"  [ngStyle]="getDisable()" [disabled]="somethingSelected" (click)="validate()">
+  <button class="valider" appAdaptConfig [ngStyle]="getDisable()" [disabled]="somethingSelected" (click)="validate()">
     Valider
   </button>
 
-  <a href="#">
-    <button class="retour" [ngStyle]="getDisable()">
+
+  <a [routerLink]="['/quiz-list/', userId]">
+    <button class="retour" appAdaptConfig [ngStyle]="getDisable()">
       Retour
     </button>
   </a>
