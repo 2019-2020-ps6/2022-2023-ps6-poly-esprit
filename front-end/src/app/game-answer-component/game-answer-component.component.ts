@@ -13,6 +13,7 @@ export class GameAnswerComponentComponent {
   @Input() isSelected=false
   @Input() isGoodSelected=false;
   @Input() isBadSelected=false;
+
   public select(value: string){
     this.isSelected=true
     this.selected.emit(value)
@@ -33,5 +34,6 @@ export class GameAnswerComponentComponent {
     }
     return "black";
   }
+
 }
 

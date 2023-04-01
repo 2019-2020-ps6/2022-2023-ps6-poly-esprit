@@ -1,2 +1,5 @@
-<h3 *ngIf="gameInstance">Bravo ! Vous avez terminé le quiz avec {{gameInstance.score}} point</h3>
-<a [routerLink]="['/quiz-list/', userId]"><button>Acceuil</button></a>
+<div>
+  <h3 *ngIf="gameInstance">Bravo ! Vous avez terminé le quiz avec {{gameInstance.score}} point</h3>
+  <a [routerLink]="['/quiz-list/', userId]"><button>Accueil</button></a>
+</div>
+
