@@ -26,7 +26,7 @@ const routes: Routes = [
   {path: '', component: UserListDisplayComponent},
   {path: 'quiz-list/:idUser', component: QuizListDisplayComponent },
   {path: 'user-create', component: AddUserComponent},
-  {path: 'themes', component: ThemeListDisplayComponentComponent},
+  {path: 'themes/:idUser', component: ThemeListDisplayComponentComponent},
   {path: 'themes/:idTheme/:idUser', component: QuizListDisplayComponent },
   {path: 'parametre', component:ParameterPageComponent}
 ];

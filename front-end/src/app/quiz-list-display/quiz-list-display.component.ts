@@ -3,7 +3,6 @@ import {QuizService} from "../../service/quiz.service";
 import { ThemeService} from "../../service/theme.service";
 import { ActivatedRoute } from '@angular/router';
 import {Quiz} from "../../models/quizz.models";
-import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-quiz-list-display',
@@ -15,7 +14,7 @@ export class QuizListDisplayComponent implements OnInit {
   themeName: String = "";
   themeId: number = 0;
   quizzes: Quiz[] | undefined = [];
-  title = 'Liste de quizz';
+  title = 'Liste des quizz';
   public idUser: string | null;
 
   constructor(private quizService: QuizService, private themeService: ThemeService, private route: ActivatedRoute) {
