@@ -34,4 +34,8 @@ export class ThemeService {
         return throwError(`Theme with ID ${id} not found.`);
       }
     }
+
+    addTheme(name: String): void {
+
+    }
 }

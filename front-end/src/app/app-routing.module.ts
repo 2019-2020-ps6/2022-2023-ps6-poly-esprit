@@ -25,9 +25,10 @@ const routes: Routes = [
   {path: 'user-create', component: AddUserComponent},
   {path: '', component: ThemeListDisplayComponentComponent},
   {path: 'themes/:idTheme', component: QuizListDisplayComponent },
-
+  {path: 'create-quiz', component: CreateQuizComponent}
 
 ];
+
 
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
