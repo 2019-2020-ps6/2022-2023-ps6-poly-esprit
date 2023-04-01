@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
 import {Quizz} from "../mocks/quizz.mock";
 import {Quiz} from "../models/quizz.models";
+import {ThemeService} from "./theme.service";
 @Injectable({
   providedIn: 'root'
 })
@@ -21,7 +22,7 @@ export class QuizService {
 
   addQuiz(q: Quiz){
     this.quizzes.push(q);
-    console.log("Une nouvelle questiona  été ajoutée avec comme nom :"+q.name+" et en thème: "+q.theme+"\n");
+    // console.log("Une nouvelle questiona  été ajoutée avec comme nom :"+q.name+" et en thème: "+q.theme+"\n");
     console.log("Le mock possède maintenant:" +this.quizzes.length +"questions");
   }
 

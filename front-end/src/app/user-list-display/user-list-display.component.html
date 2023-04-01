@@ -2,8 +2,11 @@
 <h1>Voici la liste : </h1>
 <ul>
   <li *ngFor="let user of users">
-    <a class="navigation" [routerLink]="['user-edit', user.id]">
+    <a class="navigation" [routerLink]="['/themes', user.id]">
       Utilisateur : {{ user.nom }}
+    </a>
+     <a class="navigation" [routerLink]="['user-edit', user.id]">
+      <button>Modifier l'utilisateur</button>
     </a>
   </li>
 </ul>

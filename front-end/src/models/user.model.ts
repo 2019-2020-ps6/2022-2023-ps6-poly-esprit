@@ -5,5 +5,5 @@ export interface User {
   prenom: string;
   age: number;
   sex: string;
-  pathology: number;
+  pathology?: number;
 }
