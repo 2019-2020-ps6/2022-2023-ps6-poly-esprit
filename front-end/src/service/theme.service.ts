@@ -38,4 +38,19 @@ export class ThemeService {
     addTheme(name: String): void {
 
     }
+
+  deleteQuiz(id_quiz: string) {
+    for(let i =0; i < this.themes.length; i++){
+      let theme = this.themes[i];
+      let quizz = theme.quizzes;
+      if(quizz!=null){
+        for(let j =0; j < quizz.length; j++){
+          if(quizz[j].id == id_quiz){
+            quizz.splice(j,1);
+            break;
+          }
+        }
+      }
+    }
+  }
 }

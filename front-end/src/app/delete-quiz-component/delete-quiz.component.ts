@@ -4,6 +4,7 @@ import { Quizz } from '../../mocks/quizz.mock';
 import {Quiz} from "../../models/quizz.models";
 import {QuizService} from "../../service/quiz.service";
 import {ActivatedRoute} from "@angular/router";
+import {ThemeService} from "../../service/theme.service";
 
 
 @Component({
@@ -14,12 +15,13 @@ import {ActivatedRoute} from "@angular/router";
 export class DeleteQuizComponent {
   public currentQuiz?: Quiz;
   private QCService: QuizService;
+  private THService: ThemeService;
   formulaire: FormGroup;
   id_quiz: string | null = "";
 
-  constructor(private quizService: QuizService, private route: ActivatedRoute, private formBuilder: FormBuilder) {
+  constructor(private quizService: QuizService, private themeService : ThemeService,private route: ActivatedRoute, private formBuilder: FormBuilder) {
     this.QCService = quizService;
-
+    this.THService = themeService;
     this.formulaire = this.formBuilder.group({},{});
   }
 
@@ -31,6 +33,7 @@ export class DeleteQuizComponent {
   onSubmit() {
     if(this.id_quiz!=null){
       this.QCService.deleteQuiz(this.id_quiz);
+      this.THService.deleteQuiz(this.id_quiz);
       alert("Le quiz a bien été supprimé de la liste, vous pouvez revenir sur la page principale");
     }
   }
