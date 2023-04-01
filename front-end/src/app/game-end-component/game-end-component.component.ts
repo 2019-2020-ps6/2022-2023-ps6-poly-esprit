@@ -12,8 +12,11 @@ import {GameInstance} from "../../models/gameInstance.models";
   templateUrl: './game-end-component.component.html',
   styleUrls: ['./game-end-component.component.scss']
 })
-export class GameEndComponentComponent {
+export class GameEndComponentComponent implements OnInit {
   @Input() gameInstance?: GameInstance;
+  ngOnInit(): void {
+    console.log("C'est moiiiiiiiiiiiiiii",this.gameInstance)
+  }
 
 
 }

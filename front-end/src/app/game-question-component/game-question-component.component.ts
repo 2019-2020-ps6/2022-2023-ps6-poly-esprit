@@ -20,7 +20,12 @@ export class GameQuestionComponentComponent implements OnInit{
   @Output() whoIsSelected=new EventEmitter<string>();
   public howPathology: number | undefined;
   currentValue? : string;
-  public random ;
+  public random;
+  public answerIsDuo: boolean = false;
+  public answerIsCarre: boolean = false;
+  public answerIsCash: boolean = false;
+  public answerIsChoice: boolean = false;
+
 
 
   constructor(private route: ActivatedRoute) {
@@ -31,29 +36,44 @@ export class GameQuestionComponentComponent implements OnInit{
       }
     }
     this.random = Math.floor(Math.random() * 3);
+
   }
   ngOnInit(): void {
+    if(this.howPathology===4){
+      this.answerIsDuo=true;
+    }
+    if(this.howPathology===2 || this.howPathology===3){
+      this.answerIsCarre=true;
+    }
+    if(this.howPathology===1  || this.howPathology===1){
+      this.answerIsChoice=true;
+    }
+
   }
   public onSelected(value:string){
-    this.currentValue=value
+    this.currentValue=value;
     this.somethingSelected.emit(false);
-    this.whoIsSelected.emit(value);
+
+    if(this.answerIsCash){
+      this.whoIsSelected.emit(document.getElementById("cash")?.innerHTML);
+    }else{
+      this.whoIsSelected.emit(value);
+    }
   }
 
-  getAnswerWithTypeOfUser() {
-    if (this.howPathology==2 || this.howPathology==3) {
-      return this.question?.answers
-    }
-    if(this.howPathology==4 && this.question?.answers){
+
+
+  getAnswerDuo() {
+    if(this.question) {
       let returnAnswers: Answer[] = [];
       let cloneAnswers: Answer[] = [];
-      for(let answer of this.question?.answers){
-        if(!answer.isCorrect){
+      for (let answer of this.question?.answers) {
+        if (!answer.isCorrect) {
           cloneAnswers.push(answer)
         }
       }
-      for(let answer of this.question?.answers){
-        if(answer.isCorrect){
+      for (let answer of this.question?.answers) {
+        if (answer.isCorrect) {
           returnAnswers.push(answer)
         }
       }
@@ -64,5 +84,23 @@ export class GameQuestionComponentComponent implements OnInit{
     }
     return;
   }
+
+  getAnswerCarre() {
+    return this.question?.answers
+  }
+
+
+  isDuo() {
+    this.answerIsDuo = true;
+    this.answerIsChoice = false;
+
+  }
+  isCarre() {
+    this.answerIsCarre = true;
+    this.answerIsChoice = false;
+
+  }
+
+
 }
 //https://angular.io/tutorial/tour-of-heroes/toh-pt4

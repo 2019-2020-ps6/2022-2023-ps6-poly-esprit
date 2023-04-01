@@ -56,6 +56,7 @@ export class GamePageComponentComponent  implements OnInit{
       this.gameInstance.score = this.score;
       this.gameInstanceService.addGameInstance(this.gameInstance);
     }
+
   }
 
 

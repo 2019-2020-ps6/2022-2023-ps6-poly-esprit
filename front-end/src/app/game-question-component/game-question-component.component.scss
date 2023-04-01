@@ -1,11 +1,5 @@
-#answers{
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
-  gap: 30px;
-  align-items: center;
-  justify-items: center;
-  margin : 20px 120px 20px 120px;
-
+.answers{
+  display: none;
 }
 
 #question{
@@ -15,5 +9,16 @@
   font-weight: bold;
   font-family: 'Roboto', sans-serif;
 }
+
+.isVisible{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 30px;
+  align-items: center;
+  justify-items: center;
+  margin : 20px 120px 20px 120px;
+}
+
+
 
 
