@@ -40,7 +40,15 @@ export class UserService {
     if (u) {
       this.users.splice(this.users.indexOf(u), 1);
     }
+  }
 
+  deleteUserWithId(user_id: string){
+    //delete user who got the id
+    for(let i=0; i<this.users.length; i++){
+      if(this.users[i].id==user_id){
+        this.users.splice(i,1);
+      }
+    }
   }
 
 
