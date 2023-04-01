@@ -45,7 +45,7 @@ export class GameQuestionComponentComponent implements OnInit{
     if(this.howPathology===2 || this.howPathology===3){
       this.answerIsCarre=true;
     }
-    if(this.howPathology===1  || this.howPathology===1){
+    if(this.howPathology===1  || this.howPathology===0){
       this.answerIsChoice=true;
     }
 
@@ -88,8 +88,6 @@ export class GameQuestionComponentComponent implements OnInit{
   getAnswerCarre() {
     return this.question?.answers
   }
-
-
   isDuo() {
     this.answerIsDuo = true;
     this.answerIsChoice = false;

@@ -18,12 +18,9 @@
       <app-game-answer-component  [answer]="answer" [isBadSelected]="!answer.isCorrect" [isGoodSelected]="answer.isCorrect" [isSelected]="currentValue==answer.value" (selected)="onSelected($event)"></app-game-answer-component>
     </div>
   </article>
-  <article [ngClass]="{'isVisible': answerIsCash}" class="answers">
-    <input (click)="inputClicked()" type="text">
-  </article>
   <article [ngClass]="{'isVisible': answerIsChoice}" class="answers" id="choice">
-    <button (click)="isCarre()">carre</button>
-    <button (click)="isDuo()">duo</button>
+    <button (click)="isCarre()" class="buttonChoice">carre</button>
+    <button (click)="isDuo()" class="buttonChoice">duo</button>
   </article>
 </div>
 

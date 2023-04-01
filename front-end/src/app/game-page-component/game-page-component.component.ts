@@ -25,9 +25,12 @@ export class GamePageComponentComponent  implements OnInit{
   public gameInstance: GameInstance = {} as GameInstance;
   private gameQuestionAnswers: GameQuestionAnswer[] = [];
   private score: number = 0;
+  public userId:number;
 
 
   constructor(private quizService: QuizService, private route: ActivatedRoute, private questionService: QuestionService, private gameInstanceService: GameInstanceService) {
+    this.userId = Number(this.route.snapshot.paramMap.get('idUser'));
+
   }
 
   ngOnInit(): void {
