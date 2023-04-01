@@ -11,6 +11,7 @@ import {EditQuizComponent} from "./edit-quiz-component/edit-quiz.component";
 import {DeleteQuizComponent} from "./delete-quiz-component/delete-quiz.component";
 import {UserListDisplayComponent} from "./user-list-display/user-list-display.component";
 import {AddUserComponent} from "./add-user-component/add-user-component";
+import {UserEditComponent} from "./user-edit-component/user-edit.component";
 
 const routes: Routes = [
 
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path: 'delete-quiz/:id', component: DeleteQuizComponent},
   {path: 'user-list', component: UserListDisplayComponent},
   {path: 'user-create', component: AddUserComponent},
+  {path: 'user-list/user-edit/:id', component: UserEditComponent},
   {path: '', component: QuizListDisplayComponent },
 
 

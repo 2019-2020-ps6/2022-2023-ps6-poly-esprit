@@ -32,8 +32,15 @@ export class UserService {
 
   printUsers(){
     for(let i=0; i<this.users.length; i++){
-      console.log("Utilisateur de prenom : "+this.users[i].prenom);
+      console.log("Utilisateur de prenom : "+this.users[i].prenom+" et d'id : "+this.users[i].id);
     }
+  }
+
+  deleteUser(u: User | undefined){
+    if (u) {
+      this.users.splice(this.users.indexOf(u), 1);
+    }
+
   }
 
 

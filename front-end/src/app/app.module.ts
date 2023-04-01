@@ -17,6 +17,7 @@ import {DeleteQuizComponent} from "./delete-quiz-component/delete-quiz.component
 import {GameEndComponentComponent} from "./game-end-component/game-end-component.component";
 import {UserListDisplayComponent} from "./user-list-display/user-list-display.component";
 import {AddUserComponent} from "./add-user-component/add-user-component";
+import {UserEditComponent} from "./user-edit-component/user-edit.component";
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {AddUserComponent} from "./add-user-component/add-user-component";
     GameEndComponentComponent,
     UserListDisplayComponent,
     DeleteQuizComponent,
-    AddUserComponent
+    AddUserComponent,
+    UserEditComponent
   ],
   imports: [
     BrowserModule,
