@@ -6,13 +6,15 @@
 .retour{
   border-radius: 15%;
   background-color: #C3D5D0;
-  margin-left: 60px
+  margin-left: 60px;
+  transition: 0.2s;
 }
 
 .valider{
   font-size: 15px;
   border-radius: 15%;
   background-color: #C3D5D0;
+  transition: 0.2s;
 }
 
 .valider:hover, .retour:hover, #questionSuivante:hover{
@@ -28,7 +30,7 @@
   width: 200px;
   height: 100px;
   background-color: #C3D5D0;
-
+  transition: 0.2s;
 }
 
 

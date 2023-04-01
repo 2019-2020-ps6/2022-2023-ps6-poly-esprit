@@ -1,0 +1,84 @@
+.selection_box {
+  background-color: #D9D9D9;
+  width: 90%;
+  margin: 2% 5% 5%; //top, left, right
+  border-radius: 15px;
+  padding-bottom: 5px;
+}
+
+.selection_box>div {  //div de titre et tout en haut de la selection_box
+  display: flex;
+  align-items: center;
+  background-color: #C3D5D0;
+  height: 60px;
+  border-radius: 15px;
+  //position: sticky;
+  top: 20px;
+}
+
+.selection_box>div>hr {
+  height: 70%;
+  width: 4px;
+  background-color: #183446;
+  box-shadow: none;
+}
+
+.selection_box>div>h1, .selection_box>div>input {
+  width: 45%;
+  border-radius: 15px;
+  margin: auto;
+  height: 40%;
+  padding: 5px;
+  vertical-align: center;
+}
+
+.selection_box li { //boutons de navigation
+  //justify-content: center;
+  list-style-type: none;
+  background-color: #C3D5D0;
+  //margin: 10px 50px 10px 10px;  //laisse de la place pour une scrollbar
+  margin: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 6vh;
+  border-radius: 15px;
+  transition: 0.2s;
+}
+
+.button_container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row nowrap;
+}
+
+#theme_selection {
+  width: 100%;
+  height: 100%;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.button_container .gestion_admin {
+  margin-right: 5px;
+  background-color: #D9D9D9;
+  font-size: small;
+}
+
+.button_container .theme_selection {
+  background-color: #C3D5D0;
+  border-style: none;
+  width: 100%;
+  height: 100%;
+  font-size: large;
+}
+
+.selection_box li:hover {
+  height: 10vh;
+  transition: 0.2s;
+  border: solid 1px #000000;
+}

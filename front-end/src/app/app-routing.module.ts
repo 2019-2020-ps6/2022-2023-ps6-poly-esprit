@@ -7,6 +7,7 @@ import {GamePageComponentComponent} from "./game-page-component/game-page-compon
 import { CreateQuizComponent } from './create-quiz-component/create-quiz.component';
 import {QuizListDisplayComponent} from "./quiz-list-display/quiz-list-display.component";
 import {AppComponent} from "./app.component";
+import {ThemeListDisplayComponentComponent} from "./theme-list-display-component/theme-list-display-component.component";
 import {EditQuizComponent} from "./edit-quiz-component/edit-quiz.component";
 import {ParameterPageComponent} from "./parameter-page/parameter-page.component";
 import {DeleteQuizComponent} from "./delete-quiz-component/delete-quiz.component";
@@ -25,11 +26,14 @@ const routes: Routes = [
   {path: '', component: UserListDisplayComponent},
   {path: 'quiz-list/:idUser', component: QuizListDisplayComponent },
   {path: 'user-create', component: AddUserComponent},
+  {path: 'themes/:idUser', component: ThemeListDisplayComponentComponent},
+  {path: 'themes/:idTheme/:idUser', component: QuizListDisplayComponent },
   {path: 'parametre', component:ParameterPageComponent}
 ];
 
+
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
 export class AppRoutingModule { }

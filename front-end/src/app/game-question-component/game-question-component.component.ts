@@ -14,6 +14,7 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./game-question-component.component.scss']
 })
 export class GameQuestionComponentComponent implements OnInit{
+
   @Input() quiz?: Quiz ;
   @Input() question?: Question;
   @Output() somethingSelected=new EventEmitter<boolean>();

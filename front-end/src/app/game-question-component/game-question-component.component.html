@@ -1,7 +1,9 @@
 <div *ngIf="quiz">
   <div id="libele_quiz">
     <h2>Vous jouez au quiz : {{quiz.name}}</h2>
-    <p>Voici le thème actuel : {{quiz.theme}}</p>
+
+    <p>Voici le thème actuel : soon</p>
+    
     <h3 id="question" *ngIf="question"> {{question.label}}</h3>
   </div>
 <article [ngClass]="{'isVisible': answerIsDuo}" class="answers">
