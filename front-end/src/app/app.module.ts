@@ -20,6 +20,8 @@ import {DeleteQuizComponent} from "./delete-quiz-component/delete-quiz.component
 import {GameEndComponentComponent} from "./game-end-component/game-end-component.component";
 import {UserListDisplayComponent} from "./user-list-display/user-list-display.component";
 import {AddUserComponent} from "./add-user-component/add-user-component";
+
+import { StatsVisualisationComponent } from './stats-visualisation/stats-visualisation.component';
 import {UserEditComponent} from "./user-edit-component/user-edit.component";
 import {UserDeleteComponent} from "./user-delete-component/user-delete.component";
 
@@ -42,7 +44,8 @@ import {UserDeleteComponent} from "./user-delete-component/user-delete.component
     DeleteQuizComponent,
     AddUserComponent,
     UserDeleteComponent,
-    UserEditComponent
+    UserEditComponent,
+    StatsVisualisationComponent
   ],
   imports: [
     BrowserModule,

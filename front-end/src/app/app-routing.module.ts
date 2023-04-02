@@ -15,6 +15,7 @@ import {UserListDisplayComponent} from "./user-list-display/user-list-display.co
 import {AddUserComponent} from "./add-user-component/add-user-component";
 import {UserEditComponent} from "./user-edit-component/user-edit.component";
 import {UserDeleteComponent} from "./user-delete-component/user-delete.component";
+import { StatsVisualisationComponent } from './stats-visualisation/stats-visualisation.component';
 
 
 const routes: Routes = [
@@ -32,6 +33,7 @@ const routes: Routes = [
   {path: 'themes/:idUser', component: ThemeListDisplayComponentComponent},
   {path: 'themes/:idTheme/:idUser', component: QuizListDisplayComponent },
   {path: 'user-delete/:id', component: UserDeleteComponent},
+  {path: 'stats/:idUser', component: StatsVisualisationComponent },
   {path: 'parametre', component:ParameterPageComponent}
 
 ];

@@ -5,6 +5,9 @@
     <a class="navigation" [routerLink]="['/themes', user.id]">
       Utilisateur : {{ user.nom }}
     </a>
+    <a class="navigation" [routerLink]="['/stats', user.id]">
+      <button> Voir les stats de {{ user.nom }} </button>
+    </a>
      <a class="navigation" [routerLink]="['user-edit', user.id]">
       <button>Modifier l'utilisateur</button>
     </a>
