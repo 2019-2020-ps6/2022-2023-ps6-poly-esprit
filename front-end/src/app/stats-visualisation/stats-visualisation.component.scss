@@ -1,0 +1,39 @@
+#choiceButtons {
+    background-color: grey;
+    display: flex;
+    justify-content: right;
+    margin-left: 15vw;
+    margin-right: 15vw;
+    padding: 4px;
+}
+
+#choiceButtons > button {
+    //height: 7vh;
+    //width: 10vw;
+    border-radius: 0;
+    font-size: 1.7vh;
+    font-weight: bold;
+    background-color: #ddd;
+}
+
+#choiceButtons > button:hover {
+    background-color: white;
+}
+
+#choiceButtons > button:first-child {
+    border-radius: 20px 0% 0% 20px;
+}
+
+#choiceButtons > button:last-child {
+    border-radius: 0% 20px 20px 0%;
+}
+
+#statsVisualiser {
+    margin-top: 5vh;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    height: 50vh;
+    width: 70vw;
+    background-color: lightgrey;
+}

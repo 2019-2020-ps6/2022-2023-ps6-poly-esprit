@@ -1,5 +1,5 @@
 <app-header [title]="title"></app-header>
-<h1>Voici les statistiques de  : </h1>
+<h1>Statistiques de {{ user.prenom }} {{ user.nom }}</h1>
 <ul>
   <!--<li *ngFor="let user of users">
     <a class="navigation" [routerLink]="['/themes', user.id]">
@@ -11,6 +11,13 @@
     </a>
   </li>-->
 </ul>
+<div id="choiceButtons">
+  <button>clics</button>
+  <button>r&eacute;ponses</button>
+</div>
+<div id="statsVisualiser">
+
+</div>
 <br>
 <a class="navigation" [routerLink]="['/']">
   <button>Retour</button>

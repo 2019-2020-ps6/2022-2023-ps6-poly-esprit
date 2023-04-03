@@ -12,11 +12,12 @@ import { User } from 'src/models/user.model';
 export class StatsVisualisationComponent implements OnInit {
   idUser: number;
   user: any;
-  users: any[] = [];
+  statsPage: number;
   title = 'Statistiques utilisateur';
 
   constructor(private userService: UserService, private route: ActivatedRoute) {
     this.idUser = Number(this.route.snapshot.paramMap.get("idUser"))
+    this.statsPage = 0;
   }
 
   ngOnInit(): void {
@@ -27,6 +28,6 @@ export class StatsVisualisationComponent implements OnInit {
         this.user = user;
       });
     }
-    this.title = `Statistiques de l'utilisateur ` + this.user.nom;
+    this.title = `Statistiques d'utilisateur`;
   }
 }
