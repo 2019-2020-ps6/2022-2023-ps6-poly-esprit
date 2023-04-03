@@ -1,10 +1,26 @@
-#choiceButtons {
+#header {
+    margin-top: 2vh;
     background-color: grey;
     display: flex;
-    justify-content: right;
-    margin-left: 15vw;
-    margin-right: 15vw;
+    justify-content: left;
+    margin-left: 10vw;
+    margin-right: 10vw;
     padding: 4px;
+    border-radius: 20px 20px 0% 0%;
+}
+
+#header > a {
+    padding-left: 2vw;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+#choiceButtons {
+    display: flex;
+    justify-content: right;
+    padding: 4px;
+    margin-right: 2vw;
+    margin-left: auto;
 }
 
 .hide {
@@ -48,6 +64,17 @@
     justify-content: center;
     margin: auto;
     height: 50vh;
-    width: 70vw;
+    width: 80vw;
     background-color: lightgrey;
+}
+
+.navigation > button {
+    margin-top: 2vh;
+    margin-left: 4vw;
+    display: flex;
+    vertical-align: middle;
+}
+
+.navigation > button > a {
+    margin-left: 4px;
 }
