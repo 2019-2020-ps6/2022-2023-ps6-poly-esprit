@@ -13,7 +13,7 @@ export const Quizz = [
   },
   {
     id: '2',
-    name: 'La révolition française',
+    name: 'La révolution française',
     questions: [Questions[0], Questions[1], Questions[2]]
   }
 

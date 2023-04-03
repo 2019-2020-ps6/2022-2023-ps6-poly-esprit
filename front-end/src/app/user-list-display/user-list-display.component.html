@@ -1,17 +1,20 @@
 <app-header [title]="title"></app-header>
-<h1>Voici la liste : </h1>
-<ul>
-  <li *ngFor="let user of users">
-    <a class="navigation" [routerLink]="['/themes', user.id]">
-      Utilisateur : {{ user.nom }}
-    </a>
-     <a class="navigation" [routerLink]="['user-edit', user.id]">
-      <button>Modifier l'utilisateur</button>
-    </a>
-    <a class="navigation" [routerLink]="['user-delete', user.id]">
-      <button>Supprimer l'utilisateur</button>
-    </a>
-  </li>
-</ul>
+<!--<h1>Voici la liste : </h1>-->
+  <ul>
+    <div class="grid_display">
+    <li *ngFor="let user of users">
+      <a class="navigation" id="user_selection" [routerLink]="['/themes', user.id]">
+<!--        une image -->
+        <button>Utilisateur : {{user.prenom}} {{ user.nom }}</button>
+      </a>
+       <a class="navigation" [routerLink]="['user-edit', user.id]">
+        <button class="gestion_admin">Modifier l'utilisateur</button>
+      </a>
+      <a class="navigation" [routerLink]="['user-delete', user.id]">
+        <button class="gestion_admin">Supprimer l'utilisateur</button>
+      </a>
+    </li>
+    </div>
+  </ul>
 <br>
 

@@ -1,0 +1,30 @@
+.grid_display {
+  display: grid;
+  grid-template: 1fr / 1.5vw 1fr 1.5vw 1fr 1.5vw;
+  //border: dotted;
+}
+
+li {
+  list-style-type: none;
+  //border: solid blue;
+  //height: 200px;
+}
+
+li:nth-child(even) {   //tous les li pairs
+  grid-column: 4/4;
+}
+
+li:nth-child(odd) {
+  grid-column: 2/2;
+}
+
+#user_selection {
+  //border: solid;
+  //height: 100%;
+  //width: 100%;
+  height: 200px;
+}
+
+.gestion_admin {
+
+}
