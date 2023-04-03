@@ -10,10 +10,13 @@ import { User } from 'src/models/user.model';
 })
 
 export class StatsVisualisationComponent implements OnInit {
+  isClick: boolean = true;
+  isResponse: boolean = false;
   idUser: number;
   user: any;
   statsPage: number;
   title = 'Statistiques utilisateur';
+  choiceClics: any;
 
   constructor(private userService: UserService, private route: ActivatedRoute) {
     this.idUser = Number(this.route.snapshot.paramMap.get("idUser"))
@@ -29,5 +32,17 @@ export class StatsVisualisationComponent implements OnInit {
       });
     }
     this.title = `Statistiques d'utilisateur`;
+  }
+
+  choiceClick() {
+    this.isClick = true;
+    this.isResponse = false;
+    console.log("choix click")
+  }
+
+  choiceResponse() {
+    this.isClick = false;
+    this.isResponse = true;
+    console.log("choix response")
   }
 }
