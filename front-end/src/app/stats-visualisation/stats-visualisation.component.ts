@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from "../../service/user.service";
+import { UserService } from "../../service/user.service";
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/models/user.model';
 
@@ -10,17 +10,23 @@ import { User } from 'src/models/user.model';
 })
 
 export class StatsVisualisationComponent implements OnInit {
-  idUser: string | null;
+  idUser: number;
   user: any;
   users: any[] = [];
   title = 'Statistiques utilisateur';
 
   constructor(private userService: UserService, private route: ActivatedRoute) {
-    this.idUser = this.route.snapshot.paramMap.get("idUser")
+    this.idUser = Number(this.route.snapshot.paramMap.get("idUser"))
   }
 
   ngOnInit(): void {
-    this.user = this.userService.getUser(this.idUser);
-    this.title = `Statistiques de l'utilisateur ` + this.user.name;
+    const idUser = Number(this.route.snapshot.paramMap.get('idUser'));
+    console.log(idUser)
+    if (this.idUser != null) {
+      this.userService.getUser(this.idUser).subscribe((user) => {
+        this.user = user;
+      });
+    }
+    this.title = `Statistiques de l'utilisateur ` + this.user.nom;
   }
 }

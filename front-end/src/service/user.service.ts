@@ -24,14 +24,14 @@ export class UserService {
     return this.users$
   }
 
-  getUser(Id : string | null) {
+  getUser(Id : number | null) {
     if(Id == null) {
       return throwError(`L'Id ${Id} est invalide`)
     }
-    const user = this.users.find(t => t.id == Id);
-      console.log("utilisateur " + user);
+    const user = this.users.find(t => t.id == String(Id));
       if (user) {
-        return user;
+        console.log("utilisateur " + user.nom);
+        return of(user);
       } else {
         return throwError(`User with ID ${Id} not found.`);
       }
