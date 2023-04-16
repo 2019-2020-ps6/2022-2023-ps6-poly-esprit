@@ -14,14 +14,15 @@ export class AdaptConfigDirective {
         this.el.nativeElement.style.fontSize = '20px';
       }else{
         this.el.nativeElement.style.fontSize = '30px';
+        this.el.nativeElement.style.fontWeight = 'bold';
       }
       if (quizConfigurations.isButtonNormalSelected) {
         this.el.nativeElement.style.width = '300px';
         this.el.nativeElement.style.height = '100px';
 
       } else {
-        this.el.nativeElement.style.width = '350px';
-        this.el.nativeElement.style.height = '200px';      }
+        this.el.nativeElement.style.width = '320px';
+        this.el.nativeElement.style.height = '150px';      }
     })
   }
 

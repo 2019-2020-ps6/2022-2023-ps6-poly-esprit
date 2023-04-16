@@ -30,28 +30,27 @@
   height: 40%;
   padding: 5px;
   vertical-align: center;
+  transition: transform 0.2s;
 }
 
-.selection_box li { //boutons de navigation
-  //justify-content: center;
+.selection_box li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   list-style-type: none;
   background-color: #C3D5D0;
-  //margin: 10px 50px 10px 10px;  //laisse de la place pour une scrollbar
   margin: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
-  height: 6vh;
   border-radius: 15px;
   transition: 0.2s;
 }
+
 
 .button_container {
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: center;
   align-items: center;
-  flex-flow: row nowrap;
+  justify-content: center;
 }
 
 #theme_selection {
@@ -77,8 +76,9 @@ button:hover {
   font-size: large;
 }
 
+
 .selection_box li:hover {
-  height: 10vh;
-  transition: 0.2s;
+  transform: translateY(-10px);
+  transition: transform 0.2s;
   border: solid 1px #000000;
 }
