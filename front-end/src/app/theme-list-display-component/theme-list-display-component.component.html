@@ -7,7 +7,7 @@
     <input type="text">
   </div>
   <ul>
-    <li *ngFor="let theme of themes">
+    <li  *ngFor="let theme of themes">
       <div class="button_container">
         <a class="navigation" id="theme_selection" [routerLink]="['/themes/', theme.id, userId]">
           <button class="theme_selection">{{ theme.name }}</button>
