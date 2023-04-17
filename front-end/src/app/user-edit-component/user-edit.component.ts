@@ -3,6 +3,7 @@ import {FormBuilder, FormControl, FormGroup} from '@angular/forms'
 import {UserService} from "../../service/user.service";
 import {User} from "../../models/user.model";
 import {ActivatedRoute} from "@angular/router";
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -14,6 +15,8 @@ export class UserEditComponent implements OnInit {
   private UService: UserService;
   public currentUser?:User;
   formulaire: FormGroup;
+  imagePath: any;
+  imageUrl: any;
 
   constructor(public userService: UserService, private route: ActivatedRoute, private formBuilder: FormBuilder) {
     this.formulaire = this.formBuilder.group({
@@ -38,6 +41,7 @@ export class UserEditComponent implements OnInit {
     this.UService.getUsers().subscribe((users) => {
       this.currentUser = users[id];
     });
+    this.imagePath=this.currentUser?.path_pp;
     this.updateForm();
   }
 
@@ -85,5 +89,13 @@ export class UserEditComponent implements OnInit {
     this.UService.deleteUser(this.currentUser);
     this.UService.addUser(userToAdd);
     alert("Utilisateur mis à jour ! ");
+  }
+
+  selectedFile(event:any){
+    let reader =  new FileReader();
+    reader.readAsDataURL(event.target.files[0])
+    reader.onload=(event:any)=>{
+      this.imagePath=event.target.result;
+    }
   }
 }
