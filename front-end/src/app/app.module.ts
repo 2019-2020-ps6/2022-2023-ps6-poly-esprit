@@ -22,6 +22,7 @@ import {UserListDisplayComponent} from "./user-list-display/user-list-display.co
 import {AddUserComponent} from "./add-user-component/add-user-component";
 import {UserEditComponent} from "./user-edit-component/user-edit.component";
 import {UserDeleteComponent} from "./user-delete-component/user-delete.component";
+import { EditQuestionComponent } from './edit-question-component/edit-question-component.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import {UserDeleteComponent} from "./user-delete-component/user-delete.component
     DeleteQuizComponent,
     AddUserComponent,
     UserDeleteComponent,
-    UserEditComponent
+    UserEditComponent,
+    EditQuestionComponent
   ],
   imports: [
     BrowserModule,

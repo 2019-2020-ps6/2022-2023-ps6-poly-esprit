@@ -4,6 +4,7 @@ import { Quizz } from '../../mocks/quizz.mock';
 import {Quiz} from "../../models/quizz.models";
 import {QuizService} from "../../service/quiz.service";
 import {ActivatedRoute} from "@angular/router";
+import {Question} from "../../models/question.models";
 
 
 @Component({
@@ -15,6 +16,7 @@ export class EditQuizComponent {
   public currentQuiz?:Quiz ;
   private QCService: QuizService;
   formulaire: FormGroup;
+  questions: Question[] | undefined = [];
 
   constructor(private quizService: QuizService, private route: ActivatedRoute, private formBuilder: FormBuilder) {
     this.QCService=quizService;
@@ -34,6 +36,7 @@ export class EditQuizComponent {
     this.quizService.getQuizzes().subscribe((quizzes) => {
       this.currentQuiz = quizzes[id];
     });
+    this.questions=this.currentQuiz?.questions;
   }
 
   addQuestion() : void {

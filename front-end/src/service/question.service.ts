@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
 import {Questions} from "../mocks/question.mock";
 import {Question} from "../models/question.models";
+import {User} from "../models/user.model";
 @Injectable({
   providedIn: 'root'
 })
@@ -22,6 +23,18 @@ export class QuestionService {
     return this.questions$
   }
 
+
+  deleteQuestion(u: Question | undefined){
+    if (u) {
+      this.questions.splice(this.questions.indexOf(u), 1);
+      console.log("Suppression réalisée ! ");
+    }
+  }
+
+  addQuestion(u: Question){
+    this.questions.push(u);
+    console.log("Modification réalisée !");
+  }
 
 
 }
