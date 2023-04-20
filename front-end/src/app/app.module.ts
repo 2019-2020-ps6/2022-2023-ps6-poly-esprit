@@ -24,6 +24,7 @@ import {AddUserComponent} from "./add-user-component/add-user-component";
 import { StatsVisualisationComponent } from './stats-visualisation/stats-visualisation.component';
 import {UserEditComponent} from "./user-edit-component/user-edit.component";
 import {UserDeleteComponent} from "./user-delete-component/user-delete.component";
+import { StatsChartComponent } from './stats-chart/stats-chart.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import {UserDeleteComponent} from "./user-delete-component/user-delete.component
     AddUserComponent,
     UserDeleteComponent,
     UserEditComponent,
-    StatsVisualisationComponent
+    StatsVisualisationComponent,
+    StatsChartComponent
   ],
   imports: [
     BrowserModule,

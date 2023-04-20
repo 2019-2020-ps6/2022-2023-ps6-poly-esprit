@@ -15,8 +15,10 @@ export class StatsVisualisationComponent implements OnInit {
   idUser: number;
   user: any;
   statsPage: number;
-  title = 'Statistiques utilisateur';
   choiceClics: any;
+  clickItem = "click";
+  reponseItem = "reponse";
+  title = 'Statistiques utilisateur';
 
   constructor(private userService: UserService, private route: ActivatedRoute) {
     this.idUser = Number(this.route.snapshot.paramMap.get("idUser"))
@@ -31,7 +33,6 @@ export class StatsVisualisationComponent implements OnInit {
         this.user = user;
       });
     }
-    this.title = `Statistiques d'utilisateur`;
   }
 
   choiceClick() {
