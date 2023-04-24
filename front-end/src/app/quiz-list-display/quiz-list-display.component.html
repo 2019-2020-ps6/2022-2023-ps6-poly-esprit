@@ -4,7 +4,7 @@
   <div>
     <h1>Quiz</h1>
     <hr>
-    <input type="text">
+    <input (keyup)="recherche($event)" type="text">
   </div>
   <ul>
     <li *ngFor="let quiz of quizzes">

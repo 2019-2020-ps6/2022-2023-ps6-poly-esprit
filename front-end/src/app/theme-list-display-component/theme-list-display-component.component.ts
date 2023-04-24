@@ -13,9 +13,10 @@ import {ActivatedRoute} from "@angular/router";
 export class ThemeListDisplayComponentComponent implements OnInit {
     public title:string = "Liste des thèmes";
     userId:string;
-    themes: any = [];
+    themes: Theme[] = [];
 
-    constructor(private themeService: ThemeService, private route: ActivatedRoute) {
+
+  constructor(private themeService: ThemeService, private route: ActivatedRoute) {
       this.userId = String(route.snapshot.paramMap.get("idUser"));
 
     }
@@ -24,4 +25,15 @@ export class ThemeListDisplayComponentComponent implements OnInit {
             this.themes = themes;
         })
     }
+
+  recherche(event: any) {
+    let inputValue = '';
+
+    inputValue = event.target.value ;
+    this.themeService.getThemes().subscribe((themes) => {
+      this.themes = themes.filter((theme) => {
+        return theme.name.toLowerCase().includes(inputValue.toLowerCase());
+      });
+    });
+  }
 }

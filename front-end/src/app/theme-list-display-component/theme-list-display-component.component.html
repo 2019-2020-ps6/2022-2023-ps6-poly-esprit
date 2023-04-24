@@ -4,7 +4,7 @@
   <div>
     <h1>Liste des thèmes :</h1>
     <hr>
-    <input type="text">
+    <input id="inputRecherche" type="text" (keyup)="recherche($event)">
   </div>
   <ul>
     <li  *ngFor="let theme of themes" >

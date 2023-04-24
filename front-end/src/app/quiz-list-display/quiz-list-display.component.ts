@@ -31,4 +31,16 @@ export class QuizListDisplayComponent implements OnInit {
     console.log("theme id : " + this.themeId);
     console.log("theme name : " + this.themeName);
   }
+
+  recherche(event: any) {
+    let inputValue = ''
+    inputValue = event.target.value ;
+    this.themeService.getTheme(this.themeId).subscribe((theme) => {
+      if (theme.quizzes!=undefined) {
+        this.quizzes = theme.quizzes.filter((quiz) => {
+          return quiz.name.toLowerCase().includes(inputValue.toLowerCase());
+        });
+      }
+    });
+  }
 }
