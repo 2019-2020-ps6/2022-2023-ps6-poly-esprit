@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Quiz} from "../../models/quizz.models";
 import {QuizService} from "../../service/quiz.service";
 import {ActivatedRoute} from "@angular/router";
@@ -26,6 +26,7 @@ export class GamePageComponentComponent  implements OnInit{
   private gameQuestionAnswers: GameQuestionAnswer[] = [];
   private score: number = 0;
   public userId:number;
+  @Input() quiz?: Quiz ;
 
 
   constructor(private quizService: QuizService, private route: ActivatedRoute, private questionService: QuestionService, private gameInstanceService: GameInstanceService) {

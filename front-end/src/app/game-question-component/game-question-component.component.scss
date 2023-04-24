@@ -3,9 +3,9 @@
 }
 #question{
   text-align: center;
-  width: 100%;
-  margin: 0px;
-  line-height: 80px;
+  width: 80%;
+  height: 40px;
+  margin-top: -40px;
   font-size: 20px;
   font-weight: bold;
   font-family: 'Roboto', sans-serif;
@@ -31,14 +31,15 @@
   transition: 0.2s;
 }
 #libele_quiz {
-  width: 90%;
-  margin: 1% 5%;
-  padding-top: 1%;
-  border-radius: 15px;
   display: flex;
-  align-items: center;
   flex-direction: column;
-  background-color: #D9D9D9;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  padding-left: 2%;
+  padding-right: 2%;
+  background-color: #CCE2F5;
 }
 #libele_quiz>p {
   margin-top: 5px;
@@ -46,8 +47,12 @@
   padding-left: 2%;
   padding-right: 2%;
 }
-
-#libele_quiz>h2 {
-  padding-left: 2%;
-  padding-right: 2%;
+h3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+
+
+
