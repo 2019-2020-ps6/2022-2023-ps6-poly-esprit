@@ -36,5 +36,32 @@ export const mockUser: User[] = [
     age: 73,
     sex: 'Female',
     pathology: 4
+  },
+  {
+    id: '4',
+    isAdmin: false,
+    nom: '',
+    prenom: 'user1',
+    age: 0,
+    sex: 'Male',
+    pathology: 0,
+  },
+  {
+    id: '5',
+    isAdmin: false,
+    nom: '',
+    prenom: 'user2',
+    age: 0,
+    sex: 'Male',
+    pathology: 0,
+  },
+  {
+    id: '6',
+    isAdmin: false,
+    nom: '',
+    prenom: 'user3',
+    age: 0,
+    sex: 'Male',
+    pathology: 0,
   }
 ];

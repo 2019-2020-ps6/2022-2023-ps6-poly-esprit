@@ -1,32 +1,29 @@
 .grid_display {
-  margin-top: 50px;
+  margin-top: 75px;
   display: grid;
   grid-template: 1fr / 1.5vw 1fr 1fr 1.5vw;
-  grid-column-gap: 2vw;
-  grid-row-gap: 2vw;
-  //border: dotted;
+  grid-column-gap: 3vw;
+  grid-row-gap: 3vw;
 }
 
 li {
   list-style-type: none;
-  //border: solid blue;
-  height: 150px;
+  height: 230px;
 }
 
 li:nth-child(even) {   //tous les li pairs
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
   grid-column: 3/3;
 }
 
 li:nth-child(odd) {   //tous les li impairs
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   grid-column: 2/2;
 }
 
 #user_selection {
-  //border: solid;
   height: 100%;
   width: 100%;
   transition: 0.2s;
@@ -53,10 +50,6 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: center;
-
-  //width: auto;
-  //border: solid yellow;
-
 }
 
 .gestion_admin button:hover {

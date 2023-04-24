@@ -2,20 +2,20 @@
 <!--<h1>Voici la liste : </h1>-->
   <ul>
     <div class="grid_display">
-    <li *ngFor="let user of users">
-      <a class="navigation" id="user_selection" [routerLink]="['/themes', user.id]">
-<!--        une image -->
-        <button class="user_selection_button">Utilisateur : {{user.prenom}} {{ user.nom }}</button>
-      </a>
-      <div class="gestion_admin">
-         <a class="navigation" [routerLink]="['user-edit', user.id]">
-          <button>Modifier l'utilisateur</button>
+      <li *ngFor="let user of users">
+        <a class="navigation" id="user_selection" [routerLink]="['/themes', user.id]">
+  <!--        une image -->
+          <button class="user_selection_button">Utilisateur : {{user.prenom}} {{ user.nom }}</button>
         </a>
-        <a class="navigation" [routerLink]="['user-delete', user.id]">
-          <button>Supprimer l'utilisateur</button>
-        </a>
-      </div>
-    </li>
+        <div class="gestion_admin">
+           <a class="navigation" [routerLink]="['user-edit', user.id]">
+            <button>Modifier l'utilisateur</button>
+          </a>
+          <a class="navigation" [routerLink]="['user-delete', user.id]">
+            <button>Supprimer l'utilisateur</button>
+          </a>
+        </div>
+      </li>
     </div>
   </ul>
 <br>
