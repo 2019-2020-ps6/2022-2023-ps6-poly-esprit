@@ -23,7 +23,7 @@ export class QuizService {
   addQuiz(q: Quiz){
     this.quizzes.push(q);
     // console.log("Une nouvelle questiona  été ajoutée avec comme nom :"+q.name+" et en thème: "+q.theme+"\n");
-    console.log("Le mock possède maintenant:" +this.quizzes.length +"questions");
+    console.log("Le mock possède maintenant:" +this.quizzes.length +"quizs");
   }
 
   getQuizzes(): Observable<Quiz[]> {
@@ -33,7 +33,13 @@ export class QuizService {
   deleteQuiz(id: String){
     //delete the quiz on the specific id
     this.quizzes = this.quizzes.filter(quiz => quiz.id !== id);
-    console.log("Le mock possède maintenant:" +this.quizzes.length +"questions");
+    console.log("Le mock possède maintenant:" +this.quizzes.length +"quizs");
+  }
+
+  printQuiz(){
+    for(let i=0; i<this.quizzes.length; i++){
+      console.log("Nom quiz : "+this.quizzes[i].name);
+    }
   }
 
 

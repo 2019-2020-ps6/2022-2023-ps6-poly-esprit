@@ -19,5 +19,15 @@
       </li>
     </div>
   </ul>
+
 <br>
+
+<h1>Voici la liste des personnels de santé : </h1>
+<ul>
+  <li *ngFor="let admin of adminsList">
+    <a class="navigation" [routerLink]="['/admin', admin.id]">
+      Utilisateur : {{ admin.nom }}
+    </a>
+  </li>
+</ul>
 

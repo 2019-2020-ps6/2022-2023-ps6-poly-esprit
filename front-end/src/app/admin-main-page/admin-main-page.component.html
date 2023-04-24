@@ -1,0 +1,16 @@
+<app-header [title]="title"></app-header>
+
+<a class="navigation" [routerLink]="['/management-users']">
+  <button>Gestion des utilisateurs</button>
+</a>
+
+<br>
+
+<button (click)="redirectToRoute()">Gestion des thèmes/quizs</button>
+
+<br>
+
+<a class="navigation" [routerLink]="['/create-quiz']">
+  <button class="gestion_admin" id="add_quiz">Ajouter un quiz</button>
+</a>
+

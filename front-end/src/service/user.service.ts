@@ -32,7 +32,7 @@ export class UserService {
 
   printUsers(){
     for(let i=0; i<this.users.length; i++){
-      console.log("Utilisateur de prenom : "+this.users[i].prenom+" et d'id : "+this.users[i].id);
+      console.log("Utilisateur de nom : "+this.users[i].nom+" et d'id : "+this.users[i].id);
     }
   }
 
@@ -51,5 +51,25 @@ export class UserService {
     }
   }
 
+  isAdmin(user_id: string){
+    if(user_id){
+      //Check if the user is an admin
+      for(let i=0; i<this.users.length; i++){
+        if(this.users[i].id==user_id){
+          return this.users[i].isAdmin;
+        }
+      }
+    }
+    return false;
+  }
+
+  getUser(id: String){
+    for(let i=0; i<this.users.length; i++){
+      if(this.users[i].id==id){
+        return this.users[i];
+      }
+    }
+    return null;
+  }
 
 }

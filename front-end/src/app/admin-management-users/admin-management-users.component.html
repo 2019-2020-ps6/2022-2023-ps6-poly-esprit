@@ -1,0 +1,19 @@
+<app-header [title]="title"></app-header>
+<h1>Liste des patients : </h1>
+<ul>
+  <li *ngFor="let user of usersList">
+    <a class="navigation" [routerLink]="['/themes', user.id]">
+      Utilisateur : {{ user.nom }}
+    </a>
+    <a class="navigation" [routerLink]="['/user-edit', user.id]">
+      <button>Modifier l'utilisateur</button>
+    </a>
+    <a class="navigation" [routerLink]="['/user-delete', user.id]">
+      <button>Supprimer l'utilisateur</button>
+    </a>
+  </li>
+</ul>
+
+<a class="navigation" [routerLink]="['/user-create']">
+  <button>Ajouter un nouvel utilisateur</button>
+</a>
