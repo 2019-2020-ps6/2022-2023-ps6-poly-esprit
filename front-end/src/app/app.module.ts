@@ -10,7 +10,7 @@ import { GameQuestionComponentComponent } from './game-question-component/game-q
 import {CreateQuizComponent} from "./create-quiz-component/create-quiz.component";
 import {QuizService} from "../service/quiz.service";
 import { QuizListDisplayComponent } from './quiz-list-display/quiz-list-display.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ThemeListDisplayComponentComponent } from './theme-list-display-component/theme-list-display-component.component';
 import { HeaderComponent } from './header/header.component';
 import {EditQuizComponent} from "./edit-quiz-component/edit-quiz.component";
@@ -25,6 +25,8 @@ import { StatsVisualisationComponent } from './stats-visualisation/stats-visuali
 import {UserEditComponent} from "./user-edit-component/user-edit.component";
 import {UserDeleteComponent} from "./user-delete-component/user-delete.component";
 import { StatsChartComponent } from './stats-chart/stats-chart.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
+
 
 @NgModule({
   declarations: [
@@ -50,9 +52,11 @@ import { StatsChartComponent } from './stats-chart/stats-chart.component';
     StatsChartComponent
   ],
   imports: [
+    NgApexchartsModule,
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [QuizService],
   bootstrap: [AppComponent]
