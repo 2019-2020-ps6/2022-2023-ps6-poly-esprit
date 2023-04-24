@@ -1,7 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { UserService } from "../../service/user.service";
 import { ActivatedRoute } from '@angular/router';
-import { User } from 'src/models/user.model';
 
 import {
   ChartComponent,
@@ -9,11 +8,12 @@ import {
   ApexChart,
   ApexXAxis,
   ApexYAxis,
-  ApexTitleSubtitle
+  ApexTitleSubtitle,
+  ApexNonAxisChartSeries
 } from "ng-apexcharts";
 
 export type ChartOptions = {
-  series: ApexAxisChartSeries;
+  series: ApexAxisChartSeries | ApexNonAxisChartSeries;
   chart: ApexChart;
   xaxis: ApexXAxis;
   yaxis: ApexYAxis;
@@ -115,7 +115,10 @@ export class StatsChartComponent implements OnInit {
       return formattedDate;
     });
 
-    this.chartXaxis.categories = chartCategories;
+    if (this.chartXaxis) {
+      this.chartXaxis.categories = chartCategories;
+    }
+    
 
     playersStats.forEach((playerStats, index) => {
       const chartData: Partial<ChartData> = {
