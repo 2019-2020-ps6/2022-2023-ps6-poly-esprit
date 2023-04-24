@@ -1,7 +1,7 @@
 <app-header [title]="title"></app-header>
 <h1>Liste des patients : </h1>
 <ul>
-  <li *ngFor="let user of users">
+  <li *ngFor="let user of usersList">
     <a class="navigation" [routerLink]="['/themes', user.id]">
       Utilisateur : {{ user.nom }}
     </a>

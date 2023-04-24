@@ -9,6 +9,7 @@ import {UserService} from "../../service/user.service";
 export class AdminManagementUsersComponent {
   title = "Gestion des utilisateurs";
   users: any[] = [];
+  usersList: any[] = [];
 
   constructor(private userService: UserService) { }
 
@@ -16,6 +17,14 @@ export class AdminManagementUsersComponent {
     this.userService.getUsers().subscribe((users)=> {
       this.users = users;
     });
-    this.users = this.users.filter((user) => user.isAdmin === false);
+
+    for (let i = 0; i < this.users.length; i++) {
+      if (this.users[i].isAdmin) {
+        //
+      }else{
+        this.usersList.push(this.users[i]);
+      }
+    }
+
   }
 }

@@ -32,7 +32,7 @@ export class UserService {
 
   printUsers(){
     for(let i=0; i<this.users.length; i++){
-      console.log("Utilisateur de prenom : "+this.users[i].prenom+" et d'id : "+this.users[i].id);
+      console.log("Utilisateur de nom : "+this.users[i].nom+" et d'id : "+this.users[i].id);
     }
   }
 
@@ -61,6 +61,15 @@ export class UserService {
       }
     }
     return false;
+  }
+
+  getUser(id: String){
+    for(let i=0; i<this.users.length; i++){
+      if(this.users[i].id==id){
+        return this.users[i];
+      }
+    }
+    return null;
   }
 
 }
