@@ -71,20 +71,52 @@ export class StatsChartComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.chartOptions = {
-      series: [
-        {
-          name: "My-series",
-          data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
-        }
+      series: [{
+          name: 'Sales',
+          data: [
+            {
+              x: new Date(1538778600000),
+              y: [6629, 8695]
+            },
+            {
+              x: new Date(1538782200000),
+              y: [7129, 8825]
+            },
+            {
+              x: new Date(1538785800000),
+              y: [7529, 9625]
+            },
+            {
+              x: new Date(1538789400000),
+              y: [6629, 8695]
+            },
+            {
+              x: new Date(1538793000000),
+              y: [7529, 9625]
+            },
+            {
+              x: new Date(1538796600000),
+              y: [7129, 8825]
+            },
+            {
+              x: new Date(1538800200000),
+              y: [7529, 9625]
+            },
+            {
+              x: new Date(1538803800000),
+              y: [6629, 8695]
+            }
+          ]}
       ],
       chart: {
         height: 350,
-        type: "bar"
+        type: "rangeArea"
       },
       title: {
-        text: "My First Angular Chart"
+        text: "" // let blank
       },
       xaxis: {
+        type: "datetime",
         categories: ["Jan", "Feb",  "Mar",  "Apr",  "May",  "Jun",  "Jul",  "Aug", "Sep"]
       }
     };
