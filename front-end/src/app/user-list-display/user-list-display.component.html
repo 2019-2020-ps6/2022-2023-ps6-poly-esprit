@@ -2,7 +2,7 @@
 <!--<h1>Voici la liste : </h1>-->
   <ul>
     <div class="grid_display">
-      <li *ngFor="let user of users">
+      <li *ngFor="let user of usersList">
         <div id = "user_selection">
           <a class="navigation" [routerLink]="['/themes', user.id]">
             <button class="user_selection_button"> <h1>Utilisateur : {{user.prenom}} {{ user.nom }} </h1> <img src={{user.path_pp}}> </button>
