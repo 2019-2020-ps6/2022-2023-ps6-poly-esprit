@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { UserService } from "../../service/user.service";
+import { PlayerStatsService } from 'src/service/playersStats.service';
 import { ActivatedRoute } from '@angular/router';
 
 import {
@@ -22,6 +23,7 @@ export type ChartOptions = {
 
 
 import { playersStatsMock } from '../../mocks/playersStats.mock';
+import { map } from 'rxjs';
 
 interface ChartData {
   name: string;
@@ -41,13 +43,6 @@ export class StatsChartComponent implements OnInit {
   user: any;
   public mode: string = "click";
   public chartOptions: Partial<ChartOptions>;
-  /*chartOptions: Partial<ApexChart> = {
-    type: 'line',
-    height: 500,
-    zoom: {
-      enabled: false
-    }
-  };*/
 
   chartTitle: Partial<ApexTitleSubtitle> = {
     text: 'Player Stats Chart',
@@ -65,13 +60,16 @@ export class StatsChartComponent implements OnInit {
   };
 
   chartData: Partial<ChartData>[] = [];
+  chartSeries: { name: string; data: any; }[] | undefined;
 
   constructor(
     private userService: UserService,
     private route: ActivatedRoute
   ) {
     this.chartOptions = {
-      series: [{
+      series: []
+    }
+    /*{
           name: 'Clics (%)',
           data: [
             {
@@ -109,7 +107,6 @@ export class StatsChartComponent implements OnInit {
           ]}
       ],
       chart: {
-        height: 350,
         type: "rangeArea",
         toolbar: {
           show: false
@@ -121,7 +118,7 @@ export class StatsChartComponent implements OnInit {
       xaxis: {
         type: "datetime",
         }
-    };
+    };*/
   }
 
   ngOnInit(): void {
@@ -141,28 +138,71 @@ export class StatsChartComponent implements OnInit {
     const playersStats: any[] = playersStatsMock;
     const playerNames = playersStats.map(player => `Player ${player.id}`);
 
-    const chartCategories = playersStats[0].stats.date.map((date: any) => {
-      const year = Math.floor(date / 10000);
-      const month = Math.floor((date % 10000) / 100) - 1;
-      const day = date % 100;
-      const formattedDate = new Date(year, month, day).toLocaleDateString();
-      return formattedDate;
+    PlayerStatsService.getPlayerStats(this.idUser).pipe(
+      map((stats: { date: any[]; }) => {
+        console.log(stats);
+        return stats.date.map((date: any) => {
+          const year = Math.floor(date / 10000);
+          const month = Math.floor((date % 10000) / 100) - 1;
+          const day = date % 100;
+          const formattedDate = new Date(year, month, day).toLocaleDateString();
+          return formattedDate;
+        })
+      })
+    ).subscribe(chartDates => {
+      if (this.chartXaxis) {
+        this.chartXaxis.type = 'datetime';
+        this.chartXaxis.categories = chartDates;
+      }
+      PlayerStatsService.getPlayerStats(this.idUser).subscribe(stat => {
+        this.chartSeries = [
+          {
+            name: 'Click Accuracy',
+            data: stat.stats.click_accuracy
+          }
+        ];
+      });
     });
-
-    if (this.chartXaxis) {
-      this.chartXaxis.categories = chartCategories;
-    }
-
-    console.log(chartCategories);
     
 
-    playersStats.forEach((playerStats, index) => {
+    
+
+    /*playersStats.forEach((playerStats, index) => {
       const chartData: Partial<ChartData> = {
         name: playerNames[index],
-        data: playerStats.stats.correct
+        data: playerStats.stats.click_accuracy
       };
       this.chartData.push(chartData);
+    });*/
+
+    PlayerStatsService.getPlayerStats(this.idUser).subscribe(stat => {
+      this.chartSeries = [
+        /*{
+          name: 'Played',
+          data: stat.stats.played
+        },
+        {
+          name: 'Correct',
+          data: stat.stats.correct
+        },*/
+        {
+          name: 'Click Accuracy',
+          data: stat.stats.click_accuracy
+        }
+      ];
+      console.log(this.chartSeries);
+      this.chartOptions = {
+        chart: {
+          type: 'rangeArea',
+          toolbar: {
+            show: false
+          }
+        },
+        title: {
+          text: ""// let blank
+        },
+        series: this.chartSeries
+      };
     });
-  
-  }
+  };
 }

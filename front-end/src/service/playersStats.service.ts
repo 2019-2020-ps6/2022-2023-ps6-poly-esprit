@@ -7,14 +7,17 @@ import { playersStatsMock } from '../mocks/playersStats.mock';
   providedIn: 'root'
 })
 export class PlayerStatsService {
+  /*static getPlayerStats(arg0: number) {
+    throw new Error('Method not implemented.');
+  }*/
 
-  constructor() { }
-
-  getPlayerStats(): Observable<any[]> {
+  static getPlayersStats(): Observable<any[]> {
     return of(playersStatsMock);
   }
 
-  getPlayerStat(id: number): Observable<any> {
+  static getPlayerStats(id: number): Observable<any> {
     return of(playersStatsMock.find(playerStat => playerStat.id === id));
   }
+
+  constructor() { }
 }
