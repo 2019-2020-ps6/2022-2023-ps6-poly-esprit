@@ -8,7 +8,8 @@ export const mockUser: User[] = [
     prenom: "Jean",
     age: 35,
     sex: "Male",
-    pathology: 2
+    pathology: 2,
+    path_pp: "../assets/profile_picture.png"
   },
   {
     id: '1',
@@ -17,7 +18,8 @@ export const mockUser: User[] = [
     prenom: "Simon",
     age: 21,
     sex: "Male",
-    pathology: 0
+    pathology: 0,
+    path_pp: "../assets/profile_picture.png"
   },
   {
     id: '2',
@@ -26,7 +28,8 @@ export const mockUser: User[] = [
     prenom: "Quentin",
     age: 85,
     sex: "Male",
-    pathology: 1
+    pathology: 1,
+    path_pp: "../assets/profile_picture.png"
   },
   {
     id: '3',
@@ -35,6 +38,7 @@ export const mockUser: User[] = [
     prenom: "Delias",
     age: 95,
     sex: 'Female',
-    pathology: 4
+    pathology: 4,
+    path_pp: "../assets/profile_picture.png"
   }
 ];

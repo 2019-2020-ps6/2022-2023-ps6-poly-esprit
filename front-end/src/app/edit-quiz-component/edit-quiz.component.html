@@ -1,3 +1,13 @@
+<h3>Modifier le nom du quizz : </h3>
+<form [formGroup]="formulaireNom" (ngSubmit)="onSubmitName()">
+  <label for="title_quiz">Titre du quiz :</label>
+  <input type="text" id="title_quiz" formControlName="title_quiz">
+  <br>
+  <button type="submit">Modifier le titre du quiz</button>
+</form>
+<br>
+<h3>Ajouter une nouvelle question </h3>
+<br>
 <form [formGroup]="formulaire" (ngSubmit)="onSubmit()">
   <label for="title">Intitulé de la question :</label>
   <input type="text" id="title" formControlName="title">
@@ -14,9 +24,21 @@
   <label for="bad_answer3">Mauvaise réponse 3 :</label>
   <input type="text" id="bad_answer3" formControlName="bad_answer3">
   <br>
-  <button type="submit">Envoyer</button>
+  <button type="submit">Ajouter une nouvelle question</button>
   <br>
 </form>
+<br>
+<h3>Liste de question déjà présentes : </h3>
+<ul>
+  <li *ngFor="let question of questions">
+    <a class="navigation" [routerLink]="['/edit-question', question.id]">
+      Question : {{ question.label }}
+    </a>
+    <button (click)="deleteQuestion(question.id)">Supprimer la question</button>
+  </li>
+</ul>
+
+
 <br>
 <a class="navigation" [routerLink]="['/']">
   <button>Retour</button>
