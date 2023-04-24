@@ -72,53 +72,55 @@ export class StatsChartComponent implements OnInit {
   ) {
     this.chartOptions = {
       series: [{
-          name: 'Sales',
+          name: 'Clics (%)',
           data: [
             {
-              x: new Date(1538778600000),
-              y: [6629, 8695]
+              x: new Date("April 01, 2020"),
+              y: [40, 80]
             },
             {
-              x: new Date(1538782200000),
-              y: [7129, 8825]
+              x: new Date("April 02, 2020"),
+              y: [50, 80]
             },
             {
-              x: new Date(1538785800000),
-              y: [7529, 9625]
+              x: new Date("April 03, 2020"),
+              y: [50, 70]
             },
             {
-              x: new Date(1538789400000),
-              y: [6629, 8695]
+              x: new Date("April 04, 2020"),
+              y: [80, 80]
             },
             {
-              x: new Date(1538793000000),
-              y: [7529, 9625]
+              x: new Date("April 05, 2020"),
+              y: [40, 80]
             },
             {
-              x: new Date(1538796600000),
-              y: [7129, 8825]
+              x: new Date("April 06, 2020"),
+              y: [40, 70]
             },
             {
-              x: new Date(1538800200000),
-              y: [7529, 9625]
+              x: new Date("April 07, 2020"),
+              y: [30, 80]
             },
             {
-              x: new Date(1538803800000),
-              y: [6629, 8695]
+              x: new Date("April 08, 2020"),
+              y: [40, 70]
             }
           ]}
       ],
       chart: {
         height: 350,
-        type: "rangeArea"
+        type: "rangeArea",
+        toolbar: {
+          show: false
+        }
       },
       title: {
         text: "" // let blank
       },
       xaxis: {
         type: "datetime",
-        categories: ["Jan", "Feb",  "Mar",  "Apr",  "May",  "Jun",  "Jul",  "Aug", "Sep"]
-      }
+        }
     };
   }
 
@@ -150,6 +152,8 @@ export class StatsChartComponent implements OnInit {
     if (this.chartXaxis) {
       this.chartXaxis.categories = chartCategories;
     }
+
+    console.log(chartCategories);
     
 
     playersStats.forEach((playerStats, index) => {
@@ -159,5 +163,6 @@ export class StatsChartComponent implements OnInit {
       };
       this.chartData.push(chartData);
     });
+  
   }
 }
