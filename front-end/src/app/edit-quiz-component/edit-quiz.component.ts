@@ -4,6 +4,7 @@ import { Quizz } from '../../mocks/quizz.mock';
 import {Quiz} from "../../models/quizz.models";
 import {QuizService} from "../../service/quiz.service";
 import {ActivatedRoute} from "@angular/router";
+import {Question} from "../../models/question.models";
 
 
 @Component({
@@ -15,8 +16,10 @@ export class EditQuizComponent {
   public currentQuiz?:Quiz ;
   private QCService: QuizService;
   formulaire: FormGroup;
+  formulaireNom: FormGroup;
+  questions: Question[] | undefined = [];
 
-  constructor(private quizService: QuizService, private route: ActivatedRoute, private formBuilder: FormBuilder) {
+  constructor(private quizService: QuizService, private route: ActivatedRoute, private formBuilder: FormBuilder, private formBuilder2: FormBuilder) {
     this.QCService=quizService;
 
     this.formulaire = this.formBuilder.group({
@@ -26,6 +29,10 @@ export class EditQuizComponent {
       bad_answer2: '',
       bad_answer3: ''
     });
+
+    this.formulaireNom = this.formBuilder2.group({
+      title_quiz: ''
+    })
   }
 
   ngOnInit(): void {
@@ -34,6 +41,10 @@ export class EditQuizComponent {
     this.quizService.getQuizzes().subscribe((quizzes) => {
       this.currentQuiz = quizzes[id];
     });
+    this.questions=this.currentQuiz?.questions;
+    this.formulaireNom.patchValue({
+      title_quiz: this.currentQuiz?.name
+    })
   }
 
   addQuestion() : void {
@@ -57,5 +68,24 @@ export class EditQuizComponent {
     alert("Question ajoutée ! Le quizz possède maintenant "+this.currentQuiz?.questions.length+" questions");
     this.formulaire.reset();
 
+  }
+
+  onSubmitName(){
+    if(this.currentQuiz){
+      this.currentQuiz.name=this.formulaireNom.value.title_quiz;
+      alert("Nom de quizz modifié !");
+    }
+  }
+
+  deleteQuestion(question_id: String){
+    //Loop on this.questions and if the question got the same id you delete it
+    if(this.questions){
+      for(let i=0; i<this.questions.length; i++){
+        if(this.questions[i].id==question_id){
+          this.questions.splice(i,1);
+          alert("Question supprimée ! ");
+        }
+      }
+    }
   }
 }
