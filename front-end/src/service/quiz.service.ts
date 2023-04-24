@@ -9,7 +9,7 @@ import {ThemeService} from "./theme.service";
 export class QuizService {
   //The list of quiz. The list is
   // retrieved from the mock.
-  private quizzes$ = new Observable<any>();
+  private quizzes$ = new Observable<Quiz[]>();
   public quizzes: Quiz[] = Quizz; // Ici on initialise la valeur avec un mock QUIZ_LIST
   // The service's constructor. Le constructeur peut prendre en paramètre les dépendances du service - comme ici,
   // HttpClient qui va permettre de récupérer les données d'un serveur
@@ -26,7 +26,7 @@ export class QuizService {
     console.log("Le mock possède maintenant:" +this.quizzes.length +"quizs");
   }
 
-  getQuizzes(): Observable<any> {
+  getQuizzes(): Observable<Quiz[]> {
     return this.quizzes$
   }
 

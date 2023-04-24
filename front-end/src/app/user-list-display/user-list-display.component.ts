@@ -9,9 +9,11 @@ import {UserService} from "../../service/user.service";
 })
 export class UserListDisplayComponent implements OnInit {
   users: any[] = [];
+
   usersList: any[] = [];
   adminsList: any[] = [];
-  title = 'Liste d utilisateurs';
+
+  title = 'Liste d\'utilisateurs';
 
   constructor(private userService: UserService) { }
 
@@ -19,6 +21,7 @@ export class UserListDisplayComponent implements OnInit {
     this.userService.getUsers().subscribe((users)=> {
       this.users = users;
     });
+
 
     for (let i = 0; i < this.users.length; i++) {
       if (this.users[i].isAdmin) {
@@ -29,6 +32,7 @@ export class UserListDisplayComponent implements OnInit {
     }
 
     //this.userService.printUsers();
+
 
 
   }

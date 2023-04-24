@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Quiz} from "../../models/quizz.models";
 import {QuizService} from "../../service/quiz.service";
 import {ActivatedRoute} from "@angular/router";
@@ -26,6 +26,7 @@ export class GamePageComponentComponent  implements OnInit{
   private gameQuestionAnswers: GameQuestionAnswer[] = [];
   private score: number = 0;
   public userId:number;
+  @Input() quiz?: Quiz ;
 
 
   constructor(private quizService: QuizService, private route: ActivatedRoute, private questionService: QuestionService, private gameInstanceService: GameInstanceService) {
@@ -73,13 +74,11 @@ export class GamePageComponentComponent  implements OnInit{
     let isCorrect;
     if (document.getElementsByClassName("goodAnswer")[0].innerHTML === this.selectedValue) {
       console.log("good")
-      alert("Bonne réponse")
       isCorrect = true;
       this.score++;
 
     } else {
       console.log("bad")
-      alert("Mauvaise réponse")
       isCorrect = false;
     }
     this.gameQuestionAnswers.push({

@@ -4,13 +4,13 @@
   <div>
     <h1>Liste des thèmes :</h1>
     <hr>
-    <input type="text">
+    <input id="inputRecherche" type="text" (keyup)="recherche($event)">
   </div>
   <ul>
-    <li *ngFor="let theme of themes">
+    <li  *ngFor="let theme of themes" >
       <div class="button_container">
         <a class="navigation" id="theme_selection" [routerLink]="['/themes/', theme.id, userId]">
-          <button class="theme_selection">{{ theme.name }}</button>
+          <button class="theme_selection" appAdaptThemeConfig>{{ theme.name }}</button>
         </a>
       </div>
     </li>

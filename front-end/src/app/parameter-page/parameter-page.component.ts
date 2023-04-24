@@ -27,6 +27,13 @@ export class ParameterPageComponent implements OnInit {
       this.isButtonNormalSelected=quizConfigurations.isButtonNormalSelected;
       this.isButtonGrosSelected=quizConfigurations.isButtonGrosSelected;
     })
+    this.configService.themeConfiguration$.subscribe((themeConfigurations)=>{
+      this.isTextNormalSelected=themeConfigurations.isTextNormalSelected;
+      this.isTextGrosSelected=themeConfigurations.isTextGrosSelected;
+      this.isButtonNormalSelected=themeConfigurations.isButtonNormalSelected;
+      this.isButtonGrosSelected=themeConfigurations.isButtonGrosSelected;
+    })
+
 
 
   }

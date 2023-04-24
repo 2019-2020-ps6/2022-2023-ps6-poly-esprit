@@ -1,9 +1,5 @@
 <div *ngIf="quiz">
   <div id="libele_quiz">
-    <h2>Vous jouez au quiz : {{quiz.name}}</h2>
-
-    <p>Voici le thème actuel : soon</p>
-    
     <h3 id="question" *ngIf="question"> {{question.label}}</h3>
   </div>
 <article [ngClass]="{'isVisible': answerIsDuo}" class="answers">
@@ -17,8 +13,8 @@
     </div>
   </article>
   <article [ngClass]="{'isVisible': answerIsChoice}" class="answers" id="choice">
-    <button (click)="isCarre()" class="buttonChoice">carre</button>
-    <button (click)="isDuo()" class="buttonChoice">duo</button>
+    <button appAdaptConfig (click)="isCarre()" class="buttonChoice">carre</button>
+    <button appAdaptConfig (click)="isDuo()" class="buttonChoice">duo</button>
   </article>
 </div>
 
