@@ -10,7 +10,7 @@ import { Quiz } from "../models/quizz.models";
 })
 
 export class ThemeService {
-    private themes$ = new Observable<any>()
+    private themes$ = new Observable<Theme[]>()
   // @ts-ignore
     private themes: Theme[] = Themes;
 
@@ -21,7 +21,7 @@ export class ThemeService {
         });
     }
 
-    getThemes(): Observable<Theme> {  //returns all themes
+    getThemes(): Observable<Theme[]> {  //returns all themes
         return this.themes$;
     }
 
