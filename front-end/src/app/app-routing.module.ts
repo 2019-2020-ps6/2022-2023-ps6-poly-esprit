@@ -16,6 +16,8 @@ import {AddUserComponent} from "./add-user-component/add-user-component";
 import {UserEditComponent} from "./user-edit-component/user-edit.component";
 import {UserDeleteComponent} from "./user-delete-component/user-delete.component";
 import {EditQuestionComponent} from "./edit-question-component/edit-question-component.component";
+import {AdminMainPageComponent} from "./admin-main-page/admin-main-page.component";
+import {AdminManagementUsersComponent} from "./admin-management-users/admin-management-users.component";
 
 const routes: Routes = [
 
@@ -33,7 +35,9 @@ const routes: Routes = [
   {path: 'themes/:idTheme/:idUser', component: QuizListDisplayComponent },
   {path: 'user-delete/:id', component: UserDeleteComponent},
   {path: 'edit-question/:id', component: EditQuestionComponent},
-  {path: 'parametre', component:ParameterPageComponent}
+  {path: 'parametre', component:ParameterPageComponent},
+  {path: 'admin/:id', component: AdminMainPageComponent},
+  {path: 'management-users', component: AdminManagementUsersComponent}
 
 ];
 
