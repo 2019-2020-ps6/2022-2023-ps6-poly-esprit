@@ -1,4 +1,5 @@
-<app-header [title]="title"></app-header>
+<app-header [title]="currentQuiz ? currentQuiz.name : ''"></app-header>
+
 
 <div *ngIf="currentQuiz && currentQuestion">
   <app-game-question-component  (whoIsSelected)="onWhoIsSelected($event)" (somethingSelected)="onSomethingSelected($event)" [quiz]="currentQuiz" [question]="currentQuiz.questions[currentIndex]"></app-game-question-component>
@@ -19,7 +20,7 @@
       Retour
     </button>
   </a>
-  <button [ngStyle]="getDisableQuestion()" id="questionSuivante" (click)="incrementIndexQuestion()" >
+  <button appAdaptConfig [ngStyle]="getDisableQuestion()" id="questionSuivante" (click)="incrementIndexQuestion()" >
     Question suivante
   </button>
 </div>
