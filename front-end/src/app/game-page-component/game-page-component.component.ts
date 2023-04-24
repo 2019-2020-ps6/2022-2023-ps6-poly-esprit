@@ -73,13 +73,11 @@ export class GamePageComponentComponent  implements OnInit{
     let isCorrect;
     if (document.getElementsByClassName("goodAnswer")[0].innerHTML === this.selectedValue) {
       console.log("good")
-      alert("Bonne réponse")
       isCorrect = true;
       this.score++;
 
     } else {
       console.log("bad")
-      alert("Mauvaise réponse")
       isCorrect = false;
     }
     this.gameQuestionAnswers.push({
