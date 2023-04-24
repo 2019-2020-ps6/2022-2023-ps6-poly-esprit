@@ -51,5 +51,16 @@ export class UserService {
     }
   }
 
+  isAdmin(user_id: string){
+    if(user_id){
+      //Check if the user is an admin
+      for(let i=0; i<this.users.length; i++){
+        if(this.users[i].id==user_id){
+          return this.users[i].isAdmin;
+        }
+      }
+    }
+    return false;
+  }
 
 }

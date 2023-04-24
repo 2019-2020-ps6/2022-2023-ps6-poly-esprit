@@ -18,4 +18,7 @@ export class UserListDisplayComponent implements OnInit {
       this.users = users;
     });
   }
+
 }
+
+
