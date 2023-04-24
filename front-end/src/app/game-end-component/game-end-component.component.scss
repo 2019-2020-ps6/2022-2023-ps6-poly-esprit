@@ -17,7 +17,8 @@ button {
   transition: 0.2s;
 }
 .recap {
-  width: 35%;
+  width: 80%;
+
 }
 #acceuil {
   width: 100%;
@@ -27,3 +28,22 @@ button:hover {
   scale: 1.5;
   transition: 0.2s;
 }
+table {
+  border-collapse: collapse;
+  font-size: 25px;
+
+}
+
+td {
+  border: 1px solid black;
+  padding: 5px;
+  padding: 10px;
+}
+.correct-answer {
+  background-color: #C9FBD3;
+}
+
+.wrong-answer {
+  background-color: #FFC5C5;
+}
+
