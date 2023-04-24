@@ -1,5 +1,19 @@
 <div>
   <h3 *ngIf="gameInstance">Bravo ! Vous avez terminé le quiz avec {{gameInstance.score}} point</h3>
-  <a [routerLink]="['/themes/', userId]"><button>Accueil</button></a>
+  <a [routerLink]="['/themes/', userId]"><button id="acceuil">Accueil</button></a>
+  <button class="recap" *ngIf="!visibleRecap" (click)="viewRecap()">Voir le recap</button>
+  <button class="recap" *ngIf="visibleRecap" (click)="viewRecap()">Cacher le recap</button>
+  <ul *ngIf="gameInstance && visibleRecap">
+    <li *ngFor="let question of gameInstance.gameQuestionsAnswers">
+      <h4>{{question.questionValue}}</h4>
+      <ul>
+        <li>
+          {{question.answerValue}} ->
+          <span *ngIf="question.isCorrect">Bonne réponse 😀</span>
+          <span *ngIf="!question.isCorrect">Mauvaise réponse 🥲</span>
+        </li>
+      </ul>
+    </li>
+  </ul>
 </div>
 

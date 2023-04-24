@@ -16,15 +16,16 @@ import {ActivatedRoute} from "@angular/router";
 export class GameEndComponentComponent implements OnInit {
   @Input() gameInstance?: GameInstance;
   public userId: number;
+  visibleRecap: boolean = false;
 
   ngOnInit(): void {
-    console.log("C'est moiiiiiiiiiiiiiii",this.gameInstance)
   }
   constructor(private route: ActivatedRoute){
     this.userId = Number(this.route.snapshot.paramMap.get('idUser'));
-
   }
 
-
+  viewRecap() {
+    this.visibleRecap = !this.visibleRecap;
+  }
 }
 //https://angular.io/tutorial/tour-of-heroes/toh-pt4
