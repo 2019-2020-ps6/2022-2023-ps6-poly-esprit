@@ -5,6 +5,7 @@ import {QuizService} from "../../service/quiz.service";
 import {Quiz} from "../../models/quizz.models";
 import {ThemeService} from "../../service/theme.service";
 import {Theme} from "../../models/theme.models";
+import {ActivatedRoute} from "@angular/router";
 
 
 @Component({
@@ -16,8 +17,9 @@ export class CreateQuizComponent implements OnInit {
   private QCService: QuizService;
   public quizForm: FormGroup;
   private THService : ThemeService;
+  id_user: string | null = "";
 
-  constructor(public quizCreateService: QuizService, public formBuilder: FormBuilder, public themeService: ThemeService) {
+  constructor(public quizCreateService: QuizService, public formBuilder: FormBuilder, public themeService: ThemeService, private route: ActivatedRoute) {
     this.quizForm = this.formBuilder.group({
       name: [''],
       theme: [''],
@@ -28,6 +30,7 @@ export class CreateQuizComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.id_user = this.route.snapshot.paramMap.get('id_user');
   }
 
   addQuiz(){

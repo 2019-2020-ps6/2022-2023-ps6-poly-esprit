@@ -31,7 +31,7 @@
 <h3>Liste de question déjà présentes : </h3>
 <ul>
   <li *ngFor="let question of questions">
-    <a class="navigation" [routerLink]="['/edit-question', question.id]">
+    <a class="navigation" [routerLink]="['/edit-question', question.id, id_quiz, id_user]">
       Question : {{ question.label }}
     </a>
     <button (click)="deleteQuestion(question.id)">Supprimer la question</button>
@@ -40,6 +40,6 @@
 
 
 <br>
-<a class="navigation" [routerLink]="['/']">
+<a class="navigation" [routerLink]="['/admin', id_user]">
   <button>Retour</button>
 </a>

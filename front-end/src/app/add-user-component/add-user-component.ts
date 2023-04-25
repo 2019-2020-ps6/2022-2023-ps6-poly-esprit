@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms'
 import {UserService} from "../../service/user.service";
 import {User} from "../../models/user.model";
+import {ActivatedRoute} from "@angular/router";
 
 
 @Component({
@@ -12,8 +13,9 @@ import {User} from "../../models/user.model";
 export class AddUserComponent implements OnInit {
   private UService: UserService;
   formulaire: FormGroup;
+  id_user: string | null = "";
 
-  constructor(public userService: UserService, private formBuilder: FormBuilder) {
+  constructor(public userService: UserService, private formBuilder: FormBuilder,private route: ActivatedRoute) {
     this.formulaire = this.formBuilder.group({
       nom: '',
       prenom: '',
@@ -31,6 +33,7 @@ export class AddUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.id_user = this.route.snapshot.paramMap.get('id_user');
   }
 
   onSubmit(){

@@ -17,7 +17,6 @@ export class AdminMainPageComponent {
   public UService : UserService;
   public THService : ThemeService;
   themes: any[] = [];
-  idUser: any;
 
   constructor(private router: Router,private route: ActivatedRoute, private userService : UserService, private themeService: ThemeService) {
     this.admin_id = this.route.snapshot.paramMap.get('id');
