@@ -15,14 +15,20 @@ export class AdminMainPageComponent {
   title = "Page de contrôle";
   admin_id: string | null;
   public UService : UserService;
+  public THService : ThemeService;
+  themes: any[] = [];
+  idUser: any;
 
-  constructor(private router: Router,private route: ActivatedRoute, private userService : UserService) {
+  constructor(private router: Router,private route: ActivatedRoute, private userService : UserService, private themeService: ThemeService) {
     this.admin_id = this.route.snapshot.paramMap.get('id');
     this.UService=userService;
+    this.THService=themeService;
   }
 
   ngOnInit(){
-
+    this.THService.getThemes().subscribe((themes)=> {
+      this.themes = themes;
+    });
   }
 
   redirectToRoute() {

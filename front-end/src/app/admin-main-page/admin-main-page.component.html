@@ -1,14 +1,35 @@
 <app-header [title]="title"></app-header>
 
+<h2>Gestion des quizs</h2>
+<br>
+<ul>
+  <li *ngFor="let theme of themes">
+    <h2> Theme : {{ theme.name }} </h2>
+    <ul>
+      <li *ngFor="let quiz of theme.quizzes">
+        <a class="navigation" [routerLink]="['/game-page', quiz.id, admin_id]">
+        <h3> Quiz : {{ quiz.name }} (cliquer sur le quiz pour le lancer)</h3>
+        </a>
+        <a class="navigation" [routerLink]="['/edit-quiz', quiz.id]">
+          <button class="gestion_admin" id="edit_quiz">Modifier le quiz</button>
+        </a>
+        <a class="navigation" [routerLink]="['/delete-quiz', quiz.id]">
+          <button class="gestion_admin" id="delete_quiz">Supprimer le quiz</button>
+        </a>
+      </li>
+    </ul>
+    <br><br>
+  </li>
+</ul>
+
+
+<br>
+
 <a class="navigation" [routerLink]="['/management-users']">
   <button>Gestion des utilisateurs</button>
 </a>
 
-<br>
-
-<button (click)="redirectToRoute()">Gestion des thèmes/quizs</button>
-
-<br>
+<br><br>
 
 <a class="navigation" [routerLink]="['/create-quiz']">
   <button class="gestion_admin" id="add_quiz">Ajouter un quiz</button>
