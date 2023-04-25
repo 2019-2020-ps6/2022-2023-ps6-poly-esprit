@@ -11,7 +11,11 @@
       <input class="input-custom" type="text" id="theme" [formControlName]="'theme'">
     </label>
     <br>
-    <button type="submit" class="button-card" (click)="addQuiz()">Créer</button>
+    <br>
+    <button type="submit" class="button-card" (click)="addQuiz()">Créer le nouveau quiz ! </button>
   </form>
 </div>
-<!-- <br><br>{{quizForm.getRawValue() | json}} -->
+<br>
+<a class="navigation" [routerLink]="['/']">
+  <button>Retour en arrière</button>
+</a>

@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup} from '@angular/forms'
 import {QuizService} from "../../service/quiz.service";
 import {Quiz} from "../../models/quizz.models";
 import {ThemeService} from "../../service/theme.service";
+import {Theme} from "../../models/theme.models";
 
 
 @Component({
@@ -35,7 +36,14 @@ export class CreateQuizComponent implements OnInit {
     quizToCreate.questions=[];
     quizToCreate.name = this.quizForm.value.name;
     this.QCService.addQuiz(quizToCreate);
-    this.THService.addQuiz(quizToCreate, this.quizForm.value.theme);
+
+
+    const themeToCreate : Theme = this.quizForm.getRawValue() as Theme;
+    themeToCreate.id=this.themeService.getIndexToCreate();
+    themeToCreate.name=this.quizForm.value.theme;
+    themeToCreate.quizzes=[];
+
+    this.THService.addQuiz(quizToCreate, themeToCreate);
   }
 
 }
