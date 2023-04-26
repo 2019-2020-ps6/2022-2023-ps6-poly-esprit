@@ -83,7 +83,7 @@ export const Answer = [
 export const Questions = [
   {
     id: '1',
-    label: 'A quelle date il y a eu la révolution française',
+    label: 'A quelle date a eu lieu la révolution française ?',
     answers: [Answer[0],Answer[1],Answer[2], Answer[3]]
   },
   {
@@ -107,7 +107,7 @@ export const Questions = [
     answers: [Answer[16],Answer[17],Answer[18], Answer[19]]
   },
   {
-    id: '5',
+    id: '6',
     label: "Quel est le nom du langage de programmation utilisé pour créer ce site ?",
     answers: [Answer[20],Answer[21],Answer[22], Answer[23]]
   },

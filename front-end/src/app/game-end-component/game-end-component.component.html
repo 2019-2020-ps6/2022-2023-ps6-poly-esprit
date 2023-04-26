@@ -1,8 +1,8 @@
 <div>
   <h3 *ngIf="gameInstance">Bravo ! Vous avez terminé le quiz avec {{gameInstance.score}} point</h3>
-  <a [routerLink]="['/themes/', userId]"><button id="acceuil">Accueil</button></a>
-  <button class="recap" *ngIf="!visibleRecap" (click)="viewRecap()">Voir le recap</button>
-  <button class="recap" *ngIf="visibleRecap" (click)="viewRecap()">Cacher le recap</button>
+  <a [routerLink]="['/themes/', userId]"><button appAdaptConfig id="acceuil">Accueil</button></a>
+  <button appAdaptConfig class="recap" *ngIf="!visibleRecap" (click)="viewRecap()">Voir le recap</button>
+  <button appAdaptConfig class="recap" *ngIf="visibleRecap" (click)="viewRecap()">Cacher le recap</button>
   <table *ngIf="gameInstance && visibleRecap">
     <thead>
     <tr>
@@ -22,4 +22,5 @@
     </tr>
     </tbody>
   </table>
+
 </div>

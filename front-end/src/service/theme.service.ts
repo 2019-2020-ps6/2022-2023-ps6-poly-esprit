@@ -10,7 +10,7 @@ import { Quiz } from "../models/quizz.models";
 })
 
 export class ThemeService {
-    private themes$ = new Observable<any>()
+    private themes$ = new Observable<Theme[]>()
   // @ts-ignore
     private themes: Theme[] = Themes;
 
@@ -21,7 +21,7 @@ export class ThemeService {
         });
     }
 
-    getThemes(): Observable<Theme> {  //returns all themes
+    getThemes(): Observable<Theme[]> {  //returns all themes
         return this.themes$;
     }
 
@@ -52,5 +52,30 @@ export class ThemeService {
         }
       }
     }
+  }
+
+  addQuiz(quizToCreate: Quiz, theme: Theme) {
+    //Loop through themes, if theme exists, add quiz to theme, else create theme and add quiz to theme
+    let themeExists = false;
+    for(let i =0; i < this.themes.length; i++){
+      let themeToCheck = this.themes[i];
+      if(themeToCheck.name == theme.name){
+        themeExists = true;
+        if (themeToCheck.quizzes) {
+          themeToCheck.quizzes.push(quizToCreate);
+        }
+        break;
+      }
+    }
+    if(!themeExists){
+      theme.quizzes = [];
+      theme.quizzes.push(quizToCreate);
+      this.themes.push(theme);
+    }
+    alert("Le quiz a bien été créé !");
+  }
+
+  getIndexToCreate(){
+      return this.themes.length;
   }
 }

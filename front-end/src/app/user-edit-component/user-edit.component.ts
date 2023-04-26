@@ -36,10 +36,13 @@ export class UserEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
+    const id = this.route.snapshot.paramMap.get('id');
     console.log(id)
     this.UService.getUsers().subscribe((users) => {
-      this.currentUser = users[id];
+      if(id){
+        let test = this.UService.getUser(id);
+        if(test) this.currentUser=test;
+      }
     });
     this.imagePath=this.currentUser?.path_pp;
     this.updateForm();

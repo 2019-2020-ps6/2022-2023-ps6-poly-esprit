@@ -1,17 +1,37 @@
 <app-header [title]="title"></app-header>
-<h1>Voici la liste : </h1>
-<ul>
-  <li *ngFor="let user of users">
-    <a class="navigation" [routerLink]="['/themes', user.id]">
-      Utilisateur : {{ user.nom }}
-    </a>
-     <a class="navigation" [routerLink]="['user-edit', user.id]">
-      <button>Modifier l'utilisateur</button>
-    </a>
-    <a class="navigation" [routerLink]="['user-delete', user.id]">
-      <button>Supprimer l'utilisateur</button>
-    </a>
-  </li>
-</ul>
+<h1>Patients : </h1>
+  <ul>
+    <div class="grid_display">
+      <li *ngFor="let user of usersList">
+        <div class = "user_selection">
+          <a class="navigation" [routerLink]="['/themes', user.id]">
+            <button class="user_selection_button"> <h2>Utilisateur : {{user.prenom}} {{ user.nom }} </h2> <img src={{user.path_pp}}> </button>
+          </a>
+        </div>
+<!--        <div class="gestion_admin">-->
+<!--           <a class="navigation" [routerLink]="['user-edit', user.id]">-->
+<!--            <button>Modifier l'utilisateur</button>-->
+<!--          </a>-->
+<!--          <a class="navigation" [routerLink]="['user-delete', user.id]">-->
+<!--            <button>Supprimer l'utilisateur</button>-->
+<!--          </a>-->
+<!--        </div>-->
+      </li>
+    </div>
+  </ul>
+
 <br>
+
+<h1>Personnel : </h1>
+<ul>
+  <div class="grid_display">
+    <li *ngFor="let admin of adminsList">
+      <div class = "user_selection">
+        <a class="navigation" [routerLink]="['/admin', admin.id]">
+          <button class="user_selection_button"> <h2>Utilisateur : {{ admin.prenom}} {{ admin.nom }} </h2> <img src={{admin.path_pp}}> </button>
+        </a>
+      </div>
+    </li>
+  </div>
+</ul>
 
