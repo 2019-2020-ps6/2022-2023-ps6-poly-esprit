@@ -16,7 +16,7 @@ import {GameInstance, GameQuestionAnswer} from "../../models/gameInstance.models
 })
 export class GamePageComponentComponent  implements OnInit{
   public currentQuiz:Quiz|undefined ;
-  public currentQuestion:Question | undefined;
+  public currentQuestion:string | undefined;
   public currentIndex:number=0;
   public validateClicked:boolean=false;
   public title = 'Jouer à un quizz';
@@ -38,19 +38,17 @@ export class GamePageComponentComponent  implements OnInit{
     this.quizService.getQuizzes().subscribe((quizzes) => {
       this.currentQuiz = quizzes[id];
     });
-    this.questionService.getQuestions().subscribe((questions) => {
-      this.currentQuestion = questions[this.currentIndex];
-    });
+    this.currentQuestion = this.currentQuiz?.questions[this.currentIndex].label;
+
   }
 
   incrementIndexQuestion() {
     this.validateClicked = false;
     this.somethingSelected = true;
-    this.currentIndex++;
-    this.questionService.getQuestions().subscribe((questions) => {
-      this.currentQuestion = questions[this.currentIndex];
-    });
-    if(this.currentQuiz && !this.currentQuiz.questions[this.currentIndex]){
+
+
+
+    if(this.currentQuiz && this.currentQuiz.questions[this.currentIndex]){
       this.gameInstance.Id = "1";
       this.gameInstance.quizId = this.currentQuiz.id;
       this.gameInstance.gameQuestionsAnswers = this.gameQuestionAnswers;
@@ -59,7 +57,10 @@ export class GamePageComponentComponent  implements OnInit{
       this.gameInstance.score = this.score;
       this.gameInstanceService.addGameInstance(this.gameInstance);
     }
-
+    this.currentIndex++;
+    if (this.currentQuiz?.questions[this.currentIndex]!=undefined){
+      this.currentQuestion = this.currentQuiz?.questions[this.currentIndex].label;
+    }
   }
 
 
@@ -72,22 +73,22 @@ export class GamePageComponentComponent  implements OnInit{
     this.validateClicked = true;
     let isCorrect;
     if (document.getElementsByClassName("goodAnswer")[0].innerHTML === this.selectedValue) {
-      console.log("good")
       isCorrect = true;
       this.score++;
+      console.log(this.currentQuestion, "good, score : ", this.score);
 
     } else {
-      console.log("bad")
       isCorrect = false;
+      console.log(this.currentQuestion, "bad, score : ", this.score);
+
     }
     this.gameQuestionAnswers.push({
       startDate: new Date(),
       submissionDate: new Date(),
-      questionValue: this.currentQuestion?.label||"",
+      questionValue: this.currentQuestion||"",
       answerValue:this.selectedValue||"",
       isCorrect: isCorrect,
     });
-
   }
 
   getDisable() {
