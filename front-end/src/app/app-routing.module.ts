@@ -37,7 +37,8 @@ const routes: Routes = [
   {path: 'edit-question/:id', component: EditQuestionComponent},
   {path: 'parametre', component:ParameterPageComponent},
   {path: 'admin/:id', component: AdminMainPageComponent},
-  {path: 'management-users', component: AdminManagementUsersComponent}
+  {path: 'management-users', component: AdminManagementUsersComponent},
+  {path: 'admin-page', component: AdminMainPageComponent}
 
 ];
 

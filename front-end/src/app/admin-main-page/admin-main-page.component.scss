@@ -40,6 +40,11 @@
   margin-left: 10px;
   background-color: #D9D9D9;
   font-size: small;
+
+}
+#add_quiz{
+  margin-right: 70px;
+  font-weight: bold;
 }
 
 .quiz_container:hover {
@@ -55,21 +60,28 @@
   border-radius: 15px;
   font-size: 1em;
   transition: 0.2s;
+  border-width: 1px;
+  border-color: black;
+  transform: scale(1.15);
 }
+
 .selection_box button:hover {
-  scale: 125%;
+  transform: scale(1.15);
+  border: solid 1px #000000;
+  scale: 115%;
 }
+
 .button_container button:first-child {
-  margin-right: 10px;
+  margin-right: 20px;
 }
 
 .button_container button:last-child {
-  margin-left: 10px;
+  margin-left: 20px;
 }
+
 .title{
   display: flex;
   align-items: center;
-  justify-content: center;
   justify-content: space-between;
   background-color: #C3D5D0;
   border-radius: 5px;
@@ -77,36 +89,42 @@
   border-color: black;
   border-style: solid;
   border-width: 1px;
-  font-size: 1.5em;
-
-}
-.management-btn-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  background-color: #D9D9D9;
-  border-radius: 5px;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 800px;
-  width: 200px;
+  font-size: 1.2em;
 }
 
-.management-btn-container button {
+
+.userGestion {
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 0.9em;
   font-weight: bold;
-  border-radius: 5px;
-  border: none;
-  background-color: #C3D5D0;
-  color: black;
-  cursor: pointer;
+  margin-right: 50px;
+  border-radius: 20px;
+  background-color: #D9D9D9;
+  border-width: 0px;
 }
 
-.management-btn-container button:hover {
-  background-color: #C3D5D0;
+.userGestion:hover {
+  background-color: #D9D9D9;
+  border-width: 1px;
+  border-color: black;
+  transition: transform 0.2s;
+  transform: scale(1.15);
 }
+.management-btn-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #C3D5D0;
+  border-radius: 5px;
+  padding: 20px 10px;
+  margin-left: 60px;
+  margin-right: 60px;
+  border-color: black;
+  border-style: solid;
+  border-width: 1px;
+  font-size: 1.2em;
+}
+
 
 .espace{
   margin: 10px;
