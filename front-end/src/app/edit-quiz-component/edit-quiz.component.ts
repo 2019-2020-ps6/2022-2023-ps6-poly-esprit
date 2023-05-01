@@ -13,6 +13,8 @@ import {Question} from "../../models/question.models";
   styleUrls: ['./edit-quiz.component.scss']
 })
 export class EditQuizComponent {
+  title = "Modification quizz";
+
   public currentQuiz?:Quiz ;
   private QCService: QuizService;
   formulaire: FormGroup;
