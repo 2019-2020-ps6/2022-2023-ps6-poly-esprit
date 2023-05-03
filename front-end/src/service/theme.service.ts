@@ -72,7 +72,6 @@ export class ThemeService {
       theme.quizzes.push(quizToCreate);
       this.themes.push(theme);
     }
-    alert("Le quiz a bien été créé !");
   }
 
   getIndexToCreate(){

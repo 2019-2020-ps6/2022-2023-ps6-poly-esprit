@@ -131,5 +131,58 @@
 }
 
 
+.card{
+  background-color: #D9D9D9;
+  display: inline-block;
+  padding: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-width: 1px;
+  border-color: black;
+  border-style: solid;
+  border-radius: 5px;
+  text-align: center;
+}
+.centre{
+  display: inline-block;
+}
+.second{
+  background-color: #D9D9D9;
+  display: inline-block;
+  padding: 20px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-width: 1px;
+  border-color: black;
+  border-style: solid;
+  border-radius: 5px;
+  text-align: center;
+}
+.supp{
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+.ON{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 150px;
+  margin-right: 150px;
+
+}
+.btnON{
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  border-radius: 50px;
+  padding: 10px;
+  font-weight: bold;
+}
 
 

@@ -1,4 +1,44 @@
 <app-header [title]="title"></app-header>
+
+<div class="first" *ngIf="quizVisible">
+  <div class="card">
+    <h2>Créer un nouveau quiz</h2>
+    <form class="quiz-form" [formGroup]="quizForm">
+      <label for="name">
+        Titre <br>
+        <input class="input-custom" type="text" name="filterName" id="name"
+               [formControlName]="'name'"
+               [(ngModel)]="inputValueName">
+      </label>
+      <br>
+      <label for="theme">
+        Thème <br>
+        <input class="input-custom" type="text" name="filterName" id="theme"
+               [formControlName]="'theme'"
+               [(ngModel)]="inputValueTheme">
+      </label>
+      <br>
+      <br>
+      <button type="centre" class="button-card" (click)="addQuiz()" (click)="closePopup()">Créer le nouveau quiz ! </button>
+    </form>
+    <br>
+    <a class="centre">
+      <button (click)="closePopup()">Retour en arrière</button>
+    </a>
+  </div>
+</div>
+
+<div class="second" *ngIf="deleteVisible">
+  <h1 class="supp">Voulez vraiment supprimer le quiz ?</h1>
+  <form [formGroup]="formulaire" (ngSubmit)="onSubmit()">
+    <div class="ON">
+      <button class="btnON" type="submit">Oui</button>
+      <button class="btnON">Non</button>
+    </div>
+  </form>
+
+</div>
+
 <div class="espace"></div>
 <div class="management-btn-container">
   <h2>Gestion des utilisateurs</h2>
@@ -10,8 +50,8 @@
 <div class="selection_box">
   <div class="title">
     <h2>Gestion des quizs</h2>
-    <a class="navigation" [routerLink]="['/create-quiz']">
-      <button class="gestion_admin" id="add_quiz">Ajouter un quiz</button>
+    <a class="navigation" >
+      <button class="gestion_admin" id="add_quiz" (click)="openPopup()">Ajouter un quiz</button>
     </a>
   </div>
   <ul>
@@ -28,8 +68,8 @@
                 <a class="navigation" [routerLink]="['/edit-quiz', quiz.id]">
                   <button class="gestion_admin" id="edit_quiz">Modifier le quiz</button>
                 </a>
-                <a class="navigation" [routerLink]="['/delete-quiz', quiz.id]">
-                  <button class="gestion_admin" id="delete_quiz">Supprimer le quiz</button>
+                <a class="navigation">
+                  <button class="gestion_admin" id="delete_quiz" (click)="openDelete()">Supprimer le quiz</button>
                 </a>
               </div>
             </div>
@@ -40,6 +80,7 @@
     </li>
   </ul>
 </div>
+
 
 
 
