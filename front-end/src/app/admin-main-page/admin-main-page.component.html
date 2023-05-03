@@ -10,10 +10,10 @@
         <a class="navigation" [routerLink]="['/game-page', quiz.id, admin_id]">
         <h3> Quiz : {{ quiz.name }} (cliquer sur le quiz pour le lancer)</h3>
         </a>
-        <a class="navigation" [routerLink]="['/edit-quiz', quiz.id]">
+        <a class="navigation" [routerLink]="['/edit-quiz', quiz.id, admin_id]">
           <button class="gestion_admin" id="edit_quiz">Modifier le quiz</button>
         </a>
-        <a class="navigation" [routerLink]="['/delete-quiz', quiz.id]">
+        <a class="navigation" [routerLink]="['/delete-quiz', quiz.id, admin_id]">
           <button class="gestion_admin" id="delete_quiz">Supprimer le quiz</button>
         </a>
       </li>
@@ -25,13 +25,13 @@
 
 <br>
 
-<a class="navigation" [routerLink]="['/management-users']">
+<a class="navigation" [routerLink]="['/management-users', admin_id]">
   <button>Gestion des utilisateurs</button>
 </a>
 
 <br><br>
 
-<a class="navigation" [routerLink]="['/create-quiz']">
+<a class="navigation" [routerLink]="['/create-quiz', admin_id]">
   <button class="gestion_admin" id="add_quiz">Ajouter un quiz</button>
 </a>
 

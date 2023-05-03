@@ -18,6 +18,8 @@ export class EditQuizComponent {
   formulaire: FormGroup;
   formulaireNom: FormGroup;
   questions: Question[] | undefined = [];
+  public id_user: string | null = "";
+  public id_quiz: string | null = "";
 
   constructor(private quizService: QuizService, private route: ActivatedRoute, private formBuilder: FormBuilder, private formBuilder2: FormBuilder) {
     this.QCService=quizService;
@@ -37,6 +39,8 @@ export class EditQuizComponent {
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.id_quiz = this.route.snapshot.paramMap.get('id');
+    this.id_user = this.route.snapshot.paramMap.get('id_user');
     console.log(id)
     this.quizService.getQuizzes().subscribe((quizzes) => {
       this.currentQuiz = quizzes[id];
