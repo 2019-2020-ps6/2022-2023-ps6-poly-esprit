@@ -16,8 +16,10 @@
       <button type="centre" class="button-card" (click)="addQuiz()">Créer le nouveau quiz ! </button>
     </form>
     <br>
-    <a class="centre" [routerLink]="['/admin-page']">
-      <button>Retour en arrière</button>
-    </a>
   </div>
 </div>
+
+<br>
+<a class="navigation" [routerLink]="['/admin', id_user]">
+  <button>Retour en arrière</button>
+</a>

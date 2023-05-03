@@ -5,15 +5,19 @@
     <a class="navigation" [routerLink]="['/themes', user.id]">
       Utilisateur : {{ user.nom }}
     </a>
-    <a class="navigation" [routerLink]="['/user-edit', user.id]">
+    <a class="navigation" [routerLink]="['/user-edit', user.id, id_user]">
       <button>Modifier l'utilisateur</button>
     </a>
-    <a class="navigation" [routerLink]="['/user-delete', user.id]">
+    <a class="navigation" [routerLink]="['/user-delete', user.id, id_user]">
       <button>Supprimer l'utilisateur</button>
     </a>
   </li>
 </ul>
 
-<a class="navigation" [routerLink]="['/user-create']">
+<a class="navigation" [routerLink]="['/user-create', id_user]">
   <button>Ajouter un nouvel utilisateur</button>
+</a>
+<br>
+<a class="navigation" [routerLink]="['/admin', id_user]">
+  <button>Retour en arrière</button>
 </a>

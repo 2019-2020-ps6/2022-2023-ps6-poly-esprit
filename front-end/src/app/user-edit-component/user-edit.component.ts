@@ -17,6 +17,7 @@ export class UserEditComponent implements OnInit {
   formulaire: FormGroup;
   imagePath: any;
   imageUrl: any;
+  id_user: string | null ="";
 
   constructor(public userService: UserService, private route: ActivatedRoute, private formBuilder: FormBuilder) {
     this.formulaire = this.formBuilder.group({
@@ -37,6 +38,7 @@ export class UserEditComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
+    this.id_user = this.route.snapshot.paramMap.get('id_user');
     console.log(id)
     this.UService.getUsers().subscribe((users) => {
       if(id){

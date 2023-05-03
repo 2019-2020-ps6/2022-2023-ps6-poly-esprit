@@ -26,12 +26,14 @@ export class AdminMainPageComponent implements OnInit {
 
   public THService : ThemeService;
   themes: any[] = [];
+
   idUser: any;
   quizVisible = false;
   deleteVisible = false;
   inputValueName = "";
   inputValueTheme = "";
   constructor(private router: Router,private route: ActivatedRoute, private userService : UserService, private themeService: ThemeService, private quizService: QuizService ,public quizCreateService: QuizService, public formBuilder: FormBuilder) {
+
     this.admin_id = this.route.snapshot.paramMap.get('id');
     this.UService=userService;
     this.QCService = quizService;

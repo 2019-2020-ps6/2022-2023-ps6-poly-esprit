@@ -24,21 +24,20 @@ const routes: Routes = [
   {path: 'game-answer-component', component: GameAnswerComponentComponent},
   {path: 'game-question-component', component: GameQuestionComponentComponent},
   {path: 'game-page/:idQuiz/:idUser', component: GamePageComponentComponent},
-  {path: 'create-quiz', component: CreateQuizComponent },
-  {path: 'edit-quiz/:id', component: EditQuizComponent},
-  {path: 'delete-quiz/:id', component: DeleteQuizComponent},
+  {path: 'create-quiz/:id_user', component: CreateQuizComponent },
+  {path: 'edit-quiz/:id/:id_user', component: EditQuizComponent},
+  {path: 'delete-quiz/:id/:id_user', component: DeleteQuizComponent},
   {path: '', component: UserListDisplayComponent},
   {path: 'quiz-list/:idUser', component: QuizListDisplayComponent },
-  {path: 'user-create', component: AddUserComponent},
-  {path: 'user-edit/:id', component: UserEditComponent},
+  {path: 'user-create/:id_user', component: AddUserComponent},
+  {path: 'user-edit/:id/:id_user', component: UserEditComponent},
   {path: 'themes/:idUser', component: ThemeListDisplayComponentComponent},
   {path: 'themes/:idTheme/:idUser', component: QuizListDisplayComponent },
-  {path: 'user-delete/:id', component: UserDeleteComponent},
-  {path: 'edit-question/:id', component: EditQuestionComponent},
+  {path: 'user-delete/:id/:id_user', component: UserDeleteComponent},
+  {path: 'edit-question/:id/:id_quiz/:id_user', component: EditQuestionComponent},
   {path: 'parametre', component:ParameterPageComponent},
   {path: 'admin/:id', component: AdminMainPageComponent},
-  {path: 'management-users', component: AdminManagementUsersComponent},
-  {path: 'admin-page', component: AdminMainPageComponent}
+  {path: 'management-users/:id_user', component: AdminManagementUsersComponent}
 
 ];
 
