@@ -42,7 +42,7 @@
 <div class="espace"></div>
 <div class="management-btn-container">
   <h2>Gestion des utilisateurs</h2>
-  <a class="navigation" [routerLink]="['/management-users']">
+  <a class="navigation" [routerLink]="['/management-users', admin_id]">
     <button class="userGestion">Modifier un utilisateur</button>
   </a>
 </div>
@@ -67,11 +67,6 @@
     <br><br>
   </li>
 </ul>
-
-
-<a class="navigation" [routerLink]="['/management-users', admin_id]">
-  <button>Gestion des utilisateurs</button>
-</a>
 
 <br><br>
 
