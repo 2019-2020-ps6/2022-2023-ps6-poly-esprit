@@ -2,38 +2,40 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 20px;
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-bottom: 20px;
 
 }
-
+.espace{
+  padding: 10px;
+}
 .right{
   width: 50%;
-  padding: 20px;
-  margin-right: 20px;
+  padding: 15px;
+  margin-right: 80px;
   border: 1px solid black;
   border-radius: 5px;
-  margin-top: 5%;
   background-color: #C3D5D0;
+
+
 }
 .left{
+  text-align: center;
   width: 20%;
-  margin-left: 100px;
+  margin-left: 80px;
   margin-top: 5%;
   padding: 10px;
+  padding-right: 40px;
+  padding-left: 40px;
   border: 1px solid black;
   border-radius: 5px;
   background-color: #C3D5D0;
 }
 .mainDiv{
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 5px 80px 20px;
-  padding-bottom: 50px;
 
+  align-items: center;
+  margin: 5px 100px 20px;
+  padding-bottom: 50px;
+  padding-top: 0px;
   background-color: #D9D9D9;
   border-radius: 5px;
   border-color: black;
@@ -44,6 +46,7 @@
 .input{
   border-radius: 10px;
   border-width: 1px;
+  padding-right: 40px;
 }
 label{
   padding:10px;
@@ -61,11 +64,9 @@ label{
   margin-bottom: 10px;
 
 }
-.truc{
-  margin-top: 20px;
-}
 .retour{
-  margin-left: 80px;
+  margin-left: 100px;
+  margin-bottom: 15px;
 }
 .btnretour{
   background-color: #a1c0b9;
