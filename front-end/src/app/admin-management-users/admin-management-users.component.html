@@ -3,7 +3,7 @@
 <ul>
   <div class="grid_display">
     <li *ngFor="let user of usersList">
-      <a class="navigation" [routerLink]="['/themes', user.id]">
+      <a class="navigation" id="user_selection" [routerLink]="['/themes', user.id]">
         <button>Utilisateur : {{user.prenom}} {{ user.nom }}</button>
       </a>
       <div class="gestion_admin">
