@@ -1,9 +1,15 @@
 export interface PlayerStats {
   id: number;
-  stats: {
-    date: number[];
-    played: number[];
-    correct: number[];
-    click_accuracy: number[];
-  }
+  stats: [
+    {
+      type: string;
+      name: string;
+      data: [
+        {
+          x: string;
+          y: number[]
+        }
+      ]
+    }
+  ]
 }

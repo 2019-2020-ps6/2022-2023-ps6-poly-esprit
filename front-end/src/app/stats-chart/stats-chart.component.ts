@@ -67,9 +67,108 @@ export class StatsChartComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.chartOptions = {
-      series: []
-    }
-    /*{
+      series: [
+        {
+          type: "rangeArea",
+          name: "Team B Range",
+
+          data: [
+            {
+              x: "Jan",
+              y: [1100, 1900]
+            },
+            {
+              x: "Feb",
+              y: [1200, 1800]
+            },
+            {
+              x: "Mar",
+              y: [900, 2900]
+            },
+            {
+              x: "Apr",
+              y: [1400, 2700]
+            },
+            {
+              x: "May",
+              y: [2600, 3900]
+            },
+            {
+              x: "Jun",
+              y: [500, 1700]
+            },
+            {
+              x: "Jul",
+              y: [1900, 2300]
+            },
+            {
+              x: "Aug",
+              y: [1000, 1500]
+            }
+          ]
+        },
+        {
+          type: "line",
+          name: "Team B Median",
+          data: [
+            {
+              x: "Jan",
+              y: 1500
+            },
+            {
+              x: "Feb",
+              y: 1700
+            },
+            {
+              x: "Mar",
+              y: 1900
+            },
+            {
+              x: "Apr",
+              y: 2200
+            },
+            {
+              x: "May",
+              y: 3000
+            },
+            {
+              x: "Jun",
+              y: 1000
+            },
+            {
+              x: "Jul",
+              y: 2100
+            },
+            {
+              x: "Aug",
+              y: 1200
+            },
+            {
+              x: "Sep",
+              y: 1800
+            },
+            {
+              x: "Oct",
+              y: 2000
+            }
+          ]
+        }
+      ],
+      chart: {
+        type: "rangeArea",
+        toolbar: {
+          show: false
+        }
+      },
+      title: {
+        text: "" // let blank
+      },
+      xaxis: {
+        type: "datetime",
+      }
+    };
+    /*
+    this.chartOptions = {
           name: 'Clics (%)',
           data: [
             {
@@ -122,7 +221,7 @@ export class StatsChartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.click_mode){
+    if (this.click_mode) {
       this.mode = "click"
     } else {
       this.mode = "réponses"
@@ -135,11 +234,34 @@ export class StatsChartComponent implements OnInit {
       });
     }
 
+    let PlayerStats = PlayerStatsService
+
+    PlayerStats.getPlayerStats(this.user.id).subscribe((series: any) =>
+      this.chartOptions = {
+        series: [series],
+        chart: {
+          type: "rangeArea",
+          toolbar: {
+            show: false
+          }
+        },
+        title: {
+          text: "" // let blank
+        },
+        xaxis: {
+          type: "datetime",
+        }
+      }
+    )
+
+    console.log(this.chartOptions.series)
+
     const playersStats: any[] = playersStatsMock;
     const playerNames = playersStats.map(player => `Player ${player.id}`);
 
-    PlayerStatsService.getPlayerStats(this.idUser).pipe(
+    /*PlayerStatsService.getPlayerStats(this.idUser).pipe(
       map((stats: { date: any[]; }) => {
+        console.log("stats en dessous")
         console.log(stats);
         return stats.date.map((date: any) => {
           const year = Math.floor(date / 10000);
@@ -162,10 +284,10 @@ export class StatsChartComponent implements OnInit {
           }
         ];
       });
-    });
-    
+    });*/
 
-    
+
+
 
     /*playersStats.forEach((playerStats, index) => {
       const chartData: Partial<ChartData> = {
@@ -175,7 +297,7 @@ export class StatsChartComponent implements OnInit {
       this.chartData.push(chartData);
     });*/
 
-    PlayerStatsService.getPlayerStats(this.idUser).subscribe(stat => {
+    /*PlayerStatsService.getPlayerStats(this.idUser).subscribe(stat => {
       this.chartSeries = [
         /*{
           name: 'Played',
@@ -184,13 +306,12 @@ export class StatsChartComponent implements OnInit {
         {
           name: 'Correct',
           data: stat.stats.correct
-        },*/
+        },
         {
           name: 'Click Accuracy',
           data: stat.stats.click_accuracy
         }
       ];
-      console.log(this.chartSeries);
       this.chartOptions = {
         chart: {
           type: 'rangeArea',
@@ -203,6 +324,6 @@ export class StatsChartComponent implements OnInit {
         },
         series: this.chartSeries
       };
-    });
+    });*/
   };
 }
