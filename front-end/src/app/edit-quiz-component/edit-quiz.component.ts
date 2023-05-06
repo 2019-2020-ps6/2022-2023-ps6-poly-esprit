@@ -59,6 +59,10 @@ export class EditQuizComponent {
 
   onSubmit() {
     console.log(this.formulaire.value.title);
+    if(this.formulaire.value.title=="" || this.formulaire.value.good_answer=="" || this.formulaire.value.bad_answer1=="" || this.formulaire.value.bad_answer2=="" || this.formulaire.value.bad_answer3==""){
+      alert("Veuillez remplir tous les champs");
+      return;
+    }
     this.currentQuiz?.questions.push(
       {id: this.currentQuiz?.questions.length.toString(),
         label: this.formulaire.value.title,
