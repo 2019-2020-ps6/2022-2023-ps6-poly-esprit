@@ -29,10 +29,12 @@ export class EditQuestionComponent {
       bad_answer2: '',
       bad_answer3: ''
     });
+
+
   }
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'))-1;
+    const id = Number(this.route.snapshot.paramMap.get('id'));
     this.id_quiz = this.route.snapshot.paramMap.get('id_quiz');
     this.id_user = this.route.snapshot.paramMap.get('id_user');
     console.log(id)
@@ -40,6 +42,8 @@ export class EditQuestionComponent {
       this.currentQuestion = questions[id];
     });
     this.updateForm();
+
+    console.log(this.questions);
   }
 
   updateForm(){

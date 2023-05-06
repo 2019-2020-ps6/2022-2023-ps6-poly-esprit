@@ -23,6 +23,10 @@ export class QuestionService {
     return this.questions$
   }
 
+  getSize(): number {
+    return this.questions.length;
+  }
+
 
   deleteQuestion(u: Question | undefined){
     if (u) {
