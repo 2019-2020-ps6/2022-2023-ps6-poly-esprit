@@ -59,6 +59,10 @@ export class EditQuestionComponent {
   onSubmit() {
     //Get the value of the "title" in formulaire and assign it to the title of the current question
     if(this.currentQuestion){
+      if(this.formulaire.value.title == "" || this.formulaire.value.good_answer == "" || this.formulaire.value.bad_answer1 == "" || this.formulaire.value.bad_answer2 == "" || this.formulaire.value.bad_answer3 == ""){
+        alert("Veuillez remplir tous les champs !");
+        return;
+      }
       this.currentQuestion.label = this.formulaire.value.title;
       this.currentQuestion.answers[0].value = this.formulaire.value.good_answer;
       this.currentQuestion.answers[1].value = this.formulaire.value.bad_answer1;

@@ -38,7 +38,11 @@ export class AddUserComponent implements OnInit {
 
   onSubmit(){
     const userToAdd: User = this.formulaire.getRawValue() as User;
-    userToAdd.id=(this.UService.users.length).toString()
+    userToAdd.id=(this.UService.users.length).toString();
+    if(userToAdd.nom == "" || userToAdd.prenom == "" || userToAdd.age <= 0 || userToAdd.pathology == undefined){
+      alert("Veuillez remplir tous les champs");
+      return;
+    }
     this.UService.addUser(userToAdd);
     alert("Un nouvel utilisateur a été ajouté ! ");
     this.formulaire.reset();
