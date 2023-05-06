@@ -29,15 +29,19 @@
 </div>
 
 <div class="second" *ngIf="deleteVisible">
-  <h1 class="supp">Voulez vraiment supprimer le quiz ?</h1>
+  <h1 class="supp">Êtes-vous sûr de vouloir supprimer le quiz ?</h1>
   <form [formGroup]="formulaire" (ngSubmit)="onSubmit()">
     <div class="ON">
-      <button class="btnON" type="submit">Oui</button>
-      <button class="btnON">Non</button>
+      <button type="submit" class="btnON">Oui</button>
+      <br>
+      <a class="navigation">
+        <button class="btnON" (click)="closeDelete()">Non</button>
+      </a>
     </div>
+    <br>
   </form>
-
 </div>
+
 
 <div class="espace"></div>
 <div class="management-btn-container">
@@ -67,8 +71,8 @@
               <a class="navigation" [routerLink]="['/edit-quiz', quiz.id, admin_id]">
                 <button class="gestion_admin" id="edit_quiz">Modifier le quiz</button>
               </a>
-              <a class="navigation" [routerLink]="['/delete-quiz', quiz.id, admin_id]">
-                <button class="gestion_admin" id="delete_quiz">Supprimer le quiz</button>
+              <a class="navigation">
+                <button class="gestion_admin" id="delete_quiz" (click)="openDelete(quiz.id)">Supprimer le quiz</button>
               </a>
             </div>
           </div>
