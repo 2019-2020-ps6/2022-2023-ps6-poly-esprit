@@ -18,6 +18,7 @@ export class UserEditComponent implements OnInit {
   imagePath: any;
   imageUrl: any;
   id_user: string | null ="";
+  title = "Modification d'un utilisateur";
 
   constructor(public userService: UserService, private route: ActivatedRoute, private formBuilder: FormBuilder) {
     this.formulaire = this.formBuilder.group({

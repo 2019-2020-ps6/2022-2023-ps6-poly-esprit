@@ -72,7 +72,6 @@ img {
 button {
   background-color: rgba(58, 175, 169, 0.66);
   border: none;
-  color: white;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -86,6 +85,7 @@ button:hover {
   transform: scaleY(1.1);
   transition: transform 0.2s;
   border: solid 1.3px #000000;
+  background-color: rgba(85, 189, 184, 0.94);
 }
 .user_selection_button{
   border-style: solid;
@@ -128,4 +128,10 @@ button{
 .espace{
   margin: 20px;
 
+}
+.btn{
+  color: white;
+}
+.add_user:hover{
+  background-color: #def2f1;
 }
