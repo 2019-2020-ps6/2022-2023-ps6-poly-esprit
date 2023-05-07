@@ -18,6 +18,4 @@ export class PlayerStatsService {
   static getPlayerStats(id: number): Observable<any> {
     return of(playersStatsMock.find(playerStat => playerStat.id === id));
   }
-
-  constructor() { }
 }

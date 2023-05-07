@@ -24,6 +24,7 @@ export type ChartOptions = {
 
 import { playersStatsMock } from '../../mocks/playersStats.mock';
 import { map } from 'rxjs';
+import * as ApexCharts from 'apexcharts';
 
 interface ChartData {
   name: string;
@@ -42,7 +43,7 @@ export class StatsChartComponent implements OnInit {
   idUser: number = 0;
   user: any;
   public mode: string = "click";
-  public chartOptions: Partial<ChartOptions>;
+  public chartOptions!: Partial<ChartOptions>;
 
   chartTitle: Partial<ApexTitleSubtitle> = {
     text: 'Player Stats Chart',
@@ -66,7 +67,219 @@ export class StatsChartComponent implements OnInit {
     private userService: UserService,
     private route: ActivatedRoute
   ) {
-    this.chartOptions = {
+    var options = {
+      series: [
+      {
+        type: 'rangeArea',
+        name: 'Team B Range',
+    
+        data: [
+          {
+            x: 'Jan',
+            y: [1100, 1900]
+          },
+          {
+            x: 'Feb',
+            y: [1200, 1800]
+          },
+          {
+            x: 'Mar',
+            y: [900, 2900]
+          },
+          {
+            x: 'Apr',
+            y: [1400, 2700]
+          },
+          {
+            x: 'May',
+            y: [2600, 3900]
+          },
+          {
+            x: 'Jun',
+            y: [500, 1700]
+          },
+          {
+            x: 'Jul',
+            y: [1900, 2300]
+          },
+          {
+            x: 'Aug',
+            y: [1000, 1500]
+          }
+        ]
+      },
+    
+      {
+        type: 'rangeArea',
+        name: 'Team A Range',
+        data: [
+          {
+            x: 'Jan',
+            y: [3100, 3400]
+          },
+          {
+            x: 'Feb',
+            y: [4200, 5200]
+          },
+          {
+            x: 'Mar',
+            y: [3900, 4900]
+          },
+          {
+            x: 'Apr',
+            y: [3400, 3900]
+          },
+          {
+            x: 'May',
+            y: [5100, 5900]
+          },
+          {
+            x: 'Jun',
+            y: [5400, 6700]
+          },
+          {
+            x: 'Jul',
+            y: [4300, 4600]
+          },
+          {
+            x: 'Aug',
+            y: [2100, 2900]
+          }
+        ]
+      },
+    
+      {
+        type: 'line',
+        name: 'Team B Median',
+        data: [
+          {
+            x: 'Jan',
+            y: 1500
+          },
+          {
+            x: 'Feb',
+            y: 1700
+          },
+          {
+            x: 'Mar',
+            y: 1900
+          },
+          {
+            x: 'Apr',
+            y: 2200
+          },
+          {
+            x: 'May',
+            y: 3000
+          },
+          {
+            x: 'Jun',
+            y: 1000
+          },
+          {
+            x: 'Jul',
+            y: 2100
+          },
+          {
+            x: 'Aug',
+            y: 1200
+          },
+          {
+            x: 'Sep',
+            y: 1800
+          },
+          {
+            x: 'Oct',
+            y: 2000
+          }
+        ]
+      },
+      {
+        type: 'line',
+        name: 'Team A Median',
+        data: [
+          {
+            x: 'Jan',
+            y: 3300
+          },
+          {
+            x: 'Feb',
+            y: 4900
+          },
+          {
+            x: 'Mar',
+            y: 4300
+          },
+          {
+            x: 'Apr',
+            y: 3700
+          },
+          {
+            x: 'May',
+            y: 5500
+          },
+          {
+            x: 'Jun',
+            y: 5900
+          },
+          {
+            x: 'Jul',
+            y: 4500
+          },
+          {
+            x: 'Aug',
+            y: 2400
+          },
+          {
+            x: 'Sep',
+            y: 2100
+          },
+          {
+            x: 'Oct',
+            y: 1500
+          }
+        ]
+      }
+    ],
+      chart: {
+      height: 350,
+      type: 'rangeArea',
+      animations: {
+        speed: 500
+      }
+    },
+    colors: ['#d4526e', '#33b2df', '#d4526e', '#33b2df'],
+    dataLabels: {
+      enabled: false
+    },
+    fill: {
+      opacity: [0.24, 0.24, 1, 1]
+    },
+    forecastDataPoints: {
+      count: 2
+    },
+    stroke: {
+      curve: 'straight',
+      width: [0, 0, 2, 2]
+    },
+    legend: {
+      show: true,
+      customLegendItems: ['Team B', 'Team A'],
+      inverseOrder: true
+    },
+    title: {
+      text: 'Range Area with Forecast Line (Combo)'
+    },
+    markers: {
+      hover: {
+        sizeOffset: 5
+      }
+    }
+    };
+
+    var chart = new ApexCharts(document.querySelector("#chart"), options);
+    chart.render();
+    /*this.chartOptions = {
       series: [
         {
           type: "rangeArea",
@@ -74,35 +287,35 @@ export class StatsChartComponent implements OnInit {
 
           data: [
             {
-              x: "Jan",
+              x: new Date("01/05/2023"),
               y: [1100, 1900]
             },
             {
-              x: "Feb",
+              x: new Date("02/05/2023"),
               y: [1200, 1800]
             },
             {
-              x: "Mar",
+              x: new Date("03/05/2023"),
               y: [900, 2900]
             },
             {
-              x: "Apr",
+              x: new Date("04/05/2023"),
               y: [1400, 2700]
             },
             {
-              x: "May",
+              x: new Date("05/05/2023"),
               y: [2600, 3900]
             },
             {
-              x: "Jun",
+              x: new Date("06/05/2023"),
               y: [500, 1700]
             },
             {
-              x: "Jul",
+              x: new Date("07/05/2023"),
               y: [1900, 2300]
             },
             {
-              x: "Aug",
+              x: new Date("08/05/2023"),
               y: [1000, 1500]
             }
           ]
@@ -112,44 +325,36 @@ export class StatsChartComponent implements OnInit {
           name: "Team B Median",
           data: [
             {
-              x: "Jan",
+              x: new Date("01/05/2023"),
               y: 1500
             },
             {
-              x: "Feb",
+              x: new Date("02/05/2023"),
               y: 1700
             },
             {
-              x: "Mar",
+              x: new Date("03/05/2023"),
               y: 1900
             },
             {
-              x: "Apr",
+              x: new Date("04/05/2023"),
               y: 2200
             },
             {
-              x: "May",
+              x: new Date("05/05/2023"),
               y: 3000
             },
             {
-              x: "Jun",
+              x: new Date("06/05/2023"),
               y: 1000
             },
             {
-              x: "Jul",
+              x: new Date("07/05/2023"),
               y: 2100
             },
             {
-              x: "Aug",
+              x: new Date("08/05/2023"),
               y: 1200
-            },
-            {
-              x: "Sep",
-              y: 1800
-            },
-            {
-              x: "Oct",
-              y: 2000
             }
           ]
         }
@@ -164,60 +369,10 @@ export class StatsChartComponent implements OnInit {
         text: "" // let blank
       },
       xaxis: {
-        type: "datetime",
+        type: 'datetime',
       }
-    };
-    /*
-    this.chartOptions = {
-          name: 'Clics (%)',
-          data: [
-            {
-              x: new Date("April 01, 2020"),
-              y: [40, 80]
-            },
-            {
-              x: new Date("April 02, 2020"),
-              y: [50, 80]
-            },
-            {
-              x: new Date("April 03, 2020"),
-              y: [50, 70]
-            },
-            {
-              x: new Date("April 04, 2020"),
-              y: [80, 80]
-            },
-            {
-              x: new Date("April 05, 2020"),
-              y: [40, 80]
-            },
-            {
-              x: new Date("April 06, 2020"),
-              y: [40, 70]
-            },
-            {
-              x: new Date("April 07, 2020"),
-              y: [30, 80]
-            },
-            {
-              x: new Date("April 08, 2020"),
-              y: [40, 70]
-            }
-          ]}
-      ],
-      chart: {
-        type: "rangeArea",
-        toolbar: {
-          show: false
-        }
-      },
-      title: {
-        text: "" // let blank
-      },
-      xaxis: {
-        type: "datetime",
-        }
     };*/
+    
   }
 
   ngOnInit(): void {
@@ -235,6 +390,10 @@ export class StatsChartComponent implements OnInit {
     }
 
     let PlayerStats = PlayerStatsService
+
+    PlayerStats.getPlayerStats(this.user.id).subscribe((series: any) =>
+      console.log(series)
+    )
 
     PlayerStats.getPlayerStats(this.user.id).subscribe((series: any) =>
       this.chartOptions = {
