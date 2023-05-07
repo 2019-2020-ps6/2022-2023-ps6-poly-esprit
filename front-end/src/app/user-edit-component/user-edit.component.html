@@ -1,4 +1,9 @@
-<img [src]="imagePath" alt="Texte alternatif" style="width: 150px; height: 100px;">
+<app-header [title]="title"></app-header>
+
+<div class="image_modifier">
+  <img [src]="imagePath" alt="Texte alternatif" style="width: 150px; height: 100px;">
+  <input type="file" (change)="selectedFile($event)">
+</div>
 
 <form [formGroup]="formulaire" (ngSubmit)="onSubmit()">
   <label for="nom">Nom de l'utilisateur :</label>
@@ -44,11 +49,9 @@
   <br>
 </form>
 
-<input type="file" (change)="selectedFile($event)">
-
 <br>
-<a class="navigation" [routerLink]="['']">
-  <button>Retour</button>
+<a class="navigation" [routerLink]="['/management-users']" id="retour">
+  <button>Retour en arrière</button>
 </a>
 
 

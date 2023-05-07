@@ -1,0 +1,29 @@
+form {
+  background-color: #C3D5D0;
+  border: #7BA398 solid 4px;
+  border-radius: 15px;
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-top: 2%;
+  padding: 1%;
+  display: flex;
+  flex-direction: column;
+}
+
+form button {
+  margin-top: 0.5vw;
+  height: 3vw;
+}
+
+h3{
+  margin-top : 1%;
+}
+
+#retour {
+  margin-right: 15%;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+#retour button {
+}

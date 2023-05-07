@@ -11,6 +11,9 @@ import {User} from "../../models/user.model";
 })
 export class AddUserComponent implements OnInit {
   private UService: UserService;
+  title = "Ajouter un utilisateur"
+  imagePath: any;
+  imageUrl: any;
   formulaire: FormGroup;
 
   constructor(public userService: UserService, private formBuilder: FormBuilder) {
@@ -39,6 +42,14 @@ export class AddUserComponent implements OnInit {
     this.UService.addUser(userToAdd);
     alert("Un nouvel utilisateur a été ajouté ! ");
     this.formulaire.reset();
+  }
+
+  selectedFile(event:any){
+    let reader =  new FileReader();
+    reader.readAsDataURL(event.target.files[0])
+    reader.onload=(event:any)=>{
+      this.imagePath=event.target.result;
+    }
   }
 }
 

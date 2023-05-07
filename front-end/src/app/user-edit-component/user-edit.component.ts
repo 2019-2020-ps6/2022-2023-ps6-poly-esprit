@@ -14,6 +14,7 @@ import { HttpClient } from '@angular/common/http';
 export class UserEditComponent implements OnInit {
   private UService: UserService;
   public currentUser?:User;
+  title = "Ajouter un utilisateur"
   formulaire: FormGroup;
   imagePath: any;
   imageUrl: any;
