@@ -14,12 +14,17 @@ export class AddUserComponent implements OnInit {
   private UService: UserService;
   formulaire: FormGroup;
   id_user: string | null = "";
+  title= "Ajout d'un utilisateur";
+
 
   constructor(public userService: UserService, private formBuilder: FormBuilder,private route: ActivatedRoute) {
+
     this.formulaire = this.formBuilder.group({
       nom: '',
       prenom: '',
       age: '',
+      gender: new FormControl(''),
+      stade:new FormControl(''),
       male: new FormControl(false),
       female: new FormControl(false),
       stade0: new FormControl(false),
