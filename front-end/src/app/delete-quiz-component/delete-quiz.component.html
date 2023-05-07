@@ -2,11 +2,11 @@
 <form [formGroup]="formulaire" (ngSubmit)="onSubmit()">
   <button type="submit">Oui</button>
   <br>
-  <a class="navigation" [routerLink]="['/']">
+  <a class="navigation" [routerLink]="['/admin', id_user]">
     <button>Non</button>
   </a>
   <br>
-  <a class="navigation" [routerLink]="['/']">
+  <a class="navigation" [routerLink]="['/admin', id_user]">
     <button>Retour à la page principale</button>
   </a>
 </form>

@@ -82,27 +82,27 @@ export const Answer = [
 ];
 export const Questions = [
   {
-    id: '1',
+    id: '0',
     label: 'A quelle date a eu lieu la révolution française ?',
     answers: [Answer[0],Answer[1],Answer[2], Answer[3]]
   },
   {
-    id: '2',
+    id: '1',
     label: 'A quoi correspond la date du 8 mai dans l’histoire de France ?',
     answers: [Answer[4],Answer[5],Answer[6], Answer[7]]
   },
   {
-    id: '3',
+    id: '2',
     label: 'Quel est la date de la prise de la Bastille ?',
     answers: [Answer[8],Answer[9],Answer[10], Answer[11]]
   },
   {
-    id: '4',
+    id: '3',
     label: "Qui est l'acteur principal du film intouchable ?",
     answers: [Answer[12],Answer[13],Answer[14], Answer[15]]
   },
   {
-    id: '5',
+    id: '4',
     label: "Donner un film avec Will Smith",
     answers: [Answer[16],Answer[17],Answer[18], Answer[19]]
   },

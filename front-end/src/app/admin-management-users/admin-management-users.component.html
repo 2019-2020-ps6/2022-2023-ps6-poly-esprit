@@ -7,10 +7,10 @@
         <button>Utilisateur : {{user.prenom}} {{ user.nom }}</button>
       </a>
       <div class="gestion_admin">
-        <a class="navigation" [routerLink]="['/user-edit', user.id]">
+        <a class="navigation" [routerLink]="['/user-edit', user.id, id_user]">
           <button>Modifier l'utilisateur</button>
         </a>
-        <a class="navigation" [routerLink]="['/user-delete', user.id]">
+        <a class="navigation" [routerLink]="['/user-delete', user.id, id_user]">
           <button>Supprimer l'utilisateur</button>
         </a>
       </div>
@@ -20,7 +20,10 @@
 
 <br>
 <div class="add_user">
-  <a class="navigation" [routerLink]="['/user-create']">
+  <a class="navigation" [routerLink]="['/user-create', id_user]">
     <button>Ajouter un nouvel utilisateur</button>
   </a>
 </div>
+<a class="navigation" [routerLink]="['/admin', id_user]">
+  <button>Retour en arrière</button>
+</a>

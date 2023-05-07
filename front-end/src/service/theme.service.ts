@@ -54,12 +54,12 @@ export class ThemeService {
     }
   }
 
-  addQuiz(quizToCreate: Quiz, theme: string) {
+  addQuiz(quizToCreate: Quiz, theme: Theme) {
     //Loop through themes, if theme exists, add quiz to theme, else create theme and add quiz to theme
     let themeExists = false;
     for(let i =0; i < this.themes.length; i++){
       let themeToCheck = this.themes[i];
-      if(themeToCheck.name == theme){
+      if(themeToCheck.name == theme.name){
         themeExists = true;
         if (themeToCheck.quizzes) {
           themeToCheck.quizzes.push(quizToCreate);
@@ -68,7 +68,13 @@ export class ThemeService {
       }
     }
     if(!themeExists){
-      alert("Ce thème n'existe pas, veuillez le créer d'abord ! ");
+      theme.quizzes = [];
+      theme.quizzes.push(quizToCreate);
+      this.themes.push(theme);
     }
+  }
+
+  getIndexToCreate(){
+      return this.themes.length;
   }
 }

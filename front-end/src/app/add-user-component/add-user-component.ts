@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms'
 import {UserService} from "../../service/user.service";
 import {User} from "../../models/user.model";
+import {ActivatedRoute} from "@angular/router";
 
 
 @Component({
@@ -15,8 +16,9 @@ export class AddUserComponent implements OnInit {
   imagePath: any;
   imageUrl: any;
   formulaire: FormGroup;
+  id_user: string | null = "";
 
-  constructor(public userService: UserService, private formBuilder: FormBuilder) {
+  constructor(public userService: UserService, private formBuilder: FormBuilder,private route: ActivatedRoute) {
     this.formulaire = this.formBuilder.group({
       nom: '',
       prenom: '',
@@ -34,11 +36,16 @@ export class AddUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.id_user = this.route.snapshot.paramMap.get('id_user');
   }
 
   onSubmit(){
     const userToAdd: User = this.formulaire.getRawValue() as User;
-    userToAdd.id=(this.UService.users.length).toString()
+    userToAdd.id=(this.UService.users.length).toString();
+    if(userToAdd.nom == "" || userToAdd.prenom == "" || userToAdd.age <= 0 || userToAdd.pathology == undefined){
+      alert("Veuillez remplir tous les champs");
+      return;
+    }
     this.UService.addUser(userToAdd);
     alert("Un nouvel utilisateur a été ajouté ! ");
     this.formulaire.reset();

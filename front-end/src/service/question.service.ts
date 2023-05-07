@@ -9,7 +9,7 @@ import {User} from "../models/user.model";
 export class QuestionService {
   //The list of quiz. The list is
   // retrieved from the mock.
-  private questions$ = new Observable<any>();
+  private questions$ = new Observable<Question[]>();
   public questions: Question[] = Questions; // Ici on initialise la valeur avec un mock QUIZ_LIST
   // The service's constructor. Le constructeur peut prendre en paramètre les dépendances du service - comme ici,
   // HttpClient qui va permettre de récupérer les données d'un serveur
@@ -19,8 +19,12 @@ export class QuestionService {
       observer.complete();
     });
   }
-  getQuestions(): Observable<any> {
+  getQuestions(): Observable<Question[]> {
     return this.questions$
+  }
+
+  getSize(): number {
+    return this.questions.length;
   }
 
 

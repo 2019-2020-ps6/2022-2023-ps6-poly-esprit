@@ -18,6 +18,7 @@ export class DeleteQuizComponent {
   private THService: ThemeService;
   formulaire: FormGroup;
   id_quiz: string | null = "";
+  id_user: string | null = "";
 
   constructor(private quizService: QuizService, private themeService : ThemeService,private route: ActivatedRoute, private formBuilder: FormBuilder) {
     this.QCService = quizService;
@@ -27,6 +28,7 @@ export class DeleteQuizComponent {
 
   ngOnInit(): void {
     this.id_quiz = this.route.snapshot.paramMap.get('id');
+    this.id_user = this.route.snapshot.paramMap.get('id_user');
   }
 
 

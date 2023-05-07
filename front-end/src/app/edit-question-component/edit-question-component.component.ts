@@ -17,6 +17,8 @@ export class EditQuestionComponent {
   private QUService: QuestionService;
   formulaire: FormGroup;
   questions: Question[] | undefined = [];
+  id_quiz: string | null = "";
+  id_user: string | null = "";
 
   constructor(private questionService: QuestionService, private route: ActivatedRoute, private formBuilder: FormBuilder) {
     this.QUService=questionService;
@@ -27,15 +29,21 @@ export class EditQuestionComponent {
       bad_answer2: '',
       bad_answer3: ''
     });
+
+
   }
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'))-1;
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.id_quiz = this.route.snapshot.paramMap.get('id_quiz');
+    this.id_user = this.route.snapshot.paramMap.get('id_user');
     console.log(id)
     this.questionService.getQuestions().subscribe((questions) => {
       this.currentQuestion = questions[id];
     });
     this.updateForm();
+
+    console.log(this.questions);
   }
 
   updateForm(){
@@ -51,6 +59,10 @@ export class EditQuestionComponent {
   onSubmit() {
     //Get the value of the "title" in formulaire and assign it to the title of the current question
     if(this.currentQuestion){
+      if(this.formulaire.value.title == "" || this.formulaire.value.good_answer == "" || this.formulaire.value.bad_answer1 == "" || this.formulaire.value.bad_answer2 == "" || this.formulaire.value.bad_answer3 == ""){
+        alert("Veuillez remplir tous les champs !");
+        return;
+      }
       this.currentQuestion.label = this.formulaire.value.title;
       this.currentQuestion.answers[0].value = this.formulaire.value.good_answer;
       this.currentQuestion.answers[1].value = this.formulaire.value.bad_answer1;
