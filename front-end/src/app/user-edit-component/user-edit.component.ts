@@ -91,6 +91,33 @@ export class UserEditComponent implements OnInit {
   onSubmit(){
     const userToAdd: User = this.formulaire.getRawValue() as User;
     userToAdd.id=<string>this.currentUser?.id;
+
+    //Check wich FormControl is checked
+    if(this.formulaire.value.stade1 == true){
+      userToAdd.pathology=1;
+    }else if(this.formulaire.value.stade23 == true){
+      userToAdd.pathology=2;
+    }else if(this.formulaire.value.stade4 == true){
+      userToAdd.pathology=4;
+    } else {
+      userToAdd.pathology=0;
+    }
+
+    //Check the sex
+    if (this.formulaire.value.male == true){
+      userToAdd.sex='Male';
+    }else{
+      userToAdd.sex='Female';
+    }
+
+    //Check if the user is an administrator
+    if(this.formulaire.value.administrator == true){
+      userToAdd.isAdmin=true;
+    }else{
+      userToAdd.isAdmin=false;
+    }
+
+
     this.UService.deleteUser(this.currentUser);
     this.UService.addUser(userToAdd);
     alert("Utilisateur mis à jour ! ");

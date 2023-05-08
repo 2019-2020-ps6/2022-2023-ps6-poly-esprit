@@ -45,10 +45,12 @@ export class EditQuizComponent {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.id_quiz = this.route.snapshot.paramMap.get('id');
     this.id_user = this.route.snapshot.paramMap.get('id_user');
-    console.log(id)
-    this.quizService.getQuizzes().subscribe((quizzes) => {
-      this.currentQuiz = quizzes[id];
-    });
+    console.log(id);
+
+    if(this.id_quiz){
+      this.currentQuiz = this.QCService.getQuiz(this.id_quiz);
+    }
+
     this.questions=this.currentQuiz?.questions;
     this.formulaireNom.patchValue({
       title_quiz: this.currentQuiz?.name

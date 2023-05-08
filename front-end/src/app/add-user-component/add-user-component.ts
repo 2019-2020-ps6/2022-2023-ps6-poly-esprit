@@ -39,7 +39,34 @@ export class AddUserComponent implements OnInit {
   onSubmit(){
     const userToAdd: User = this.formulaire.getRawValue() as User;
     userToAdd.id=(this.UService.users.length).toString();
-    if(userToAdd.nom == "" || userToAdd.prenom == "" || userToAdd.age <= 0 || userToAdd.pathology == undefined){
+
+    //Check wich FormControl is checked
+    if(this.formulaire.value.stade1 == true){
+      userToAdd.pathology=1;
+    }else if(this.formulaire.value.stade23 == true){
+      userToAdd.pathology=2;
+    }else if(this.formulaire.value.stade4 == true){
+      userToAdd.pathology=4;
+    } else {
+      userToAdd.pathology=0;
+    }
+
+    //Check the sex
+    if (this.formulaire.value.male == true){
+      userToAdd.sex='Male';
+    }else{
+      userToAdd.sex='Female';
+    }
+
+    //Check if the user is an administrator
+    if(this.formulaire.value.administrator == true){
+      userToAdd.isAdmin=true;
+    }else{
+      userToAdd.isAdmin=false;
+    }
+
+
+    if(userToAdd.nom == "" || userToAdd.prenom == "" || userToAdd.age <= 0){
       alert("Veuillez remplir tous les champs");
       return;
     }
