@@ -2,7 +2,7 @@
   border-radius: 15%;
   width: 300px;
   height: 100px;
-  background-color: #C3D5D0;
+  background-color: rgba(58, 175, 169, 0.36);
   margin: 20px;
 
 }
@@ -14,7 +14,7 @@
   border-radius: 15%;
   width: 320px;
   height: 150px;
-  background-color: #C3D5D0;
+  background-color: rgba(58, 175, 169, 0.36);
   margin: 20px;
 
 }
@@ -29,7 +29,7 @@
   height: 100px;
   font-size:30px;
   font-weight: bold;
-  background-color: #C3D5D0;
+  background-color: rgba(58, 175, 169, 0.36);
   margin: 20px;
 }
 .tailleTexteGros:hover {
@@ -49,6 +49,6 @@
   font-family: 'Roboto', sans-serif;
 }
 .selected{
-  background-color: #7BA398 !important;
+  background-color: #183446 !important;
   color:white;
 }

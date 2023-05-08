@@ -1,4 +1,16 @@
 <app-header [title]="title"></app-header>
+<div class="first" *ngIf="deleteVisible">
+  <h1>Voulez vraiment supprimer l'utilisateur ?</h1>
+  <form [formGroup]="formulaire" (ngSubmit)="onSubmit()">
+    <button type="submit">Oui</button>
+    <br>
+    <a class="navigation">
+      <button (click)="closeDelete()">Non</button>
+    </a>
+    <br>
+  </form>
+</div>
+
 <div class="espace"></div>
 <div class="retour">
   <a class="navigation" [routerLink]="['/admin', id_user]">
@@ -22,8 +34,8 @@
           <a class="navigation" [routerLink]="['/user-edit', user.id, id_user]">
             <button class="btn">Modifier l'utilisateur</button>
           </a>
-          <a class="navigation" [routerLink]="['/user-delete', user.id, id_user]">
-            <button class="btn">Supprimer l'utilisateur</button>
+          <a class="navigation" >
+            <button class="btn" (click)="openDelete(user.id)">Supprimer l'utilisateur</button>
           </a>
         </div>
       </div>

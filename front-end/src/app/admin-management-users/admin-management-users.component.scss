@@ -135,3 +135,21 @@ button{
 .add_user:hover{
   background-color: #def2f1;
 }
+
+.first{
+  background-color: #def2f1;
+  box-shadow: 10px 5px 5px grey;
+  display: inline-block;
+  padding: 20px;
+  padding-top: 30px;
+  padding-bottom: 16px;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-width: 1px;
+  border-color: black;
+  border-style: solid;
+  border-radius: 5px;
+  text-align: center;
+}
