@@ -42,6 +42,10 @@ export class QuizService {
     }
   }
 
+  getQuiz(id: String): Quiz | undefined {
+    return this.quizzes.find(quiz => quiz.id === id);
+  }
+
 
 
 }
