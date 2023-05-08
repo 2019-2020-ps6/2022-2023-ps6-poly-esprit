@@ -54,6 +54,7 @@ export class AdminManagementUsersComponent {
   }
   onSubmit() {
     if(this.id_user!=null){
+      this.usersList = this.usersList.filter(u => u.id !== this.id_user);
       this.UService.deleteUserWithId(this.id_user);
       this.deleteVisible=false;
     }
