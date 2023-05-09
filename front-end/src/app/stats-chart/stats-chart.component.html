@@ -1,11 +1,10 @@
 <div style="text-align:center;width:75vw;height:45vh;">
-    <div *ngIf="chartOptions && chartOptions.series && chartOptions.chart && chartOptions.xaxis && chartOptions.title">
+    <div *ngIf="chartOptions && chartOptions.series && chartOptions.chart && chartOptions.title">
       <apx-chart
-        [series]="chartOptions.series"
-        [chart]="chartOptions.chart"
-        [xaxis]="chartOptions.xaxis"
-        [title]="chartOptions.title">
-      </apx-chart>
+    [series]="chartOptions.series"
+    [chart]="chartOptions.chart"
+    [title]="chartOptions.title"
+  ></apx-chart>
     </div>
   </div>
   
