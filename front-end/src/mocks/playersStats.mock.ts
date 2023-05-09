@@ -1,4 +1,6 @@
-export const playersStatsMock = [
+import { PlayerStatsModel } from "src/models/playersStats.models";
+
+export const playersStatsMock: PlayerStatsModel[] = [
   {
     id: 0,
     stats: [

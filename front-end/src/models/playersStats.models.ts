@@ -1,4 +1,4 @@
-export interface PlayerStats {
+/*export interface PlayerStats {
   id: number;
   stats: [
     {
@@ -7,9 +7,25 @@ export interface PlayerStats {
       data: [
         {
           x: string;
-          y: number[]
+          y: number[];
         }
       ]
     }
   ]
+}*/
+
+export interface PlayerStatDataPoint {
+  x: string;
+  y: number[] | number;
+}
+
+export interface PlayerStat {
+  type: string;
+  name: string;
+  data: PlayerStatDataPoint[];
+}
+
+export interface PlayerStatsModel {
+  id: number;
+  stats: PlayerStat[];
 }
