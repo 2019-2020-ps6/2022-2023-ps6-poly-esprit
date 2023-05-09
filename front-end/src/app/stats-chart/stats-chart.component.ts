@@ -110,7 +110,7 @@ interface ChartData {
 
 export class StatsChartComponent implements OnInit {
   @Input() click_mode: boolean = true;
-  @ViewChild("chart") chart: ChartComponent | undefined;
+  @ViewChild("chart") chart: ChartComponent | undefined
 
   public mode: string = "click";
   public chartOptions: Partial<ChartOptions> | undefined;
@@ -131,9 +131,12 @@ export class StatsChartComponent implements OnInit {
               type: "rangeArea",
               animations: {
                 speed: 500
+              },
+              toolbar: {
+                show: false
               }
             },
-            colors: ["#d4526e", "#33b2df", "#d4526e", "#33b2df"],
+            colors: ["#d4526e", "#33b2df","#14526e", "#c3b2df"],
             dataLabels: {
               enabled: false
             },
@@ -141,17 +144,14 @@ export class StatsChartComponent implements OnInit {
               opacity: [0.24, 0.24, 1, 1]
             },
             forecastDataPoints: {
-              count: 2,
-              dashArray: 4
+              count: 2
             },
             stroke: {
               curve: "straight",
               width: [0, 0, 2, 2]
             },
             legend: {
-              show: false,
-              customLegendItems: ["Moyenne", "Min-Max"],
-              inverseOrder: true
+              show: true,
             },
             title: {
               text: ""

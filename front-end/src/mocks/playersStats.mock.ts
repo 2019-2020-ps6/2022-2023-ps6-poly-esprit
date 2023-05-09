@@ -6,7 +6,7 @@ export const playersStatsMock: PlayerStatsModel[] = [
     stats: [
       {
         type: "rangeArea",
-        name: "Statistiques de ",
+        name: "Min-Max",
         data: [
           {
             x: "Jan",
@@ -39,12 +39,20 @@ export const playersStatsMock: PlayerStatsModel[] = [
           {
             x: "Aug",
             y: [1000, 1500]
+          },
+          {
+            x: "Sep",
+            y: [1600, 2000]
+          },
+          {
+            x: "Oct",
+            y: [1800, 2200]
           }
         ]
       },
       {
         type: "line",
-        name: "Team B Median",
+        name: "Moyenne",
         data: [
           {
             x: "Jan",
@@ -89,12 +97,13 @@ export const playersStatsMock: PlayerStatsModel[] = [
         ]
       },
     ]
-  },{
+  },
+  {
     id: 1,
     stats: [
       {
         type: "rangeArea",
-        name: "Statistiques de ",
+        name: "Min-Max",
         data: [
           {
             x: "Jan",
@@ -127,12 +136,20 @@ export const playersStatsMock: PlayerStatsModel[] = [
           {
             x: "Aug",
             y: [1000, 1500]
+          },
+          {
+            x: "Sep",
+            y: [1600, 2000]
+          },
+          {
+            x: "Oct",
+            y: [1800, 2200]
           }
         ]
       },
       {
         type: "line",
-        name: "Team B Median",
+        name: "Moyenne",
         data: [
           {
             x: "Jan",
@@ -183,7 +200,7 @@ export const playersStatsMock: PlayerStatsModel[] = [
     stats: [
       {
         type: "rangeArea",
-        name: "Statistiques de ",
+        name: "Min-Max",
         data: [
           {
             x: "Jan",
@@ -216,12 +233,20 @@ export const playersStatsMock: PlayerStatsModel[] = [
           {
             x: "Aug",
             y: [1000, 1500]
+          },
+          {
+            x: "Sep",
+            y: [1600, 2000]
+          },
+          {
+            x: "Oct",
+            y: [1800, 2200]
           }
         ]
       },
       {
         type: "line",
-        name: "Team B Median",
+        name: "Moyenne",
         data: [
           {
             x: "Jan",
@@ -272,7 +297,7 @@ export const playersStatsMock: PlayerStatsModel[] = [
     stats: [
       {
         type: "rangeArea",
-        name: "Statistiques de ",
+        name: "Min-Max",
         data: [
           {
             x: "Jan",
@@ -305,12 +330,20 @@ export const playersStatsMock: PlayerStatsModel[] = [
           {
             x: "Aug",
             y: [1000, 1500]
+          },
+          {
+            x: "Sep",
+            y: [1600, 2000]
+          },
+          {
+            x: "Oct",
+            y: [1800, 2200]
           }
         ]
       },
       {
         type: "line",
-        name: "Team B Median",
+        name: "Moyenne",
         data: [
           {
             x: "Jan",
