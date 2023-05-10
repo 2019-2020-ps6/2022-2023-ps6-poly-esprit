@@ -37,7 +37,6 @@ export class EditQuizComponent {
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    console.log(id)
     this.quizService.getQuizzes().subscribe((quizzes) => {
       this.currentQuiz = quizzes[id];
     });
@@ -54,7 +53,6 @@ export class EditQuizComponent {
   }
 
   onSubmit() {
-    console.log(this.formulaire.value.title);
     this.currentQuiz?.questions.push(
       {id: this.currentQuiz?.questions.length.toString(),
         label: this.formulaire.value.title,

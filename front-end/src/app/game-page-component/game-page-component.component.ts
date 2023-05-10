@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {Quiz} from "../../models/quizz.models";
 import {QuizService} from "../../service/quiz.service";
 import {ActivatedRoute} from "@angular/router";
@@ -14,7 +14,7 @@ import {GameInstance, GameQuestionAnswer} from "../../models/gameInstance.models
   templateUrl: './game-page-component.component.html',
   styleUrls: ['./game-page-component.component.scss']
 })
-export class GamePageComponentComponent  implements OnInit{
+export class GamePageComponentComponent  implements OnInit, AfterViewInit{
   public currentQuiz:Quiz|undefined ;
   public currentQuestion:string | undefined;
   public currentIndex:number=0;
@@ -32,6 +32,10 @@ export class GamePageComponentComponent  implements OnInit{
   constructor(private quizService: QuizService, private route: ActivatedRoute, private questionService: QuestionService, private gameInstanceService: GameInstanceService) {
     this.userId = Number(this.route.snapshot.paramMap.get('idUser'));
 
+  }
+
+  ngAfterViewInit(): void {
+    this.attractedButton();
   }
 
   ngOnInit(): void {
@@ -64,6 +68,50 @@ export class GamePageComponentComponent  implements OnInit{
     }
   }
 
+  private attractedButton() {
+    const buttons = document.querySelectorAll('button');
+
+
+
+    const window = document.querySelector('body');
+
+    buttons.forEach(button => {
+      window?.addEventListener('mousemove', e => {
+
+        const mouseX = e.clientX;
+        const mouseY = e.clientY;
+
+        const buttonX = button.offsetLeft + button.clientWidth / 2;
+        const buttonY = button.offsetTop + button.clientHeight / 2;
+
+        const buttonLeft = button.offsetLeft;
+        const buttonRight = button.offsetLeft + button.clientWidth;
+        const buttonTop = button.offsetTop;
+        const buttonBottom = button.offsetTop + button.clientHeight;
+
+        const distanceLeft = Math.sqrt((mouseX - buttonLeft) ** 2 + (mouseY - buttonY) ** 2);
+        const distanceRight = Math.sqrt((mouseX - buttonRight) ** 2 + (mouseY - buttonY) ** 2);
+        const distanceTop = Math.sqrt((mouseX - buttonX) ** 2 + (mouseY - buttonTop) ** 2);
+        const distanceBottom = Math.sqrt((mouseX - buttonX) ** 2 + (mouseY - buttonBottom) ** 2);
+
+        // Trouver la distance minimale
+        const minDistance = Math.min(distanceLeft, distanceRight, distanceTop, distanceBottom);
+
+        if (minDistance < 90) { // 90 = rayon du bouton
+          button.style.transform = 'scale(1.5)';
+          if(button.classList.contains('btn-hide-recap')) {
+            button.style.background = 'lightgrey';
+          }
+        } else {
+          button.style.transform = 'scale(1)';
+          if(button.classList.contains('btn-hide-recap')) {
+            button.style.background = '';
+          }
+        }
+      });
+    })
+    console.log("Listes des boutons",buttons);
+  }
 
   public onSomethingSelected(isSelected: boolean) {
     this.somethingSelected = isSelected;
@@ -71,6 +119,7 @@ export class GamePageComponentComponent  implements OnInit{
 
 
   validate() {
+    this.incrementIndexQuestion()
     this.validateClicked = true;
     let isCorrect;
     if (document.getElementsByClassName("goodAnswer")[0].innerHTML === this.selectedValue) {
@@ -80,6 +129,7 @@ export class GamePageComponentComponent  implements OnInit{
     } else {
       isCorrect = false;
     }
+
     this.gameQuestionAnswers.push({
       startDate: new Date(),
       submissionDate: new Date(),
@@ -87,23 +137,6 @@ export class GamePageComponentComponent  implements OnInit{
       answerValue:this.selectedValue||"",
       isCorrect: isCorrect,
     });
-  }
-
-  getDisable() {
-    if(this.validateClicked){
-      return {"display": "none"};
-    }
-    if(this.currentQuiz && !this.currentQuiz.questions[this.currentIndex]){
-      return {"display": "none"};
-    }
-    return undefined;
-  }
-
-  getDisableQuestion() {
-    if(this.validateClicked){
-      return {"display": "block"};
-    }
-    return undefined;
   }
 
   onWhoIsSelected(value: string) {

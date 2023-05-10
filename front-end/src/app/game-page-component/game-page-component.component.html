@@ -10,19 +10,17 @@
 
 <div class="centre">
 
-  <button class="valider" appAdaptConfig [ngStyle]="getDisable()" [disabled]="somethingSelected" (click)="validate()">
+  <button class="valider" appAdaptConfig (click)="validate()">
     Valider
   </button>
 
 
   <a [routerLink]="['/themes/', userId]">
-    <button class="retour" appAdaptConfig [ngStyle]="getDisable()">
+    <button class="retour" appAdaptConfig>
       Retour
     </button>
   </a>
-  <button appAdaptConfig [ngStyle]="getDisableQuestion()" id="questionSuivante" (click)="incrementIndexQuestion()" >
-    Question suivante
-  </button>
+
 </div>
 
 

@@ -31,7 +31,6 @@ export class EditQuestionComponent {
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'))-1;
-    console.log(id)
     this.questionService.getQuestions().subscribe((questions) => {
       this.currentQuestion = questions[id];
     });

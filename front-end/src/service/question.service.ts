@@ -27,13 +27,11 @@ export class QuestionService {
   deleteQuestion(u: Question | undefined){
     if (u) {
       this.questions.splice(this.questions.indexOf(u), 1);
-      console.log("Suppression réalisée ! ");
     }
   }
 
   addQuestion(u: Question){
     this.questions.push(u);
-    console.log("Modification réalisée !");
   }
 
 
