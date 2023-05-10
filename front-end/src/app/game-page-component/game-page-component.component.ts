@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Quiz} from "../../models/quizz.models";
 import {QuizService} from "../../service/quiz.service";
 import {ActivatedRoute} from "@angular/router";
@@ -16,7 +16,7 @@ import {GameInstance, GameQuestionAnswer} from "../../models/gameInstance.models
 })
 export class GamePageComponentComponent  implements OnInit{
   public currentQuiz:Quiz|undefined ;
-  public currentQuestion:Question | undefined;
+  public currentQuestion:string | undefined;
   public currentIndex:number=0;
   public validateClicked:boolean=false;
   public title = 'Jouer à un quizz';
@@ -26,6 +26,7 @@ export class GamePageComponentComponent  implements OnInit{
   private gameQuestionAnswers: GameQuestionAnswer[] = [];
   private score: number = 0;
   public userId:number;
+  @Input() quiz?: Quiz ;
 
 
   constructor(private quizService: QuizService, private route: ActivatedRoute, private questionService: QuestionService, private gameInstanceService: GameInstanceService) {
@@ -35,22 +36,18 @@ export class GamePageComponentComponent  implements OnInit{
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('idQuiz'));
-    this.quizService.getQuizzes().subscribe((quizzes) => {
-      this.currentQuiz = quizzes[id];
-    });
-    this.questionService.getQuestions().subscribe((questions) => {
-      this.currentQuestion = questions[this.currentIndex];
-    });
+    this.currentQuiz = this.quizService.getQuiz(id.toString());
+    this.currentQuestion = this.currentQuiz?.questions[this.currentIndex].label;
+
   }
 
   incrementIndexQuestion() {
     this.validateClicked = false;
     this.somethingSelected = true;
-    this.currentIndex++;
-    this.questionService.getQuestions().subscribe((questions) => {
-      this.currentQuestion = questions[this.currentIndex];
-    });
-    if(this.currentQuiz && !this.currentQuiz.questions[this.currentIndex]){
+
+
+
+    if(this.currentQuiz && this.currentQuiz.questions[this.currentIndex]){
       this.gameInstance.Id = "1";
       this.gameInstance.quizId = this.currentQuiz.id;
       this.gameInstance.gameQuestionsAnswers = this.gameQuestionAnswers;
@@ -59,7 +56,10 @@ export class GamePageComponentComponent  implements OnInit{
       this.gameInstance.score = this.score;
       this.gameInstanceService.addGameInstance(this.gameInstance);
     }
-
+    this.currentIndex++;
+    if (this.currentQuiz?.questions[this.currentIndex]!=undefined){
+      this.currentQuestion = this.currentQuiz?.questions[this.currentIndex].label;
+    }
   }
 
 
@@ -72,24 +72,19 @@ export class GamePageComponentComponent  implements OnInit{
     this.validateClicked = true;
     let isCorrect;
     if (document.getElementsByClassName("goodAnswer")[0].innerHTML === this.selectedValue) {
-      console.log("good")
-      alert("Bonne réponse")
       isCorrect = true;
       this.score++;
 
     } else {
-      console.log("bad")
-      alert("Mauvaise réponse")
       isCorrect = false;
     }
     this.gameQuestionAnswers.push({
       startDate: new Date(),
       submissionDate: new Date(),
-      questionValue: this.currentQuestion?.label||"",
+      questionValue: this.currentQuestion||"",
       answerValue:this.selectedValue||"",
       isCorrect: isCorrect,
     });
-
   }
 
   getDisable() {

@@ -1,0 +1,46 @@
+<app-header [title]="title"></app-header>
+<div class="first" *ngIf="deleteVisible">
+  <h1>Voulez vraiment supprimer l'utilisateur ?</h1>
+  <form [formGroup]="formulaire" (ngSubmit)="onSubmit()">
+    <button type="submit">Oui</button>
+    <br>
+    <a class="navigation">
+      <button (click)="closeDelete()">Non</button>
+    </a>
+    <br>
+  </form>
+</div>
+
+<div class="espace"></div>
+<div class="retour">
+  <a class="navigation" [routerLink]="['/admin', id_user]">
+    <button class="btnretour">Retour en arrière</button>
+  </a>
+</div>
+<div class="selection_box">
+  <div class="title">
+    <h1>Liste des patients : </h1>
+    <a class="navigation" [routerLink]="['/user-create', id_user]">
+      <button class="add_user">Ajouter un utilisateur</button>
+    </a>
+  </div>
+  <ul>
+    <li *ngFor="let user of usersList">
+      <div class="user_container">
+        <a class="name" [routerLink]="['/themes', user.id]">
+          <button class="user_selection_button"><h3>{{ user.nom }}</h3> <img src={{user.path_pp}}> </button>
+        </a>
+        <div class="button-container">
+          <a class="navigation" [routerLink]="['/user-edit', user.id, id_user]">
+            <button class="btn">Modifier l'utilisateur</button>
+          </a>
+          <a class="navigation" >
+            <button class="btn" (click)="openDelete(user.id)">Supprimer l'utilisateur</button>
+          </a>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <br>
+
+</div>

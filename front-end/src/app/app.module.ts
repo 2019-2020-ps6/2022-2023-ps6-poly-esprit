@@ -26,6 +26,10 @@ import {UserEditComponent} from "./user-edit-component/user-edit.component";
 import {UserDeleteComponent} from "./user-delete-component/user-delete.component";
 import { StatsChartComponent } from './stats-chart/stats-chart.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import {AdaptConfigThemeDirective} from "../Directives/adapt-config-theme.directive";
+import { EditQuestionComponent } from './edit-question-component/edit-question-component.component';
+import { AdminMainPageComponent } from './admin-main-page/admin-main-page.component';
+import { AdminManagementUsersComponent } from './admin-management-users/admin-management-users.component';
 
 
 @NgModule({
@@ -41,6 +45,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     EditQuizComponent,
     ParameterPageComponent,
     AdaptConfigDirective,
+    AdaptConfigThemeDirective,
     DeleteQuizComponent,
     GameEndComponentComponent,
     UserListDisplayComponent,
@@ -50,6 +55,9 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     UserEditComponent,
     StatsVisualisationComponent,
     StatsChartComponent
+    EditQuestionComponent,
+    AdminMainPageComponent,
+    AdminManagementUsersComponent
   ],
   imports: [
     NgApexchartsModule,

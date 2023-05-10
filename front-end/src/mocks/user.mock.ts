@@ -3,38 +3,42 @@ import {User} from "../models/user.model";
 export const mockUser: User[] = [
   {
     id: '0',
-    isAdmin: false,
-    nom: "Dupont",
-    prenom: "Jean",
+    isAdmin: true,
+    nom: "Martin",
+    prenom: "Micheline",
     age: 35,
-    sex: "Male",
-    pathology: 2
+    sex: "Female",
+    pathology: 0,
+    path_pp: "../assets/profile_picture.png"
   },
   {
     id: '1',
-    isAdmin: true,
-    nom: "Beurel",
-    prenom: "Simon",
-    age: 21,
+    isAdmin: false,
+    nom: "Janeau",
+    prenom: "Patrick",
+    age: 75,
     sex: "Male",
-    pathology: 0
+    pathology: 1,
+    path_pp: "../assets/profile_picture.png"
   },
   {
     id: '2',
     isAdmin: false,
-    nom: "Maurois",
-    prenom: "Quentin",
-    age: 85,
+    nom: "Dupont",
+    prenom: "Jean-Marc",
+    age: 87,
     sex: "Male",
-    pathology: 1
+    pathology: 2,
+    path_pp: "../assets/profile_picture.png"
   },
   {
     id: '3',
     isAdmin: false,
-    nom: "Thea",
-    prenom: "Delias",
-    age: 95,
+    nom: "Luckas",
+    prenom: "Yvette",
+    age: 73,
     sex: 'Female',
-    pathology: 4
+    pathology: 4,
+    path_pp: "../assets/profile_picture.png"
   }
 ];

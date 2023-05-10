@@ -4,19 +4,19 @@
   <div>
     <h1>Quiz</h1>
     <hr>
-    <input type="text">
+    <input (keyup)="recherche($event)" type="text">
   </div>
   <ul>
     <li *ngFor="let quiz of quizzes">
-      <div class="button_container">
+      <div class="button_container" >
         <a class="navigation" id="quiz_selection" [routerLink]="['/game-page', quiz.id, idUser]">
-          <button class="quiz_selection">{{ quiz.name }}</button>
+          <button class="quiz_selection" appAdaptThemeConfig>{{ quiz.name }}</button>
         </a>
         <a class="navigation" [routerLink]="['/edit-quiz', quiz.id]">
-          <button class="gestion_admin">Modifier le quiz</button>
+          <button class="gestion_admin" id="edit_quiz" *ngIf="showEditButton">Modifier le quiz</button>
         </a>
         <a class="navigation" [routerLink]="['/delete-quiz', quiz.id]">
-          <button class="gestion_admin">Supprimer le quiz</button>
+          <button class="gestion_admin" id="delete_quiz" *ngIf="showDeleteButton">Supprimer le quiz</button>
         </a>
       </div>
     </li>
@@ -31,3 +31,4 @@
 <!--<a class="navigation" [routerLink]="['/user-list']">-->
 <!--  <button>Liste des utilisateurs</button>-->
 <!--</a>-->
+

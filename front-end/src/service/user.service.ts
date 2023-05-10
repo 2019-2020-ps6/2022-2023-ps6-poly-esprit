@@ -45,7 +45,7 @@ export class UserService {
 
   printUsers(){
     for(let i=0; i<this.users.length; i++){
-      console.log("Utilisateur de prenom : "+this.users[i].prenom+" et d'id : "+this.users[i].id);
+      console.log("Utilisateur de nom : "+this.users[i].nom+" et d'id : "+this.users[i].id);
     }
   }
 
@@ -55,14 +55,42 @@ export class UserService {
     }
   }
 
-  deleteUserWithId(user_id: string){
-    //delete user who got the id
-    for(let i=0; i<this.users.length; i++){
-      if(this.users[i].id==user_id){
-        this.users.splice(i,1);
-      }
-    }
+  deleteUserWithId(user_id: string) {
+    this.users = this.users.filter(user => user.id !== user_id);
+    console.log("Le mock possède maintenant:" +this.users.length +" utilisateurs");
   }
 
+
+  isAdmin(user_id: string){
+    if(user_id){
+      //Check if the user is an admin
+      for(let i=0; i<this.users.length; i++){
+        if(this.users[i].id==user_id){
+          return this.users[i].isAdmin;
+        }
+      }
+    }
+    return false;
+  }
+
+  getUser(id: String){
+    for(let i=0; i<this.users.length; i++){
+      if(this.users[i].id==id){
+        return this.users[i];
+      }
+    }
+    return null;
+  }
+
+  getIndexForCreate(){
+    //Loop on all user, and return max+1 id
+    let max=0;
+    for(let i=0; i<this.users.length; i++){
+      if(parseInt(this.users[i].id)>max){
+        max=parseInt(this.users[i].id);
+      }
+    }
+    return (max+1).toString();
+  }
 
 }

@@ -23,9 +23,9 @@ export class GameAnswerComponentComponent {
 
   getButtonColor() {
     if(this.isSelected){
-      return "#7BA398"
+      return "#183446"
     }
-    return "#C3D5D0"
+    return "rgba(58, 175, 169, 0.36)"
   }
 
   getFontColor() {

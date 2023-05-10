@@ -1,17 +1,25 @@
-<div class="card">
-  <h2>Créer un nouveau quiz</h2>
-  <form class="quiz-form" [formGroup]="quizForm">
-    <label for="name">
-      Titre <br>
-      <input class="input-custom" type="text" id="name" [formControlName]="'name'">
-    </label>
+<div>
+  <div class="card">
+    <h2>Créer un nouveau quiz</h2>
+    <form class="quiz-form" [formGroup]="quizForm">
+      <label for="name">
+        Titre <br>
+        <input class="input-custom" type="text" id="name" [formControlName]="'name'">
+      </label>
+      <br>
+      <label for="theme">
+        Thème <br>
+        <input class="input-custom" type="text" id="theme" [formControlName]="'theme'">
+      </label>
+      <br>
+      <br>
+      <button type="centre" class="button-card" (click)="addQuiz()">Créer le nouveau quiz ! </button>
+    </form>
     <br>
-    <label for="theme">
-      Thème <br>
-      <input class="input-custom" type="text" id="theme" [formControlName]="'theme'">
-    </label>
-    <br>
-    <button type="submit" class="button-card" (click)="addQuiz()">Créer</button>
-  </form>
+  </div>
 </div>
-<!-- <br><br>{{quizForm.getRawValue() | json}} -->
+
+<br>
+<a class="navigation" [routerLink]="['/admin', id_user]">
+  <button>Retour en arrière</button>
+</a>

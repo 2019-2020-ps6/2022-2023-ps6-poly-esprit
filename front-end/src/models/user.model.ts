@@ -7,4 +7,5 @@ export interface User {
   age: number;
   sex: string;
   pathology?: number;
+  path_pp: string;
 }
