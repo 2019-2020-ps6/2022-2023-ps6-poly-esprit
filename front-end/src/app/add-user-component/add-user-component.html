@@ -5,13 +5,13 @@
 
 <div class="mainDiv">
   <form [formGroup]="formulaire" (ngSubmit)="onSubmit()">
-    <label for="nom">Nom de l'utilisateur :</label>
+    <label for="nom">Nom :</label>
     <input type="text" id="nom" formControlName="nom">
     <br>
     <label for="prenom">Prénom :</label>
     <input type="text" id="prenom" formControlName="prenom">
     <br>
-    <label for="age">Age :</label>
+    <label for="age">Âge :</label>
     <input type="number" id="age" formControlName="age">
     <br>
 
@@ -42,7 +42,7 @@
     <br>
 
     <label>
-      <input type="checkbox" formControlName="administrator"> Cocher si ce nouveau compte est un compte administrateur :
+      <input type="checkbox" formControlName="administrator"> Cocher si ce nouveau compte est un compte de personnel de santé :
     </label>
     <br>
 

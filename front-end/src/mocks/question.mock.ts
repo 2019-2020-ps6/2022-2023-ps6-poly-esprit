@@ -93,12 +93,12 @@ export const Questions = [
   },
   {
     id: '2',
-    label: 'Quel est la date de la prise de la Bastille ?',
+    label: 'Quelle est la date de la prise de la Bastille ?',
     answers: [Answer[8],Answer[9],Answer[10], Answer[11]]
   },
   {
     id: '3',
-    label: "Qui est l'acteur principal du film intouchable ?",
+    label: "Qui est l'acteur principal du film Intouchables ?",
     answers: [Answer[12],Answer[13],Answer[14], Answer[15]]
   },
   {
