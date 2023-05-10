@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from "../../service/user.service";
 import { ActivatedRoute } from '@angular/router';
-import { User } from 'src/models/user.model';
 
 @Component({
   selector: 'app-stats-visualisation',
@@ -38,12 +37,10 @@ export class StatsVisualisationComponent implements OnInit {
   choiceClick() {
     this.isClick = true;
     this.isResponse = false;
-    console.log("choix click")
   }
 
   choiceResponse() {
     this.isClick = false;
     this.isResponse = true;
-    console.log("choix response")
   }
 }

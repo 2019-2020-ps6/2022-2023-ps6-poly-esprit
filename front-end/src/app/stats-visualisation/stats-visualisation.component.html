@@ -1,16 +1,5 @@
 <app-header [title]="title"></app-header>
 <h1>Statistiques de {{ user.prenom }} {{ user.nom }}</h1>
-<ul>
-  <!--<li *ngFor="let user of users">
-    <a class="navigation" [routerLink]="['/themes', user.id]">
-      Utilisateur : {{ user.nom }}
-    </a>
-    <a [routerLink]="['/stats', user.id]">
-      <button> Voir les stats de {{ user.nom }} </button>
-      <app-stats-visualisation></app-stats-visualisation>
-    </a>
-  </li>-->
-</ul>
 <div id="header">
   <a class="hide" [ngClass]="{'clicked':isClick}">Taux de précision  des clics</a>
   <a class="hide" [ngClass]="{'reponse':isResponse}">Taux de bonnes réponses</a>
@@ -21,10 +10,10 @@
 </div>
 <div id="statsVisualiser">
   <div class="hide" [ngClass]="{'clicked':isClick}">
-    <app-stats-chart [click_mode]="isClick"></app-stats-chart>
+    <app-stats-chart *ngIf="isClick" [click_mode]="true"></app-stats-chart>
   </div>
   <div class="hide" [ngClass]="{'reponse':isResponse}">
-    <app-stats-chart [click_mode]="isResponse"></app-stats-chart>
+    <app-stats-chart *ngIf="isResponse" [click_mode]="false"></app-stats-chart>
   </div>
 </div>
 <br>

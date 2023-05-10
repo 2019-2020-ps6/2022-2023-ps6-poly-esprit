@@ -16,10 +16,14 @@ export class PlayerStatsService {
     return of(playersStatsMock);
   }
 
-  static getPlayerStats(id: number): Observable<PlayerStatsModel> {
+  static getPlayerStats(id: number, click_mode: Boolean = true): Observable<PlayerStatsModel> {
     const playerStats = playersStatsMock.find((playerStat: PlayerStatsModel) => playerStat.id === id);
     if (playerStats) {
-      return of(playerStats);
+      if(click_mode) {
+        return of(playerStats);
+      } else {
+        return of(playerStats)
+      }
     } else {
       return throwError(`Player stats not found for id ${id}`);
     }

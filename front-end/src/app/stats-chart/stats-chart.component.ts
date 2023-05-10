@@ -31,10 +31,7 @@ export type ChartOptions = {
   legend: ApexLegend;
 };
 
-import { PlayerStat, PlayerStatDataPoint, PlayerStatsModel } from '../../models/playersStats.models';
-import { playersStatsMock } from '../../mocks/playersStats.mock';
-import { map } from 'rxjs';
-import * as ApexCharts from 'apexcharts';
+import { PlayerStat, PlayerStatsModel } from '../../models/playersStats.models';
 
 interface ChartData {
   name: string;
@@ -48,10 +45,9 @@ interface ChartData {
 })
 
 export class StatsChartComponent implements OnInit {
-  @Input() click_mode: boolean = true;
+  @Input() click_mode!: boolean;
   @ViewChild("chart") chart: ChartComponent | undefined
 
-  public mode: string = "click";
   public chartOptions: Partial<ChartOptions> | undefined;
 
   constructor(private userService: UserService, private playerStatsService: PlayerStatsService, private route: ActivatedRoute) { }
@@ -60,51 +56,58 @@ export class StatsChartComponent implements OnInit {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.userService.getUser(id).subscribe((user) => {
       const currentUser = user;
-      PlayerStatsService.getPlayerStats(id).subscribe(
-        (playerStats: PlayerStatsModel) => {
-          console.log(playerStats.stats)
-          this.chartOptions = {
-            series: playerStats.stats,
-            chart: {
-              height: 350,
-              type: "rangeArea",
-              animations: {
-                speed: 500
+      
+        PlayerStatsService.getPlayerStats(id).subscribe(
+          (playerStats: PlayerStatsModel) => {
+            let series: PlayerStat[];
+            if (this.click_mode) {
+              series = playerStats.stats.clicks
+            } else {
+              series = playerStats.stats.responses
+            }
+            this.chartOptions = {
+              series: series,
+              chart: {
+                height: 350,
+                type: "rangeArea",
+                animations: {
+                  speed: 500
+                },
+                toolbar: {
+                  show: false
+                }
               },
-              toolbar: {
-                show: false
-              }
-            },
-            colors: ["#d4526e", "#33b2df"],
-            dataLabels: {
-              enabled: false
-            },
-            fill: {
-              type: 'solid',
-              opacity: [0.24, 1]
-            },
-            stroke: {
-              curve: "smooth",
-              width: [0, 3]
-            },
-            legend: {
-              show: true,
-            },
-            title: {
-              text: ""
-            },
-            markers: {
-              hover: {
-                sizeOffset: 5
+              colors: ["#d4526e", "#33b2df"],
+              dataLabels: {
+                enabled: false
+              },
+              fill: {
+                type: 'solid',
+                opacity: [0.24, 1]
+              },
+              stroke: {
+                curve: "smooth",
+                width: [0, 3]
+              },
+              legend: {
+                show: true,
+              },
+              title: {
+                text: ""
+              },
+              markers: {
+                hover: {
+                  sizeOffset: 5
+                }
               }
             }
-          }
-        },
+          },
 
-        (error: any) => {
-          console.log(error);
-        }
-      );
-    });
+          (error: any) => {
+            console.log(error);
+          }
+        );
+      }
+    );
   }
 }
