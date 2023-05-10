@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from "rxjs";
+import { Observable, of, throwError } from "rxjs";
 import {User} from "../models/user.model";
 import {mockUser} from "../mocks/user.mock";
 import {Quiz} from "../models/quizz.models";
@@ -24,6 +24,19 @@ export class UserService {
     return this.users$
   }
 
+  getUserById(Id : number | null) {
+    if(Id == null) {
+      return throwError(`L'Id ${Id} est invalide`)
+    }
+    const user = this.users.find(t => t.id == String(Id));
+      if (user) {
+        console.log("utilisateur " + user.nom);
+        return of(user);
+      } else {
+        return throwError(`User with ID ${Id} not found.`);
+      }
+  }
+
   addUser(u: User){
     this.users.push(u);
     console.log("Un nouvel utlisateur a été ajouté ! le mock possède maintenant "+this.users.length+" utilisateurs !");
@@ -42,14 +55,11 @@ export class UserService {
     }
   }
 
-  deleteUserWithId(user_id: string){
-    //delete user who got the id
-    for(let i=0; i<this.users.length; i++){
-      if(this.users[i].id==user_id){
-        this.users.splice(i,1);
-      }
-    }
+  deleteUserWithId(user_id: string) {
+    this.users = this.users.filter(user => user.id !== user_id);
+    console.log("Le mock possède maintenant:" +this.users.length +" utilisateurs");
   }
+
 
   isAdmin(user_id: string){
     if(user_id){
@@ -70,6 +80,17 @@ export class UserService {
       }
     }
     return null;
+  }
+
+  getIndexForCreate(){
+    //Loop on all user, and return max+1 id
+    let max=0;
+    for(let i=0; i<this.users.length; i++){
+      if(parseInt(this.users[i].id)>max){
+        max=parseInt(this.users[i].id);
+      }
+    }
+    return (max+1).toString();
   }
 
 }

@@ -1,37 +1,85 @@
 <app-header [title]="title"></app-header>
 
-<h2>Gestion des quizs</h2>
+<div class="first" *ngIf="quizVisible">
+  <div class="card">
+    <h2>Créer un nouveau quiz</h2>
+    <form class="quiz-form" [formGroup]="quizForm">
+      <label for="name">
+        Titre <br>
+        <input class="input-custom" type="text" name="filterName" id="name"
+               [formControlName]="'name'"
+               [(ngModel)]="inputValueName">
+      </label>
+      <br>
+      <label for="theme">
+        Thème <br>
+        <input class="input-custom" type="text" name="filterName" id="theme"
+               [formControlName]="'theme'"
+               [(ngModel)]="inputValueTheme">
+      </label>
+      <br>
+      <br>
+      <button type="centre" class="button-card" (click)="addQuiz()" (click)="closePopup()">Créer le nouveau quiz ! </button>
+    </form>
+    <br>
+    <a class="centre">
+      <button (click)="closePopup()">Retour en arrière</button>
+    </a>
+  </div>
+</div>
+
+<div class="second" *ngIf="deleteVisible">
+  <h1 class="supp">Êtes-vous sûr de vouloir supprimer le quiz ?</h1>
+  <form [formGroup]="formulaire" (ngSubmit)="onSubmit()">
+    <div class="ON">
+      <button type="submit" class="btnON">Oui</button>
+      <br>
+      <a class="navigation">
+        <button class="btnON" (click)="closeDelete()">Non</button>
+      </a>
+    </div>
+    <br>
+  </form>
+</div>
+
+
+<div class="espace"></div>
+<div class="management-btn-container">
+  <h2>Gestion des utilisateurs</h2>
+  <a class="navigation" [routerLink]="['/management-users', admin_id]">
+    <button class="userGestion">Afficher les patients</button>
+  </a>
+</div>
 <br>
-<ul>
-  <li *ngFor="let theme of themes">
-    <h2> Theme : {{ theme.name }} </h2>
-    <ul>
-      <li *ngFor="let quiz of theme.quizzes">
-        <a class="navigation" [routerLink]="['/game-page', quiz.id, admin_id]">
-        <h3> Quiz : {{ quiz.name }} (cliquer sur le quiz pour le lancer)</h3>
-        </a>
-        <a class="navigation" [routerLink]="['/edit-quiz', quiz.id]">
-          <button class="gestion_admin" id="edit_quiz">Modifier le quiz</button>
-        </a>
-        <a class="navigation" [routerLink]="['/delete-quiz', quiz.id]">
-          <button class="gestion_admin" id="delete_quiz">Supprimer le quiz</button>
-        </a>
-      </li>
-    </ul>
-    <br><br>
-  </li>
-</ul>
-
-
-<br>
-
-<a class="navigation" [routerLink]="['/management-users']">
-  <button>Gestion des utilisateurs</button>
-</a>
-
-<br><br>
-
-<a class="navigation" [routerLink]="['/create-quiz']">
-  <button class="gestion_admin" id="add_quiz">Ajouter un quiz</button>
-</a>
+<div class="selection_box" style="display: inline-block;">
+  <div class="title">
+    <h2>Gestion des quizs</h2>
+    <a class="navigation" >
+      <button class="gestion_admin" id="add_quiz" (click)="openPopup()">Ajouter un quiz</button>
+    </a>
+  </div>
+  <ul>
+    <li class="theme" *ngFor="let theme of themes">
+      <h2> Thème : {{ theme.name }} </h2>
+      <ul>
+        <li *ngFor="let quiz of theme.quizzes" class="quiz-item">
+          <div class="quiz_container">
+            <a class="navigation" [routerLink]="['/game-page', quiz.id, admin_id]">
+              <h3> Quiz : {{ quiz.name }}</h3>
+            </a>
+            <div class="button-container">
+              <a class="navigation" [routerLink]="['/edit-quiz', quiz.id, admin_id]">
+                <button class="gestion_admin" id="edit_quiz">Modifier le quiz</button>
+              </a>
+              <a class="navigation">
+                <button class="gestion_admin" id="delete_quiz" (click)="openDelete(quiz.id)">Supprimer le quiz</button>
+              </a>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <br><br>
+    </li>
+  </ul>
+</div>
 

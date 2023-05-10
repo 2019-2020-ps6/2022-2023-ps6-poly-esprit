@@ -40,9 +40,7 @@ export class GamePageComponentComponent  implements OnInit, AfterViewInit{
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('idQuiz'));
-    this.quizService.getQuizzes().subscribe((quizzes) => {
-      this.currentQuiz = quizzes[id];
-    });
+    this.currentQuiz = this.quizService.getQuiz(id.toString());
     this.currentQuestion = this.currentQuiz?.questions[this.currentIndex].label;
 
   }

@@ -6,6 +6,7 @@ import {QuizService} from "../../service/quiz.service";
 import {ActivatedRoute} from "@angular/router";
 import {ThemeService} from "../../service/theme.service";
 import {UserService} from "../../service/user.service";
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,14 +19,16 @@ export class UserDeleteComponent {
   public UService : UserService;
   formulaire: FormGroup;
   id_user: string | null = "";
+  id_admin: string | null ="";
 
-  constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private userService : UserService) {
+  constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private userService : UserService, private router: Router) {
     this.UService=userService;
     this.formulaire = this.formBuilder.group({},{});
   }
 
   ngOnInit(): void {
     this.id_user = this.route.snapshot.paramMap.get('id');
+    this.id_admin = this.route.snapshot.paramMap.get('id_user');
   }
 
 
@@ -33,6 +36,8 @@ export class UserDeleteComponent {
     if(this.id_user!=null){
       this.UService.deleteUserWithId(this.id_user);
       alert("L'utilisateur a bien été supprimé ! Vous pouvez revenir à la page principale");
+      //redirection to /management-users/:id
+      this.router.navigate(['/management-users',this.id_admin]);
     }
   }
 }

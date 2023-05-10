@@ -1,5 +1,5 @@
 .selection_box {
-  background-color: #D9D9D9;
+  background-color: #c7e3e1;
   width: 90%;
   margin: 2% 5% 5%;
   border-radius: 15px;
@@ -9,7 +9,7 @@
 .selection_box>div {
   display: flex;
   align-items: center;
-  background-color: #C3D5D0;
+  background-color: rgba(73, 159, 157, 0.84);
   height: 60px;
   border-radius: 15px;
   top: 20px;
@@ -37,7 +37,7 @@
   justify-content: center;
   align-items: center;
   list-style-type: none;
-  background-color: #C3D5D0;
+  background-color: rgba(58, 175, 169, 0.36);
   margin: 20px;
   border-radius: 15px;
   transition: 0.2s;
@@ -72,7 +72,7 @@ button:hover {
 }
 
 .button_container .theme_selection {
-  background-color: #C3D5D0;
+  background-color: rgba(58, 175, 169, 0);
   border-style: none;
   width: 100%;
   height: 100%;
