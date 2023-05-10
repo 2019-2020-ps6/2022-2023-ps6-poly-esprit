@@ -19,6 +19,7 @@ export class EditQuestionComponent {
   questions: Question[] | undefined = [];
   id_quiz: string | null = "";
   id_user: string | null = "";
+  title = "Édition de question"
 
   constructor(private questionService: QuestionService, private route: ActivatedRoute, private formBuilder: FormBuilder) {
     this.QUService=questionService;
