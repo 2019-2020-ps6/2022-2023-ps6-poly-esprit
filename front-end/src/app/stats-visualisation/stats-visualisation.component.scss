@@ -1,0 +1,78 @@
+#header {
+    margin-top: 2vh;
+    background-color: #909090;
+    display: flex;
+    justify-content: left;
+    margin-left: 10vw;
+    margin-right: 10vw;
+    padding: 4px;
+    border-radius: 20px 20px 0% 0%;
+}
+
+#header > a {
+    padding-left: 2vw;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+#choiceButtons {
+    display: flex;
+    justify-content: right;
+    padding: 4px;
+    margin-right: 2vw;
+    margin-left: auto;
+}
+
+.hide {
+    display: none;
+}
+
+.clicked {
+    display: block;
+}
+
+.reponse {
+    display: block;
+}
+
+
+
+#choiceButtons > button {
+    border-radius: 0;
+    font-size: 1.7vh;
+    font-weight: bold;
+    background-color: #ddd;
+}
+
+#choiceButtons > button:hover {
+    background-color: white;
+}
+
+#choiceButtons > button:first-child {
+    border-radius: 20px 0% 0% 20px;
+}
+
+#choiceButtons > button:last-child {
+    border-radius: 0% 20px 20px 0%;
+}
+
+#statsVisualiser {
+    margin-top: 5vh;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    height: 50vh;
+    width: 80vw;
+    background-color: lightgrey;
+}
+
+.navigation > button {
+    margin-top: 2vh;
+    margin-left: 4vw;
+    display: flex;
+    vertical-align: middle;
+}
+
+.navigation > button > a {
+    margin-left: 4px;
+}

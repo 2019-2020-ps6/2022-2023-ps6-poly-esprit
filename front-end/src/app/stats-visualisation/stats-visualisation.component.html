@@ -1,0 +1,22 @@
+<app-header [title]="title"></app-header>
+<h1>Statistiques de {{ user.prenom }} {{ user.nom }}</h1>
+<div id="header">
+  <a class="hide" [ngClass]="{'clicked':isClick}">Taux de précision  des clics</a>
+  <a class="hide" [ngClass]="{'reponse':isResponse}">Taux de bonnes réponses</a>
+  <div id="choiceButtons">
+    <button (click)="choiceClick()">clics</button>
+    <button (click)="choiceResponse()">r&eacute;ponses</button>
+  </div>
+</div>
+<div id="statsVisualiser">
+  <div class="hide" [ngClass]="{'clicked':isClick}">
+    <app-stats-chart *ngIf="isClick" [click_mode]="true"></app-stats-chart>
+  </div>
+  <div class="hide" [ngClass]="{'reponse':isResponse}">
+    <app-stats-chart *ngIf="isResponse" [click_mode]="false"></app-stats-chart>
+  </div>
+</div>
+<br>
+<div class="navigation">
+  <button class="navigation" [routerLink]="['/']"><img src="https://th.bing.com/th/id/R.0eeae6282075b05a1b5f8e3bdbcd3b3d?rik=HS%2bIIw%2buRTKKwg&riu=http%3a%2f%2fclipart-library.com%2fimages%2fziX5zyxxT.png&ehk=6veTHFP98le9ONxMGIJ4rz5uy5Ewk5T2ewGATSqi8mA%3d&risl=&pid=ImgRaw&r=0" width="15px"><a>Retour</a></button>
+</div>
