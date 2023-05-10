@@ -104,6 +104,8 @@ export class UserEditComponent implements OnInit {
       }
     }
 
+    //Test
+
     //Check the sex
     const genderControl = this.formulaire.get('gender');
     if(genderControl){
