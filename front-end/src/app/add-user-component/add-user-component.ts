@@ -43,7 +43,7 @@ export class AddUserComponent implements OnInit {
 
   onSubmit(){
     const userToAdd: User = this.formulaire.getRawValue() as User;
-    userToAdd.id=(this.UService.users.length).toString();
+    userToAdd.id=this.UService.getIndexForCreate();
 
     //Check wich FormControl is checked
     if(this.formulaire.value.stade1 == true){

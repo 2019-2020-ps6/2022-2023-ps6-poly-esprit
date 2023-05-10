@@ -35,7 +35,7 @@ export class CreateQuizComponent implements OnInit {
 
   addQuiz(){
     const quizToCreate: Quiz = this.quizForm.getRawValue() as Quiz;
-    quizToCreate.id=(this.quizCreateService.quizzes.length).toString();
+    quizToCreate.id= this.quizCreateService.getIndexToCreate();
     quizToCreate.questions=[];
     quizToCreate.name = this.quizForm.value.name;
 

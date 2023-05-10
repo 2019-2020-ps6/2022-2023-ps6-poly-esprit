@@ -65,7 +65,7 @@ export class AdminMainPageComponent implements OnInit {
   // Modification de la méthode addQuiz pour rendre la div "first" visible
   addQuiz(){
     const quizToCreate: Quiz = this.quizForm.getRawValue() as Quiz;
-    quizToCreate.id=(this.quizCreateService.quizzes.length).toString();
+    quizToCreate.id=this.quizCreateService.getIndexToCreate();
     quizToCreate.questions=[];
     quizToCreate.name = this.quizForm.value.name;
     this.QCService.addQuiz(quizToCreate);

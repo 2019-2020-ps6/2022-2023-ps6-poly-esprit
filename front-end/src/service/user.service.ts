@@ -69,4 +69,15 @@ export class UserService {
     return null;
   }
 
+  getIndexForCreate(){
+    //Loop on all user, and return max+1 id
+    let max=0;
+    for(let i=0; i<this.users.length; i++){
+      if(parseInt(this.users[i].id)>max){
+        max=parseInt(this.users[i].id);
+      }
+    }
+    return (max+1).toString();
+  }
+
 }

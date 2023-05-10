@@ -25,13 +25,9 @@ export class UserEditComponent implements OnInit {
       nom: '',
       prenom: '',
       age: '',
-      male: new FormControl(false),
-      female: new FormControl(false),
-      stade0: new FormControl(false),
-      stade1: new FormControl(false),
-      stade23: new FormControl(false),
-      stade4: new FormControl(false),
-      administrator: new FormControl(false),
+      gender: '',
+      stade: '',
+      administrator: '',
     });
 
     this.UService=userService;
@@ -60,29 +56,29 @@ export class UserEditComponent implements OnInit {
 
     if(this.currentUser?.sex==='Male'){
       this.formulaire.patchValue({
-        male: true,
+        gender: 'male',
       });
     }else{
       this.formulaire.patchValue({
-        female: true,
+        gender: 'female',
       });
     }
 
     if(this.currentUser?.pathology===0){
       this.formulaire.patchValue({
-        stade0: true,
+        stade: '0',
       });
     }else if(this.currentUser?.pathology===1){
       this.formulaire.patchValue({
-        stade1: true,
+        stade: '1',
       });
     }else if(this.currentUser?.pathology===4){
       this.formulaire.patchValue({
-        stade4: true,
+        stade: '4',
       });
     }else{
       this.formulaire.patchValue({
-        stade23: true,
+        stade: '23',
       });
     }
 
@@ -94,21 +90,29 @@ export class UserEditComponent implements OnInit {
     userToAdd.id=<string>this.currentUser?.id;
 
     //Check wich FormControl is checked
-    if(this.formulaire.value.stade1 == true){
-      userToAdd.pathology=1;
-    }else if(this.formulaire.value.stade23 == true){
-      userToAdd.pathology=2;
-    }else if(this.formulaire.value.stade4 == true){
-      userToAdd.pathology=4;
-    } else {
-      userToAdd.pathology=0;
+    const pathologyControl = this.formulaire.get('stade');
+    if(pathologyControl){
+      const pathologyValue = pathologyControl.value;
+      if (pathologyValue === '1'){
+        userToAdd.pathology=1;
+      }else if(pathologyValue === '23'){
+        userToAdd.pathology=2;
+      }else if(pathologyValue === '4'){
+        userToAdd.pathology=4;
+      } else {
+        userToAdd.pathology=0;
+      }
     }
 
     //Check the sex
-    if (this.formulaire.value.male == true){
-      userToAdd.sex='Male';
-    }else{
-      userToAdd.sex='Female';
+    const genderControl = this.formulaire.get('gender');
+    if(genderControl){
+      const genderValue = genderControl.value;
+      if (genderValue === 'male'){
+        userToAdd.sex='Male';
+      }else{
+        userToAdd.sex='Female';
+      }
     }
 
     //Check if the user is an administrator
