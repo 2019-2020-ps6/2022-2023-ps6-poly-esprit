@@ -46,21 +46,29 @@ export class AddUserComponent implements OnInit {
     userToAdd.id=this.UService.getIndexForCreate();
 
     //Check wich FormControl is checked
-    if(this.formulaire.value.stade1 == true){
-      userToAdd.pathology=1;
-    }else if(this.formulaire.value.stade23 == true){
-      userToAdd.pathology=2;
-    }else if(this.formulaire.value.stade4 == true){
-      userToAdd.pathology=4;
-    } else {
-      userToAdd.pathology=0;
+    const pathologyControl = this.formulaire.get('stade');
+    if(pathologyControl){
+      const pathologyValue = pathologyControl.value;
+      if (pathologyValue === '1'){
+        userToAdd.pathology=1;
+      }else if(pathologyValue === '23'){
+        userToAdd.pathology=2;
+      }else if(pathologyValue === '4'){
+        userToAdd.pathology=4;
+      } else {
+        userToAdd.pathology=0;
+      }
     }
 
     //Check the sex
-    if (this.formulaire.value.male == true){
-      userToAdd.sex='Male';
-    }else{
-      userToAdd.sex='Female';
+    const genderControl = this.formulaire.get('gender');
+    if(genderControl){
+      const genderValue = genderControl.value;
+      if (genderValue === 'male'){
+        userToAdd.sex='Male';
+      }else{
+        userToAdd.sex='Female';
+      }
     }
 
     //Check if the user is an administrator
