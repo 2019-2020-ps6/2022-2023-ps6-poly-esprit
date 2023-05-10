@@ -85,11 +85,13 @@ export class AdminMainPageComponent implements OnInit {
     this.quizVisible=true;
     this.deleteVisible=false;
   }
-  openDelete() {
+
+  openDelete(id:string) {
     this.deleteVisible=true;
     this.quizVisible=false;
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0;
+    this.id_quiz=id
   }
 
   closePopup() {
@@ -106,4 +108,8 @@ export class AdminMainPageComponent implements OnInit {
       this.deleteVisible=false;
     }
   }
+  closeDelete() {
+    this.deleteVisible = false;
+  }
+
 }

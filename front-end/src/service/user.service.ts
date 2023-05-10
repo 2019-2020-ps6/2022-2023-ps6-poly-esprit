@@ -42,14 +42,11 @@ export class UserService {
     }
   }
 
-  deleteUserWithId(user_id: string){
-    //delete user who got the id
-    for(let i=0; i<this.users.length; i++){
-      if(this.users[i].id==user_id){
-        this.users.splice(i,1);
-      }
-    }
+  deleteUserWithId(user_id: string) {
+    this.users = this.users.filter(user => user.id !== user_id);
+    console.log("Le mock possède maintenant:" +this.users.length +" utilisateurs");
   }
+
 
   isAdmin(user_id: string){
     if(user_id){

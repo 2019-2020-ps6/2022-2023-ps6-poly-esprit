@@ -1,8 +1,7 @@
 .mainDiv{
   display: flex;
   justify-content: space-between;
-  align-items: center;
-
+  align-items: flex-start;
 }
 .espace{
   padding: 10px;
@@ -10,33 +9,34 @@
 .right{
   width: 50%;
   padding: 15px;
-  margin-right: 80px;
+  margin-left: 20px;
   border: 1px solid black;
+  margin-top: 20px;
   border-radius: 5px;
-  background-color: #C3D5D0;
+  background-color: rgba(58, 175, 169, 0.36);
 
 
 }
 .left{
   text-align: center;
   width: 20%;
+  margin-right: 20px;
   margin-left: 80px;
-  margin-top: 5%;
+  margin-top: 20px;
   padding: 10px;
   padding-right: 40px;
   padding-left: 40px;
   border: 1px solid black;
   border-radius: 5px;
-  background-color: #C3D5D0;
+  background-color: rgba(58, 175, 169, 0.36);
 }
 .mainDiv{
   display: flex;
-
-  align-items: center;
+  justify-content: flex-start;
   margin: 5px 100px 20px;
   padding-bottom: 50px;
   padding-top: 0px;
-  background-color: #D9D9D9;
+  background-color: #c7e3e1;
   border-radius: 5px;
   border-color: black;
   border-style: solid;
