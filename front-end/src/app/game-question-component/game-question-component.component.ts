@@ -79,8 +79,6 @@ export class GameQuestionComponentComponent implements OnInit{
         }
       }
       returnAnswers.push(cloneAnswers[this.random]);
-      console.log(cloneAnswers[this.random])
-      console.log(this.random)
       return returnAnswers;
     }
     return;

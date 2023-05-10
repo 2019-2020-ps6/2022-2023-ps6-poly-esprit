@@ -34,6 +34,7 @@ export class EditQuestionComponent {
   }
 
   ngOnInit(): void {
+
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.id_quiz = this.route.snapshot.paramMap.get('id_quiz');
     this.id_user = this.route.snapshot.paramMap.get('id_user');
