@@ -33,11 +33,6 @@ export type ChartOptions = {
 
 import { PlayerStat, PlayerStatsModel } from '../../models/playersStats.models';
 
-interface ChartData {
-  name: string;
-  data: number[];
-}
-
 @Component({
   selector: 'app-stats-chart',
   templateUrl: './stats-chart.component.html',
@@ -54,7 +49,6 @@ export class StatsChartComponent implements OnInit {
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('idUser'));
-    console.log(`id ${id} dans l'URL`)
     this.userService.getUser(id).subscribe((user) => {
       const currentUser = user;
       
