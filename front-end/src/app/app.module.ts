@@ -54,7 +54,7 @@ import { AdminManagementUsersComponent } from './admin-management-users/admin-ma
     UserDeleteComponent,
     UserEditComponent,
     StatsVisualisationComponent,
-    StatsChartComponent
+    StatsChartComponent,
     EditQuestionComponent,
     AdminMainPageComponent,
     AdminManagementUsersComponent

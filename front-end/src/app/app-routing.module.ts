@@ -38,7 +38,7 @@ const routes: Routes = [
   {path: 'edit-question/:id/:id_quiz/:id_user', component: EditQuestionComponent},
   {path: 'parametre', component:ParameterPageComponent},
   {path: 'admin/:id', component: AdminMainPageComponent},
-  {path: 'management-users/:id_user', component: AdminManagementUsersComponent}
+  {path: 'management-users/:id_user', component: AdminManagementUsersComponent},
   {path: 'stats/:idUser', component: StatsVisualisationComponent },
 
 ];

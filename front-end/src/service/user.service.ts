@@ -24,7 +24,7 @@ export class UserService {
     return this.users$
   }
 
-  getUser(Id : number | null) {
+  getUserById(Id : number | null) {
     if(Id == null) {
       return throwError(`L'Id ${Id} est invalide`)
     }
