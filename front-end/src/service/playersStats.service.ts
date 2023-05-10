@@ -19,6 +19,7 @@ export class PlayerStatsService {
   static getPlayerStats(id: number, click_mode: Boolean = true): Observable<PlayerStatsModel> {
     const playerStats = playersStatsMock.find((playerStat: PlayerStatsModel) => playerStat.id === id);
     if (playerStats) {
+      console.log(`joueur ${id} trouvé`)
       if(click_mode) {
         return of(playerStats);
       } else {
