@@ -15,6 +15,7 @@ import {UserListDisplayComponent} from "./user-list-display/user-list-display.co
 import {AddUserComponent} from "./add-user-component/add-user-component";
 import {UserEditComponent} from "./user-edit-component/user-edit.component";
 import {UserDeleteComponent} from "./user-delete-component/user-delete.component";
+import { StatsVisualisationComponent } from './stats-visualisation/stats-visualisation.component';
 import {EditQuestionComponent} from "./edit-question-component/edit-question-component.component";
 import {AdminMainPageComponent} from "./admin-main-page/admin-main-page.component";
 import {AdminManagementUsersComponent} from "./admin-management-users/admin-management-users.component";
@@ -37,7 +38,8 @@ const routes: Routes = [
   {path: 'edit-question/:id/:id_quiz/:id_user', component: EditQuestionComponent},
   {path: 'parametre', component:ParameterPageComponent},
   {path: 'admin/:id', component: AdminMainPageComponent},
-  {path: 'management-users/:id_user', component: AdminManagementUsersComponent}
+  {path: 'management-users/:id_user', component: AdminManagementUsersComponent},
+  {path: 'stats/:idUser', component: StatsVisualisationComponent },
 
 ];
 

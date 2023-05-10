@@ -1,0 +1,24 @@
+<div style="text-align:center;width:75vw;height:45vh;">
+    <div *ngIf="chartOptions 
+    && chartOptions.series 
+    && chartOptions.chart 
+    && chartOptions.dataLabels
+    && chartOptions.markers
+    && chartOptions.stroke
+    && chartOptions.title 
+    && chartOptions.colors
+    && chartOptions.fill
+    && chartOptions.legend">
+      <apx-chart
+      [series]="chartOptions.series"
+      [chart]="chartOptions.chart"
+      [dataLabels]="chartOptions.dataLabels"
+      [markers]="chartOptions.markers"
+      [stroke]="chartOptions.stroke"
+      [title]="chartOptions.title"
+      [colors]="chartOptions.colors"
+      [fill]="chartOptions.fill"
+      [legend]="chartOptions.legend"
+  ></apx-chart>
+    </div>
+  </div>

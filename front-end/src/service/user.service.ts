@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from "rxjs";
+import { Observable, of, throwError } from "rxjs";
 import {User} from "../models/user.model";
 import {mockUser} from "../mocks/user.mock";
 import {Quiz} from "../models/quizz.models";
@@ -22,6 +22,19 @@ export class UserService {
 
   getUsers(): Observable<any> {
     return this.users$
+  }
+
+  getUserById(Id : number | null) {
+    if(Id == null) {
+      return throwError(`L'Id ${Id} est invalide`)
+    }
+    const user = this.users.find(t => t.id == String(Id));
+      if (user) {
+        console.log("utilisateur " + user.nom);
+        return of(user);
+      } else {
+        return throwError(`User with ID ${Id} not found.`);
+      }
   }
 
   addUser(u: User){

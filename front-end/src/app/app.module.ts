@@ -10,7 +10,7 @@ import { GameQuestionComponentComponent } from './game-question-component/game-q
 import {CreateQuizComponent} from "./create-quiz-component/create-quiz.component";
 import {QuizService} from "../service/quiz.service";
 import { QuizListDisplayComponent } from './quiz-list-display/quiz-list-display.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ThemeListDisplayComponentComponent } from './theme-list-display-component/theme-list-display-component.component';
 import { HeaderComponent } from './header/header.component';
 import {EditQuizComponent} from "./edit-quiz-component/edit-quiz.component";
@@ -20,8 +20,12 @@ import {DeleteQuizComponent} from "./delete-quiz-component/delete-quiz.component
 import {GameEndComponentComponent} from "./game-end-component/game-end-component.component";
 import {UserListDisplayComponent} from "./user-list-display/user-list-display.component";
 import {AddUserComponent} from "./add-user-component/add-user-component";
+
+import { StatsVisualisationComponent } from './stats-visualisation/stats-visualisation.component';
 import {UserEditComponent} from "./user-edit-component/user-edit.component";
 import {UserDeleteComponent} from "./user-delete-component/user-delete.component";
+import { StatsChartComponent } from './stats-chart/stats-chart.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
 import {AdaptConfigThemeDirective} from "../Directives/adapt-config-theme.directive";
 import { EditQuestionComponent } from './edit-question-component/edit-question-component.component';
 import { AdminMainPageComponent } from './admin-main-page/admin-main-page.component';
@@ -49,14 +53,18 @@ import { AdminManagementUsersComponent } from './admin-management-users/admin-ma
     AddUserComponent,
     UserDeleteComponent,
     UserEditComponent,
+    StatsVisualisationComponent,
+    StatsChartComponent,
     EditQuestionComponent,
     AdminMainPageComponent,
     AdminManagementUsersComponent
   ],
   imports: [
+    NgApexchartsModule,
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [QuizService],
   bootstrap: [AppComponent]

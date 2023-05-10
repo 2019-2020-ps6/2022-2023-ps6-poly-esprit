@@ -1,0 +1,24 @@
+<app-header [title]="title"></app-header>
+<p class="navigation" [routerLink]="['/management-users', idUser]">
+  <button class="retour">Retour</button>
+</p>
+
+<div id="headerDiv">
+  <h1>Statistiques de {{ user.prenom }} {{ user.nom }}</h1>
+</div>
+<div id="header" class="title">
+  <a class="hide" [ngClass]="{'clicked':isClick}">Taux de précision  des clics</a>
+  <a class="hide" [ngClass]="{'reponse':isResponse}">Taux de bonnes réponses</a>
+  <div id="choiceButtons">
+    <button (click)="choiceClick()">clics</button>
+    <button (click)="choiceResponse()">r&eacute;ponses</button>
+  </div>
+</div>
+<div id="statsVisualiser">
+  <div class="hide" [ngClass]="{'clicked':isClick}">
+    <app-stats-chart *ngIf="isClick" [click_mode]="true"></app-stats-chart>
+  </div>
+  <div class="hide" [ngClass]="{'reponse':isResponse}">
+    <app-stats-chart *ngIf="isResponse" [click_mode]="false"></app-stats-chart>
+  </div>
+</div>
