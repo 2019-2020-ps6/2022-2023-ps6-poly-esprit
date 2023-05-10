@@ -31,6 +31,9 @@
           <button class="user_selection_button"><h3>{{ user.nom }}</h3> <img src={{user.path_pp}}> </button>
         </a>
         <div class="button-container">
+          <a class="navigation" [routerLink]="['/stats', user.id]">
+            <button class="btn"> Voir les stats de {{ user.nom }} </button>
+          </a>
           <a class="navigation" [routerLink]="['/user-edit', user.id, id_user]">
             <button class="btn">Modifier l'utilisateur</button>
           </a>
