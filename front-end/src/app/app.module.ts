@@ -30,6 +30,7 @@ import {AdaptConfigThemeDirective} from "../Directives/adapt-config-theme.direct
 import { EditQuestionComponent } from './edit-question-component/edit-question-component.component';
 import { AdminMainPageComponent } from './admin-main-page/admin-main-page.component';
 import { AdminManagementUsersComponent } from './admin-management-users/admin-management-users.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -64,6 +65,7 @@ import { AdminManagementUsersComponent } from './admin-management-users/admin-ma
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    HttpClientModule,
     FormsModule
   ],
   providers: [QuizService],
