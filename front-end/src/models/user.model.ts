@@ -1,5 +1,5 @@
 export interface User {
-  [x: string]: any;
+  //[x: string]: any;
   id: string;
   isAdmin: boolean;
   nom: string;
