@@ -3,20 +3,35 @@ import { Observable, of, throwError } from "rxjs";
 import {User} from "../models/user.model";
 import {mockUser} from "../mocks/user.mock";
 import {Quiz} from "../models/quizz.models";
+import { HttpClient } from '@angular/common/http';
+import { serverUrl, httpOptionsBase } from '../configs/server.config';
+
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class UserService {
+  public users: User[] = [];
 
   private users$ = new Observable<any>();
-  public users: User[] = mockUser;
 
-  constructor() {
-    this.users$ = new Observable(observer => {
-      observer.next(this.users);
-      observer.complete();
+  private userUrl = serverUrl + '/users';
+
+  private httpOptions = httpOptionsBase;
+
+  constructor(private http: HttpClient) {
+    this.retrieveUsers();
+    console.log("REALISATION EFFECTUE SUPER SUPER SUPER");
+  }
+
+  retrieveUsers(): void {
+    this.http.get<User[]>(this.userUrl).subscribe((userList) => {
+      this.users = userList;
+      this.users$ = new Observable(observer => {
+        observer.next(this.users);
+        observer.complete();
+      });
     });
   }
 
