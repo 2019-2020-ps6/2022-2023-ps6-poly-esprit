@@ -18,25 +18,19 @@ export class UserListDisplayComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    this.userService.getUsers().subscribe((users)=> {
+    this.userService.getUsers().subscribe((users) => {
       this.users = users;
-    });
+      console.log(this.users);
 
-
-    for (let i = 0; i < this.users.length; i++) {
-      if (this.users[i].isAdmin) {
-        this.adminsList.push(this.users[i]);
-      }else{
-        this.usersList.push(this.users[i]);
+      for (let i = 0; i < this.users.length; i++) {
+        if (this.users[i].isAdmin) {
+          this.adminsList.push(this.users[i]);
+        } else {
+          this.usersList.push(this.users[i]);
+        }
       }
-    }
-
-    //this.userService.printUsers();
-
-
-
+    });
   }
-
 }
 
 

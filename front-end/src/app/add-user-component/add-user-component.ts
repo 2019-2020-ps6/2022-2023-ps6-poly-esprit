@@ -42,7 +42,19 @@ export class AddUserComponent implements OnInit {
   }
 
   onSubmit(){
-    const userToAdd: User = this.formulaire.getRawValue() as User;
+    const userToAddBef: User = this.formulaire.getRawValue() as User;
+
+    const userToAdd : User ={
+      id: userToAddBef.id,
+      isAdmin: userToAddBef.isAdmin,
+      nom : userToAddBef.nom,
+      prenom : userToAddBef.prenom,
+      age: userToAddBef.age,
+      sex: userToAddBef.sex,
+      pathology: userToAddBef.pathology,
+      path_pp: ""
+    }
+
     userToAdd.id=this.UService.getIndexForCreate();
 
     //Check wich FormControl is checked
@@ -78,6 +90,7 @@ export class AddUserComponent implements OnInit {
       userToAdd.isAdmin=false;
     }
 
+    console.log(userToAdd);
 
     if(userToAdd.nom == "" || userToAdd.prenom == "" || userToAdd.age <= 0){
       alert("Veuillez remplir tous les champs");
