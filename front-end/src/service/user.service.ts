@@ -24,7 +24,7 @@ export class UserService {
 
   createUser(): User {
     const user: User = {
-      id: '123456789',
+      id: '1234567889',
       isAdmin: true,
       nom: 'Doe',
       prenom: 'John',
@@ -72,7 +72,7 @@ export class UserService {
   }*/
 
   addUser(u: User){
-    this.users.push(u);
+    this.http.post<User>(this.userUrl, u, this.httpOptions).subscribe(() => this.retrieveUsers());
     console.log("Un nouvel utlisateur a été ajouté ! le mock possède maintenant "+this.users.length+" utilisateurs !");
     this.printUsers();
   }
