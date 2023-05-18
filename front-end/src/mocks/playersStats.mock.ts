@@ -1,3 +1,84 @@
+/*
+modèle de la structure :
+    id: int,
+    stats: {
+      "clicks": [
+        {
+          type: "rangeArea",
+          name: "Min-Max",
+          data: [
+            {
+              x: "date",
+              y: [
+                int_maxi,
+                int_mini
+              ]
+            },
+            {
+              x: "date",
+              y: [
+                int_maxi,
+                int_mini
+              ]
+            }
+          ]
+        },
+        {
+          type: "line",
+          name: "moyenne",
+          data: [
+            {
+              x: "date",
+              y: int_mean
+            },
+            {
+              x: "date",
+              y: int_mean
+            }
+          ]
+        }
+      ],
+      "responses": [
+        {
+          type: "rangeArea",
+          name: "Min-Max",
+          data: [
+            {
+              x: "date",
+              y: [
+                int_maxi,
+                int_mini
+              ]
+            },
+            {
+              x: "date",
+              y: [
+                int_maxi,
+                int_mini
+              ]
+            }
+          ]
+        },
+        {
+          type: "line",
+          name: "moyenne",
+          data: [
+            {
+              x: "date",
+              y: int_mean
+            },
+            {
+              x: "date",
+              y: int_mean
+            }
+          ]
+        }
+      ]
+    }
+
+*/
+
+
 import { PlayerStatsModel } from "src/models/playersStats.models";
 
 export const playersStatsMock: PlayerStatsModel[] = [
