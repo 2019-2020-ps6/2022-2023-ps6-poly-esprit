@@ -28,8 +28,11 @@ export class StatsVisualisationComponent implements OnInit {
   ngOnInit(): void {
     const userId = Number(this.route.snapshot.paramMap.get("userId"));
     if (this.userId != null) {
-      this.userService.users$.subscribe((user) => {
-        this.user = this.userService.getUserById(userId);
+      this.userService.users$.subscribe((u) => {
+        this.userService.getUserById(userId).subscribe((user) => {;
+          this.user = user
+          console.log("user modifié", this.user.nom, this.user.prenom)
+        })
       });
     }
   }
