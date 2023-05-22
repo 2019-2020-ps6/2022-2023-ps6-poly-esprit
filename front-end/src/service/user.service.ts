@@ -67,7 +67,6 @@ export class UserService {
   }
 
   addUser(u: User){
-    //const userTest = this.createUser();
     this.http.post<User>(this.userUrl, u, this.httpOptions).subscribe(() => this.retrieveUsers());
     console.log("Un nouvel utlisateur a été ajouté ! le mock possède maintenant "+this.users.length+" utilisateurs !");
     this.printUsers();
@@ -83,12 +82,6 @@ export class UserService {
     const urlWithId = this.userUrl + '/' + id;
     this.http.delete<User>(urlWithId, this.httpOptions).subscribe(() => this.retrieveUsers());
   }
-
-  deleteUserWithId(user_id: string) {
-    this.users = this.users.filter(user => user.id !== user_id);
-    console.log("Le mock possède maintenant:" +this.users.length +" utilisateurs");
-  }
-
 
   isAdmin(user_id: string){
     if(user_id){
@@ -126,5 +119,13 @@ export class UserService {
     const userTest = this.createUser();
     this.http.post<User>(this.userUrl, userTest, this.httpOptions).subscribe(() => this.retrieveUsers());
   }*/
+
+  /**
+   * Maybe a method we should change because she can be useless for the future
+   * @param user_id The id of the user we want delete
+   */
+  deleteUserWithId(user_id: string) {
+    this.deleteUser(user_id);
+  }
 
 }
