@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from "../../service/user.service";
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/models/user.model';
+import { NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-stats-visualisation',
@@ -14,6 +15,7 @@ export class StatsVisualisationComponent implements OnInit {
   isResponse: boolean = false;
   userId: number;
   user: any;
+  displayName = "l'utilisateur";
   statsPage: number;
   choiceClics: any;
   clickItem = "click";
@@ -29,10 +31,13 @@ export class StatsVisualisationComponent implements OnInit {
     const userId = Number(this.route.snapshot.paramMap.get("userId"));
     if (this.userId != null) {
       this.userService.users$.subscribe((u) => {
-        this.userService.getUserById(userId).subscribe((user) => {;
+        if(u.length > 0){
+        this.userService.getUserById(userId).subscribe((user) => {
           this.user = user
+          this.displayName = this.user.prenom + " " + this.user.nom
           console.log("user modifié", this.user.nom, this.user.prenom)
         })
+      }
       });
     }
   }
