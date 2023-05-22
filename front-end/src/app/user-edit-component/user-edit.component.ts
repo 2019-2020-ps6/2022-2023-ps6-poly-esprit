@@ -88,7 +88,19 @@ export class UserEditComponent implements OnInit {
 
 
   onSubmit(){
-    const userToAdd: User = this.formulaire.getRawValue() as User;
+    const userToAddBef: User = this.formulaire.getRawValue() as User;
+
+    const userToAdd : User ={
+      id: userToAddBef.id,
+      isAdmin: userToAddBef.isAdmin,
+      nom : userToAddBef.nom,
+      prenom : userToAddBef.prenom,
+      age: userToAddBef.age,
+      sex: userToAddBef.sex,
+      pathology: userToAddBef.pathology,
+      path_pp: "to_change"
+    }
+
     userToAdd.id=<string>this.currentUser?.id;
 
     //Check wich FormControl is checked
@@ -126,10 +138,15 @@ export class UserEditComponent implements OnInit {
       userToAdd.isAdmin=false;
     }
 
+    // todo : A changer quand on aura implémenté la fonctionnalité sur les photos de profil
+    userToAdd.path_pp="nothing";
 
-    this.UService.deleteUser(this.currentUser);
-    this.UService.addUser(userToAdd);
-    alert("Utilisateur mis à jour ! ");
+
+    if(this.currentUser){
+      this.UService.deleteUser(this.currentUser.id);
+      this.UService.addUser(userToAdd);
+      alert("Utilisateur mis à jour ! ");
+    }
   }
 
   selectedFile(event:any){
