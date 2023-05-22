@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
 import {Quizz} from "../mocks/quizz.mock";
 import {Quiz} from "../models/quizz.models";
-import {ThemeService} from "./theme.service";
+import { serverUrl, httpOptionsBase } from '../configs/server.config';
 @Injectable({
   providedIn: 'root'
 })
