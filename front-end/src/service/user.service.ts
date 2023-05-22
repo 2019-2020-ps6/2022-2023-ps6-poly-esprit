@@ -5,6 +5,7 @@ import {mockUser} from "../mocks/user.mock";
 import {Quiz} from "../models/quizz.models";
 import { HttpClient } from '@angular/common/http';
 import { serverUrl, httpOptionsBase } from '../configs/server.config';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 
 @Injectable({
@@ -14,28 +15,41 @@ import { serverUrl, httpOptionsBase } from '../configs/server.config';
 export class UserService {
   public users: User[] = [];
 
-  private users$ = new Observable<any>();
+  private users$: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([]);
 
   private userUrl = serverUrl + '/users';
 
   private httpOptions = httpOptionsBase;
 
+
+  createUser(): User {
+    const user: User = {
+      id: '1234567889',
+      isAdmin: true,
+      nom: 'Doe',
+      prenom: 'John',
+      age: 30,
+      sex: 'male',
+      pathology: 1,
+      path_pp: 'path/to/profile-picture.jpg'
+    };
+
+    return user;
+  }
+
   constructor(private http: HttpClient) {
     this.retrieveUsers();
-    console.log("REALISATION EFFECTUE SUPER SUPER SUPER");
+
   }
 
   retrieveUsers(): void {
     this.http.get<User[]>(this.userUrl).subscribe((userList) => {
       this.users = userList;
-      this.users$ = new Observable(observer => {
-        observer.next(this.users);
-        observer.complete();
-      });
+      this.users$.next(this.users);
     });
   }
 
-  getUsers(): Observable<any> {
+  getUsers(): BehaviorSubject<User[]> {
     return this.users$
   }
 
@@ -52,8 +66,13 @@ export class UserService {
       }
   }
 
+  /**addUserTest(){
+    const userTest = this.createUser();
+    this.http.post<User>(this.userUrl, userTest, this.httpOptions).subscribe(() => this.retrieveUsers());
+  }*/
+
   addUser(u: User){
-    this.users.push(u);
+    this.http.post<User>(this.userUrl, u, this.httpOptions).subscribe(() => this.retrieveUsers());
     console.log("Un nouvel utlisateur a été ajouté ! le mock possède maintenant "+this.users.length+" utilisateurs !");
     this.printUsers();
   }
@@ -107,5 +126,7 @@ export class UserService {
     }
     return (max+1).toString();
   }
+
+
 
 }
