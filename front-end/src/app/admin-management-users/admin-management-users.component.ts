@@ -3,6 +3,8 @@ import {UserService} from "../../service/user.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Quiz} from "../../models/quizz.models";
 import {FormBuilder, FormGroup} from "@angular/forms";
+import {User} from "../../models/user.model";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-admin-management-users',
@@ -19,9 +21,11 @@ export class AdminManagementUsersComponent {
   formulaire: FormGroup;
   id_admin: string | null ="";
   deleteVisible = false;
+  public user_to_delete : Observable<User> | null;
 
   constructor(private userService: UserService, private route: ActivatedRoute,private formBuilder: FormBuilder,private router: Router) {
     this.UService=userService;
+    this.user_to_delete = null;
     this.formulaire = this.formBuilder.group({},{});
   }
 
@@ -50,12 +54,13 @@ export class AdminManagementUsersComponent {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
     this.id_user=id;
-
+    this.user_to_delete = this.userService.getUserById(parseInt(id));
   }
+
   onSubmit() {
     if(this.id_user!=null){
       this.usersList = this.usersList.filter(u => u.id !== this.id_user);
-      this.UService.deleteUserWithId(this.id_user);
+      this.UService.deleteUser(this.id_user);
       this.deleteVisible=false;
     }
   }
