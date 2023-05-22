@@ -12,3 +12,5 @@ router.get('/', (req, res) => {
         manageAllErrors(res, err)
     }
 })
+
+module.exports = router
