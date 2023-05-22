@@ -22,21 +22,6 @@ export class UserService {
   private httpOptions = httpOptionsBase;
 
 
-  createUser(): User {
-    const user: User = {
-      id: '1234567889',
-      isAdmin: false,
-      nom: 'Doe',
-      prenom: 'John',
-      age: 30,
-      sex: 'male',
-      pathology: 1,
-      path_pp: 'path/to/profile-picture.jpg'
-    };
-
-    return user;
-  }
-
   constructor(private http: HttpClient) {
     this.retrieveUsers();
 
@@ -115,17 +100,29 @@ export class UserService {
     return (max+1).toString();
   }
 
+  //todo: THIS METHODS WILL PROBABLY NEED TO BE DELETE IN THE FUTURE//
+
   /**addUserTest(){
     const userTest = this.createUser();
     this.http.post<User>(this.userUrl, userTest, this.httpOptions).subscribe(() => this.retrieveUsers());
   }*/
 
-  /**
-   * Maybe a method we should change because she can be useless for the future
-   * @param user_id The id of the user we want delete
-   */
   deleteUserWithId(user_id: string) {
     this.deleteUser(user_id);
+  }
+
+  createUser(): User {
+    const user: User = {
+      id: '1234567889',
+      isAdmin: false,
+      nom: 'Doe',
+      prenom: 'John',
+      age: 30,
+      sex: 'male',
+      pathology: 1,
+      path_pp: 'path/to/profile-picture.jpg'
+    };
+    return user;
   }
 
 }
