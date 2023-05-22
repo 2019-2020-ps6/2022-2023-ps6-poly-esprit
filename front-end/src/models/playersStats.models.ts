@@ -15,6 +15,6 @@ export interface Stats {
 }
 
 export interface PlayerStatsModel {
-  id: number;
+  userId: number;
   stats: Stats;
 }

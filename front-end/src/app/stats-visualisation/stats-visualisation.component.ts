@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 export class StatsVisualisationComponent implements OnInit {
   isClick: boolean = true;
   isResponse: boolean = false;
-  idUser: number;
+  userId: number;
   user: any;
   statsPage: number;
   choiceClics: any;
@@ -20,14 +20,14 @@ export class StatsVisualisationComponent implements OnInit {
   title = 'Statistiques utilisateur';
 
   constructor(private userService: UserService, private route: ActivatedRoute) {
-    this.idUser = Number(this.route.snapshot.paramMap.get("idUser"))
+    this.userId = Number(this.route.snapshot.paramMap.get("userId"))
     this.statsPage = 0;
   }
 
   ngOnInit(): void {
-    const idUser = Number(this.route.snapshot.paramMap.get("idUser"));
-    if (this.idUser != null) {
-      this.userService.getUserById(this.idUser).subscribe((user) => {
+    const userId = Number(this.route.snapshot.paramMap.get("userId"));
+    if (this.userId != null) {
+      this.userService.getUserById(this.userId).subscribe((user) => {
         this.user = user;
       });
     }

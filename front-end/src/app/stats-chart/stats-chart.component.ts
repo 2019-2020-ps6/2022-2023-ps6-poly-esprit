@@ -48,11 +48,11 @@ export class StatsChartComponent implements OnInit {
   constructor(private userService: UserService, private playerStatsService: PlayerStatsService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('idUser'));
-    this.userService.getUserById(id).subscribe((user) => {
+    const userId = Number(this.route.snapshot.paramMap.get('userId'));
+    this.userService.getUserById(userId).subscribe((user) => {
       const currentUser = user;
       
-        PlayerStatsService.getPlayerStats(id).subscribe(
+        PlayerStatsService.getPlayerStats(userId).subscribe(
           (playerStats: PlayerStatsModel) => {
             let series: PlayerStat[];
             if (this.click_mode) {

@@ -5,6 +5,6 @@ const StatsRouter = require('./stats')
 const router = new Router()
 router.get('/status', (req, res) => res.status(200).json('ok'))
 router.use('/users', UserRouter)
-router.use('/stats', StatsRouter)
+router.use('/user/:id/stats', StatsRouter)
 
 module.exports = router
