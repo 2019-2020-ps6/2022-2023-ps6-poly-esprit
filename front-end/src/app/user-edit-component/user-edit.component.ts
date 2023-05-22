@@ -127,9 +127,11 @@ export class UserEditComponent implements OnInit {
     }
 
 
-    this.UService.deleteUser(this.currentUser);
-    this.UService.addUser(userToAdd);
-    alert("Utilisateur mis à jour ! ");
+    if(this.currentUser){
+      this.UService.deleteUser(this.currentUser.id);
+      this.UService.addUser(userToAdd);
+      alert("Utilisateur mis à jour ! ");
+    }
   }
 
   selectedFile(event:any){

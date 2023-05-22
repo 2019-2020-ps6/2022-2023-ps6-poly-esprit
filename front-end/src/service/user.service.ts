@@ -77,10 +77,9 @@ export class UserService {
     }
   }
 
-  deleteUser(u: User | undefined){
-    if (u) {
-      this.users.splice(this.users.indexOf(u), 1);
-    }
+  deleteUser(id: string){
+    const urlWithId = this.userUrl + '/' + id;
+    this.http.delete<User>(urlWithId, this.httpOptions).subscribe(() => this.retrieveUsers());
   }
 
   deleteUserWithId(user_id: string) {
@@ -125,5 +124,5 @@ export class UserService {
     const userTest = this.createUser();
     this.http.post<User>(this.userUrl, userTest, this.httpOptions).subscribe(() => this.retrieveUsers());
   }*/
-  
+
 }
