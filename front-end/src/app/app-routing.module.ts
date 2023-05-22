@@ -39,7 +39,7 @@ const routes: Routes = [
   {path: 'parametre', component:ParameterPageComponent},
   {path: 'admin/:id', component: AdminMainPageComponent},
   {path: 'management-users/:id_user', component: AdminManagementUsersComponent},
-  {path: 'stats/:idUser', component: StatsVisualisationComponent },
+  {path: 'stats/:userId', component: StatsVisualisationComponent },
 
 ];
 

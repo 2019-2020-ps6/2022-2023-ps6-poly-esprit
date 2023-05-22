@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { playersStatsMock } from '../mocks/playersStats.mock';
 import { PlayerStatsModel } from '../models/playersStats.models';
+import { HttpClient } from '@angular/common/http';
+import { serverUrl, httpOptionsBase } from '../configs/server.config';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +28,7 @@ export class PlayerStatsService {
         return of(playerStats)
       }
     } else {
-      return throwError(`Player stats not found for id ${userId}`);
+      return throwError(`Statistiques utilisateur non trouvées pour l'utilisateur ${userId}`);
     }
   }
   

@@ -2,7 +2,7 @@ import { PlayerStatsModel } from "src/models/playersStats.models";
 
 export const playersStatsMock: PlayerStatsModel[] = [
   {
-    userId: 0,
+    userId: 1684739166638,
     stats: {
       "clicks": [
         {

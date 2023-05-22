@@ -15,7 +15,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 export class UserService {
   public users: User[] = [];
 
-  private users$: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([]);
+  public users$: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([]);
 
   private userUrl = serverUrl + '/users';
 
@@ -39,11 +39,11 @@ export class UserService {
 
   constructor(private http: HttpClient) {
     this.retrieveUsers();
-
   }
 
   retrieveUsers(): void {
     this.http.get<User[]>(this.userUrl).subscribe((userList) => {
+      console.log(userList);
       this.users = userList;
       this.users$.next(this.users);
     });
@@ -58,6 +58,8 @@ export class UserService {
       return throwError(`L'Id ${Id} est invalide`)
     }
     const user = this.users.find(t => t.id == String(Id));
+    console.log("user ", user)
+    console.log("users ", this.users)
       if (user) {
         console.log("utilisateur " + user.nom);
         return of(user);

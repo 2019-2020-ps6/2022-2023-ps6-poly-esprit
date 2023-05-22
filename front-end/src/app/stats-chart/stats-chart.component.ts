@@ -49,8 +49,8 @@ export class StatsChartComponent implements OnInit {
 
   ngOnInit(): void {
     const userId = Number(this.route.snapshot.paramMap.get('userId'));
-    this.userService.getUserById(userId).subscribe((user) => {
-      const currentUser = user;
+    this.userService.users$.subscribe((users) => {
+      const currentUser = this.userService.getUserById(userId);
       
         PlayerStatsService.getPlayerStats(userId).subscribe(
           (playerStats: PlayerStatsModel) => {

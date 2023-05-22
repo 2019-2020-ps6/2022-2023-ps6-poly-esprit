@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from "../../service/user.service";
 import { ActivatedRoute } from '@angular/router';
+import { User } from 'src/models/user.model';
 
 @Component({
   selector: 'app-stats-visualisation',
@@ -27,8 +28,8 @@ export class StatsVisualisationComponent implements OnInit {
   ngOnInit(): void {
     const userId = Number(this.route.snapshot.paramMap.get("userId"));
     if (this.userId != null) {
-      this.userService.getUserById(this.userId).subscribe((user) => {
-        this.user = user;
+      this.userService.users$.subscribe((user) => {
+        this.user = this.userService.getUserById(userId);
       });
     }
   }

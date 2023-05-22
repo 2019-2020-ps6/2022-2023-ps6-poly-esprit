@@ -16,9 +16,9 @@ router.get('/', (req, res) => {
   }
 })
 
-router.get('/:id', (req, res) => {
+router.get('/:userId', (req, res) => {
   try {
-    const stats = Stats.getById(req.params.id)
+    const stats = Stats.getById(req.params.userId)
     res.status(200).json(stats)
   } catch (err) {
     manageAllErrors(res, err)
@@ -35,7 +35,7 @@ router.post('/', (req, res) => {
   }
 })
 
-router.put('/:id', (req, res) => {
+router.put('/:userId', (req, res) => {
   try {
     const stats = Stats.update(req.params.id, req.body)
     res.status(200).json(user)
@@ -44,7 +44,7 @@ router.put('/:id', (req, res) => {
   }
 })
 
-router.delete('/:id', (req, res) => {
+router.delete('/:userId', (req, res) => {
   try {
     Stats.delete(req.params.id)
     res.status(204).end()
@@ -53,7 +53,7 @@ router.delete('/:id', (req, res) => {
   }
 })
 
-router.post('/endgame/:id', (req, res) => {
+router.post('/endgame/:userId', (req, res) => {
   try {
     //const stats = Stats.create(req.body)
     console.log(req.body)
@@ -63,7 +63,7 @@ router.post('/endgame/:id', (req, res) => {
   }
 })
 
-router.get('/endgame/:id', (req, res) => {
+router.get('/endgame/:userId', (req, res) => {
   try {
     //const stats = Stats.create(req.body)
     console.log(req.body)
