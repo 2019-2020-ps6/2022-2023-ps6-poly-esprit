@@ -1,47 +1,54 @@
-<form [formGroup]="formulaire" (ngSubmit)="onSubmit()">
-  <label for="nom">Nom de l'utilisateur :</label>
-  <input type="text" id="nom" formControlName="nom">
-  <br>
-  <label for="prenom">Prénom :</label>
-  <input type="text" id="prenom" formControlName="prenom">
-  <br>
-  <label for="age">Age :</label>
-  <input type="number" id="age" formControlName="age">
-  <br>
-
-  <label>
-    <input type="checkbox" formControlName="male"> Male
-  </label>
-  <label>
-    <input type="checkbox" formControlName="female"> Female
-  </label>
-
-  <br><br>
-  <h3>Stade de parkinson : </h3>
-
-  <label>
-    <input type="checkbox" formControlName="stade0"> Stade 0
-  </label>
-  <label>
-    <input type="checkbox" formControlName="stade1"> Stade 1
-  </label>
-  <label>
-    <input type="checkbox" formControlName="stade23"> Stade 2 & 3
-  </label>
-  <label>
-    <input type="checkbox" formControlName="stade4"> Stade 4
-  </label>
-  <br>
-
-  <label>
-    <input type="checkbox" formControlName="administrator"> Cocher si ce nouveau compte est un compte administrateur :
-  </label>
-  <br>
-
-  <button type="submit">Créer le nouvel utilisateur</button>
-  <br>
-</form>
-<br>
-<a class="navigation" [routerLink]="['/management-users']">
-  <button>Retour en arrière</button>
+<app-header [title]="title"></app-header>
+<a class="navigation" [routerLink]="['/management-users', id_user]">
+  <button class="retour">Retour en arrière</button>
 </a>
+
+<div class="mainDiv">
+  <form [formGroup]="formulaire" (ngSubmit)="onSubmit()">
+    <label for="nom">Nom :</label>
+    <input type="text" id="nom" formControlName="nom">
+    <br>
+    <label for="prenom">Prénom :</label>
+    <input type="text" id="prenom" formControlName="prenom">
+    <br>
+    <label for="age">Âge :</label>
+    <input type="number" id="age" formControlName="age">
+    <br>
+
+    <label>
+      <input type="radio" name="gender" value="male" formControlName="gender"> Homme
+    </label>
+    <label>
+      <input type="radio" name="gender" value="female" formControlName="gender"> Femme
+    </label>
+
+
+    <br><br>
+    <h3>Stade de parkinson : </h3>
+
+    <label>
+      <input type="radio" formControlName="stade" name="stade" value="0"> Stade 0
+    </label>
+    <label>
+      <input type="radio" formControlName="stade" name="stade" value="1"> Stade 1
+    </label>
+    <label>
+      <input type="radio" formControlName="stade" name="stade" value="23"> Stade 2 & 3
+    </label>
+    <label>
+      <input type="radio" formControlName="stade" name="stade" value="4"> Stade 4
+    </label>
+
+    <br>
+
+    <label>
+      <input type="checkbox" formControlName="administrator"> Cocher si ce nouveau compte est un compte de personnel de santé :
+    </label>
+    <br>
+
+    <button type="submit">Créer le nouvel utilisateur</button>
+    <br>
+  </form>
+  <br>
+
+</div>

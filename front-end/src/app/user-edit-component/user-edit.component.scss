@@ -1,0 +1,120 @@
+img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+input[type="text"],
+input[type="number"] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+  font-size: 16px;
+  color: #555;
+}
+
+input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+h3 {
+  margin: 20px 0 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+button[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  box-shadow: 2px 2px 2px grey;
+  background-color: rgba(58, 175, 169, 0.66);
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button[type="submit"]:hover {
+  background-color: rgba(46, 159, 153, 0.84);
+}
+
+input[type="file"] {
+  display: block;
+  margin: 20px auto;
+}
+
+a.navigation {
+  display: inline-block;
+  margin-top: 20px;
+}
+
+a.navigation button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  background-color: rgba(58, 175, 169, 0.66);
+  border: none;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+a.navigation button:hover {
+  background-color: rgba(46, 159, 153, 0.84);
+}
+.gauche {
+  float: left;
+  width: 30%;
+  padding-right: 20px;
+  margin-top: 80px;
+  margin-left: 40px;
+}
+
+.droite {
+  float: right;
+  width: 70%;
+}
+
+.mainDiv{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.retour{
+  margin-left: 40px;
+  box-shadow: 2px 2px 2px grey;
+
+}
+.navigation button.retour {
+  text-decoration: none;
+}
+

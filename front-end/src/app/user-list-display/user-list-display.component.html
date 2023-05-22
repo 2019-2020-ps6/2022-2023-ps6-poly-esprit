@@ -5,7 +5,7 @@
       <li *ngFor="let user of usersList">
         <div class = "user_selection">
           <a class="navigation" [routerLink]="['/themes', user.id]">
-            <button class="user_selection_button"> <h2>Utilisateur : {{user.prenom}} {{ user.nom }} </h2> <img src={{user.path_pp}}> </button>
+            <button class="user_selection_button"> <h2>{{user.prenom}} {{ user.nom }} </h2> <img src={{user.path_pp}}> </button>
           </a>
         </div>
 <!--        <div class="gestion_admin">-->
@@ -28,7 +28,7 @@
     <li *ngFor="let admin of adminsList">
       <div class = "user_selection">
         <a class="navigation" [routerLink]="['/admin', admin.id]">
-          <button class="user_selection_button"> <h2>Utilisateur : {{ admin.prenom}} {{ admin.nom }} </h2> <img src={{admin.path_pp}}> </button>
+          <button class="user_selection_button"> <h2> {{ admin.prenom}} {{ admin.nom }} </h2> <img src={{admin.path_pp}}> </button>
         </a>
       </div>
     </li>

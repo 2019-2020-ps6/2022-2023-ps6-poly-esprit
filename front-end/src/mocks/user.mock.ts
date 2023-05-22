@@ -40,35 +40,5 @@ export const mockUser: User[] = [
     sex: 'Female',
     pathology: 4,
     path_pp: "../assets/profile_picture.png"
-  },
-  {
-    id: '4',
-    isAdmin: false,
-    nom: '',
-    prenom: 'user1',
-    age: 0,
-    sex: 'Male',
-    pathology: 0,
-    path_pp: "../assets/profile_picture.png"
-  },
-  {
-    id: '5',
-    isAdmin: false,
-    nom: '',
-    prenom: 'user2',
-    age: 0,
-    sex: 'Male',
-    pathology: 0,
-    path_pp: "../assets/profile_picture.png"
-  },
-  {
-    id: '6',
-    isAdmin: false,
-    nom: '',
-    prenom: 'user3',
-    age: 0,
-    sex: 'Male',
-    pathology: 0,
-    path_pp: "../assets/profile_picture.png"
   }
 ];
