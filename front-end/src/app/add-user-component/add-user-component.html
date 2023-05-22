@@ -46,6 +46,10 @@
     </label>
     <br>
 
+    <label for="image">Image :</label>
+    <input type="file" id="image" (change)="onFileChange($event)" accept="image/*">
+
+
     <button type="submit">Créer le nouvel utilisateur</button>
     <br>
   </form>

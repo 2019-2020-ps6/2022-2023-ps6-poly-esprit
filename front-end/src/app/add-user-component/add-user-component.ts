@@ -3,6 +3,8 @@ import {FormBuilder, FormControl, FormGroup} from '@angular/forms'
 import {UserService} from "../../service/user.service";
 import {User} from "../../models/user.model";
 import {ActivatedRoute} from "@angular/router";
+import { HttpClient } from '@angular/common/http';
+
 
 
 @Component({
@@ -17,7 +19,7 @@ export class AddUserComponent implements OnInit {
   title= "Ajout d'un utilisateur";
 
 
-  constructor(public userService: UserService, private formBuilder: FormBuilder,private route: ActivatedRoute) {
+  constructor(public userService: UserService, private formBuilder: FormBuilder,private route: ActivatedRoute, private http: HttpClient) {
 
     this.formulaire = this.formBuilder.group({
       nom: '',
@@ -96,10 +98,22 @@ export class AddUserComponent implements OnInit {
       alert("Veuillez remplir tous les champs");
       return;
     }
+
     this.UService.addUser(userToAdd);
     alert("Un nouvel utilisateur a été ajouté ! ");
     this.formulaire.reset();
   }
+
+
+  onFileChange(event: any) {
+    if (event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.formulaire.patchValue({
+        image: file
+      });
+    }
+  }
+
 }
 
 
