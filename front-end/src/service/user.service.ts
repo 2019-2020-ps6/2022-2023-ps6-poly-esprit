@@ -14,7 +14,6 @@ import { BehaviorSubject, Subject } from 'rxjs';
 
 export class UserService {
   public users: User[] = [];
-
   private users$: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([]);
 
   private userUrl = serverUrl + '/users';
@@ -39,7 +38,6 @@ export class UserService {
 
   constructor(private http: HttpClient) {
     this.retrieveUsers();
-
   }
 
   retrieveUsers(): void {

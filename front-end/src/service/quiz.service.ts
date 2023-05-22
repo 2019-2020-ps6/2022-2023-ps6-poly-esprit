@@ -1,35 +1,40 @@
 import { Injectable } from '@angular/core';
-import { Observable } from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 import {Quizz} from "../mocks/quizz.mock";
 import {Quiz} from "../models/quizz.models";
 import { serverUrl, httpOptionsBase } from '../configs/server.config';
+import {User} from "../models/user.model";
+import {HttpClient} from "@angular/common/http";
 @Injectable({
   providedIn: 'root'
 })
 export class QuizService {
   //The list of quiz. The list is
   // retrieved from the mock.
-  private quizzes$ = new Observable<Quiz[]>();
-  public quizzes: Quiz[] = Quizz; // Ici on initialise la valeur avec un mock QUIZ_LIST
+
+  private quizUrl = serverUrl + '/quizzes';
+
+  private httpOptions = httpOptionsBase;
+
+  private quizzes$ = new BehaviorSubject<Quiz[]>([]);
+  public quizzes: Quiz[] = []; // Ici on initialise la valeur avec un mock QUIZ_LIST
   // The service's constructor. Le constructeur peut prendre en paramètre les dépendances du service - comme ici,
   // HttpClient qui va permettre de récupérer les données d'un serveur
-  constructor() {
-    this.quizzes$ = new Observable(observer => {
-      observer.next(this.quizzes);
-      observer.complete();
-    });
+  constructor(private http: HttpClient) {
+    this.retrieveQuizs();
   }
 
   addQuiz(q: Quiz){
-    this.quizzes.push(q);
-    // console.log("Une nouvelle questiona  été ajoutée avec comme nom :"+q.name+" et en thème: "+q.theme+"\n");
+    //this.quizzes.push(q);
+    this.http.post<User>(this.quizUrl, q, this.httpOptions).subscribe(() => this.retrieveQuizs());
 
+    // console.log("Une nouvelle questiona  été ajoutée avec comme nom :"+q.name+" et en thème: "+q.theme+"\n");
     console.log("Le mock possède maintenant:" +this.quizzes.length +"quizs");
     this.printQuiz();
 
   }
 
-  getQuizzes(): Observable<Quiz[]> {
+  getQuizzes(): BehaviorSubject<Quiz[]> {
     return this.quizzes$
   }
 
@@ -62,5 +67,10 @@ export class QuizService {
   }
 
 
-
+  private retrieveQuizs() {
+    this.http.get<Quiz[]>(this.quizUrl).subscribe((quizList) => {
+      this.quizzes = quizList;
+      this.quizzes$.next(this.quizzes);
+    });
+  }
 }
