@@ -52,7 +52,7 @@ export class AddUserComponent implements OnInit {
       age: userToAddBef.age,
       sex: userToAddBef.sex,
       pathology: userToAddBef.pathology,
-      path_pp: ""
+      path_pp: "to_change"
     }
 
     userToAdd.id=this.UService.getIndexForCreate();

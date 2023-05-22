@@ -24,7 +24,7 @@ export class UserService {
   createUser(): User {
     const user: User = {
       id: '1234567889',
-      isAdmin: true,
+      isAdmin: false,
       nom: 'Doe',
       prenom: 'John',
       age: 30,
@@ -64,12 +64,8 @@ export class UserService {
       }
   }
 
-  /**addUserTest(){
-    const userTest = this.createUser();
-    this.http.post<User>(this.userUrl, userTest, this.httpOptions).subscribe(() => this.retrieveUsers());
-  }*/
-
   addUser(u: User){
+    //const userTest = this.createUser();
     this.http.post<User>(this.userUrl, u, this.httpOptions).subscribe(() => this.retrieveUsers());
     console.log("Un nouvel utlisateur a été ajouté ! le mock possède maintenant "+this.users.length+" utilisateurs !");
     this.printUsers();
@@ -125,6 +121,9 @@ export class UserService {
     return (max+1).toString();
   }
 
-
-
+  /**addUserTest(){
+    const userTest = this.createUser();
+    this.http.post<User>(this.userUrl, userTest, this.httpOptions).subscribe(() => this.retrieveUsers());
+  }*/
+  
 }
