@@ -1,8 +1,7 @@
-// player-stats.service.ts
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { playersStatsMock } from '../mocks/playersStats.mock';
-import { PlayerStatsModel } from '../models/playersStats.models';
+import { PlayerStatsModel, Stats } from '../models/playersStats.models';
 import { HttpClient } from '@angular/common/http';
 import { serverUrl, httpOptionsBase } from '../configs/server.config';
 
@@ -10,27 +9,38 @@ import { serverUrl, httpOptionsBase } from '../configs/server.config';
   providedIn: 'root'
 })
 export class PlayerStatsService {
-  /*static getPlayerStats(arg0: number) {
-    throw new Error('Method not implemented.');
-  }*/
+  private userUrl = serverUrl + '/user/:userId/stats';
 
-  static getPlayersStats(): Observable<any[]> {
+  private httpOptions = httpOptionsBase;
+  
+  constructor(private http: HttpClient) {}
+
+  getPlayersStats(): Observable<any[]> {
     return of(playersStatsMock);
   }
 
-  static getPlayerStats(userId: number, click_mode: Boolean = true): Observable<PlayerStatsModel> {
+  getPlayerStats(userId: number, click_mode: boolean = true): Observable<PlayerStatsModel> {
+    console.log('Récupération des statistiques utilisateur...');
+    this.http.request('GET', this.userUrl.replace(':userId', String(userId)), this.httpOptions).subscribe((userStats: any) => {
+      console.log("userStats : ", userStats);
+    });
+    console.log("fin de la récupération des statistiques utilisateur");
+    this.http.get(this.userUrl.replace(':userId', String(userId)), this.httpOptions).subscribe((userStats: any) => {
+      console.log("userStats : ", userStats);
+    });
+    console.log("fin de la récupération des statistiques utilisateur");
     const playerStats = playersStatsMock.find((playerStat: PlayerStatsModel) => playerStat.userId === userId);
     if (playerStats) {
-      console.log(`joueur ${userId} trouvé`)
-      if(click_mode) {
+      if (click_mode) {
         return of(playerStats);
       } else {
-        return of(playerStats)
+        return of(playerStats);
       }
     } else {
       return throwError(`Statistiques utilisateur non trouvées pour l'utilisateur ${userId}`);
     }
   }
-  
 }
+
+
 export { PlayerStatsModel };

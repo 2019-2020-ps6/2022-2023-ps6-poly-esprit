@@ -22,20 +22,20 @@ export class UserService {
   private httpOptions = httpOptionsBase;
 
 
-  createUser(): User {
-    const user: User = {
-      id: '1234567889',
-      isAdmin: false,
-      nom: 'Doe',
-      prenom: 'John',
-      age: 30,
-      sex: 'male',
-      pathology: 1,
-      path_pp: 'path/to/profile-picture.jpg'
-    };
-
-    return user;
-  }
+  /*createUser(): User {
+   * const user: User = {
+   *   id: '1234567889',
+   *   isAdmin: false,
+   *   nom: 'Doe',
+   *   prenom: 'John',
+   *   age: 30,
+   *   sex: 'male',
+   *   pathology: 1,
+   *   path_pp: 'path/to/profile-picture.jpg'
+   * };
+   * 
+   * return user;
+  }*/
 
   constructor(private http: HttpClient) {
     this.retrieveUsers();
@@ -58,10 +58,7 @@ export class UserService {
       return throwError(`L'Id ${Id} est invalide`)
     }
     const user = this.users.find(t => t.id == String(Id));
-    console.log("user ", user)
-    console.log("users ", this.users)
       if (user) {
-        console.log("utilisateur " + user.nom);
         return of(user);
       } else {
         return throwError(`User with ID ${Id} not found.`);
@@ -69,7 +66,6 @@ export class UserService {
   }
 
   addUser(u: User){
-    //const userTest = this.createUser();
     this.http.post<User>(this.userUrl, u, this.httpOptions).subscribe(() => this.retrieveUsers());
     console.log("Un nouvel utlisateur a été ajouté ! le mock possède maintenant "+this.users.length+" utilisateurs !");
     this.printUsers();
@@ -123,10 +119,4 @@ export class UserService {
     }
     return (max+1).toString();
   }
-
-  /**addUserTest(){
-    const userTest = this.createUser();
-    this.http.post<User>(this.userUrl, userTest, this.httpOptions).subscribe(() => this.retrieveUsers());
-  }*/
-
 }

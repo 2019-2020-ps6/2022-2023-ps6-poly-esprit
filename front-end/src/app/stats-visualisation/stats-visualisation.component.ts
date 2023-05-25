@@ -35,7 +35,6 @@ export class StatsVisualisationComponent implements OnInit {
         this.userService.getUserById(userId).subscribe((user) => {
           this.user = user
           this.displayName = this.user.prenom + " " + this.user.nom
-          console.log("user modifié", this.user.nom, this.user.prenom)
         })
       }
       });
