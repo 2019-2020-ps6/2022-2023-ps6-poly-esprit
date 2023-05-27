@@ -1,64 +1,36 @@
-import { Injectable, Optional } from '@angular/core';
-import { Observable, of, throwError } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Observable, catchError, of, throwError } from 'rxjs';
 import { playersStatsMock } from '../mocks/playersStats.mock';
-import { PlayerStatsModel, Stats } from '../models/playersStats.models';
-import { HttpClient } from '@angular/common/http';
-import { serverUrl, httpOptionsBase } from '../configs/server.config';
+import { PlayerStatsModel } from '../models/playersStats.models';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { serverUrl } from '../configs/server.config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlayerStatsService {
-  static http: any;
-  static getPlayerStats(userId: number, click_mode: boolean | null) {
+  private userUrl = serverUrl + '/stats?userId=';
+
+  constructor(private http: HttpClient) {}
+
+  getPlayerStats(userId: number, click_mode: boolean | null): Observable<PlayerStatsModel> {
     if (userId == null) {
       return throwError(`L'Id ${userId} est invalide`);
     }
     if (click_mode == null) {
       return throwError(`Le mode ${click_mode} est invalide`);
     }
+    
     return this.fetchPlayerStats(userId, click_mode);
-    if (click_mode) {
-      return of(playersStatsMock.find((playerStat: PlayerStatsModel) => playerStat.userId === userId));
-    } else {
-      return of(playersStatsMock.find((playerStat: PlayerStatsModel) => playerStat.userId === userId));
-    }
-  }
-  static userUrl = serverUrl + '/user/:userId/stats';
-
-  private httpOptions = httpOptionsBase;
-  
-  constructor(private http: HttpClient) {}
-
-  getPlayersStats(): Observable<any[]> {
-    return of(playersStatsMock);
   }
 
-  static fetchPlayerStats(userId: number, click_mode: boolean | undefined): Observable<PlayerStatsModel> {
-    console.log('Récupération des statistiques utilisateur depuis l\'URL ', this.userUrl.replace(':userId', String(userId)));
-    this.http.request('GET', this.userUrl.replace(':userId', String(userId)), this.httpOptions).subscribe((userStats: any) => {
-      console.log("userStats : ", userStats);
-    });
-    console.log("fin de la récupération des statistiques utilisateur");
-    this.http.get(this.userUrl.replace(':userId', String(userId)), this.httpOptions).subscribe((userStats: any) => {
-      console.log("userStats : ", userStats);
-    });
-    console.log("fin de la récupération des statistiques utilisateur");
-    const playerStats = playersStatsMock.find((playerStat: PlayerStatsModel) => playerStat.userId === userId);
-    if (playerStats) {
-      if (click_mode) {
-        return of(playerStats);
-      } else {
-        return of(playerStats);
-      }
-    } else {
-      return throwError(`Statistiques utilisateur non trouvées pour l'utilisateur ${userId}`);
-    }
-  }
-  static httpOptions(arg0: any, httpOptions: any) {
-    throw new Error('Method not implemented.');
+  fetchPlayerStats(userId: number, click_mode: boolean): Observable<PlayerStatsModel> {    
+    return this.http.get<PlayerStatsModel>(this.userUrl + userId)
+      .pipe(
+        catchError((error: any) => {
+          console.log('Erreur lors de la récupération des statistiques utilisateur', error);
+          return throwError(`Erreur lors de la récupération des statistiques utilisateur pour l'utilisateur ${userId}`);
+        })
+      );
   }
 }
-
-
-export { PlayerStatsModel };
