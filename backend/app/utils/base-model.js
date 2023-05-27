@@ -43,6 +43,7 @@ module.exports = class BaseModel {
     return item
   }
 
+
   create(obj = {}) {
     const item = { ...obj, id: Date.now() }
     const { error } = Joi.validate(item, this.schema)

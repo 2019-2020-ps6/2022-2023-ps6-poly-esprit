@@ -7,18 +7,28 @@ const { Console } = require('../../utils/logger')
 const router = new Router()
 
 router.get('/', (req, res) => {
-  console.log('test réussi')
-  console.log(req.query)
-  console.log(req.params)
-  console.log(req.body)
-  console.log(res.body)
-  console.log(res.query)
-  console.log(res.params)
-  try {
-    const stats = Stats.get()
-    res.status(200).json(stats)
-  } catch (err) {
-    manageAllErrors(res, err)
+  if (req.query && req.query.userId) {
+    try {
+      let userId = req.query["userId"]
+      if (typeof userId === 'string') {
+        userId = parseInt(userId, 10)
+      }
+      const stats = Stats.get().find((i) => i.userId === userId)
+      if (!stats) {
+        res.status(404).json("No stats found for this user")
+      }
+      res.status(200).json(stats)
+    } catch (err) {
+      manageAllErrors(res, err)
+    }
+  }
+  else {
+    try {
+      const stats = Stats.get()
+      res.status(417).json("You must provide a userId in the query")
+    } catch (err) {
+      manageAllErrors(res, err)
+    }
   }
 })
 
