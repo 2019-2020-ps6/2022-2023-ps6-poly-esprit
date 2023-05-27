@@ -8,6 +8,12 @@ const router = new Router()
 
 router.get('/', (req, res) => {
   console.log('test réussi')
+  console.log(req.query)
+  console.log(req.params)
+  console.log(req.body)
+  console.log(res.body)
+  console.log(res.query)
+  console.log(res.params)
   try {
     const stats = Stats.get()
     res.status(200).json(stats)
