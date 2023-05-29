@@ -92,10 +92,7 @@ router.post('/endgame', (req, res) => {
       if (typeof userId === 'string') {
         userId = parseInt(userId, 10)
       }
-      console.log('ok')
       let stats = Stats.get().find((i) => i.userId === userId)
-      console.log(!stats)
-      console.log(typeof req._startTime)
       if (!stats) {
         stats = Stats.create({
           "userId":userId,
@@ -153,6 +150,9 @@ router.post('/endgame', (req, res) => {
           }
         })
       }
+      clicks_data = stats.stats.clicks[0].data;
+      console.log(clicks_data)
+      console.log(clicks_data[clicks_data.length - 1])
       stats.stats.clicks[0].data.push({
         "x": req.body.date,
         "y": [

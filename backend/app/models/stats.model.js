@@ -25,10 +25,59 @@ const statsSchema = {
   }).required(),
 };
 
+const newStatsTypeSchema = Joi.object({
+  date: Joi.string().required(),
+  data: Joi.array().items(Joi.number()).required(),
+});
+
+
+const newStatsSchema = {
+  userId: Joi.number().required(),
+  stats: Joi.object({
+    clicks: Joi.array().items(newStatsTypeSchema).required(),
+    responses: Joi.array().items(newStatsTypeSchema).required(),
+  }).required(),
+};
+
 module.exports = new BaseModel('Stats', statsSchema);
+// module.exports = new BaseModel('Stats', newStatsSchema);
 
 /*
+New model :
+
 [
+  {
+    "userId": 1684739166638,
+    "stats": {
+      "clicks": [
+            {
+              "date": "01/05",
+              "data": [
+                59,
+                87
+              ]
+            }
+          ]
+      "responses": [
+            {
+              "date": "01/05",
+              "data": [
+                23,
+                26
+              ]
+            }
+          ]
+
+    },
+    "id": 1684743377162
+  },
+]
+*/
+
+/*
+ Current model :
+
+ [
   {
     "userId": 1684739166638,
     "stats": {
