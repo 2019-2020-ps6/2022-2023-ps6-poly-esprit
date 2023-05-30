@@ -141,7 +141,6 @@ export class UserEditComponent implements OnInit {
     // todo : A changer quand on aura implémenté la fonctionnalité sur les photos de profil
     userToAdd.path_pp="nothing";
 
-
     if(this.currentUser){
       this.UService.deleteUser(this.currentUser.id);
       this.UService.addUser(userToAdd);
