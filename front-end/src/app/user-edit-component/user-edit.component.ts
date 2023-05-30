@@ -169,7 +169,7 @@ export class UserEditComponent implements OnInit {
     }else{
       userToAdd.need_big_text = false;
     }
-    
+
 
     if(this.currentUser){
       this.UService.deleteUser(this.currentUser.id);

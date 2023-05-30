@@ -42,7 +42,7 @@ export class GamePageComponentComponent  implements OnInit, AfterViewInit{
     const id = Number(this.route.snapshot.paramMap.get('idQuiz'));
     this.currentQuiz = this.quizService.getQuiz(id.toString());
     this.currentQuestion = this.currentQuiz?.questions[this.currentIndex].label;
-    //console.log("LOG SIMON BEUREL" +this.currentQuiz?.questions[this.currentIndex].answers);
+    console.log("LOG SIMON BEUREL " +this.currentQuiz?.questions[this.currentIndex].answers[0].value);
   }
 
   incrementIndexQuestion() {
