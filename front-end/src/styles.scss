@@ -16,6 +16,10 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 }
 body {
   line-height: 1;
+  //cursor: none;
+}
+button,a{
+  //cursor: none;
 }
 ol, ul {
   list-style: none;
@@ -26,3 +30,5 @@ blockquote, q {
 html{
   background-color: #def2f1;
 }
+
+
