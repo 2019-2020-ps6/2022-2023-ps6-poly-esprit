@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from "../../service/user.service";
 import { ActivatedRoute } from '@angular/router';
+import { User } from 'src/models/user.model';
+import { NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-stats-visualisation',
@@ -11,8 +13,9 @@ import { ActivatedRoute } from '@angular/router';
 export class StatsVisualisationComponent implements OnInit {
   isClick: boolean = true;
   isResponse: boolean = false;
-  idUser: number;
+  userId: number;
   user: any;
+  displayName = "l'utilisateur";
   statsPage: number;
   choiceClics: any;
   clickItem = "click";
@@ -20,15 +23,20 @@ export class StatsVisualisationComponent implements OnInit {
   title = 'Statistiques utilisateur';
 
   constructor(private userService: UserService, private route: ActivatedRoute) {
-    this.idUser = Number(this.route.snapshot.paramMap.get("idUser"))
+    this.userId = Number(this.route.snapshot.paramMap.get("userId"))
     this.statsPage = 0;
   }
 
   ngOnInit(): void {
-    const idUser = Number(this.route.snapshot.paramMap.get("idUser"));
-    if (this.idUser != null) {
-      this.userService.getUserById(this.idUser).subscribe((user) => {
-        this.user = user;
+    const userId = Number(this.route.snapshot.paramMap.get("userId"));
+    if (this.userId != null) {
+      this.userService.users$.subscribe((u) => {
+        if(u.length > 0){
+        this.userService.getUserById(userId).subscribe((user) => {
+          this.user = user
+          this.displayName = this.user.prenom + " " + this.user.nom
+        })
+      }
       });
     }
   }

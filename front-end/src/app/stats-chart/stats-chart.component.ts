@@ -48,19 +48,21 @@ export class StatsChartComponent implements OnInit {
   constructor(private userService: UserService, private playerStatsService: PlayerStatsService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('idUser'));
-    this.userService.getUserById(id).subscribe((user) => {
-      const currentUser = user;
-      
-        PlayerStatsService.getPlayerStats(id).subscribe(
-          (playerStats: PlayerStatsModel) => {
-            let series: PlayerStat[];
-            if (this.click_mode) {
-              series = playerStats.stats.clicks
-            } else {
-              series = playerStats.stats.responses
-            }
-            this.chartOptions = {
+    const userId = Number(this.route.snapshot.paramMap.get('userId'));
+    this.userService.users$.subscribe((users) => {
+      const currentUser = this.userService.getUserById(userId);
+      this.playerStatsService.fetchPlayerStats(userId, this.click_mode).subscribe(
+        (playerStats: PlayerStatsModel | undefined) => {
+          if (typeof playerStats === 'undefined') {
+            return;
+          }
+          let series: PlayerStat[];
+          if (this.click_mode) {
+            series = playerStats.stats.clicks;
+          } else {
+            series = playerStats.stats.responses;
+          }
+          this.chartOptions = {
               series: series,
               chart: {
                 height: 350,
@@ -95,14 +97,14 @@ export class StatsChartComponent implements OnInit {
                   sizeOffset: 5
                 }
               }
-            }
-          },
-
-          (error: any) => {
-            console.log(error);
-          }
-        );
-      }
+          };
+        },
+        (error: any) => {
+          console.log(error);
+        }
+      );
+      
+    }
     );
   }
 }
