@@ -4,6 +4,8 @@ const { Stats } = require('../../models')
 const manageAllErrors = require('../../utils/routes/error-management')
 const { Console } = require('../../utils/logger');
 const number = require('joi/lib/types/number');
+const { json } = require('body-parser');
+const strftime = require('strftime')
 
 const router = new Router();
 
@@ -64,6 +66,9 @@ router.get('/', (req, res) => {
       if (!stats) {
         res.status(404).json("No stats found for this user")
       }
+      if (stats.stats.clicks.length == 0 || stats.stats.responses.length == 0) {
+        res.status(204).json("No stats found for this user")
+      }
       let clicks_data = new Array();
       let responses_data = new Array();
       let clicks_mean = new Array();
@@ -98,41 +103,47 @@ router.get('/', (req, res) => {
       }
       const retour = {
         userId: userId,
-        stats:{
-        clicks: [
-          {
-            type: "rangeArea",
-            name: "Min-Max",
-            data: clicks_data
-          },
-          {
-            type: "line",
-            name: "moyenne",
-            data: clicks_mean
-          }
-        ],
-        responses: [
-          {
-            type: "rangeArea",
-            name: "Min-Max",
-            data: responses_data
-          },
-          {
-            type: "line",
-            name: "moyenne",
-            data: responses_mean
-          }
-        ]
+        stats: {
+          clicks: [
+            {
+              type: "rangeArea",
+              name: "Min-Max",
+              data: clicks_data
+            },
+            {
+              type: "line",
+              name: "moyenne",
+              data: clicks_mean
+            }
+          ],
+          responses: [
+            {
+              type: "rangeArea",
+              name: "Min-Max",
+              data: responses_data
+            },
+            {
+              type: "line",
+              name: "moyenne",
+              data: responses_mean
+            }
+          ]
+        }
       }
-    }
       res.status(200).json(retour)
     } catch (err) {
       manageAllErrors(res, err)
     }
   }
   else {
-      res.status(417).json("You must provide a userId in the query")
+    res.status(417).json("You must provide a userId in the query")
   }
+})
+
+
+router.get('/date', (req, res) => {
+  let date = strftime('%d/%m', new Date())
+  res.status(200).json(date);
 })
 
 router.get('/:userId', (req, res) => {
@@ -172,106 +183,81 @@ router.delete('/:userId', (req, res) => {
   }
 })
 
+
+/*
+ * if the user is not in the database, create it
+ * if the user is in the database, update it
+ */
 router.post('/endgame', (req, res) => {
-  if (req.query && req.query.userId) {
-    try {
-      let userId = req.query["userId"]
-      if (typeof userId === 'string') {
-        userId = parseInt(userId, 10)
-      }
-      let stats = Stats.get().find((i) => i.userId === userId)
-      if (!stats) {
-        stats = Stats.create({
-          "userId":userId,
-          "stats":{
-            "clicks": [
-              {
-                "type": "rangeArea",
-                "name": "Min-Max",
-                "data": [
-                  {
-                    "x": req.body.date,
-                    "y": [
-                      req.body.clicks,
-                      req.body.clicks
-                    ]
-                  }
-                ]
-              },
-              {
-                "type": "line",
-                "name": "moyenne",
-                "data": [
-                  {
-                    "x": req.body.date,
-                    "y": req.body.clicks
-                  }
-                ]
-              }
-            ],
-            "responses": [
-              {
-                "type": "rangeArea",
-                "name": "Min-Max",
-                "data": [
-                  {
-                    "x": req.body.date,
-                    "y": [
-                      req.body.responses,
-                      req.body.responses
-                    ]
-                  }
-                ]
-              },
-              {
-                "type": "line",
-                "name": "moyenne",
-                "data": [
-                  {
-                    "x": req.body.date,
-                    "y": req.body.responses
-                  }
-                ]
-              }
-            ]
-          }
-        })
-      }
-      clicks_data = stats.stats.clicks[0].data;
-      console.log(clicks_data)
-      console.log(clicks_data[clicks_data.length - 1])
-      stats.stats.clicks[0].data.push({
-        "x": req.body.date,
-        "y": [
-          req.body.minClicks,
-          req.body.maxClicks
-        ]
-      })
-      stats.stats.clicks[1].data.push({
-        "x": req.body.date,
-        "y": req.body.meanClicks
-      })
-      stats.stats.responses[0].data.push({
-        "x": req.body.date,
-        "y": [
-          req.body.minResponses,
-          req.body.maxResponses
-        ]
-      })
-      stats.stats.responses[1].data.push({
-        "x": req.body.date,
-        "y": req.body.meanResponses
-      })
-      Stats.update(stats.userId, stats)
-      res.status(200).json(stats)
-    } catch (err) {
-      manageAllErrors(res, err)
-      return;
-    }
+  // Check if the user is passed in the query
+  if (!req.query || !req.query.userId) {
+    res.status(417).json("You must provide a userId in the query");
+    return;
   }
-  else {
-      res.status(417).json("You must provide a userId in the query");
-      return;
+  // parse the userId
+  try {
+    let userId = req.query["userId"]
+    if (typeof userId === 'string') {
+      userId = parseInt(userId, 10)
+    }
+
+     /*
+      * Check if the user is in the database
+      * if not, create it
+      * if yes, update it
+      */
+    let stats = Stats.get().find((i) => i.userId === userId)
+    if (!stats) {
+      stats = Stats.create({
+        "userId": userId,
+        "stats": {
+          "clicks": [
+            {
+              "data": []
+            },
+          ],
+          "responses": [
+            {
+              "data": []
+            }
+          ]
+        }
+      })
+    }
+    let length = stats.stats.clicks.length;
+    let clicks_data;
+    if (stats.stats.clicks[length - 1].date == req.body.date) {
+      clicks_data = []
+    }
+    console.log(clicks_data)
+    console.log(clicks_data[clicks_data.length - 1])
+    stats.stats.clicks[0].data.push({
+      "x": req.body.date,
+      "y": [
+        req.body.minClicks,
+        req.body.maxClicks
+      ]
+    })
+    stats.stats.clicks[1].data.push({
+      "x": req.body.date,
+      "y": req.body.meanClicks
+    })
+    stats.stats.responses[0].data.push({
+      "x": req.body.date,
+      "y": [
+        req.body.minResponses,
+        req.body.maxResponses
+      ]
+    })
+    stats.stats.responses[1].data.push({
+      "x": req.body.date,
+      "y": req.body.meanResponses
+    })
+    Stats.update(stats.userId, stats)
+    res.status(200).json(stats)
+  } catch (err) {
+    manageAllErrors(res, err)
+    return;
   }
 })
 
