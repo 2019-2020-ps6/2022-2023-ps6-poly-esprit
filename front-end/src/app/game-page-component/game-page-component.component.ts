@@ -42,13 +42,12 @@ export class GamePageComponentComponent  implements OnInit, AfterViewInit{
     const id = Number(this.route.snapshot.paramMap.get('idQuiz'));
     this.currentQuiz = this.quizService.getQuiz(id.toString());
     this.currentQuestion = this.currentQuiz?.questions[this.currentIndex].label;
-
+    //console.log("LOG SIMON BEUREL" +this.currentQuiz?.questions[this.currentIndex].answers);
   }
 
   incrementIndexQuestion() {
     this.validateClicked = false;
     this.somethingSelected = true;
-
 
 
     if(this.currentQuiz && this.currentQuiz.questions[this.currentIndex]){
@@ -68,8 +67,6 @@ export class GamePageComponentComponent  implements OnInit, AfterViewInit{
 
   private attractedButton() {
     const buttons = document.querySelectorAll('button');
-
-
 
     const window = document.querySelector('body');
 

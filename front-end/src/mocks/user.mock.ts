@@ -9,7 +9,9 @@ export const mockUser: User[] = [
     age: 35,
     sex: "Female",
     pathology: 0,
-    path_pp: "../assets/profile_picture.png"
+    path_pp: "../assets/profile_picture.png",
+    "need_big_button": true,
+    "need_big_text": true
   },
   {
     id: '1',
@@ -19,7 +21,9 @@ export const mockUser: User[] = [
     age: 75,
     sex: "Male",
     pathology: 1,
-    path_pp: "../assets/profile_picture.png"
+    path_pp: "../assets/profile_picture.png",
+    "need_big_button": true,
+    "need_big_text": true
   },
   {
     id: '2',
@@ -29,7 +33,9 @@ export const mockUser: User[] = [
     age: 87,
     sex: "Male",
     pathology: 2,
-    path_pp: "../assets/profile_picture.png"
+    path_pp: "../assets/profile_picture.png",
+    "need_big_button": true,
+    "need_big_text": true
   },
   {
     id: '3',
@@ -39,6 +45,8 @@ export const mockUser: User[] = [
     age: 73,
     sex: 'Female',
     pathology: 4,
-    path_pp: "../assets/profile_picture.png"
+    path_pp: "../assets/profile_picture.png",
+    "need_big_button": true,
+    "need_big_text": true
   }
 ];

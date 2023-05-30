@@ -1,28 +1,20 @@
 <app-header [title]="currentQuiz ? currentQuiz.name : ''"></app-header>
 
-
 <div *ngIf="currentQuiz && currentQuestion">
-  <app-game-question-component  (whoIsSelected)="onWhoIsSelected($event)" (somethingSelected)="onSomethingSelected($event)" [quiz]="currentQuiz" [question]="currentQuiz.questions[currentIndex]"></app-game-question-component>
+  <app-game-question-component (whoIsSelected)="onWhoIsSelected($event)" (somethingSelected)="onSomethingSelected($event)" [quiz]="currentQuiz" [question]="currentQuiz.questions[currentIndex]"></app-game-question-component>
 </div>
 <div *ngIf="currentQuiz && !currentQuiz.questions[currentIndex]">
   <app-game-end-component [gameInstance]="gameInstance"></app-game-end-component>
 </div>
 
-<div class="centre">
-
+<div class="centre" *ngIf="currentQuiz && currentQuiz.questions[currentIndex]">
   <button class="valider" appAdaptConfig (click)="validate()">
     Valider
   </button>
-
 
   <a [routerLink]="['/themes/', userId]">
     <button class="retour" appAdaptConfig>
       Retour
     </button>
   </a>
-
 </div>
-
-
-
-

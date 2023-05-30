@@ -32,6 +32,8 @@ export class AddUserComponent implements OnInit {
       stade23: new FormControl(false),
       stade4: new FormControl(false),
       administrator: new FormControl(false),
+      needBigButton: new FormControl(false),
+      needBigText: new FormControl(false)
     });
 
     this.UService=userService;
@@ -52,10 +54,12 @@ export class AddUserComponent implements OnInit {
       age: userToAddBef.age,
       sex: userToAddBef.sex,
       pathology: userToAddBef.pathology,
-      path_pp: "to_change"
+      path_pp: "to_change",
+      need_big_button: false,
+      need_big_text: false
     }
 
-    userToAdd.id=this.UService.getIndexForCreate();
+    //userToAdd.id=this.UService.getIndexForCreate();
 
     //Check wich FormControl is checked
     const pathologyControl = this.formulaire.get('stade');
@@ -88,6 +92,18 @@ export class AddUserComponent implements OnInit {
       userToAdd.isAdmin=true;
     }else{
       userToAdd.isAdmin=false;
+    }
+
+    if(this.formulaire.value.needBigButton == true){
+      userToAdd.need_big_button = true;
+    }else{
+      userToAdd.need_big_text = false;
+    }
+
+    if(this.formulaire.value.needBigText == true){
+      userToAdd.need_big_text = true;
+    }else{
+      userToAdd.need_big_text = false;
     }
 
     console.log(userToAdd);
