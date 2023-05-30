@@ -10,6 +10,6 @@ module.exports = new BaseModel('User', {
   sex: Joi.string().required(),
   pathology: Joi.number().required(),
   path_pp: Joi.string().required(),
-  need_big_button: Joi.boolean.required(),
-  need_big_text: Joi.boolean.required(),
+  need_big_button: Joi.boolean().required(),
+  need_big_text: Joi.boolean().required(),
 })

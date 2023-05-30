@@ -1,5 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {UserService} from "../../service/user.service";
+import {Location} from "@angular/common";
+import {ConfigurationService} from "../../service/configuration.service";
 
 
 @Component({
@@ -15,7 +17,9 @@ export class UserListDisplayComponent implements OnInit {
 
   title = 'Liste d\'utilisateurs';
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private location: Location, private configService:ConfigurationService) {
+    this.configService.updateConfigration(true, false,true, false);
+  }
 
   ngOnInit(): void {
     this.userService.getUsers().subscribe((users) => {

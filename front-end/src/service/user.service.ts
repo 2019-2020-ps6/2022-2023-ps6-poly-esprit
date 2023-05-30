@@ -120,7 +120,9 @@ export class UserService {
       age: 30,
       sex: 'male',
       pathology: 1,
-      path_pp: 'path/to/profile-picture.jpg'
+      path_pp: 'path/to/profile-picture.jpg',
+      "need_big_button": false,
+      "need_big_text": false
     };
     return user;
   }
