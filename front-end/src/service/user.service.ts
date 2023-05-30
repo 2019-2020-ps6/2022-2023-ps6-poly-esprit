@@ -36,7 +36,8 @@ export class UserService {
    * 
    * return user;
   }*/
-
+  
+  
   constructor(private http: HttpClient) {
     this.retrieveUsers();
   }
@@ -87,7 +88,6 @@ export class UserService {
     console.log("Le mock possède maintenant:" +this.users.length +" utilisateurs");
   }
 
-
   isAdmin(user_id: string){
     if(user_id){
       //Check if the user is an admin
@@ -118,5 +118,30 @@ export class UserService {
       }
     }
     return (max+1).toString();
+  }
+
+  //todo: THIS METHODS WILL PROBABLY NEED TO BE DELETE IN THE FUTURE//
+
+  /**addUserTest(){
+    const userTest = this.createUser();
+    this.http.post<User>(this.userUrl, userTest, this.httpOptions).subscribe(() => this.retrieveUsers());
+  }*/
+
+  deleteUserWithId(user_id: string) {
+    this.deleteUser(user_id);
+  }
+
+  createUser(): User {
+    const user: User = {
+      id: '1234567889',
+      isAdmin: false,
+      nom: 'Doe',
+      prenom: 'John',
+      age: 30,
+      sex: 'male',
+      pathology: 1,
+      path_pp: 'path/to/profile-picture.jpg'
+    };
+    return user;
   }
 }
