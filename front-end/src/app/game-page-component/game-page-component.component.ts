@@ -112,6 +112,9 @@ export class GamePageComponentComponent  implements OnInit, AfterViewInit{
     this.somethingSelected = isSelected;
   }
 
+  public onClick() {
+    console.log("Click");
+  }
 
   validate() {
     this.incrementIndexQuestion()
