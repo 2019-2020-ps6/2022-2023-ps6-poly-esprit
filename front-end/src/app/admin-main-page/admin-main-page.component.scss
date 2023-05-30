@@ -199,5 +199,15 @@ button{
 }
 
 
+.arrow-up::before {
+  content: "▼ ";
+}
 
+.arrow-down::before {
+  content: "► ";
+}
+.theme>h2:hover{
+  background-color: #acccca;
+  cursor: pointer;
+}
 
