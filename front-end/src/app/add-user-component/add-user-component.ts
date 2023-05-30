@@ -55,7 +55,7 @@ export class AddUserComponent implements OnInit {
       path_pp: "to_change"
     }
 
-    userToAdd.id=this.UService.getIndexForCreate();
+    //userToAdd.id=this.UService.getIndexForCreate();
 
     //Check wich FormControl is checked
     const pathologyControl = this.formulaire.get('stade');

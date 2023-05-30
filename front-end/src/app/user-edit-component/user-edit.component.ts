@@ -45,6 +45,7 @@ export class UserEditComponent implements OnInit {
         if(test) this.currentUser=test;
       }
     });
+
     this.imagePath=this.currentUser?.path_pp;
     this.updateForm();
   }
