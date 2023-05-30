@@ -29,7 +29,8 @@ export class UserEditComponent implements OnInit {
       stade: '',
       administrator: '',
       needBigButton: '',
-      needBigText: ''
+      needBigText: '',
+      path_pp: ''
     });
 
     this.UService=userService;
@@ -57,6 +58,7 @@ export class UserEditComponent implements OnInit {
       nom: this.currentUser?.nom,
       prenom: this.currentUser?.prenom,
       age: this.currentUser?.age,
+      path_pp: this.currentUser?.path_pp,
     });
 
     if(this.currentUser?.sex==='Male'){
@@ -113,7 +115,7 @@ export class UserEditComponent implements OnInit {
       age: userToAddBef.age,
       sex: userToAddBef.sex,
       pathology: userToAddBef.pathology,
-      path_pp: "to_change",
+      path_pp: userToAddBef.path_pp,
       need_big_button: false,
       need_big_text: false
     }
@@ -167,9 +169,7 @@ export class UserEditComponent implements OnInit {
     }else{
       userToAdd.need_big_text = false;
     }
-
-    // todo : A changer quand on aura implémenté la fonctionnalité sur les photos de profil
-    userToAdd.path_pp="nothing";
+    
 
     if(this.currentUser){
       this.UService.deleteUser(this.currentUser.id);

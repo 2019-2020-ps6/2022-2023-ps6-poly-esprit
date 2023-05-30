@@ -5,8 +5,8 @@
 <div class="mainDiv">
   <div class="gauche">
     <img class="image" [src]="imagePath" alt="Texte alternatif" style="width: 150px; height: 100px;">
-    <input type="file" (change)="selectedFile($event)">
   </div>
+
   <div class="droite">
     <form [formGroup]="formulaire" (ngSubmit)="onSubmit()">
       <label for="nom">Nom :</label>
@@ -56,6 +56,10 @@
       <label>
         <input type="checkbox" formControlName="administrator"> Cocher si ce nouveau compte est un compte de personnel de santé
       </label>
+      <br>
+
+      <label for="path_pp">Lien vers la photo de profil :</label>
+      <input type="text" id="path_pp" formControlName="path_pp">
       <br>
 
       <button type="submit">Appliquer les modifications</button>

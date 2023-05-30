@@ -23,6 +23,7 @@ export class AddUserComponent implements OnInit {
       nom: '',
       prenom: '',
       age: '',
+      path_pp: '',
       gender: new FormControl(''),
       stade:new FormControl(''),
       male: new FormControl(false),
@@ -54,7 +55,7 @@ export class AddUserComponent implements OnInit {
       age: userToAddBef.age,
       sex: userToAddBef.sex,
       pathology: userToAddBef.pathology,
-      path_pp: "to_change",
+      path_pp: userToAddBef.path_pp,
       need_big_button: false,
       need_big_text: false
     }
