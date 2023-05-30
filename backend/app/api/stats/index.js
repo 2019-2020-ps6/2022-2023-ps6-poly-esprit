@@ -156,7 +156,6 @@ router.get('/:userId', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  console.log(req.query)
   try {
     const stats = Stats.create(req.body)
     res.status(201).json(stats)
@@ -226,37 +225,33 @@ router.post('/endgame', (req, res) => {
     }
     let length = stats.stats.clicks.length;
     let clicks_data;
-    if (stats.stats.clicks[length - 1].date == req.body.date) {
-      clicks_data = []
+
+     /*
+      * if there is no stats today, create it
+      */
+    let today = strftime('%d/%m', new Date())
+    if (stats.stats.clicks[length - 1].date != today) {
+      stats.stats.clicks.push({
+        "date": today,
+        "data": []
+      })
+      stats.stats.responses.push({
+        "date": today,
+        "data": []
+      })
+      length++;
     }
-    console.log(clicks_data)
-    console.log(clicks_data[clicks_data.length - 1])
-    stats.stats.clicks[0].data.push({
-      "x": req.body.date,
-      "y": [
-        req.body.minClicks,
-        req.body.maxClicks
-      ]
-    })
-    stats.stats.clicks[1].data.push({
-      "x": req.body.date,
-      "y": req.body.meanClicks
-    })
-    stats.stats.responses[0].data.push({
-      "x": req.body.date,
-      "y": [
-        req.body.minResponses,
-        req.body.maxResponses
-      ]
-    })
-    stats.stats.responses[1].data.push({
-      "x": req.body.date,
-      "y": req.body.meanResponses
-    })
-    Stats.update(stats.userId, stats)
-    res.status(200).json(stats)
+    // end of the creation of the stats of today
+
+     /*
+      * Update the stats of the day
+      */
+    stats.stats.clicks[length-1].data.push(req.body.clicks);
+    stats.stats.responses[length-1].data.push(req.body.responses);
+    Stats.save();
+    res.status(200).json("stats registered");
   } catch (err) {
-    manageAllErrors(res, err)
+    manageAllErrors(res, err);
     return;
   }
 })
