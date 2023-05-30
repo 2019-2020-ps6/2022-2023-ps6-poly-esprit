@@ -1,30 +1,6 @@
 const Joi = require('joi');
 const BaseModel = require('../utils/base-model.js');
 
-const meanDataSchema = Joi.object({
-  x: Joi.string(),
-  y: Joi.number(),
-});
-
-const rangeDataSchema = Joi.object({
-  x: Joi.string(),
-  y: Joi.array().items(Joi.number(), Joi.number()),
-});
-
-const statsTypeSchema = Joi.object({
-  type: Joi.string().required(),
-  name: Joi.string().required(),
-  data: Joi.array().items(rangeDataSchema, meanDataSchema).required(),
-});
-
-const statsSchema = {
-  userId: Joi.number().required(),
-  stats: Joi.object({
-    clicks: Joi.array().items(statsTypeSchema).required(),
-    responses: Joi.array().items(statsTypeSchema).required(),
-  }).required(),
-};
-
 const newStatsTypeSchema = Joi.object({
   date: Joi.string().required(),
   data: Joi.array().items(Joi.number()).required(),
@@ -39,11 +15,10 @@ const newStatsSchema = {
   }).required(),
 };
 
-module.exports = new BaseModel('Stats', statsSchema);
-// module.exports = new BaseModel('Stats', newStatsSchema);
+module.exports = new BaseModel('Stats', newStatsSchema);
 
 /*
-New model :
+current model :
 
 [
   {
@@ -75,7 +50,7 @@ New model :
 */
 
 /*
- Current model :
+ old model :
 
  [
   {
