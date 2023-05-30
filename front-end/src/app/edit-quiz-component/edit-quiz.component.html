@@ -43,7 +43,7 @@
   </div>
   <div class="right">
     <br>
-    <h3>Liste de question déjà présentes : </h3>
+    <h3>Liste de questions déjà présentes : </h3>
     <ul>
       <li *ngFor="let question of questions">
         <a class="navigation" class="questions" [routerLink]="['/edit-question', question.id, id_quiz, id_user]">
