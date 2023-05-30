@@ -28,6 +28,8 @@ export class UserEditComponent implements OnInit {
       gender: '',
       stade: '',
       administrator: '',
+      needBigButton: '',
+      needBigText: ''
     });
 
     this.UService=userService;
@@ -85,6 +87,18 @@ export class UserEditComponent implements OnInit {
       });
     }
 
+    if(this.currentUser?.need_big_button){
+      this.formulaire.patchValue({
+        needBigButton: true,
+      })
+    }
+
+    if(this.currentUser?.need_big_text){
+      this.formulaire.patchValue({
+        needBigText: true,
+      })
+    }
+
   }
 
 
@@ -139,6 +153,19 @@ export class UserEditComponent implements OnInit {
       userToAdd.isAdmin=true;
     }else{
       userToAdd.isAdmin=false;
+    }
+
+
+    if(this.formulaire.value.needBigButton == true){
+      userToAdd.need_big_button = true;
+    }else{
+      userToAdd.need_big_text = false;
+    }
+
+    if(this.formulaire.value.needBigText == true){
+      userToAdd.need_big_text = true;
+    }else{
+      userToAdd.need_big_text = false;
     }
 
     // todo : A changer quand on aura implémenté la fonctionnalité sur les photos de profil

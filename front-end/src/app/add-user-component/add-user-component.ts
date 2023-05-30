@@ -32,6 +32,8 @@ export class AddUserComponent implements OnInit {
       stade23: new FormControl(false),
       stade4: new FormControl(false),
       administrator: new FormControl(false),
+      needBigButton: new FormControl(false),
+      needBigText: new FormControl(false)
     });
 
     this.UService=userService;
@@ -90,6 +92,18 @@ export class AddUserComponent implements OnInit {
       userToAdd.isAdmin=true;
     }else{
       userToAdd.isAdmin=false;
+    }
+
+    if(this.formulaire.value.needBigButton == true){
+      userToAdd.need_big_button = true;
+    }else{
+      userToAdd.need_big_text = false;
+    }
+
+    if(this.formulaire.value.needBigText == true){
+      userToAdd.need_big_text = true;
+    }else{
+      userToAdd.need_big_text = false;
     }
 
     console.log(userToAdd);
