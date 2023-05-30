@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const { Answer } = require('../../../../models')
+const { Answer } = require('../../../../../models')
 
 const { getQuestionFromQuiz } = require('../manager')
 const { filterAnswersFromQuestion, getAnswerFromQuestion } = require('./manager')
