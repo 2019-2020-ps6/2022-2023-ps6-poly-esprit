@@ -76,7 +76,7 @@ export class EditQuizComponent {
       return;
     }
 
-    this.currentQuiz?.questions.push(
+    this.currentQuiz?.questions?.push(
       {id: (this.QUESTION_Service.getSize()).toString(),
         label: this.formulaire.value.title,
         answers: [
@@ -87,11 +87,14 @@ export class EditQuizComponent {
         ]});
 
     //Push the new question to the database of question
-    this.questionService.addQuestion(this.currentQuiz?.questions[this.currentQuiz?.questions.length-1] as Question);
+    if(this.currentQuiz?.questions){
+      this.questionService.addQuestion(this.currentQuiz?.questions[this.currentQuiz?.questions?.length - 1] as Question);
+
+    }
 
     console.log("Done");
     console.log("TAILLE"  +this.QUESTION_Service.getSize());
-    alert("Question ajoutée ! Le quizz possède maintenant "+this.currentQuiz?.questions.length+" questions");
+    alert("Question ajoutée ! Le quizz possède maintenant "+this.currentQuiz?.questions?.length+" questions");
     this.formulaire.reset();
 
   }

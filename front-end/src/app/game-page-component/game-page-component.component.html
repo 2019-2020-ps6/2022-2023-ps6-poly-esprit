@@ -1,10 +1,10 @@
 <app-header [title]="currentQuiz ? currentQuiz.name : ''"></app-header>
 
 
-<div *ngIf="currentQuiz && currentQuestion">
+<div *ngIf="currentQuiz && currentQuestion && currentQuiz.questions">
   <app-game-question-component  (whoIsSelected)="onWhoIsSelected($event)" (somethingSelected)="onSomethingSelected($event)" [quiz]="currentQuiz" [question]="currentQuiz.questions[currentIndex]"></app-game-question-component>
 </div>
-<div *ngIf="currentQuiz && !currentQuiz.questions[currentIndex]">
+<div *ngIf="currentQuiz && currentQuiz.questions && !currentQuiz.questions[currentIndex]">
   <app-game-end-component [gameInstance]="gameInstance"></app-game-end-component>
 </div>
 

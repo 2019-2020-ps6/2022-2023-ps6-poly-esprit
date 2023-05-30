@@ -41,9 +41,11 @@ export class GamePageComponentComponent  implements OnInit, AfterViewInit{
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('idQuiz'));
     this.currentQuiz = this.quizService.getQuiz(id.toString());
-    this.currentQuestion = this.currentQuiz?.questions[this.currentIndex].label;
+    if (this.currentQuiz?.questions) {
+      this.currentQuestion = this.currentQuiz?.questions[this.currentIndex].label;
+    }
 
-  }
+    }
 
   incrementIndexQuestion() {
     this.validateClicked = false;
@@ -51,7 +53,7 @@ export class GamePageComponentComponent  implements OnInit, AfterViewInit{
 
 
 
-    if(this.currentQuiz && this.currentQuiz.questions[this.currentIndex]){
+    if(this.currentQuiz && this.currentQuiz.questions && this.currentQuiz.questions[this.currentIndex]){
       this.gameInstance.Id = "1";
       this.gameInstance.quizId = this.currentQuiz.id;
       this.gameInstance.gameQuestionsAnswers = this.gameQuestionAnswers;
@@ -61,7 +63,7 @@ export class GamePageComponentComponent  implements OnInit, AfterViewInit{
       this.gameInstanceService.addGameInstance(this.gameInstance);
     }
     this.currentIndex++;
-    if (this.currentQuiz?.questions[this.currentIndex]!=undefined){
+    if (this.currentQuiz?.questions && this.currentQuiz?.questions[this.currentIndex]!=undefined){
       this.currentQuestion = this.currentQuiz?.questions[this.currentIndex].label;
     }
   }

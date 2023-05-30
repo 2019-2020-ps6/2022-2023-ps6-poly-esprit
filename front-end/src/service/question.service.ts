@@ -36,6 +36,7 @@ export class QuestionService {
 
   addQuestion(u: Question){
     this.questions.push(u);
+
   }
 
 

@@ -26,7 +26,7 @@ export class QuizService {
 
   addQuiz(q: Quiz){
     //this.quizzes.push(q);
-    this.http.post<User>(this.quizUrl, q, this.httpOptions).subscribe(() => this.retrieveQuizs());
+    this.http.post<Quiz>(this.quizUrl, q, this.httpOptions).subscribe(() => this.retrieveQuizs());
 
     // console.log("Une nouvelle questiona  été ajoutée avec comme nom :"+q.name+" et en thème: "+q.theme+"\n");
     console.log("Le mock possède maintenant:" +this.quizzes.length +"quizs");
