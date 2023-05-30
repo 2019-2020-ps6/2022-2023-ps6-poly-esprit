@@ -2,6 +2,13 @@
   <div id="libele_quiz">
     <h3 id="question" *ngIf="question"> {{question.label}}</h3>
   </div>
+
+  <div id="picture">
+    <a *ngIf="question" [href]="question.path_picture" target="_blank">
+      <img [src]="question.path_picture" alt="Image de la question">
+    </a>
+  </div>
+
 <article [ngClass]="{'isVisible': answerIsDuo}" class="answers">
     <div *ngFor="let answer of getAnswerDuo()">
       <app-game-answer-component  [answer]="answer" [isBadSelected]="!answer.isCorrect" [isGoodSelected]="answer.isCorrect" [isSelected]="currentValue==answer.value" (selected)="onSelected($event)"></app-game-answer-component>

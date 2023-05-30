@@ -41,6 +41,7 @@ export class GameQuestionComponentComponent implements OnInit{
     this.random = Math.floor(Math.random() * 3);
 
   }
+
   ngOnInit(): void {
     if(this.howPathology===4){
       this.answerIsDuo=true;

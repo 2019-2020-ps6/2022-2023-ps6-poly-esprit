@@ -26,6 +26,7 @@ export class GamePageComponentComponent  implements OnInit, AfterViewInit{
   private gameQuestionAnswers: GameQuestionAnswer[] = [];
   private score: number = 0;
   public userId:number;
+  public currentPathPicture: string | undefined;
   @Input() quiz?: Quiz ;
 
 
@@ -42,7 +43,8 @@ export class GamePageComponentComponent  implements OnInit, AfterViewInit{
     const id = Number(this.route.snapshot.paramMap.get('idQuiz'));
     this.currentQuiz = this.quizService.getQuiz(id.toString());
     this.currentQuestion = this.currentQuiz?.questions[this.currentIndex].label;
-    console.log("LOG SIMON BEUREL " +this.currentQuiz?.questions[this.currentIndex].answers[0].value);
+    this.currentPathPicture = this.currentQuiz?.questions[this.currentIndex].path_picture;
+    //console.log("LOG SIMON BEUREL " +this.currentPathPicture);
   }
 
   incrementIndexQuestion() {
@@ -62,6 +64,7 @@ export class GamePageComponentComponent  implements OnInit, AfterViewInit{
     this.currentIndex++;
     if (this.currentQuiz?.questions[this.currentIndex]!=undefined){
       this.currentQuestion = this.currentQuiz?.questions[this.currentIndex].label;
+      this.currentPathPicture = this.currentQuiz?.questions[this.currentIndex].path_picture;
     }
   }
 
