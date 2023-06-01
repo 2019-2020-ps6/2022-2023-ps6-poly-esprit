@@ -127,10 +127,6 @@ export class UserService {
     this.http.post<User>(this.userUrl, userTest, this.httpOptions).subscribe(() => this.retrieveUsers());
   }*/
 
-  deleteUserWithId(user_id: string) {
-    this.deleteUser(user_id);
-  }
-
   createUser(): User {
     const user: User = {
       id: '1234567889',
