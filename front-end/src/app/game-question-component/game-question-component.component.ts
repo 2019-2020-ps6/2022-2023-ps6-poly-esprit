@@ -27,15 +27,15 @@ export class GameQuestionComponentComponent implements OnInit{
   public answerIsCash: boolean = false;
   public answerIsChoice: boolean = false;
 
-
+  
 
   constructor(private route: ActivatedRoute) {
     const id = this.route.snapshot.paramMap.get('idUser');
-    for(let user of mockUser){
+    /*for(let user of mockUser){
       if(user.id===id){
         this.howPathology=user.pathology;
       }
-    }
+    }*/
     this.random = Math.floor(Math.random() * 3);
 
   }
