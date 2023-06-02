@@ -20,7 +20,7 @@ export class StatsVisualisationComponent implements OnInit {
   choiceClics: any;
   clickItem = "click";
   reponseItem = "reponse";
-  title = 'Statistiques utilisateur';
+  title = 'Statistiques du patient';
 
   constructor(private userService: UserService, private route: ActivatedRoute) {
     this.userId = Number(this.route.snapshot.paramMap.get("userId"))
