@@ -12,6 +12,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class GameEndComponentComponent implements AfterViewInit {
   @Input() gameInstance?: GameInstance;
+  @Input() shared_clicks?: number;
   public userId: number;
   visibleRecap: boolean = false;
   message: string = '';

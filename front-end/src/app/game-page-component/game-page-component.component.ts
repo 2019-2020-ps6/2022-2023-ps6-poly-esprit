@@ -21,6 +21,7 @@ export class GamePageComponentComponent  implements OnInit, AfterViewInit{
   public validateClicked:boolean=false;
   public clicks = 0;
   public valid_clicks = 0;
+  public shared_clicks = 0;
   public title = 'Jouer à un quizz';
   public somethingSelected: boolean = true;
   public selectedValue?: string;
@@ -48,6 +49,11 @@ export class GamePageComponentComponent  implements OnInit, AfterViewInit{
     this.currentQuestion = this.currentQuiz?.questions[this.currentIndex].label;
     this.currentPathPicture = this.currentQuiz?.questions[this.currentIndex].path_picture;
     //console.log("LOG SIMON BEUREL " +this.currentPathPicture);
+  }
+
+  
+  onValideClick() {
+    this.valid_clicks++;
   }
 
   incrementIndexQuestion() {
@@ -120,13 +126,15 @@ export class GamePageComponentComponent  implements OnInit, AfterViewInit{
 
   public onClick() {
     this.clicks++;
-    console.log("clicks", this.clicks, "valid_clicks", this.valid_clicks);
+    this.shared_clicks = ~~(this.valid_clicks/this.clicks*100);
+    console.log("clicks", this.clicks, "valid_clicks", this.valid_clicks, "shared_clicks", this.shared_clicks);
   }
 
   validate() {
-    this.incrementIndexQuestion()
+    this.onValideClick();
+    this.shared_clicks = ~~(this.valid_clicks/(this.clicks+1)*100);
+    this.incrementIndexQuestion();
     this.validateClicked = true;
-    this.onValideClick()
     let isCorrect;
     if (document.getElementsByClassName("goodAnswer")[0].innerHTML === this.selectedValue) {
       isCorrect = true;
@@ -147,9 +155,5 @@ export class GamePageComponentComponent  implements OnInit, AfterViewInit{
 
   onWhoIsSelected(value: string) {
     this.selectedValue = value;
-  }
-
-  onValideClick() {
-    this.valid_clicks++;
   }
 }
