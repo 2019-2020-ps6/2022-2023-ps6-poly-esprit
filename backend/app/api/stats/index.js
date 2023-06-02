@@ -210,16 +210,8 @@ router.post('/endgame', (req, res) => {
       stats = Stats.create({
         "userId": userId,
         "stats": {
-          "clicks": [
-            {
-              "data": []
-            },
-          ],
-          "responses": [
-            {
-              "data": []
-            }
-          ]
+          "clicks": [],
+          "responses": []
         }
       })
     }
@@ -230,7 +222,7 @@ router.post('/endgame', (req, res) => {
       * if there is no stats today, create it
       */
     let today = strftime('%d/%m', new Date())
-    if (stats.stats.clicks[length - 1].date != today) {
+    if (length == 0 || stats.stats.clicks[length - 1].date != today) {
       stats.stats.clicks.push({
         "date": today,
         "data": []
