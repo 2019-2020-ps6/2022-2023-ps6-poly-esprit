@@ -4,6 +4,7 @@ import {Question} from "../../models/question.models";
 import {QuestionService} from "../../service/question.service";
 import {GameInstance} from "../../models/gameInstance.models";
 import {ActivatedRoute} from "@angular/router";
+import { PlayerStatsService } from '../../service/playersStats.service';
 
 @Component({
   selector: 'app-game-end-component',
@@ -67,7 +68,7 @@ export class GameEndComponentComponent implements AfterViewInit {
 
   }
 
-  constructor(private route: ActivatedRoute){
+  constructor(private route: ActivatedRoute, private playerStatsService: PlayerStatsService){
     this.userId = Number(this.route.snapshot.paramMap.get('idUser'));
   }
 
@@ -86,6 +87,14 @@ export class GameEndComponentComponent implements AfterViewInit {
         this.message = `Ne vous découragez pas ! Vous avez terminé le quiz avec une note négative de ${-this.gameInstance.score} point${this.gameInstance.score < -1 ? 's' : ''}.`;
       }
     }
+    if (this.shared_clicks == undefined || this.gameInstance == undefined) {
+      return;
+    }
+    let score = ~~(this.gameInstance.score/this.gameInstance.gameQuestionsAnswers.length*100);
+    console.log("userId", this.userId);
+    console.log("score", score);
+    console.log("shared_clicks", this.shared_clicks);
+    //this.playerStatsService.endGame(this.userId, score, this.shared_clicks);
   }
 
 }

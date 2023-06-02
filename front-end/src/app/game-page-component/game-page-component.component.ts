@@ -51,10 +51,6 @@ export class GamePageComponentComponent  implements OnInit, AfterViewInit{
     //console.log("LOG SIMON BEUREL " +this.currentPathPicture);
   }
 
-  
-  onValideClick() {
-    this.valid_clicks++;
-  }
 
   incrementIndexQuestion() {
     this.validateClicked = false;
@@ -127,7 +123,6 @@ export class GamePageComponentComponent  implements OnInit, AfterViewInit{
   public onClick() {
     this.clicks++;
     this.shared_clicks = ~~(this.valid_clicks/this.clicks*100);
-    console.log("clicks", this.clicks, "valid_clicks", this.valid_clicks, "shared_clicks", this.shared_clicks);
   }
 
   validate() {
@@ -139,7 +134,6 @@ export class GamePageComponentComponent  implements OnInit, AfterViewInit{
     if (document.getElementsByClassName("goodAnswer")[0].innerHTML === this.selectedValue) {
       isCorrect = true;
       this.score++;
-
     } else {
       isCorrect = false;
     }
@@ -155,5 +149,9 @@ export class GamePageComponentComponent  implements OnInit, AfterViewInit{
 
   onWhoIsSelected(value: string) {
     this.selectedValue = value;
+  }
+  
+  onValideClick() {
+    this.valid_clicks++;
   }
 }
