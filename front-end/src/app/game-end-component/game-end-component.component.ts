@@ -14,10 +14,11 @@ export class GameEndComponentComponent implements AfterViewInit {
   @Input() gameInstance?: GameInstance;
   public userId: number;
   visibleRecap: boolean = false;
-
+  message: string = '';
 
   ngAfterViewInit(): void {
     this.attractedButton();
+    this.updateMessage();
   }
 
   private attractedButton() {
@@ -72,4 +73,18 @@ export class GameEndComponentComponent implements AfterViewInit {
   viewRecap() {
     this.visibleRecap = !this.visibleRecap;
   }
+
+  private updateMessage() {
+    //TODO : Quand le back-end sera implémenté pour la partie quiz, on pourra regarder si le score du patient > 50% des questions
+    if (this.gameInstance) {
+      if (this.gameInstance.score > 0 && this.gameInstance.score < 1) {
+        this.message = `Bravo ! Vous avez terminé le quiz avec ${this.gameInstance.score} point${this.gameInstance.score > 1 ? 's' : ''}.`;
+      } else if (this.gameInstance.score === 0) {
+        this.message = 'Dommage ! Vous allez vous améliorer !';
+      } else {
+        this.message = `Ne vous découragez pas ! Vous avez terminé le quiz avec une note négative de ${-this.gameInstance.score} point${this.gameInstance.score < -1 ? 's' : ''}.`;
+      }
+    }
+  }
+
 }
