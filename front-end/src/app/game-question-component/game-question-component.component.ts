@@ -4,6 +4,7 @@ import {Answer, Question} from "../../models/question.models";
 import {mockUser} from "../../mocks/user.mock";
 import {QuestionService} from "../../service/question.service";
 import {ActivatedRoute} from "@angular/router";
+import {UserService} from "../../service/user.service";
 
 
 // Quizz list => PageComp
@@ -29,16 +30,20 @@ export class GameQuestionComponentComponent implements OnInit{
 
   
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, public userService: UserService) {
     const id = this.route.snapshot.paramMap.get('idUser');
     /*for(let user of mockUser){
       if(user.id===id){
         this.howPathology=user.pathology;
       }
     }*/
+    
+    if(id) this.howPathology = userService.getUser(id)?.pathology;
+
     this.random = Math.floor(Math.random() * 3);
 
   }
+
   ngOnInit(): void {
     if(this.howPathology===4){
       this.answerIsDuo=true;

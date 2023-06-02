@@ -2,6 +2,7 @@
 <app-header [title]="currentQuiz ? currentQuiz.name : ''"></app-header>
 
 <div *ngIf="currentQuiz && currentQuestion">
+
   <app-game-question-component (whoIsSelected)="onWhoIsSelected($event)" (somethingSelected)="onSomethingSelected($event)" [quiz]="currentQuiz" [question]="currentQuiz.questions[currentIndex]"></app-game-question-component>
 </div>
 <div *ngIf="currentQuiz && !currentQuiz.questions[currentIndex]">

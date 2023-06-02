@@ -6,6 +6,7 @@
   padding-bottom: 5px;
   display: inline-block;
 }
+
 .title{
   display: flex;
   align-items: center;
@@ -26,7 +27,7 @@
   background-color: rgba(58, 175, 169, 0.36);
   margin: 10px 80px;
   border-radius: 5px;
-  padding: 5px 10px;
+  padding: 5px 120px;
   transition: 0.2s;
   display: flex;
   flex-direction: column;
@@ -47,7 +48,7 @@ ul {
 }
 
 li {
-  width: 50%;
+  width: 30%;
 }
 .name{
   text-decoration: none;

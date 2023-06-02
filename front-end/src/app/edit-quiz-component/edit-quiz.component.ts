@@ -84,7 +84,8 @@ export class EditQuizComponent {
           {type: 'text', value: this.formulaire.value.bad_answer1, isCorrect: false},
           {type: 'text', value: this.formulaire.value.bad_answer2, isCorrect: false},
           {type: 'text', value: this.formulaire.value.bad_answer3, isCorrect: false}
-        ]});
+        ],
+      path_picture: "nothing_we_need_to_change"});
 
     //Push the new question to the database of question
     this.questionService.addQuestion(this.currentQuiz?.questions[this.currentQuiz?.questions.length-1] as Question);

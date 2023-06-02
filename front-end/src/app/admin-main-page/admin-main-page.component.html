@@ -59,9 +59,12 @@
     </a>
   </div>
   <ul>
-    <li class="theme" *ngFor="let theme of themes">
-      <h2> Thème : {{ theme.name }} </h2>
-      <ul>
+    <div class="theme" *ngFor="let theme of themes">
+      <h2 (click)="onSelectTheme(theme)">
+        <span [ngClass]="{ 'arrow-up': quizListVisible && selectedTheme === theme, 'arrow-down': !quizListVisible || selectedTheme !== theme }"></span>
+        Thème : {{ theme.name }}
+      </h2>
+      <ul *ngIf="selectedTheme === theme && quizListVisible">
         <li *ngFor="let quiz of theme.quizzes" class="quiz-item">
           <div class="quiz_container">
             <a class="navigation" [routerLink]="['/game-page', quiz.id, admin_id]">
@@ -79,7 +82,6 @@
         </li>
       </ul>
       <br><br>
-    </li>
+    </div>
   </ul>
 </div>
-

@@ -84,32 +84,38 @@ export const Questions = [
   {
     id: '0',
     label: 'A quelle date a eu lieu la révolution française ?',
-    answers: [Answer[0],Answer[1],Answer[2], Answer[3]]
+    answers: [Answer[0],Answer[1],Answer[2], Answer[3]],
+    path_picture: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Prise_de_la_Bastille.jpg/330px-Prise_de_la_Bastille.jpg"
   },
   {
     id: '1',
     label: 'A quoi correspond la date du 8 mai dans l’histoire de France ?',
-    answers: [Answer[4],Answer[5],Answer[6], Answer[7]]
+    answers: [Answer[4],Answer[5],Answer[6], Answer[7]],
+    path_picture: "https://ville-maurecourt.fr/sites/maurecourt/files/image/815_view_8_mai.jpg"
   },
   {
     id: '2',
     label: 'Quelle est la date de la prise de la Bastille ?',
-    answers: [Answer[8],Answer[9],Answer[10], Answer[11]]
+    answers: [Answer[8],Answer[9],Answer[10], Answer[11]],
+    path_picture: "https://histoire-image.org/sites/default/files/2021-11/prise-bastille-14-juillet.jpg"
   },
   {
     id: '3',
     label: "Qui est l'acteur principal du film Intouchables ?",
-    answers: [Answer[12],Answer[13],Answer[14], Answer[15]]
+    answers: [Answer[12],Answer[13],Answer[14], Answer[15]],
+    path_picture: "https://img-4.linternaute.com/Dy4dkW0Rx1TsNouefRK4fBwu_iQ=/1240x/smart/ab776450d63d40f2bc8be58abf7bd918/ccmcms-linternaute/11588577.jpg"
   },
   {
     id: '4',
     label: "Donner un film avec Will Smith",
-    answers: [Answer[16],Answer[17],Answer[18], Answer[19]]
+    answers: [Answer[16],Answer[17],Answer[18], Answer[19]],
+    path_picture: "https://www.artistikrezo.com/wp-content/uploads/2020/01/bad-boys-for-life.jpg"
   },
   {
     id: '5',
     label: "Quel est le nom du langage de programmation utilisé pour créer ce site ?",
-    answers: [Answer[20],Answer[21],Answer[22], Answer[23]]
+    answers: [Answer[20],Answer[21],Answer[22], Answer[23]],
+    path_picture: "https://www.developpez.net/forums/attachments/p542850d1/a/a/a"
   },
 ];
 
