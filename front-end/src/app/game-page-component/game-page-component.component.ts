@@ -19,6 +19,8 @@ export class GamePageComponentComponent  implements OnInit, AfterViewInit{
   public currentQuestion:string | undefined;
   public currentIndex:number=0;
   public validateClicked:boolean=false;
+  public clicks = 0;
+  public valid_clicks = 0;
   public title = 'Jouer à un quizz';
   public somethingSelected: boolean = true;
   public selectedValue?: string;
@@ -28,6 +30,7 @@ export class GamePageComponentComponent  implements OnInit, AfterViewInit{
   public userId:number;
   public currentPathPicture: string | undefined;
   @Input() quiz?: Quiz ;
+  @Input() clicked?: boolean;
 
 
   constructor(private quizService: QuizService, private route: ActivatedRoute, private questionService: QuestionService, private gameInstanceService: GameInstanceService) {
@@ -116,12 +119,14 @@ export class GamePageComponentComponent  implements OnInit, AfterViewInit{
   }
 
   public onClick() {
-    console.log("Click");
+    this.clicks++;
+    console.log("clicks", this.clicks, "valid_clicks", this.valid_clicks);
   }
 
   validate() {
     this.incrementIndexQuestion()
     this.validateClicked = true;
+    this.onValideClick()
     let isCorrect;
     if (document.getElementsByClassName("goodAnswer")[0].innerHTML === this.selectedValue) {
       isCorrect = true;
@@ -141,6 +146,10 @@ export class GamePageComponentComponent  implements OnInit, AfterViewInit{
   }
 
   onWhoIsSelected(value: string) {
-    this.selectedValue= value;
+    this.selectedValue = value;
+  }
+
+  onValideClick() {
+    this.valid_clicks++;
   }
 }

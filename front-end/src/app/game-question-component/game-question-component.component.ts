@@ -18,8 +18,9 @@ export class GameQuestionComponentComponent implements OnInit{
 
   @Input() quiz?: Quiz ;
   @Input() question?: Question;
-  @Output() somethingSelected=new EventEmitter<boolean>();
-  @Output() whoIsSelected=new EventEmitter<string>();
+  @Output() valideClick = new EventEmitter<boolean>();
+  @Output() somethingSelected = new EventEmitter<boolean>();
+  @Output() whoIsSelected = new EventEmitter<string>();
   public howPathology: number | undefined;
   currentValue? : string;
   public random;
@@ -103,6 +104,9 @@ export class GameQuestionComponentComponent implements OnInit{
 
   }
 
+  onValideClick() {
+    this.valideClick.emit(true);
+  }
 
 }
 //https://angular.io/tutorial/tour-of-heroes/toh-pt4
