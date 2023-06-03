@@ -19,6 +19,9 @@ export class GamePageComponentComponent  implements OnInit, AfterViewInit{
   public currentQuestion:string | undefined;
   public currentIndex:number=0;
   public validateClicked:boolean=false;
+  public clicks = 0;
+  public valid_clicks = 0;
+  public shared_clicks = 0;
   public title = 'Jouer à un quizz';
   public somethingSelected: boolean = true;
   public selectedValue?: string;
@@ -28,6 +31,7 @@ export class GamePageComponentComponent  implements OnInit, AfterViewInit{
   public userId:number;
   public currentPathPicture: string | undefined;
   @Input() quiz?: Quiz ;
+  @Input() clicked?: boolean;
 
 
   constructor(private quizService: QuizService, private route: ActivatedRoute, private questionService: QuestionService, private gameInstanceService: GameInstanceService) {
@@ -46,6 +50,7 @@ export class GamePageComponentComponent  implements OnInit, AfterViewInit{
     this.currentPathPicture = this.currentQuiz?.questions[this.currentIndex].path_picture;
     //console.log("LOG SIMON BEUREL " +this.currentPathPicture);
   }
+
 
   incrementIndexQuestion() {
     this.validateClicked = false;
@@ -116,17 +121,19 @@ export class GamePageComponentComponent  implements OnInit, AfterViewInit{
   }
 
   public onClick() {
-    console.log("Click");
+    this.clicks++;
+    this.shared_clicks = ~~(this.valid_clicks/this.clicks*100);
   }
 
   validate() {
-    this.incrementIndexQuestion()
+    this.onValideClick();
+    this.shared_clicks = ~~(this.valid_clicks/(this.clicks+1)*100);
+    this.incrementIndexQuestion();
     this.validateClicked = true;
     let isCorrect;
     if (document.getElementsByClassName("goodAnswer")[0].innerHTML === this.selectedValue) {
       isCorrect = true;
       this.score++;
-
     } else {
       isCorrect = false;
     }
@@ -141,6 +148,10 @@ export class GamePageComponentComponent  implements OnInit, AfterViewInit{
   }
 
   onWhoIsSelected(value: string) {
-    this.selectedValue= value;
+    this.selectedValue = value;
+  }
+  
+  onValideClick() {
+    this.valid_clicks++;
   }
 }

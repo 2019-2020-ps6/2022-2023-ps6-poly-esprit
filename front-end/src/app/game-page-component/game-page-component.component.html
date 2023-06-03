@@ -3,10 +3,10 @@
 
 <div *ngIf="currentQuiz && currentQuestion">
 
-  <app-game-question-component (whoIsSelected)="onWhoIsSelected($event)" (somethingSelected)="onSomethingSelected($event)" [quiz]="currentQuiz" [question]="currentQuiz.questions[currentIndex]"></app-game-question-component>
+  <app-game-question-component (valideClick)="onValideClick()" (whoIsSelected)="onWhoIsSelected($event)" (somethingSelected)="onSomethingSelected($event)" [quiz]="currentQuiz" [question]="currentQuiz.questions[currentIndex]"></app-game-question-component>
 </div>
 <div *ngIf="currentQuiz && !currentQuiz.questions[currentIndex]">
-  <app-game-end-component [gameInstance]="gameInstance"></app-game-end-component>
+  <app-game-end-component [gameInstance]="gameInstance" [shared_clicks]="shared_clicks"></app-game-end-component>
 </div>
 
 <div class="centre" *ngIf="currentQuiz && currentQuiz.questions[currentIndex]">
