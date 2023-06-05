@@ -1,4 +1,4 @@
-const { Quiz } = require('../../../models')
+const { Quiz, Question } = require('../../../models')
 const { filterQuestionsFromQuizz } = require('./questions/manager')
 const { filterAnswersFromQuestion } = require('./questions/answers/manager')
 
@@ -29,6 +29,9 @@ const buildQuizzes = () => {
 
 const filterQuizzesByTheme = (themeId) => {
   const quizzes = Quiz.get()
+  const questions = Question.get()
+  questions.forEach((question) => { question.answers = filterAnswersFromQuestion(question.id) })
+  quizzes.forEach((quiz) => { quiz.questions = questions.filter((question) => question.quizId === quiz.id) })
   const parsedId = parseInt(themeId, 10)
   return quizzes.filter((quiz) => quiz.themeId === parsedId)
 }

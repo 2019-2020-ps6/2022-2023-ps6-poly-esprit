@@ -28,6 +28,8 @@ export class QuestionService {
   }
 
 
+
+
   deleteQuestion(u: Question | undefined){
     if (u) {
       this.questions.splice(this.questions.indexOf(u), 1);

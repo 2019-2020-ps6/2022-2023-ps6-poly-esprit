@@ -4,6 +4,8 @@ import {Answer, Question} from "../../models/question.models";
 import {mockUser} from "../../mocks/user.mock";
 import {QuestionService} from "../../service/question.service";
 import {ActivatedRoute} from "@angular/router";
+import {UserService} from "../../service/user.service";
+import {of} from "rxjs";
 
 
 // Quizz list => PageComp
@@ -29,14 +31,15 @@ export class GameQuestionComponentComponent implements OnInit{
 
 
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private userService: UserService) {
     const id = this.route.snapshot.paramMap.get('idUser');
-    for(let user of mockUser){
-      if(user.id===id){
-        this.howPathology=user.pathology;
-      }
-    }
+    const user = this.userService.getUserById(Number(id));
+    user.subscribe((user) => { this.howPathology = user.pathology });
+    console.log("log dans gameQuestion",this.howPathology)
+
+
     this.random = Math.floor(Math.random() * 3);
+
 
   }
   ngOnInit(): void {
@@ -49,6 +52,7 @@ export class GameQuestionComponentComponent implements OnInit{
     if(this.howPathology===1  || this.howPathology===0){
       this.answerIsChoice=true;
     }
+    console.log("log dans gameQuestion",this.howPathology)
 
   }
   public onSelected(value:string){

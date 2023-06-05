@@ -36,9 +36,6 @@ export class QuizService {
   addQuiz(q: Quiz){
     //this.quizzes.push(q);
     this.http.post<Quiz>(this.quizUrl, q, this.httpOptions).subscribe(() => this.retrieveQuizs());
-
-    // console.log("Une nouvelle questiona  été ajoutée avec comme nom :"+q.name+" et en thème: "+q.theme+"\n");
-    console.log("Le mock possède maintenant:" +this.quizzes.length +"quizs");
     this.printQuiz();
 
   }
@@ -61,7 +58,7 @@ export class QuizService {
 
 
   getQuiz(id: String): Quiz | undefined {
-    return this.quizzes.find(quiz => quiz.id === id);
+    return this.quizzes.find(quiz => quiz.id == id.toString());
   }
 
   getIndexToCreate(){
@@ -81,6 +78,5 @@ export class QuizService {
       this.quizzes = quizList;
       this.quizzes$.next(this.quizzes);
     });
-    console.log(this.quizzes);
   }
 }

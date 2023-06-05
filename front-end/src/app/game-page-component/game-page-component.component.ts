@@ -43,9 +43,10 @@ export class GamePageComponentComponent  implements OnInit, AfterViewInit{
     this.currentQuiz = this.quizService.getQuiz(id.toString());
     if (this.currentQuiz?.questions) {
       this.currentQuestion = this.currentQuiz?.questions[this.currentIndex].label;
+      console.log("current question", this.currentQuestion);
     }
 
-    }
+  }
 
   incrementIndexQuestion() {
     this.validateClicked = false;

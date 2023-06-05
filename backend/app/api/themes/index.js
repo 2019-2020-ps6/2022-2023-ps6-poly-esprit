@@ -3,13 +3,14 @@ const { Router } = require('express')
 const { Theme, Quiz} = require('../../models')
 const QuizRouter = require('./quizzes')
 const manageAllErrors = require('../../utils/routes/error-management')
+const {buildThemes} = require("./manager");
 
 const router = new Router()
 
 router.use('/:themeId/quizzes', QuizRouter)
 router.get('/', (req, res) => {
     try {
-        const themes = Theme.get()
+        const themes = buildThemes()
         res.status(200).json(themes)
     } catch (err) {
         manageAllErrors(res, err)

@@ -1,5 +1,6 @@
-const { Quiz, Question } = require('../../../../models')
+const { Quiz, Question, Answer} = require('../../../../models')
 const NotFoundError = require('../../../../utils/errors/not-found-error.js')
+const {getAnswerFromQuestion} = require("./answers/manager");
 
 /**
  * Questions Manager.
@@ -13,7 +14,9 @@ const NotFoundError = require('../../../../utils/errors/not-found-error.js')
  */
 const filterQuestionsFromQuizz = (quizId) => {
   const questions = Question.get()
+  const answers = Answer.get()
   const parsedId = parseInt(quizId, 10)
+  questions.forEach((question) => { question.answers = answers.filter((answer) => answer.questionId === question.id) })
   return questions.filter((question) => question.quizId === parsedId)
 }
 

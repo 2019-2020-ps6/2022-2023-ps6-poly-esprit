@@ -5,14 +5,14 @@ const manageAllErrors = require('../../../utils/routes/error-management')
 const QuestionsRouter = require('./questions')
 const { buildQuizz, buildQuizzes, filterQuizzesByTheme} = require('./manager')
 
-const router = new Router({ mergeParams: true})
+const router = new Router({ mergeParams: true })
 
-// router.use('/:quizId/questions', QuestionsRouter)
+router.use('/:quizId/questions', QuestionsRouter)
 
 router.get('/', (req, res) => {
   try {
-    Theme.getById(req.params.themeId)
-    res.status(200).json(filterQuizzesByTheme(req.params.themeId))
+    const quizzes = filterQuizzesByTheme(req.params.themeId);
+    res.status(200).json(quizzes)
   } catch (err) {
     console.log(err)
     manageAllErrors(res, err)

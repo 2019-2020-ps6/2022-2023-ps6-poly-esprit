@@ -1,4 +1,4 @@
-const { Theme } = require('../../models')
+const { Theme, Quiz } = require('../../models')
 const {filterQuizzesByTheme} = require("./quizzes/manager");
 const {filterQuestionsFromQuizz} = require("./quizzes/questions/manager");
 
@@ -20,7 +20,11 @@ const buildTheme = (themeId) => {
  */
 const buildThemes = () => {
     const themes = Theme.get()
-    return themes.map((theme) => buildTheme(theme.id))
+    const quizzes = Quiz.get()
+    quizzes.forEach((quiz) => { quiz.questions = filterQuestionsFromQuizz(quiz.id) })
+    themes.forEach((theme) => { theme.quizzes = quizzes.filter((quiz) => quiz.themeId === theme.id) })
+    return themes
+
 }
 
 module.exports = {

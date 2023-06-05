@@ -35,7 +35,7 @@ export class QuizListDisplayComponent implements OnInit {
 
       this.themeName = theme.name;
       this.quizzes = theme.quizzes;
-    }))
+    }));
     if(this.idUser){
       if (this.userService.isAdmin(this.idUser)) {
         this.showDeleteButton = true;
