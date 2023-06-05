@@ -200,11 +200,27 @@ router.post('/endgame', (req, res) => {
       userId = parseInt(userId, 10)
     }
 
-     /*
-      * Check if the user is in the database
-      * if not, create it
-      * if yes, update it
-      */
+    // Check if the clicks and responses are passed in the body
+    try {
+      req.body.clicks
+      req.body.responses
+    } catch (err) {
+      res.status(400).json("You must provide clicks and responses in the body");
+      return;
+    }
+
+    // Check if the clicks and responses are between 0 and 100
+    if (req.body.clicks < 0 || req.body.responses < 0 || req.body.clicks > 100 || req.body.responses > 100) {
+      res.status(406).json("clicks and responses must be between 0 and 100");
+      return;
+    }
+
+
+    /*
+     * Check if the user is in the database
+     * if not, create it
+     * if yes, update it
+     */
     let stats = Stats.get().find((i) => i.userId === userId)
     if (!stats) {
       stats = Stats.create({
@@ -218,9 +234,9 @@ router.post('/endgame', (req, res) => {
     let length = stats.stats.clicks.length;
     let clicks_data;
 
-     /*
-      * if there is no stats today, create it
-      */
+    /*
+     * if there is no stats today, create it
+     */
     let today = strftime('%d/%m', new Date())
     if (length == 0 || stats.stats.clicks[length - 1].date != today) {
       stats.stats.clicks.push({
@@ -235,11 +251,11 @@ router.post('/endgame', (req, res) => {
     }
     // end of the creation of the stats of today
 
-     /*
-      * Update the stats of the day
-      */
-    stats.stats.clicks[length-1].data.push(req.body.clicks);
-    stats.stats.responses[length-1].data.push(req.body.responses);
+    /*
+     * Update the stats of the day
+     */
+    stats.stats.clicks[length - 1].data.push(req.body.clicks);
+    stats.stats.responses[length - 1].data.push(req.body.responses);
     Stats.save();
     res.status(200).json("stats registered");
   } catch (err) {

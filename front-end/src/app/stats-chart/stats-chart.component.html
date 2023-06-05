@@ -1,5 +1,5 @@
-<div style="text-align:center;width:75vw;height:45vh;">
-    <div *ngIf="chartOptions 
+<div id="container">
+  <div id="chart" *ngIf="chartOptions 
     && chartOptions.series 
     && chartOptions.chart 
     && chartOptions.dataLabels
@@ -9,16 +9,22 @@
     && chartOptions.colors
     && chartOptions.fill
     && chartOptions.legend">
-      <apx-chart
-      [series]="chartOptions.series"
-      [chart]="chartOptions.chart"
-      [dataLabels]="chartOptions.dataLabels"
-      [markers]="chartOptions.markers"
-      [stroke]="chartOptions.stroke"
-      [title]="chartOptions.title"
-      [colors]="chartOptions.colors"
-      [fill]="chartOptions.fill"
-      [legend]="chartOptions.legend"
-  ></apx-chart>
-    </div>
+    <apx-chart 
+    [series]="chartOptions.series"
+    [chart]="chartOptions.chart"
+    [dataLabels]="chartOptions.dataLabels"
+    [markers]="chartOptions.markers"
+    [stroke]="chartOptions.stroke"
+    [title]="chartOptions.title"
+    [colors]="chartOptions.colors"
+    [fill]="chartOptions.fill"
+    [legend]="chartOptions.legend"
+    ></apx-chart>
   </div>
+  <div *ngIf="!chartOptions">
+    <p>
+      Les statistiques de cet utilisateur ne sont pas encore disponibles.<br>
+      Le patient doit jouer avant que les statistiques soient visibles.
+    </p>
+  </div>
+</div>
