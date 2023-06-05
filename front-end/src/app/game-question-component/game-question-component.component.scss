@@ -55,9 +55,15 @@ h3 {
 }
 
 #picture {
-  align-items: center;
+  display: flex;
   justify-content: center;
+  align-items: center;
 }
+
+#picture img {
+  max-width: 350px; /* Vous pouvez ajuster cette valeur selon la taille souhaitée */
+}
+
 
 
 
