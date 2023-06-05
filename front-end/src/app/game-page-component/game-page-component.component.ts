@@ -128,7 +128,6 @@ export class GamePageComponentComponent  implements OnInit, AfterViewInit{
   validate() {
     this.onValideClick();
     this.shared_clicks = ~~(this.valid_clicks/(this.clicks+1)*100);
-    this.incrementIndexQuestion();
     this.validateClicked = true;
     let isCorrect;
     if (document.getElementsByClassName("goodAnswer")[0].innerHTML === this.selectedValue) {
@@ -145,6 +144,7 @@ export class GamePageComponentComponent  implements OnInit, AfterViewInit{
       answerValue:this.selectedValue||"",
       isCorrect: isCorrect,
     });
+    this.incrementIndexQuestion();
   }
 
   onWhoIsSelected(value: string) {
