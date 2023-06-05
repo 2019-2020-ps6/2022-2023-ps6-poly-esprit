@@ -8,7 +8,7 @@
   <app-game-end-component [gameInstance]="gameInstance" [shared_clicks]="shared_clicks"></app-game-end-component>
 </div>
 
-<div class="centre" *ngIf="currentQuiz && currentQuiz.questions[currentIndex]">
+<div class="centre" *ngIf="currentQuiz && currentQuiz.questions && currentQuiz.questions[currentIndex]">
   <button class="valider" appAdaptConfig (click)="validate()">
     Valider
   </button>

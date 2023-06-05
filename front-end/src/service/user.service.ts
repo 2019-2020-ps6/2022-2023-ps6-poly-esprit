@@ -71,6 +71,10 @@ export class UserService {
     this.users = this.users.filter(user => user.id !== user_id);
   }
 
+  /*deleteUserWithId(user_id: string) {
+    this.deleteUser(user_id);
+  }*/
+
   isAdmin(user_id: string){
     if(user_id){
       //Check if the user is an admin
@@ -105,26 +109,7 @@ export class UserService {
 
   //todo: THIS METHODS WILL PROBABLY NEED TO BE DELETE IN THE FUTURE//
 
-
-  deleteUserWithId(user_id: string) {
-    this.deleteUser(user_id);
-  }
-
-  createUser(): User {
-    const user: User = {
-      id: '1234567889',
-      isAdmin: false,
-      nom: 'Doe',
-      prenom: 'John',
-      age: 30,
-      sex: 'male',
-      pathology: 1,
-      path_pp: 'path/to/profile-picture.jpg'
-    };
-    return user;
-  }
-
-
+  
   createUser(): User {
     const user: User = {
       id: '1234567889',

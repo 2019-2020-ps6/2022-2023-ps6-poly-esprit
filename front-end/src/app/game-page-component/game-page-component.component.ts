@@ -49,8 +49,9 @@ export class GamePageComponentComponent  implements OnInit, AfterViewInit{
 
     if (this.currentQuiz?.questions) {
       this.currentQuestion = this.currentQuiz?.questions[this.currentIndex].label;
+      this.currentPathPicture = this.currentQuiz?.questions[this.currentIndex].path_picture;
+
     }
-    this.currentPathPicture = this.currentQuiz?.questions[this.currentIndex].path_picture;
 
   }
 
@@ -129,6 +130,7 @@ export class GamePageComponentComponent  implements OnInit, AfterViewInit{
   }
 
   validate() {
+    this.incrementIndexQuestion();
     this.onValideClick();
     this.shared_clicks = ~~(this.valid_clicks/(this.clicks+1)*100);
     this.validateClicked = true;
@@ -147,13 +149,15 @@ export class GamePageComponentComponent  implements OnInit, AfterViewInit{
       answerValue:this.selectedValue||"",
       isCorrect: isCorrect,
     });
-    this.incrementIndexQuestion();
+
   }
+
+
 
   onWhoIsSelected(value: string) {
     this.selectedValue = value;
   }
-  
+
   onValideClick() {
     this.valid_clicks++;
   }

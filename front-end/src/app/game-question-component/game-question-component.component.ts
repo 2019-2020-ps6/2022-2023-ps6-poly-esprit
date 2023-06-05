@@ -31,13 +31,12 @@ export class GameQuestionComponentComponent implements OnInit{
   public answerIsCash: boolean = false;
   public answerIsChoice: boolean = false;
 
-  
+
   constructor(private route: ActivatedRoute, private userService: UserService) {
     const id = this.route.snapshot.paramMap.get('idUser');
     const user = this.userService.getUserById(Number(id));
     user.subscribe((user) => { this.howPathology = user.pathology });
     console.log("log dans gameQuestion",this.howPathology)
-
     this.random = Math.floor(Math.random() * 3);
 
 

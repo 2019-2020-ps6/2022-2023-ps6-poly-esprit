@@ -1,0 +1,30 @@
+[
+  {
+    "type": "text",
+    "value": "Helsinki",
+    "isCorrect": false,
+    "questionId": 1684742574986,
+    "id": 1684742665767
+  },
+  {
+    "value": "Paris",
+    "type": "jsp",
+    "isCorrect": true,
+    "questionId": 1685954012661,
+    "id": 1685954838530
+  },
+  {
+    "value": "New York",
+    "type": "jsp",
+    "isCorrect": false,
+    "questionId": 1685954012661,
+    "id": 1685954887264
+  },
+  {
+    "value": "Tokyo",
+    "type": "jsp",
+    "isCorrect": false,
+    "questionId": 1685954012661,
+    "id": 1685954896978
+  }
+]
