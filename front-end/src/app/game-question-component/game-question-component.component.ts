@@ -8,6 +8,7 @@ import {UserService} from "../../service/user.service";
 import {of} from "rxjs";
 
 
+
 // Quizz list => PageComp
 // Quizz => gameQuestion
 @Component({
@@ -19,8 +20,9 @@ export class GameQuestionComponentComponent implements OnInit{
 
   @Input() quiz?: Quiz ;
   @Input() question?: Question;
-  @Output() somethingSelected=new EventEmitter<boolean>();
-  @Output() whoIsSelected=new EventEmitter<string>();
+  @Output() valideClick = new EventEmitter<boolean>();
+  @Output() somethingSelected = new EventEmitter<boolean>();
+  @Output() whoIsSelected = new EventEmitter<string>();
   public howPathology: number | undefined;
   currentValue? : string;
   public random;
@@ -29,19 +31,18 @@ export class GameQuestionComponentComponent implements OnInit{
   public answerIsCash: boolean = false;
   public answerIsChoice: boolean = false;
 
-
-
+  
   constructor(private route: ActivatedRoute, private userService: UserService) {
     const id = this.route.snapshot.paramMap.get('idUser');
     const user = this.userService.getUserById(Number(id));
     user.subscribe((user) => { this.howPathology = user.pathology });
     console.log("log dans gameQuestion",this.howPathology)
 
-
     this.random = Math.floor(Math.random() * 3);
 
 
   }
+
   ngOnInit(): void {
     if(this.howPathology===4){
       this.answerIsDuo=true;
@@ -102,6 +103,9 @@ export class GameQuestionComponentComponent implements OnInit{
 
   }
 
+  onValideClick() {
+    this.valideClick.emit(true);
+  }
 
 }
 //https://angular.io/tutorial/tour-of-heroes/toh-pt4

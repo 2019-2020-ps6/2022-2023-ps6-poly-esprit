@@ -7,4 +7,6 @@ export interface User {
   sex: string;
   pathology?: number;
   path_pp: string;
+  need_big_button: boolean;
+  need_big_text: boolean;
 }

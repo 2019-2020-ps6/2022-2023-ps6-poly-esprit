@@ -16,7 +16,7 @@ export class QuizListDisplayComponent implements OnInit {
   themeName: String = "";
   themeId: number = 0;
   quizzes: Quiz[] | undefined = [];
-  title = 'Liste des quizz';
+  title = 'Liste des quiz';
   public idUser: string | null;
   public showDeleteButton: boolean = false;
   public showEditButton: boolean = false;

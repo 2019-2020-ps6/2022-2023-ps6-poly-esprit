@@ -10,6 +10,7 @@ import {Answer} from "../../models/question.models";
 export class GameAnswerComponentComponent{
   @Input() answer?: Answer;
   @Output() selected=new EventEmitter<string>();
+  @Output() valideClick = new EventEmitter<boolean>();
   @Input() isSelected=false
   @Input() isGoodSelected=false;
   @Input() isBadSelected=false;
@@ -36,5 +37,8 @@ export class GameAnswerComponentComponent{
     return "black";
   }
 
+  onClick(){
+    this.valideClick.emit(true);
+  }
 }
 

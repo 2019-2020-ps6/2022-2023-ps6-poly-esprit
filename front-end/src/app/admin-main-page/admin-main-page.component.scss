@@ -168,6 +168,7 @@
   transform: scaleY(1.1);
   transition: transform 0.2s;
   border: solid 1.3px #000000;
+  background-color: rgba(51, 131, 131, 0.68);
 }
 .title{
   display: flex;
@@ -199,5 +200,15 @@ button{
 }
 
 
+.arrow-up::before {
+  content: "▼ ";
+}
 
+.arrow-down::before {
+  content: "► ";
+}
+.theme>h2:hover{
+  background-color: #acccca;
+  cursor: pointer;
+}
 

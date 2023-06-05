@@ -19,6 +19,9 @@ export class GamePageComponentComponent  implements OnInit, AfterViewInit{
   public currentQuestion:string | undefined;
   public currentIndex:number=0;
   public validateClicked:boolean=false;
+  public clicks = 0;
+  public valid_clicks = 0;
+  public shared_clicks = 0;
   public title = 'Jouer à un quizz';
   public somethingSelected: boolean = true;
   public selectedValue?: string;
@@ -26,7 +29,9 @@ export class GamePageComponentComponent  implements OnInit, AfterViewInit{
   private gameQuestionAnswers: GameQuestionAnswer[] = [];
   private score: number = 0;
   public userId:number;
+  public currentPathPicture: string | undefined;
   @Input() quiz?: Quiz ;
+  @Input() clicked?: boolean;
 
 
   constructor(private quizService: QuizService, private route: ActivatedRoute, private questionService: QuestionService, private gameInstanceService: GameInstanceService) {
@@ -41,17 +46,18 @@ export class GamePageComponentComponent  implements OnInit, AfterViewInit{
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('idQuiz'));
     this.currentQuiz = this.quizService.getQuiz(id.toString());
+
     if (this.currentQuiz?.questions) {
       this.currentQuestion = this.currentQuiz?.questions[this.currentIndex].label;
-      console.log("current question", this.currentQuestion);
     }
+    this.currentPathPicture = this.currentQuiz?.questions[this.currentIndex].path_picture;
 
   }
+
 
   incrementIndexQuestion() {
     this.validateClicked = false;
     this.somethingSelected = true;
-
 
 
     if(this.currentQuiz && this.currentQuiz.questions && this.currentQuiz.questions[this.currentIndex]){
@@ -66,13 +72,12 @@ export class GamePageComponentComponent  implements OnInit, AfterViewInit{
     this.currentIndex++;
     if (this.currentQuiz?.questions && this.currentQuiz?.questions[this.currentIndex]!=undefined){
       this.currentQuestion = this.currentQuiz?.questions[this.currentIndex].label;
+      this.currentPathPicture = this.currentQuiz?.questions[this.currentIndex].path_picture;
     }
   }
 
   private attractedButton() {
     const buttons = document.querySelectorAll('button');
-
-
 
     const window = document.querySelector('body');
 
@@ -118,15 +123,19 @@ export class GamePageComponentComponent  implements OnInit, AfterViewInit{
     this.somethingSelected = isSelected;
   }
 
+  public onClick() {
+    this.clicks++;
+    this.shared_clicks = ~~(this.valid_clicks/this.clicks*100);
+  }
 
   validate() {
-    this.incrementIndexQuestion()
+    this.onValideClick();
+    this.shared_clicks = ~~(this.valid_clicks/(this.clicks+1)*100);
     this.validateClicked = true;
     let isCorrect;
     if (document.getElementsByClassName("goodAnswer")[0].innerHTML === this.selectedValue) {
       isCorrect = true;
       this.score++;
-
     } else {
       isCorrect = false;
     }
@@ -138,9 +147,14 @@ export class GamePageComponentComponent  implements OnInit, AfterViewInit{
       answerValue:this.selectedValue||"",
       isCorrect: isCorrect,
     });
+    this.incrementIndexQuestion();
   }
 
   onWhoIsSelected(value: string) {
-    this.selectedValue= value;
+    this.selectedValue = value;
+  }
+  
+  onValideClick() {
+    this.valid_clicks++;
   }
 }

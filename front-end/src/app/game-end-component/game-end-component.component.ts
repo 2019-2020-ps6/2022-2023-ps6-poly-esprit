@@ -4,6 +4,7 @@ import {Question} from "../../models/question.models";
 import {QuestionService} from "../../service/question.service";
 import {GameInstance} from "../../models/gameInstance.models";
 import {ActivatedRoute} from "@angular/router";
+import { PlayerStatsService } from '../../service/playersStats.service';
 
 @Component({
   selector: 'app-game-end-component',
@@ -12,12 +13,14 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class GameEndComponentComponent implements AfterViewInit {
   @Input() gameInstance?: GameInstance;
+  @Input() shared_clicks?: number;
   public userId: number;
   visibleRecap: boolean = false;
-
+  message: string = '';
 
   ngAfterViewInit(): void {
     this.attractedButton();
+    this.updateMessage();
   }
 
   private attractedButton() {
@@ -65,11 +68,33 @@ export class GameEndComponentComponent implements AfterViewInit {
 
   }
 
-  constructor(private route: ActivatedRoute){
+  constructor(private route: ActivatedRoute, private playerStatsService: PlayerStatsService){
     this.userId = Number(this.route.snapshot.paramMap.get('idUser'));
   }
 
   viewRecap() {
     this.visibleRecap = !this.visibleRecap;
   }
+
+  private updateMessage() {
+    //TODO : Quand le back-end sera implémenté pour la partie quiz, on pourra regarder si le score du patient > 50% des questions
+    if (this.gameInstance) {
+      if (this.gameInstance.score > 0 && this.gameInstance.score < 1) {
+        this.message = `Bravo ! Vous avez terminé le quiz avec ${this.gameInstance.score} point${this.gameInstance.score > 1 ? 's' : ''}.`;
+      } else if (this.gameInstance.score === 0) {
+        this.message = 'Dommage ! Vous allez vous améliorer !';
+      } else {
+        this.message = `Ne vous découragez pas ! Vous avez terminé le quiz avec une note négative de ${-this.gameInstance.score} point${this.gameInstance.score < -1 ? 's' : ''}.`;
+      }
+    }
+    if (this.shared_clicks == undefined || this.gameInstance == undefined) {
+      return;
+    }
+    let score = ~~(this.gameInstance.score/this.gameInstance.gameQuestionsAnswers.length*100);
+    console.log("userId", this.userId);
+    console.log("score", score);
+    console.log("shared_clicks", this.shared_clicks);
+    this.playerStatsService.endGame(this.userId, score, this.shared_clicks);
+  }
+
 }

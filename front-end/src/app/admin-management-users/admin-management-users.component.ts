@@ -12,7 +12,7 @@ import {Observable} from "rxjs";
   styleUrls: ['./admin-management-users.component.scss']
 })
 export class AdminManagementUsersComponent {
-  title = "Gestion des utilisateurs";
+  title = "Gestion des patients";
   users: any[] = [];
   usersList: any[] = [];
   id_user: string | null ="";

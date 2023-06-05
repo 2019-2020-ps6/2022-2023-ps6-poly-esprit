@@ -4,6 +4,7 @@ const manageAllErrors = (res, err) => {
   } else if (err.name === 'ValidationError') {
     res.status(400).json(err.extra)
   } else {
+    console.log(err)
     res.status(500).json(err)
   }
 }

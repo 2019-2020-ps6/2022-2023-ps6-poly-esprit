@@ -14,6 +14,8 @@ import {Theme} from "../../models/theme.models";
   styleUrls: ['./admin-main-page.component.scss']
 })
 export class AdminMainPageComponent implements OnInit {
+  selectedTheme: any;
+  quizListVisible = false;
   title = "Page de contrôle";
   admin_id: string | null;
   public UService : UserService;
@@ -112,4 +114,14 @@ export class AdminMainPageComponent implements OnInit {
     this.deleteVisible = false;
   }
 
+  onSelectTheme(theme: any) {
+    if (this.selectedTheme === theme) {
+      // Si le même thème est sélectionné à nouveau, inverser l'état d'affichage
+      this.quizListVisible = !this.quizListVisible;
+    } else {
+      // Si un nouveau thème est sélectionné, mettre à jour le thème et afficher la liste des quiz
+      this.selectedTheme = theme;
+      this.quizListVisible = true;
+    }
+  }
 }

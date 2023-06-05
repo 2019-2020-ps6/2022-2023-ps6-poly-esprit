@@ -1,28 +1,7 @@
 <div>
-  <h3 *ngIf="gameInstance">Bravo ! Vous avez terminé le quiz avec {{gameInstance.score}} point</h3>
-    <div>
-     <button [routerLink]="['/themes/', userId]" appAdaptConfig id="acceuil">Accueil</button>
-      <button appAdaptConfig class="recap" *ngIf="!visibleRecap" (click)="viewRecap()">Voir le recap</button>
-      <button #hiddenRecapButton appAdaptConfig class="recap" *ngIf="visibleRecap" (click)="viewRecap()">Cacher le recap</button>
-    </div>
-   <table *ngIf="gameInstance && visibleRecap">
-    <thead>
-    <tr>
-      <th>Question</th>
-      <th>Réponse</th>
-      <th>Résultat</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let question of gameInstance.gameQuestionsAnswers" [ngClass]="{'correct-answer': question.isCorrect, 'wrong-answer': !question.isCorrect}">
-      <td>{{ question.questionValue }}</td>
-      <td>{{ question.answerValue }}</td>
-      <td>
-        <span *ngIf="question.isCorrect">Bonne réponse 😀</span>
-        <span *ngIf="!question.isCorrect">Dommage 😉</span>
-      </td>
-    </tr>
-    </tbody>
-  </table>
-
+  <h3>{{ message }}</h3>
+  <div>
+    <button [routerLink]="['/themes/', userId]" appAdaptConfig id="acceuil">Accueil</button>
+    <button #hiddenRecapButton appAdaptConfig class="recap" *ngIf="visibleRecap" (click)="viewRecap()">Cacher le recap</button>
+  </div>
 </div>

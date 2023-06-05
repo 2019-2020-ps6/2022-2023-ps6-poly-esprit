@@ -14,12 +14,13 @@ import { BehaviorSubject, Subject } from 'rxjs';
 
 export class UserService {
   public users: User[] = [];
+
   private users$: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([]);
+
 
   private userUrl = serverUrl + '/users';
 
   private httpOptions = httpOptionsBase;
-
 
   constructor(private http: HttpClient) {
     this.retrieveUsers();
@@ -27,6 +28,7 @@ export class UserService {
 
   retrieveUsers(): void {
     this.http.get<User[]>(this.userUrl).subscribe((userList) => {
+      console.log(userList);
       this.users = userList;
       this.users$.next(this.users);
     });
@@ -42,7 +44,6 @@ export class UserService {
     }
     const user = this.users.find(t => t.id == String(Id));
       if (user) {
-        console.log("utilisateur " + user.nom);
         return of(user);
       } else {
         return throwError(`User with ID ${Id} not found.`);
@@ -64,6 +65,10 @@ export class UserService {
   deleteUser(id: string){
     const urlWithId = this.userUrl + '/' + id;
     this.http.delete<User>(urlWithId, this.httpOptions).subscribe(() => this.retrieveUsers());
+  }
+
+  deleteUserWithId(user_id: string) {
+    this.users = this.users.filter(user => user.id !== user_id);
   }
 
   isAdmin(user_id: string){
@@ -100,10 +105,6 @@ export class UserService {
 
   //todo: THIS METHODS WILL PROBABLY NEED TO BE DELETE IN THE FUTURE//
 
-  /**addUserTest(){
-    const userTest = this.createUser();
-    this.http.post<User>(this.userUrl, userTest, this.httpOptions).subscribe(() => this.retrieveUsers());
-  }*/
 
   deleteUserWithId(user_id: string) {
     this.deleteUser(user_id);
@@ -123,4 +124,20 @@ export class UserService {
     return user;
   }
 
+
+  createUser(): User {
+    const user: User = {
+      id: '1234567889',
+      isAdmin: false,
+      nom: 'Doe',
+      prenom: 'John',
+      age: 30,
+      sex: 'male',
+      pathology: 1,
+      path_pp: 'path/to/profile-picture.jpg',
+      "need_big_button": false,
+      "need_big_text": false
+    };
+    return user;
+  }
 }

@@ -8,9 +8,9 @@ describe('StatsVisualisationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ StatsVisualisationComponent ]
+      declarations: [StatsVisualisationComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(StatsVisualisationComponent);
     component = fixture.componentInstance;
