@@ -5,14 +5,15 @@ import {Quiz} from "../models/quizz.models";
 import { serverUrl, httpOptionsBase } from '../configs/server.config';
 import {User} from "../models/user.model";
 import {HttpClient} from "@angular/common/http";
+import {ActivatedRoute} from "@angular/router";
 @Injectable({
   providedIn: 'root'
 })
 export class QuizService {
   //The list of quiz. The list is
   // retrieved from the mock.
-
-  private quizUrl = serverUrl + '/quizzes';
+  private themeId = 0;  //valeur de base
+  private quizUrl;
 
   private httpOptions = httpOptionsBase;
 
@@ -21,6 +22,14 @@ export class QuizService {
   // The service's constructor. Le constructeur peut prendre en paramètre les dépendances du service - comme ici,
   // HttpClient qui va permettre de récupérer les données d'un serveur
   constructor(private http: HttpClient) {
+    this.quizUrl = serverUrl + '/themes/' + this.themeId + '/quizzes';
+    // debugger
+  }
+
+  setThemeId(themeId: number) {
+    this.themeId = themeId;
+    this.quizUrl = serverUrl + '/themes/' + this.themeId + '/quizzes';
+    console.log(this.themeId, this.quizUrl)
     this.retrieveQuizs();
   }
 
@@ -72,5 +81,6 @@ export class QuizService {
       this.quizzes = quizList;
       this.quizzes$.next(this.quizzes);
     });
+    console.log(this.quizzes);
   }
 }

@@ -10,6 +10,7 @@ const {filterQuestionsFromQuizz} = require("./quizzes/questions/manager");
 const buildTheme = (themeId) => {
     const theme = Theme.getById(themeId)
     const quizzes = filterQuizzesByTheme(themeId)
+    console.log("getQuizzes dans buildTheme", quizzes)
 }
 
 
