@@ -201,7 +201,10 @@ router.post('/endgame', (req, res) => {
     }
 
     // Check if the clicks and responses are passed in the body
-    if (!req.body || !req.body.clicks || !req.body.responses) {
+    try {
+      req.body.clicks
+      req.body.responses
+    } catch (err) {
       res.status(400).json("You must provide clicks and responses in the body");
       return;
     }
