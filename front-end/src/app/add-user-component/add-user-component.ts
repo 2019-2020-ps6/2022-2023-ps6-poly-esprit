@@ -107,6 +107,10 @@ export class AddUserComponent implements OnInit {
       userToAdd.need_big_text = false;
     }
 
+    if(userToAddBef.path_pp==""){
+      userToAdd.path_pp="https://i.pinimg.com/222x/57/70/f0/5770f01a32c3c53e90ecda61483ccb08.jpg"
+    }
+
     console.log(userToAdd);
 
     if(userToAdd.nom == "" || userToAdd.prenom == "" || userToAdd.age <= 0){
