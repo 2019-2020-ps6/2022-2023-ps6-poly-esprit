@@ -28,7 +28,7 @@ export class GameQuestionComponentComponent implements OnInit{
   public answerIsCash: boolean = false;
   public answerIsChoice: boolean = false;
 
-
+  
 
   constructor(private route: ActivatedRoute, public userService: UserService) {
     const id = this.route.snapshot.paramMap.get('idUser');
@@ -37,7 +37,9 @@ export class GameQuestionComponentComponent implements OnInit{
         this.howPathology=user.pathology;
       }
     }*/
+    
     if(id) this.howPathology = userService.getUser(id)?.pathology;
+
     this.random = Math.floor(Math.random() * 3);
 
   }

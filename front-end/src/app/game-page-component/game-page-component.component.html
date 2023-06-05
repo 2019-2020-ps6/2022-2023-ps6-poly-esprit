@@ -1,3 +1,4 @@
+<div id="clickCatcher" (click)="onClick()" height="100vh">
 <app-header [title]="currentQuiz ? currentQuiz.name : ''"></app-header>
 
 <div *ngIf="currentQuiz && currentQuestion">
@@ -18,4 +19,5 @@
       Retour
     </button>
   </a>
+</div>
 </div>

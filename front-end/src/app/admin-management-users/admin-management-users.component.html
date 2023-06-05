@@ -19,7 +19,7 @@
 </div>
 <div class="selection_box">
   <div class="title">
-    <h1>Liste des patients : </h1>
+    <h1>Liste des patients</h1>
     <a class="navigation" [routerLink]="['/user-create', id_user]">
       <button class="add_user">Ajouter un patient</button>
     </a>
@@ -35,10 +35,10 @@
             <button class="btn"> Voir les stats de {{ user.nom }} </button>
           </a>
           <a class="navigation" [routerLink]="['/user-edit', user.id, id_user]">
-            <button class="btn">Modifier l'utilisateur</button>
+            <button class="btn">Modifier le patient</button>
           </a>
           <a class="navigation" >
-            <button class="btn" (click)="openDelete(user.id)">Supprimer l'utilisateur</button>
+            <button class="btn" (click)="openDelete(user.id)">Supprimer le patient</button>
           </a>
         </div>
       </div>

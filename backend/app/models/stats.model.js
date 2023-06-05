@@ -2,8 +2,8 @@ const Joi = require('joi');
 const BaseModel = require('../utils/base-model.js');
 
 const newStatsTypeSchema = Joi.object({
-  date: Joi.string().required(),
-  data: Joi.array().items(Joi.number()).required(),
+  date: Joi.string(),
+  data: Joi.array().items(Joi.number()),
 });
 
 
