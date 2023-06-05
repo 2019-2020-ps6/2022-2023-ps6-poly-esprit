@@ -103,7 +103,7 @@ export const Questions = [
     id: '3',
     label: "Qui est l'acteur principal du film Intouchables ?",
     answers: [Answer[12],Answer[13],Answer[14], Answer[15]],
-    path_picture: "https://img-4.linternaute.com/Dy4dkW0Rx1TsNouefRK4fBwu_iQ=/1240x/smart/ab776450d63d40f2bc8be58abf7bd918/ccmcms-linternaute/11588577.jpg"
+    path_picture: "https://static1.ozap.com/articles/9/43/84/49/@/4439114-le-film-intouchables-avec-omar-sy-et-grid_item-1.jpg"
   },
   {
     id: '4',
