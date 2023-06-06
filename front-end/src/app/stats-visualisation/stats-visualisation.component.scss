@@ -1,12 +1,12 @@
 #header {
-  margin-top: 4.5vh;
+  margin-top: 5vh;
   background-color: #909090;
   display: flex;
   justify-content: left;
-  margin-left: 10vw;
-  margin-right: 10vw;
-  padding: 4px;
+  margin:auto;
+  padding: 0;
   border-radius: 20px 20px 0% 0%;
+  width: 85vw;
 }
 
 #header>a {
@@ -62,7 +62,7 @@
   justify-content: center;
   margin: auto;
   height: 50vh;
-  width: 80vw;
+  width: 85vw;
   background-color: lightgrey;
 }
 
@@ -79,7 +79,6 @@
 
 #headerDiv {
   position: relative;
-  width: 100%;
   text-align: center;
 }
 
