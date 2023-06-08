@@ -22,6 +22,7 @@ export class StatsVisualisationComponent implements OnInit {
   reponseItem = "reponse";
   title = 'Statistiques du patient';
   statsAvailable = false;
+  displayAnalyse = true;
 
   constructor(private userService: UserService, private route: ActivatedRoute) {
     this.userId = Number(this.route.snapshot.paramMap.get("userId"))
