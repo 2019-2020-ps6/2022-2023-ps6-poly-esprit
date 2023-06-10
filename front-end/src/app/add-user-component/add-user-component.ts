@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms'
 import {UserService} from "../../service/user.service";
 import {User} from "../../models/user.model";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 
 @Component({
@@ -17,7 +17,7 @@ export class AddUserComponent implements OnInit {
   title= "Ajout d'un utilisateur";
 
 
-  constructor(public userService: UserService, private formBuilder: FormBuilder,private route: ActivatedRoute) {
+  constructor(public userService: UserService, private formBuilder: FormBuilder,private route: ActivatedRoute, private router: Router) {
 
     this.formulaire = this.formBuilder.group({
       nom: '',

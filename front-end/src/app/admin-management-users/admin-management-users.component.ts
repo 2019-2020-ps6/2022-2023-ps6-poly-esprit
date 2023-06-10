@@ -32,7 +32,7 @@ export class AdminManagementUsersComponent {
   ngOnInit(){
     this.id_user = this.route.snapshot.paramMap.get('id_user');
     this.id_admin = this.route.snapshot.paramMap.get('id_user');
-    this.userService.getUsers().subscribe((users)=> {
+    /**this.userService.getUsers().subscribe((users)=> {
       this.users = users;
     });
 
@@ -42,7 +42,10 @@ export class AdminManagementUsersComponent {
       }else{
         this.usersList.push(this.users[i]);
       }
-    }
+    }*/
+    this.userService.getPatients().subscribe((patients) => {
+      this.usersList = patients;
+    });
 
   }
 
