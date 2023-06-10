@@ -10,7 +10,7 @@
 </div>
 
 <div class="centre" *ngIf="currentQuiz && currentQuiz.questions[currentIndex]">
-  <button class="valider" appAdaptConfig (click)="validate()">
+  <button class="valider" appAdaptConfig (click)="validate()" [disabled]="!selectedValue">
     Valider
   </button>
 
