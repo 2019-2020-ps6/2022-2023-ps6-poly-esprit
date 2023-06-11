@@ -52,7 +52,7 @@ export class GameQuestionComponentComponent implements OnInit{
     if(this.howPathology===1  || this.howPathology===0){
       this.answerIsChoice=true;
     }
-    console.log("log dans gameQuestion",this.howPathology)
+    console.log("log dans gameQuestion",this.question)
 
   }
   public onSelected(value:string){
