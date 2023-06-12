@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -7,7 +7,8 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  title = 'Votre titre';
+  @Input() title?: string;
+  //title = 'Votre titre';
   id_user: string | null = "";
   isRedirected = false;
 
