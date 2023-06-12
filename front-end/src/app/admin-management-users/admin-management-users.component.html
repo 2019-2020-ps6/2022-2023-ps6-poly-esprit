@@ -38,7 +38,7 @@
             <button class="btn">Modifier le patient</button>
           </a>
           <a class="navigation" >
-            <button class="btn" (click)="openDelete(user.id)">Supprimer le patient</button>
+            <button class="btn" (click)="openDelete(user.id)" [ngClass]="user.nom+'-delete-btn'">Supprimer le patient</button>
           </a>
         </div>
       </div>
