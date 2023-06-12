@@ -37,26 +37,22 @@ export class EditQuizComponent {
       bad_answer2: '',
       bad_answer3: ''
     });
-
     this.formulaireNom = this.formBuilder2.group({
       title_quiz: ''
     })
   }
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-
     this.id_quiz = this.route.snapshot.paramMap.get('id');
     this.id_user = this.route.snapshot.paramMap.get('id_user');
-    console.log("quel est cet id",this.id_quiz);
-
+    console.log("id quizz : ",this.id_quiz)
     if(this.id_quiz){
-      this.currentQuiz = this.QCService.getQuiz(this.id_quiz);
-      console.log("current quiz",this.QCService.getQuizzes())
-
+      this.currentQuiz = this.quizService.getQuiz(this.id_quiz);
+      console.log("search quiz with id ",this.id_quiz, " : ", this.currentQuiz)
     }
 
     this.questions=this.currentQuiz?.questions;
+
     this.formulaireNom.patchValue({
       title_quiz: this.currentQuiz?.name
     })
