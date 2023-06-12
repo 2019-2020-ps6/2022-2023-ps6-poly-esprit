@@ -9,17 +9,9 @@
     && chartOptions.colors
     && chartOptions.fill
     && chartOptions.legend">
-    <apx-chart 
-    [series]="chartOptions.series"
-    [chart]="chartOptions.chart"
-    [dataLabels]="chartOptions.dataLabels"
-    [markers]="chartOptions.markers"
-    [stroke]="chartOptions.stroke"
-    [title]="chartOptions.title"
-    [colors]="chartOptions.colors"
-    [fill]="chartOptions.fill"
-    [legend]="chartOptions.legend"
-    ></apx-chart>
+    <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [dataLabels]="chartOptions.dataLabels"
+      [markers]="chartOptions.markers" [stroke]="chartOptions.stroke" [title]="chartOptions.title"
+      [colors]="chartOptions.colors" [fill]="chartOptions.fill" [legend]="chartOptions.legend"></apx-chart>
   </div>
   <div *ngIf="!chartOptions">
     <p>
