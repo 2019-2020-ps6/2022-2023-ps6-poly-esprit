@@ -25,8 +25,10 @@ export class EditQuizComponent {
   public id_user: string | null = "";
   public id_quiz: string | null = "";
 
+
   constructor(private questionService : QuestionService, private quizService: QuizService, private route: ActivatedRoute, private formBuilder: FormBuilder, private formBuilder2: FormBuilder) {
     this.QCService=quizService;
+    console.log("quiz service",quizService.quizzes)
     this.QUESTION_Service=questionService;
     this.formulaire = this.formBuilder.group({
       title: '',
@@ -46,16 +48,19 @@ export class EditQuizComponent {
 
     this.id_quiz = this.route.snapshot.paramMap.get('id');
     this.id_user = this.route.snapshot.paramMap.get('id_user');
-    console.log(id);
+    console.log("quel est cet id",this.id_quiz);
 
     if(this.id_quiz){
       this.currentQuiz = this.QCService.getQuiz(this.id_quiz);
+      console.log("current quiz",this.QCService.getQuizzes())
+
     }
 
     this.questions=this.currentQuiz?.questions;
     this.formulaireNom.patchValue({
       title_quiz: this.currentQuiz?.name
     })
+
   }
 
   addQuestion() : void {

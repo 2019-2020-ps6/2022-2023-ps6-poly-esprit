@@ -29,13 +29,13 @@ export class QuizService {
   setThemeId(themeId: number) {
     this.themeId = themeId;
     this.quizUrl = serverUrl + '/themes/' + this.themeId + '/quizzes';
-    console.log(this.themeId, this.quizUrl)
     this.retrieveQuizs();
   }
 
-  addQuiz(q: Quiz){
+
+  addQuiz(nameQuiz: String){
     //this.quizzes.push(q);
-    this.http.post<Quiz>(this.quizUrl, q, this.httpOptions).subscribe(() => this.retrieveQuizs());
+    this.http.post<Quiz>(this.quizUrl, nameQuiz, this.httpOptions)//.subscribe(() => this.retrieveQuizs());
     this.printQuiz();
 
   }
@@ -45,9 +45,7 @@ export class QuizService {
   }
 
   deleteQuiz(id: String){
-    //delete the quiz on the specific id
     this.quizzes = this.quizzes.filter(quiz => quiz.id !== id);
-    //console.log("Le mock possède maintenant:" +this.quizzes.length +"quizs");
   }
 
   printQuiz(){
@@ -58,7 +56,7 @@ export class QuizService {
 
 
   getQuiz(id: String): Quiz | undefined {
-    return this.quizzes.find(quiz => quiz.id == id.toString());
+    return this.quizzes.find(quiz => quiz.id == id);
   }
 
   getIndexToCreate(){

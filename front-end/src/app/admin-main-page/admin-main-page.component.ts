@@ -66,19 +66,19 @@ export class AdminMainPageComponent implements OnInit {
 
   // Modification de la méthode addQuiz pour rendre la div "first" visible
   addQuiz(){
-    const quizToCreate: Quiz = this.quizForm.getRawValue() as Quiz;
-    quizToCreate.id=this.quizCreateService.getIndexToCreate();
-    quizToCreate.questions=[];
-    quizToCreate.name = this.quizForm.value.name;
-    this.QCService.addQuiz(quizToCreate);
-
-
     const themeToCreate : Theme = this.quizForm.getRawValue() as Theme;
     themeToCreate.id=this.themeService.getIndexToCreate();
     themeToCreate.name=this.quizForm.value.theme;
     themeToCreate.quizzes=[];
+    console.log(themeToCreate.id, themeToCreate.name);
 
-    this.THService.addQuiz(quizToCreate, themeToCreate);
+    const quizToCreate: Quiz = this.quizForm.getRawValue() as Quiz;
+    quizToCreate.id=this.quizCreateService.getIndexToCreate();
+    quizToCreate.questions=[];
+    quizToCreate.name = this.quizForm.value.name;
+    this.QCService.addQuiz(this.quizForm.value.name);
+
+    this.THService.addQuiz(this.quizForm.value.name, this.quizForm.value.theme);
     this.quizVisible = true;
     this.deleteVisible=true;
   }

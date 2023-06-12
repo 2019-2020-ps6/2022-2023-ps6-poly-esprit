@@ -39,13 +39,12 @@ export class EditQuestionComponent {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.id_quiz = this.route.snapshot.paramMap.get('id_quiz');
     this.id_user = this.route.snapshot.paramMap.get('id_user');
-    console.log(id)
     this.questionService.getQuestions().subscribe((questions) => {
       this.currentQuestion = questions[id];
     });
     this.updateForm();
 
-    console.log(this.questions);
+    console.log("question : ",this.questions);
   }
 
   updateForm(){

@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject, Observable, of, throwError} from "rxjs";
+import {BehaviorSubject, delay, Observable, of, throwError} from "rxjs";
 import { Theme } from "../models/theme.models";
 import { Themes } from "../mocks/theme.mock";
 import { Quizz } from "../mocks/quizz.mock";
 import { Quiz } from "../models/quizz.models";
 import {httpOptionsBase, serverUrl} from "../configs/server.config";
 import {HttpClient} from "@angular/common/http";
+import {User} from "../models/user.model";
+import {waitForAsync} from "@angular/core/testing";
+
 
 @Injectable({
     providedIn: 'root'
@@ -13,6 +16,7 @@ import {HttpClient} from "@angular/common/http";
 
 export class ThemeService {
     private themeUrl = serverUrl + '/themes';
+    private quizUrl = serverUrl + '/themes';
     private httpOptions = httpOptionsBase;
 
 
@@ -42,9 +46,6 @@ export class ThemeService {
       }
     }
 
-    addTheme(name: String): void {
-
-    }
 
   deleteQuiz(id_quiz: string) {
     for(let i =0; i < this.themes.length; i++){
@@ -61,23 +62,38 @@ export class ThemeService {
     }
   }
 
-  addQuiz(quizToCreate: Quiz, theme: Theme) {
+  addQuiz(quizName: Quiz, nameTheme: String) {
     //Loop through themes, if theme exists, add quiz to theme, else create theme and add quiz to theme
     let themeExists = false;
     for(let i =0; i < this.themes.length; i++){
       let themeToCheck = this.themes[i];
-      if(themeToCheck.name == theme.name){
+      if(themeToCheck.name == nameTheme){
         themeExists = true;
         if (themeToCheck.quizzes) {
-          themeToCheck.quizzes.push(quizToCreate);
+          console.log(nameTheme);
+          // ici, faire un post de quiz, le quiz doit appartenir à un theme
+          this.quizUrl = serverUrl + '/themes/' + themeToCheck.id + "/quizzes";
+          this.http.post<Quiz>(this.quizUrl, {name:quizName, themeId: themeToCheck.id}, this.httpOptions).subscribe(() => this.retrieveThemes());
         }
         break;
       }
     }
     if(!themeExists){
-      theme.quizzes = [];
-      theme.quizzes.push(quizToCreate);
-      this.themes.push(theme);
+      console.log("theme doesn't exist");
+
+      this.http.post<Theme>(this.themeUrl, {name: nameTheme}, this.httpOptions).subscribe((theme) => {
+        this.retrieveThemes();
+        console.log(theme)
+        console.log("Après avoir post un Theme", theme);
+
+        this.quizUrl = this.themeUrl + "/" + theme.id + "/quizzes";
+        console.log("Avant de post un quiz", theme.id);
+
+        this.http.post<Quiz>(this.quizUrl, {name: quizName, themeId: theme.id}, this.httpOptions).subscribe(() => {
+          console.log(theme.quizzes);
+          this.retrieveThemes();
+        });
+      });
     }
   }
 
