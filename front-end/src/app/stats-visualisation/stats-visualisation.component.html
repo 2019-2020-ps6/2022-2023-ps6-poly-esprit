@@ -22,3 +22,25 @@
     <app-stats-chart *ngIf="isResponse" [click_mode]="false"></app-stats-chart>
   </div>
 </div>
+<div id="statsAnalyser" *ngIf="displayAnalyse">
+  <h1>Statistiques</h1>
+
+  <table>
+    <tr>
+      <th>Statistique</th>
+      <th>Valeur</th>
+    </tr>
+    <tr>
+      <td>Statistique 1</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <td>Statistique 2</td>
+      <td>200</td>
+    </tr>
+    <tr>
+      <td>Statistique 3</td>
+      <td>300</td>
+    </tr>
+  </table>
+</div>
