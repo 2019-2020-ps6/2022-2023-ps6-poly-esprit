@@ -1,5 +1,5 @@
 <header class="header">
-  <button *ngIf="!isRedirectRequired()" class="parameter" [routerLink]="'/parametre'">
+  <button *ngIf="!isRedirectRequired()" data-testid="parameter" class="parameter" [routerLink]="'/parametre'">
   </button>
 
   <button *ngIf="isRedirectRequired()" class="parameter redirected" [routerLink]="'/admin/' + id_user">
