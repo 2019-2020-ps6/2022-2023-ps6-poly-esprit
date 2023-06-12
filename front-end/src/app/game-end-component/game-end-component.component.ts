@@ -79,12 +79,13 @@ export class GameEndComponentComponent implements AfterViewInit {
   private updateMessage() {
     //TODO : Quand le back-end sera implémenté pour la partie quiz, on pourra regarder si le score du patient > 50% des questions
     if (this.gameInstance) {
-      if (this.gameInstance.score > 0 && this.gameInstance.score < 1) {
-        this.message = `Bravo ! Vous avez terminé le quiz avec ${this.gameInstance.score} point${this.gameInstance.score > 1 ? 's' : ''}.`;
-      } else if (this.gameInstance.score === 0) {
+      let scorefinal = this.gameInstance.score;
+      if (scorefinal > 0) {
+        this.message = `Bravo ! Vous avez terminé le quiz avec ${scorefinal} point${scorefinal > 1 ? 's' : ''}.`;
+      } else if (scorefinal === 0) {
         this.message = 'Dommage ! Vous allez vous améliorer !';
       } else {
-        this.message = `Ne vous découragez pas ! Vous avez terminé le quiz avec une note négative de ${-this.gameInstance.score} point${this.gameInstance.score < -1 ? 's' : ''}.`;
+        this.message = `Ne vous découragez pas ! Vous avez terminé le quiz avec une note négative de ${-scorefinal} point${this.gameInstance.score < -1 ? 's' : ''}.`;
       }
     }
     if (this.shared_clicks == undefined || this.gameInstance == undefined) {

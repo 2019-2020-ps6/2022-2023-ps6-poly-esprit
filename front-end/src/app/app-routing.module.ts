@@ -37,7 +37,7 @@ const routes: Routes = [
   {path: 'user-delete/:id/:id_user', component: UserDeleteComponent},
   {path: 'edit-question/:id/:id_quiz/:id_user', component: EditQuestionComponent},
   {path: 'parametre', component:ParameterPageComponent},
-  {path: 'admin/:id', component: AdminMainPageComponent},
+  {path: 'admin/:id_user', component: AdminMainPageComponent},
   {path: 'management-users/:id_user', component: AdminManagementUsersComponent},
   {path: 'stats/:userId', component: StatsVisualisationComponent },
 
