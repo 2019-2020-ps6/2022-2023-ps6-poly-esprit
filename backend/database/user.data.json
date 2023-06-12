@@ -1,8 +1,8 @@
 [
   {
     "isAdmin": true,
-    "nom": "admin",
-    "prenom": "testeur",
+    "nom": "Admin",
+    "prenom": "Admin",
     "age": 76,
     "sex": "male",
     "pathology": 0,
@@ -13,8 +13,8 @@
   },
   {
     "isAdmin": false,
-    "nom": "Simon",
-    "prenom": "Beurel",
+    "nom": "Beurel",
+    "prenom": "Simon",
     "age": 78,
     "sex": "Male",
     "pathology": 0,
@@ -22,17 +22,5 @@
     "need_big_button": false,
     "need_big_text": false,
     "id": 1686557420951
-  },
-  {
-    "isAdmin": true,
-    "nom": "Tristan",
-    "prenom": "Larguier",
-    "age": 22,
-    "sex": "Male",
-    "pathology": 0,
-    "path_pp": "https://i.pinimg.com/222x/57/70/f0/5770f01a32c3c53e90ecda61483ccb08.jpg",
-    "need_big_button": false,
-    "need_big_text": false,
-    "id": 1686557442691
   }
 ]
