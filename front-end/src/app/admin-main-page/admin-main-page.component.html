@@ -8,14 +8,18 @@
         Titre <br>
         <input class="input-custom" type="text" name="filterName" id="name"
                [formControlName]="'name'"
-               [(ngModel)]="inputValueName">
+               [(ngModel)]="inputValueName"
+               placeholder="Nom du quiz"
+        >
       </label>
       <br>
       <label for="theme">
         Thème <br>
         <input class="input-custom" type="text" name="filterName" id="theme"
                [formControlName]="'theme'"
-               [(ngModel)]="inputValueTheme">
+               [(ngModel)]="inputValueTheme"
+               placeholder="Thème du quiz"
+        >
       </label>
       <br>
       <br>
@@ -72,7 +76,7 @@
             </a>
             <div class="button-container">
               <a class="navigation" [routerLink]="['/edit-quiz', quiz.id, admin_id]">
-                <button class="gestion_admin" id="edit_quiz">Modifier le quiz</button>
+                <button class="gestion_admin" id="edit_quiz" [attr.data-testid]="quiz.name + '-edit'">Modifier le quiz</button>
               </a>
               <a class="navigation">
                 <button class="gestion_admin" id="delete_quiz" (click)="openDelete(quiz.id)">Supprimer le quiz</button>
