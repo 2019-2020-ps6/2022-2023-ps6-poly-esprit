@@ -4,6 +4,7 @@ const config: PlaywrightTestConfig = {
   reporter: [['html', { open: 'always'}]],
   use: {
     headless: false,
+
     viewport: { width: 1280, height: 720},
     ignoreHTTPSErrors: true,
     video: 'on',//'on-first-retry',
