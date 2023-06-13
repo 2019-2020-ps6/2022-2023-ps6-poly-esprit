@@ -22,5 +22,17 @@
     "need_big_button": false,
     "need_big_text": false,
     "id": 1686557420951
+  },
+  {
+    "isAdmin": false,
+    "nom": "Froment",
+    "prenom": "Lorenzo",
+    "age": 69,
+    "sex": "Male",
+    "pathology": 4,
+    "path_pp": "https://thumbs.gfycat.com/FoolishAssuredHartebeest-size_restricted.gif",
+    "need_big_button": false,
+    "need_big_text": false,
+    "id": 1686647825282
   }
 ]
