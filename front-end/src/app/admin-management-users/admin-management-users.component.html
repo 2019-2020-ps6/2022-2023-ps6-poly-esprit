@@ -32,10 +32,10 @@
         </a>
         <div class="button-container">
           <a class="navigation" [routerLink]="['/stats', user.id]">
-            <button class="btn"> Voir les statistiques </button>
+            <button class="btn" [ngClass]="user.nom+'-stats-btn'"> Voir les statistiques </button>
           </a>
           <a class="navigation" [routerLink]="['/user-edit', user.id, id_user]">
-            <button class="btn">Modifier le patient</button>
+            <button class="btn" [ngClass]="user.nom+'-modify-btn'">Modifier le patient</button>
           </a>
           <a class="navigation" >
             <button class="btn" (click)="openDelete(user.id)" [ngClass]="user.nom+'-delete-btn'">Supprimer le patient</button>
