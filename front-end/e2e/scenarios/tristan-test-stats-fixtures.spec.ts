@@ -1,10 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { testUrl } from 'e2e/e2e.config';
-/*
-*import { QuestionFormFixture } from 'src/app/questions/question-form/question-form.fixture';
-*import { QuizFormFixture } from 'src/app/quizzes/quiz-form/quiz-form.fixture';
-*import { QuizFixture } from 'src/app/quizzes/quiz/quiz.fixture';
-*/
+import { StatsFeature } from 'src/app/stats-visualisation/stats-visualisation.fixture';
 
 test.describe('Test initial\nCréer et modifier un patient', () => {
 
@@ -16,32 +12,6 @@ test.describe('Test initial\nCréer et modifier un patient', () => {
 
   test('Créer l\'utilisateur', async ({ page }) => {
     await page.goto(testUrl);
-
-    const quizFormFixture = new QuizFormFixture(page);
-    const quizFixture = new QuizFixture(page);
-    const questionFormFixture = new QuestionFormFixture(page);
-    
-    /*await test.step('Create User', async () => {
-      await page.click('text=Admin Admin');
-      expect(page.url()).toBe('http://localhost:4200/admin/1684739070790');
-      await page.click("text=Afficher les patients")
-      expect(page.url()).toBe('http://localhost:4200/management-users/1684739070790');
-      await page.click("text=Ajouter un patient");
-      expect(page.url()).toBe('http://localhost:4200/user-create/1684739070790');
-      //await page.fill('[name="Nom"]', 'Testeur');
-      await page.getByRole('textbox', { name: 'Nom', exact: true }).fill('Tester');
-      await page.getByRole('textbox', { name: 'prénom' }).fill('Perso');
-      // the same with number input
-      await page.getByRole('spinbutton', { name: 'âge' }).fill('47');
-      // the same with radio button
-      await page.click("text=Homme");
-      // Select Stade
-      await page.click("text=Stade 0");
-      await page.click("text=Créer le nouvel utilisateur");
-      expect(page.url()).toBe('http://localhost:4200/user-create/1684739070790');
-      await page.click("text=Retour en arrière");
-      expect(page.getByText('Tester')).toBeVisible();
-    });*/
     await page.click('text=Admin Admin');
     expect(page.url()).toBe('http://localhost:4200/admin/1684739070790');
     await page.click("text=Afficher les patients")
