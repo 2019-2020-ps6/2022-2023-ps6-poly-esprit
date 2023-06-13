@@ -1,47 +1,15 @@
 import { E2EComponentFixture } from "../../../e2e/e2e-component.fixture";
-import {test, expect, Page, ElementHandle} from '@playwright/test';
-
-export class adminManagementUsersFixture extends E2EComponentFixture {
-  async addUser(nom: string, prenom: string, age: string, sexe: string, stade: string, requireBigText: boolean, requireBigButtons: boolean, isAdmin: boolean, photoPath: string) {
-    this.page.goto('http://localhost:4200/user-create/1684739070790');
-
-    // const inputNom = await this.page.$('#nom');
-    // inputNom?.type(nom);
-    await this.page.fill('input[formControlName="nom"]', nom);
-    await this.page.fill('input[formControlName="prenom"]', prenom);
-    await this.page.fill('input[formControlName="age"]', age);
 
 
-    await this.page.click(`text=${sexe}`);
-    await this.page.click(`text=${stade}`);
+export class statsFixture extends E2EComponentFixture {
 
-    await this.page.fill('input[formControlName="path_pp"]', photoPath);
-
-    await this.page.click('text=Créer le nouvel utilisateur');
-  }
-
-  async delUser(nom: string) {
-    await this.page.goto('http://localhost:4200/admin/1684739070790');
+  async goToStats(userName: string) {
+    await this.page.goto("http://localhost:4200");
+    await this.page.click('text=Admin Admin');
     await this.page.click('text=Afficher les patients');
-    await this.page.locator(`.${nom}-delete-btn`)?.click();
-    await this.page.click('text=oui');
-  }
+    
+    await this.page.click('text=' + userName);
+    await this.page.click('text=Afficher les statistiques');
 
-  async modifyUser(oldName: string, nom: string, prenom: string, age: string, sexe: string, stade: string, requireBigText: boolean, requireBigButtons: boolean, isAdmin: boolean, photoPath: string) {
-    await this.page.goto('http://localhost:4200/admin/1684739070790');
-    await this.page.click('text=Afficher les patients');
-    await this.page.locator(`.${oldName}-modify-btn`).click();
-
-    await this.page.fill('input[formControlName="nom"]', nom);
-    await this.page.fill('input[formControlName="prenom"]', prenom);
-    await this.page.fill('input[formControlName="age"]', age);
-    await this.page.click(`text=${sexe}`);
-    await this.page.click(`text=${stade}`);
-    await this.page.fill('input[formControlName="path_pp"]', photoPath);
-
-    await this.page.click('text=Appliquer les modifications');
   }
 }
-
-
-

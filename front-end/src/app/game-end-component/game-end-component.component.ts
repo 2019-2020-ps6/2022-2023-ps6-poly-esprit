@@ -1,9 +1,9 @@
-import {AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {Quiz} from "../../models/quizz.models";
-import {Question} from "../../models/question.models";
-import {QuestionService} from "../../service/question.service";
-import {GameInstance} from "../../models/gameInstance.models";
-import {ActivatedRoute} from "@angular/router";
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Quiz } from "../../models/quizz.models";
+import { Question } from "../../models/question.models";
+import { QuestionService } from "../../service/question.service";
+import { GameInstance } from "../../models/gameInstance.models";
+import { ActivatedRoute } from "@angular/router";
 import { PlayerStatsService } from '../../service/playersStats.service';
 
 @Component({
@@ -11,6 +11,7 @@ import { PlayerStatsService } from '../../service/playersStats.service';
   templateUrl: './game-end-component.component.html',
   styleUrls: ['./game-end-component.component.scss']
 })
+
 export class GameEndComponentComponent implements AfterViewInit {
   @Input() gameInstance?: GameInstance;
   @Input() shared_clicks?: number;
@@ -54,12 +55,12 @@ export class GameEndComponentComponent implements AfterViewInit {
 
         if (minDistance < 90) { // 90 = rayon du bouton
           button.style.transform = 'scale(1.5)';
-          if(button.classList.contains('btn-hide-recap')) {
+          if (button.classList.contains('btn-hide-recap')) {
             button.style.background = 'lightgrey';
           }
         } else {
           button.style.transform = 'scale(1)';
-          if(button.classList.contains('btn-hide-recap')) {
+          if (button.classList.contains('btn-hide-recap')) {
             button.style.background = '';
           }
         }
@@ -68,7 +69,7 @@ export class GameEndComponentComponent implements AfterViewInit {
 
   }
 
-  constructor(private route: ActivatedRoute, private playerStatsService: PlayerStatsService){
+  constructor(private route: ActivatedRoute, private playerStatsService: PlayerStatsService) {
     this.userId = Number(this.route.snapshot.paramMap.get('idUser'));
   }
 
@@ -91,10 +92,7 @@ export class GameEndComponentComponent implements AfterViewInit {
     if (this.shared_clicks == undefined || this.gameInstance == undefined) {
       return;
     }
-    let score = ~~(this.gameInstance.score/this.gameInstance.gameQuestionsAnswers.length*100);
-    console.log("userId", this.userId);
-    console.log("score", score);
-    console.log("shared_clicks", this.shared_clicks);
+    let score = ~~(this.gameInstance.score / this.gameInstance.gameQuestionsAnswers.length * 100);
     this.playerStatsService.endGame(this.userId, score, this.shared_clicks);
   }
 
