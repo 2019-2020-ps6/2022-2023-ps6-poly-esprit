@@ -4,7 +4,7 @@ Membres du groupe :
 - MAUROIS Quentin 
 - FROMENT Lorenzo 
 - DELIAS Théo 
-- LARGUIER Tristana 
+- LARGUIER Tristan
 
 ## Préambule : 
 Au cours du projet PS6 réalisé dans le cadre de la formation Ingénieur en Informatique à Polytech Nice-Sophia, nous avons du réaliser un site internet proposant des quizs pouvant être réalisés par des personnes âgées comportant une pathologie particulière.
