@@ -106,5 +106,14 @@ test.describe('Tests réalisés sur les questions et les quizs', () => {
     await expect(AdminMainPageFI.isQuizNotVisible('Les Acteurs','Acteurs')).toBeTruthy();
   });
 
+  test('Supprimer une question (quiz acteur)', async ({ page }) => {
+    await page.goto(testUrl);
+    await page.click('text=Admin Admin');
+    await page.click('text= Thème : Acteurs ');
+    await page.click('text=Modifier le quiz');
+    await page.getByRole('listitem').filter({ hasText: 'Question : Qui est l\'acteur principal du film Intouchables ? Supprimer la questi' }).getByRole('button', { name: 'Supprimer la question' }).click();
+    await expect(page.getByText('Question : Qui est l\'acteur principal du film Intouchables ?')).not.toBeVisible();
+  });
+
 
 });

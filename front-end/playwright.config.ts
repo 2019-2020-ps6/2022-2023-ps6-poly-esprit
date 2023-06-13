@@ -10,7 +10,7 @@ const config: PlaywrightTestConfig = {
     screenshot: 'on',//'only-on-failure',
 
     launchOptions: {
-      slowMo: 1000,
+      slowMo: 1,
     }
   },
 };
