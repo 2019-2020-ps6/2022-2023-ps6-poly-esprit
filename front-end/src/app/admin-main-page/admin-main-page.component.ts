@@ -74,6 +74,7 @@ export class AdminMainPageComponent implements OnInit {
 
     const quizToCreate: Quiz = this.quizForm.getRawValue() as Quiz;
     quizToCreate.id=this.quizCreateService.getIndexToCreate();
+
     quizToCreate.questions=[];
     quizToCreate.name = this.quizForm.value.name;
     this.QCService.addQuiz(this.quizForm.value.name);

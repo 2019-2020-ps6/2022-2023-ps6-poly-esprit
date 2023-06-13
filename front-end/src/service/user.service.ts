@@ -59,20 +59,13 @@ export class UserService {
       console.log("Utilisateur de nom : "+this.users[i].nom+" et d'id : "+this.users[i].id);
     }
   }
-
   deleteUser(id: string){
     const urlWithId = this.userUrl + '/' + id;
     this.http.delete<User>(urlWithId, this.httpOptions).subscribe(() => this.retrieveUsers());
   }
-
   deleteUserWithId(user_id: string) {
     this.users = this.users.filter(user => user.id !== user_id);
   }
-
-  /*deleteUserWithId(user_id: string) {
-    this.deleteUser(user_id);
-  }*/
-
   isAdmin(user_id: string){
     if(user_id){
       //Check if the user is an admin
@@ -94,33 +87,4 @@ export class UserService {
     return null;
   }
 
-  getIndexForCreate(){
-    //Loop on all user, and return max+1 id
-    let max=0;
-    for(let i=0; i<this.users.length; i++){
-      if(parseInt(this.users[i].id)>max){
-        max=parseInt(this.users[i].id);
-      }
-    }
-    return (max+1).toString();
-  }
-
-  //todo: THIS METHODS WILL PROBABLY NEED TO BE DELETE IN THE FUTURE//
-
-
-  createUser(): User {
-    const user: User = {
-      id: '1234567889',
-      isAdmin: false,
-      nom: 'Doe',
-      prenom: 'John',
-      age: 30,
-      sex: 'male',
-      pathology: 1,
-      path_pp: 'path/to/profile-picture.jpg',
-      "need_big_button": false,
-      "need_big_text": false
-    };
-    return user;
-  }
 }

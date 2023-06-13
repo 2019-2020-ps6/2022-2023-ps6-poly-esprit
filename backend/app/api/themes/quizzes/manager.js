@@ -8,12 +8,13 @@ const { filterAnswersFromQuestion } = require('./questions/answers/manager')
  * @param quizId
  */
 const buildQuizz = (quizId) => {
-  const quiz = Quiz.getById(quizId)
+  const quiz = deepCopy(Quiz.getById(quizId))
   const questions = filterQuestionsFromQuizz(quiz.id)
   const questionWithAnswers = questions.map((question) => {
     const answers = filterAnswersFromQuestion(question.id)
     return { ...question, answers }
   })
+  console.log("THIS ITEMS : ", Quiz.get());
   return { ...quiz, questions: questionWithAnswers }
 }
 
@@ -21,8 +22,10 @@ const buildQuizz = (quizId) => {
  * Function buildQuizzes.
  * This function aggregates the questions and answers from the database to build entire quizzes.
  */
+
+const deepCopy = (obj) => JSON.parse(JSON.stringify(obj))
 const buildQuizzes = () => {
-  const quizzes = Quiz.get()
+  const quizzes = Quiz.get().map((quiz) => deepCopy(quiz));
   return quizzes.map((quiz) => buildQuizz(quiz.id))
 }
 

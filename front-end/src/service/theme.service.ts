@@ -73,7 +73,7 @@ export class ThemeService {
           console.log(nameTheme);
           // ici, faire un post de quiz, le quiz doit appartenir à un theme
           this.quizUrl = serverUrl + '/themes/' + themeToCheck.id + "/quizzes";
-          this.http.post<Quiz>(this.quizUrl, {name:quizName, themeId: themeToCheck.id}, this.httpOptions).subscribe(() => this.retrieveThemes());
+          this.http.post<{name: String, themeId: Number}>(this.quizUrl, {name:quizName, themeId: themeToCheck.id}, this.httpOptions).subscribe(() => this.retrieveThemes());
         }
         break;
       }
@@ -81,7 +81,7 @@ export class ThemeService {
     if(!themeExists){
       console.log("theme doesn't exist");
 
-      this.http.post<Theme>(this.themeUrl, {name: nameTheme}, this.httpOptions).subscribe((theme) => {
+      this.http.post<{name: String, id?:Number,quizzes?:Quiz[] }>(this.themeUrl, {name: nameTheme}, this.httpOptions).subscribe((theme) => {
         this.retrieveThemes();
         console.log(theme)
         console.log("Après avoir post un Theme", theme);
@@ -89,7 +89,7 @@ export class ThemeService {
         this.quizUrl = this.themeUrl + "/" + theme.id + "/quizzes";
         console.log("Avant de post un quiz", theme.id);
 
-        this.http.post<Quiz>(this.quizUrl, {name: quizName, themeId: theme.id}, this.httpOptions).subscribe(() => {
+        this.http.post<{name: String, themeId: Number}>(this.quizUrl, {name: quizName, themeId: theme.id}, this.httpOptions).subscribe(() => {
           console.log(theme.quizzes);
           this.retrieveThemes();
         });

@@ -33,24 +33,14 @@ export class QuizService {
 
 
 
-  getQuizzsWithoutTheme(): Quiz[] {
-    let quizzList: Quiz[] = [];
-    this.http.get<Quiz[]>(serverUrl + '/themes' + '/quizzes').subscribe((quizList) => {
-      quizzList = quizList;
-    });
-    return quizzList;
-  }
 
   addQuiz(nameQuiz: String){
     //this.quizzes.push(q);
-    this.http.post<Quiz>(this.quizUrl, nameQuiz, this.httpOptions)//.subscribe(() => this.retrieveQuizs());
+    this.http.post<{name:String}>(this.quizUrl, nameQuiz, this.httpOptions)//.subscribe(() => this.retrieveQuizs());
     this.printQuiz();
 
   }
 
-  getQuizzes(): BehaviorSubject<Quiz[]> {
-    return this.quizzes$
-  }
 
   deleteQuiz(id: String){
     this.quizzes = this.quizzes.filter(quiz => quiz.id !== id);
@@ -108,7 +98,8 @@ export class QuizService {
   updateQuiz(nameQuiz: String, idQuiz: String, idTheme: number) {
     let newQuizUrl = serverUrl + '/themes/' + idTheme + '/quizzes/' + idQuiz;
     // ici ca marche plutot bien mais le problème c'est qu'il veux une question, jsp pk
-    this.http.put<Quiz>(newQuizUrl, {name:nameQuiz, themeId: idTheme}, this.httpOptions).subscribe(() => this.retrieveQuizs());
+    console.log("UPDATE QUIZ" , {name:nameQuiz, themeId: idTheme});
+    this.http.put<{name:String, themeId: Number}>(newQuizUrl, {name:nameQuiz, themeId: idTheme}, this.httpOptions).subscribe(() => this.retrieveQuizs());
   }
 
 
