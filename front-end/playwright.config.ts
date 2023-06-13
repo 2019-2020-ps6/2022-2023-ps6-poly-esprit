@@ -3,11 +3,12 @@ import { PlaywrightTestConfig} from "@playwright/test";
 const config: PlaywrightTestConfig = {
   reporter: [['html', { open: 'always'}]],
   use: {
-    headless: true,
+    headless: false,
     viewport: { width: 1280, height: 720},
     ignoreHTTPSErrors: true,
-    video: 'on-first-retry',
-    screenshot: 'only-on-failure',
+    video: 'on',//'on-first-retry',
+    screenshot: 'on',//'only-on-failure',
+
     launchOptions: {
       slowMo: 1000,
     }
