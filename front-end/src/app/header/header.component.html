@@ -2,7 +2,7 @@
   <button *ngIf="!isRedirectRequired()" data-testid="parameter" class="parameter" [routerLink]="'/parametre'">
   </button>
 
-  <button *ngIf="isRedirectRequired()" class="parameter redirected" [routerLink]="'/admin/' + id_user">
+  <button *ngIf="isRedirectRequired()" data-testid="parameter" class="parameter redirected" [routerLink]="'/admin/' + id_user">
   </button>
 
   <div class="title">

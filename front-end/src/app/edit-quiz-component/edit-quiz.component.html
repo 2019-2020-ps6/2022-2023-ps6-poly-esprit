@@ -47,7 +47,7 @@
     <h3>Liste de questions déjà présentes</h3>
     <ul>
       <li *ngFor="let question of questions">
-        <a class="navigation" class="questions" [routerLink]="['/edit-question', question.id, id_quiz, id_user]">
+        <a class="navigation" class="questions" [routerLink]="['/edit-question', question.id, id_quiz, id_user]" [attr.data-testid]="question.label + '-edit'">
           Question : {{ question.label }}
         </a>
         <button class="button buttonright" (click)="deleteQuestion(question.id)">Supprimer la question</button>
