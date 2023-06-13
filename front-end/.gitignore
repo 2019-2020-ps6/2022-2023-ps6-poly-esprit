@@ -49,3 +49,4 @@ Thumbs.db
 
 # report files
 /playwright-report
+playwright.config.ts

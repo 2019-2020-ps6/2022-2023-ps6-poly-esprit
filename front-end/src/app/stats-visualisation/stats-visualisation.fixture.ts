@@ -1,20 +1,11 @@
-import { E2EComponentFixture } from "e2e/e2e-component.fixture";
+import { E2EComponentFixture } from "../../../e2e/e2e-component.fixture";
 
-export class StatsFeature extends E2EComponentFixture {
-  getStats() {
-    return this.page.waitForSelector('app-quiz-form');
-  }
 
-  getInput(is_click: boolean) {
-    const selector = `app-stats-visualisation`;
-    return this.page.waitForSelector(selector);
-  }
-
-  getCreateButton() {
-   return this.page.getByRole('button', { name: 'Create' });
-  }
-
-  clickCreateButton() {
-    return this.getCreateButton().click();
+export class statsFixture extends E2EComponentFixture {
+  async goToStats(userName: string) {
+    await this.page.goto("http://localhost:4200");
+    await this.page.click('text=Admin Admin');
+    await this.page.click('text=Afficher les patients');
+    await this.page.locator(`.${userName}-stats-btn`).click();
   }
 }
