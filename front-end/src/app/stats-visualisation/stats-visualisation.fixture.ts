@@ -1,20 +1,47 @@
-import { E2EComponentFixture } from "e2e/e2e-component.fixture";
+import { E2EComponentFixture } from "../../../e2e/e2e-component.fixture";
+import {test, expect, Page, ElementHandle} from '@playwright/test';
 
-export class StatsFeature extends E2EComponentFixture {
-  getStats() {
-    return this.page.waitForSelector('app-quiz-form');
+export class adminManagementUsersFixture extends E2EComponentFixture {
+  async addUser(nom: string, prenom: string, age: string, sexe: string, stade: string, requireBigText: boolean, requireBigButtons: boolean, isAdmin: boolean, photoPath: string) {
+    this.page.goto('http://localhost:4200/user-create/1684739070790');
+
+    // const inputNom = await this.page.$('#nom');
+    // inputNom?.type(nom);
+    await this.page.fill('input[formControlName="nom"]', nom);
+    await this.page.fill('input[formControlName="prenom"]', prenom);
+    await this.page.fill('input[formControlName="age"]', age);
+
+
+    await this.page.click(`text=${sexe}`);
+    await this.page.click(`text=${stade}`);
+
+    await this.page.fill('input[formControlName="path_pp"]', photoPath);
+
+    await this.page.click('text=Créer le nouvel utilisateur');
   }
 
-  getInput(is_click: boolean) {
-    const selector = `app-stats-visualisation`;
-    return this.page.waitForSelector(selector);
+  async delUser(nom: string) {
+    await this.page.goto('http://localhost:4200/admin/1684739070790');
+    await this.page.click('text=Afficher les patients');
+    await this.page.locator(`.${nom}-delete-btn`)?.click();
+    await this.page.click('text=oui');
   }
 
-  getCreateButton() {
-   return this.page.getByRole('button', { name: 'Create' });
-  }
+  async modifyUser(oldName: string, nom: string, prenom: string, age: string, sexe: string, stade: string, requireBigText: boolean, requireBigButtons: boolean, isAdmin: boolean, photoPath: string) {
+    await this.page.goto('http://localhost:4200/admin/1684739070790');
+    await this.page.click('text=Afficher les patients');
+    await this.page.locator(`.${oldName}-modify-btn`).click();
 
-  clickCreateButton() {
-    return this.getCreateButton().click();
+    await this.page.fill('input[formControlName="nom"]', nom);
+    await this.page.fill('input[formControlName="prenom"]', prenom);
+    await this.page.fill('input[formControlName="age"]', age);
+    await this.page.click(`text=${sexe}`);
+    await this.page.click(`text=${stade}`);
+    await this.page.fill('input[formControlName="path_pp"]', photoPath);
+
+    await this.page.click('text=Appliquer les modifications');
   }
 }
+
+
+
