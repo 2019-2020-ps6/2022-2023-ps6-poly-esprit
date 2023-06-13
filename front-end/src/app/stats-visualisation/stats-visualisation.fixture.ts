@@ -6,6 +6,6 @@ export class statsFixture extends E2EComponentFixture {
     await this.page.goto("http://localhost:4200");
     await this.page.click('text=Admin Admin');
     await this.page.click('text=Afficher les patients');
-    await this.page.locator(`.${userName}-stats-btn`).click();
+    await this.page.locator(`.${userName}-stats-btn`)?.click();
   }
 }
