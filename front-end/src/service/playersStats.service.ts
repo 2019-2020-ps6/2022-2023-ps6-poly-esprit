@@ -12,7 +12,7 @@ export class PlayerStatsService {
   private userUrl = serverUrl + '/stats?userId=';
   private endgameUrl = serverUrl + '/stats/endgame?userId=';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getPlayerStats(userId: number, click_mode: boolean | null): Observable<PlayerStatsModel> {
     if (userId == null) {
@@ -21,11 +21,11 @@ export class PlayerStatsService {
     if (click_mode == null) {
       return throwError(`Le mode ${click_mode} est invalide`);
     }
-    
+
     return this.fetchPlayerStats(userId, click_mode);
   }
 
-  fetchPlayerStats(userId: number, click_mode: boolean): Observable<PlayerStatsModel> {    
+  fetchPlayerStats(userId: number, click_mode: boolean): Observable<PlayerStatsModel> {
     return this.http.get<PlayerStatsModel>(this.userUrl + userId)
       .pipe(
         catchError((error: any) => {
@@ -35,7 +35,7 @@ export class PlayerStatsService {
       );
   }
 
-  endGame(userId : number, responses: number, clicks: number): void | Observable<never> {
+  endGame(userId: number, responses: number, clicks: number): void | Observable<never> {
     console.log("endgame")
     if (userId == null) {
       return throwError(`L'Id ${userId} est invalide`);
@@ -52,14 +52,14 @@ export class PlayerStatsService {
 
   postStats(userId: number, responses: number, clicks: number): void {
     console.log("poststats")
-    const data = JSON.stringify({"responses":responses, "clicks":clicks});
+    const data = JSON.stringify({ "responses": responses, "clicks": clicks });
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     };
 
-    let a = this.http.post(this.endgameUrl + userId,  data, httpOptions).toPromise();
+    let a = this.http.post(this.endgameUrl + userId, data, httpOptions).toPromise();
     console.log(a.then(() => console.log("ok")));
   }
 }

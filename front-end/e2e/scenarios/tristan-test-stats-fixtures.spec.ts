@@ -1,39 +1,29 @@
-import { test, expect } from '@playwright/test';
-import { testUrl } from 'e2e/e2e.config';
-import { StatsFeature } from 'src/app/stats-visualisation/stats-visualisation.fixture';
+import {test, expect } from '@playwright/test';
+import {testUrl } from 'e2e/e2e.config';
+import {adminManagementUsersFixture } from 'src/app/admin-management-users/admin-management-users.fixture';
+import {statsFixture } from 'src/app/stats-visualisation/stats-visualisation.fixture';
 
-test.describe('Test initial\nCréer et modifier un patient', () => {
-
-  test('Créer l\'utilisateur', async ({ page }) => {
+test.describe('Tests concernants les statistiques', () => {
+  test('test pour un nouvel utilisateur', async ({page}) => {
     await page.goto(testUrl);
-    await page.click('text=Admin Admin');
-    await page.click("text=Afficher les patients")
-    await page.click("text=Ajouter un patient");
-    await page.getByRole('textbox', { name: 'Nom', exact: true }).fill('Tester2');
-    await page.getByRole('textbox', { name: 'prénom' }).fill('Perso');
-    await page.getByRole('spinbutton', { name: 'âge' }).fill('47');
-    await page.click("text=Homme");
-    await page.click("text=Stade 0");
-    await page.click("text=Créer le nouvel utilisateur");
-    await page.click("text=Retour en arrière");
+    const fixture = new adminManagementUsersFixture(page);
+    const fixtureStats = new statsFixture(page);
+
+    await fixture.addUser("Terteur", "booh", "36", "Femme", "0", false, false, false, "");
+    await fixtureStats.goToStats("Terteur");
+    await expect(page.getByText('Les statistiques de cet utilisateur ne sont pas encore disponibles')).toBeVisible();
+    await fixture.delUser("Terteur");
   });
 
-  test('test empty stats for new user', async ({ page }) => {
-    await page.goto(testUrl);
-    await page.click('text=Admin Admin');
-    await page.click("text=Afficher les patients")
-    await page.getByText(" Voir les statistiques ").nth(1).click();
-    expect(page.getByText('Le patient doit jouer')).toBeVisible();
+test('test stats for user', async ({page}) => {
+  await page.goto(testUrl);
+  const fixture = new adminManagementUsersFixture(page);
+  const fixtureStats = new statsFixture(page);
 
-  });
+  await fixture.addUser("Terter", "booh", "68", "Homme", "1", false, false, false, "");
 
-  test('Supprimer l\'utilisateur', async ({ page }) => {
-    await page.goto(testUrl);
-    await page.click('text=Admin Admin');
-    await page.click("text=Afficher les patients")
-    await console.log(await page.getByRole('button').allTextContents());
-    await page.getByText("Supprimer le patient").nth(1).click();
-    await page.click("text=Oui");
-  });
 
+
+  await fixture.delUser("Terteur");
+});
 });

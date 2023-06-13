@@ -1,12 +1,11 @@
 import { test, expect } from '@playwright/test';
 import { testUrl } from 'e2e/e2e.config';
 import {adminManagementUsersFixture} from "../../src/app/admin-management-users/admin-management-users.fixture";
-import {UserListDisplayFixture} from "../../src/app/user-list-display/user-list-display.fixture";
 
 // Scénario de test du nom du titre de la page
 
 test.describe('Tests utilisateurs', () => {
-  test('Test Creation Utilisateurs', async ({ page}) => {
+  test('Test Creation Suppression Utilisateurs', async ({ page }) => {
     await page.goto(testUrl);
 
     const managementUsersFixture = new adminManagementUsersFixture(page);
@@ -16,7 +15,7 @@ test.describe('Tests utilisateurs', () => {
 
     await page.click('text=retour');
 
-    let nomUtilisateur = await page.getByRole('heading', {name:"Bowser"});
+    let nomUtilisateur = await page.getByRole('heading', { name: "Bowser" });
     expect(nomUtilisateur).toBeVisible();
   });
 
@@ -34,6 +33,7 @@ test.describe('Tests utilisateurs', () => {
     await managementUsersFixture.modifyUser("Bowser", "Peach", "Mario", "25", "Homme", "0", false, false, false, "");
 
     expect(nomUtilisateur).not.toBeVisible();
+
     nomUtilisateur = await page.getByRole('heading', {name:"Peach"});
     expect(nomUtilisateur).toBeVisible();
 

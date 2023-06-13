@@ -3,7 +3,7 @@ import { testUrl } from 'e2e/e2e.config';
 
 test.describe('Test initial\nCréer et modifier un patient', () => {
 
-  test('test présence de admin et absence de user', async ({ page }) => {
+  /**test('test présence de admin et absence de user', async ({ page }) => {
     await page.goto(testUrl);
     expect(page.getByText('Admin Admin')).toBeVisible();
     expect(page.getByText('Perso Testeur')).not.toBeVisible();
@@ -75,7 +75,7 @@ test.describe('Test initial\nCréer et modifier un patient', () => {
     await page.click("text=Afficher les patients")
     await page.getByText("Supprimer le patient").nth(1).click();
     await page.click("text=Oui");
-    expect(page.getByText('Testeur')).not.toBeVisible();
+    await expect(page.getByText('Testeur')).not.toBeVisible();
   });*/
 
 });

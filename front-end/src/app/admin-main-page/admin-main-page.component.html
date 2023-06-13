@@ -79,7 +79,7 @@
                 <button class="gestion_admin" id="edit_quiz" [attr.data-testid]="quiz.name + '-edit'">Modifier le quiz</button>
               </a>
               <a class="navigation">
-                <button class="gestion_admin" id="delete_quiz" (click)="openDelete(quiz.id)">Supprimer le quiz</button>
+                <button class="gestion_admin" id="delete_quiz" (click)="openDelete(quiz.id)" [attr.data-testid]="quiz.name + '-delete'">Supprimer le quiz</button>
               </a>
             </div>
           </div>

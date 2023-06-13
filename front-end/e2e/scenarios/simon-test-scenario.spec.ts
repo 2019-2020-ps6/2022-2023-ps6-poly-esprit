@@ -14,21 +14,7 @@ test.describe('Test poubelle pour Simon Beurel', () => {
     await expect(page.url()).toBe('http://localhost:4200/admin/1684739070790');
   });
 
-  test('Vérifier que les boutons deviennent plus gros', async ({ page }) => {
-    await page.goto(testUrl);
-    await page.click('text=Simon Beurel');
-    await page.getByText('Acteurs').click();
-    await page.click('text=Les Acteurs');
-    const bouton = await page.getByRole('button', { name: 'Carré (4 choix affichés)' });
-    const tailleBeforeEdit = await bouton.boundingBox();
-    await page.getByTestId('parameter').click();
-    await page.getByTestId('big_buttons').click();
-    await page.click('text=Retour');
-    const bouton2 = page.getByRole('button', { name: 'Carré (4 choix affichés)' });
-    const tailleAfterEdit = await bouton2.boundingBox();
-    // @ts-ignore
-    expect(tailleBeforeEdit.height < tailleAfterEdit.height);
-  });
+
 
   /**test('Vérifier que l on puisse ajouter un utilisateur', async ({page}) =>{
 

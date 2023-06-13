@@ -174,6 +174,7 @@ export class UserEditComponent implements OnInit {
       userToAdd.path_pp="https://i.pinimg.com/222x/57/70/f0/5770f01a32c3c53e90ecda61483ccb08.jpg"
     }
 
+
     if(this.currentUser){
       this.UService.deleteUser(this.currentUser.id);
       this.UService.addUser(userToAdd);

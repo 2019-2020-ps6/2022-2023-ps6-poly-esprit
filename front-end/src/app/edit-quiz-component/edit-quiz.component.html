@@ -50,7 +50,7 @@
         <a class="navigation" class="questions" [routerLink]="['/edit-question', question.id, id_quiz, id_user]" [attr.data-testid]="question.label + '-edit'">
           Question : {{ question.label }}
         </a>
-        <button class="button buttonright" (click)="deleteQuestion(question.id)">Supprimer la question</button>
+        <button class="button buttonright" (click)="deleteQuestion(question.id)" [ngClass]="question.id+'-delete-button'">Supprimer la question</button>
       </li>
     </ul>
   </div>
