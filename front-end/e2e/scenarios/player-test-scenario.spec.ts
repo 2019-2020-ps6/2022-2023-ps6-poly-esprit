@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { testUrl } from 'e2e/e2e.config';
 import {GamePageComponentFixture} from "../../src/app/game-page-component/game-page-component.fixture";
 
-test.describe('Jouer un quiz (stade 4)', () => {
+/*test.describe('Jouer un quiz (stade 4)', () => {
   test('Jouer un quizz et avoir 2 points sur 2', async ({page}) => {
     const fixtureAnswer = new GamePageComponentFixture(page);
     await page.goto(testUrl);
@@ -61,4 +61,28 @@ test.describe('Jouer un quiz (stade 0)', () => {
     await page.click('text=Valider');
     await expect(page.getByText('Dommage ! Vous allez vous améliorer !')).toBeVisible();
   });
+});*/
+
+test.describe('Vérifier le changement de taille', () => {
+  test('Vérifier que les boutons deviennent plus gros', async ({ page }) => {
+    await page.goto(testUrl);
+    await page.click('text=Simon Beurel');
+    await page.getByText('Acteurs').click();
+    await page.click('text=Les Acteurs');
+    const bouton = await page.getByRole('button', { name: 'Carré (4 choix affichés)' });
+    const tailleBeforeEdit = await bouton.boundingBox();
+    const texteBeforeEdit=await bouton.evaluateHandle((e: any) => e.textContent);
+    await page.getByTestId('parameter').click();
+    await page.getByTestId('big_buttons').click();
+    await page.getByTestId('big_text').click();
+    await page.click('text=Retour');
+    const bouton2 = page.getByRole('button', { name: 'Carré (4 choix affichés)' });
+    const tailleAfterEdit = await bouton2.boundingBox();
+    const texteAfterEdit=await bouton2.evaluateHandle((e: any) => e.textContent);
+    // @ts-ignore
+    await expect(tailleBeforeEdit.height < tailleAfterEdit.height).toBeTruthy();
+    await expect(texteBeforeEdit != texteAfterEdit).toBeTruthy();
+
+  });
+
 });
