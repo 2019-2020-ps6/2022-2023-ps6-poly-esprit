@@ -48,4 +48,4 @@ testem.log
 Thumbs.db
 
 # report files
-/playwrite-report
+/playwright-report
