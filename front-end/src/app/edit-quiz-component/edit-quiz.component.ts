@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import { Quizz } from '../../mocks/quizz.mock';
 import {Quiz} from "../../models/quizz.models";
@@ -17,18 +17,16 @@ export class EditQuizComponent {
   title = "Modification quizz";
 
   public currentQuiz?:Quiz ;
-  private QCService: QuizService;
   private QUESTION_Service: QuestionService;
   formulaire: FormGroup;
   formulaireNom: FormGroup;
   questions: Question[] | undefined = [];
   public id_user: string | null = "";
   public id_quiz: string | null = "";
+  private idTheme = 0;
 
 
   constructor(private questionService : QuestionService, private quizService: QuizService, private route: ActivatedRoute, private formBuilder: FormBuilder, private formBuilder2: FormBuilder) {
-    this.QCService=quizService;
-    console.log("quiz service",quizService.quizzes)
     this.QUESTION_Service=questionService;
     this.formulaire = this.formBuilder.group({
       title: '',
@@ -45,17 +43,22 @@ export class EditQuizComponent {
   ngOnInit(): void {
     this.id_quiz = this.route.snapshot.paramMap.get('id');
     this.id_user = this.route.snapshot.paramMap.get('id_user');
-    console.log("id quizz : ",this.id_quiz)
-    if(this.id_quiz){
-      this.currentQuiz = this.quizService.getQuiz(this.id_quiz);
-      console.log("search quiz with id ",this.id_quiz, " : ", this.currentQuiz)
-    }
 
-    this.questions=this.currentQuiz?.questions;
+    this.idTheme = Number(localStorage.getItem('idTheme'));
 
-    this.formulaireNom.patchValue({
-      title_quiz: this.currentQuiz?.name
-    })
+    this.quizService.getQuizFromEditQuiz(this.idTheme, this.id_quiz).then(()=>{
+      localStorage.removeItem('idTheme');
+
+      if(this.id_quiz){
+        this.currentQuiz = this.quizService.getQuiz(this.id_quiz);
+      }
+
+      this.questions=this.currentQuiz?.questions;
+
+      this.formulaireNom.patchValue({
+        title_quiz: this.currentQuiz?.name
+      })
+    });
 
   }
 
@@ -65,17 +68,18 @@ export class EditQuizComponent {
 
   }
 
+  // todo : ajouter une question a la bdd
   onSubmit() {
     console.log(this.formulaire.value.title);
 
     console.log("TAILLE"  +this.QUESTION_Service.getSize());
 
-
-
     if(this.formulaire.value.title=="" || this.formulaire.value.good_answer=="" || this.formulaire.value.bad_answer1=="" || this.formulaire.value.bad_answer2=="" || this.formulaire.value.bad_answer3==""){
       alert("Veuillez remplir tous les champs");
       return;
     }
+
+    // push the new question in bdd with question service
 
     this.currentQuiz?.questions?.push(
       {id: (this.QUESTION_Service.getSize()).toString(),
@@ -102,8 +106,11 @@ export class EditQuizComponent {
   }
 
   onSubmitName(){
+
+    // update the name of the quiz in bdd with quiz service
     if(this.currentQuiz){
-      this.currentQuiz.name=this.formulaireNom.value.title_quiz;
+      this.quizService.updateQuiz(this.formulaireNom.value.title_quiz, this.currentQuiz.id, this.idTheme);
+      //this.currentQuiz.name=this.formulaireNom.value.title_quiz;
       alert("Nom de quizz modifié !");
     }
   }

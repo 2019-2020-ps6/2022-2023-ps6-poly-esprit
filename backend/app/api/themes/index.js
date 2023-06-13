@@ -17,6 +17,15 @@ router.get('/', (req, res) => {
     }
 })
 
+router.get('/quizzes', (req, res) => {
+    try {
+        const quizzes = Quiz.get()
+        res.status(200).json(quizzes)
+    }catch (err) {
+        manageAllErrors(res, err)
+    }
+})
+
 router.post('/', (req, res) => {
     try {
         const theme = Theme.create({ ...req.body})

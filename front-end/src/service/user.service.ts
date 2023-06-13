@@ -28,7 +28,6 @@ export class UserService {
 
   retrieveUsers(): void {
     this.http.get<User[]>(this.userUrl).subscribe((userList) => {
-      console.log(userList);
       this.users = userList;
       this.users$.next(this.users);
     });
@@ -52,7 +51,6 @@ export class UserService {
 
   addUser(u: User){
     this.http.post<User>(this.userUrl, u, this.httpOptions).subscribe(() => this.retrieveUsers());
-    console.log("Un nouvel utlisateur a été ajouté ! le mock possède maintenant "+this.users.length+" utilisateurs !");
     this.printUsers();
   }
 
@@ -109,7 +107,7 @@ export class UserService {
 
   //todo: THIS METHODS WILL PROBABLY NEED TO BE DELETE IN THE FUTURE//
 
-  
+
   createUser(): User {
     const user: User = {
       id: '1234567889',

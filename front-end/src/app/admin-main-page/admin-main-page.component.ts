@@ -124,4 +124,8 @@ export class AdminMainPageComponent implements OnInit {
       this.quizListVisible = true;
     }
   }
+
+  idThemeOnLocalStorage() {
+    localStorage.setItem('idTheme', this.selectedTheme.id);
+  }
 }

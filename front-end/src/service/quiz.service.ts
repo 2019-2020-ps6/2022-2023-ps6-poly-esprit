@@ -23,15 +23,23 @@ export class QuizService {
   // HttpClient qui va permettre de récupérer les données d'un serveur
   constructor(private http: HttpClient) {
     this.quizUrl = serverUrl + '/themes/' + this.themeId + '/quizzes';
-    // debugger
-  }
 
+  }
   setThemeId(themeId: number) {
     this.themeId = themeId;
     this.quizUrl = serverUrl + '/themes/' + this.themeId + '/quizzes';
     this.retrieveQuizs();
   }
 
+
+
+  getQuizzsWithoutTheme(): Quiz[] {
+    let quizzList: Quiz[] = [];
+    this.http.get<Quiz[]>(serverUrl + '/themes' + '/quizzes').subscribe((quizList) => {
+      quizzList = quizList;
+    });
+    return quizzList;
+  }
 
   addQuiz(nameQuiz: String){
     //this.quizzes.push(q);
@@ -74,9 +82,34 @@ export class QuizService {
 
 
   private retrieveQuizs() {
-    this.http.get<Quiz[]>(this.quizUrl).subscribe((quizList) => {
+     this.http.get<Quiz[]>(this.quizUrl).subscribe((quizList) => {
       this.quizzes = quizList;
       this.quizzes$.next(this.quizzes);
     });
   }
+
+  getQuizFromEditQuiz(idTheme: number, idQuiz: string | null) {
+    // utiliser les promises faire le get et retourner ensuite le quiz, d'id idQuiz et d'idTheme idTheme
+    let newQuizUrl = serverUrl + '/themes/' + idTheme + '/quizzes';
+    return new Promise(resolve => {
+      this.http.get<Quiz[]>(newQuizUrl).subscribe((quizList) => {
+        this.quizzes = quizList;
+        this.quizzes$.next(this.quizzes);
+        let quiz = this.quizzes.find(quiz => quiz.id == idQuiz?.toString());
+        resolve(quiz);
+      });
+    }).then((quiz) => {
+      return quiz;
+    });
+  }
+
+  // todo : finir le put d'un quiz
+  // todo : ne pas oublie de pouvoir ajoutr des question a un quiz, aller voir le service question
+  updateQuiz(nameQuiz: String, idQuiz: String, idTheme: number) {
+    let newQuizUrl = serverUrl + '/themes/' + idTheme + '/quizzes/' + idQuiz;
+    // ici ca marche plutot bien mais le problème c'est qu'il veux une question, jsp pk
+    this.http.put<Quiz>(newQuizUrl, {name:nameQuiz, themeId: idTheme}, this.httpOptions).subscribe(() => this.retrieveQuizs());
+  }
+
+
 }
