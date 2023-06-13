@@ -51,6 +51,27 @@ export class adminManagementUsersFixture extends E2EComponentFixture {
     await this.page.click(`text=${adminName}`);
     await this.page.click('text=Afficher les patients');
   }
+
+  async autoDeleteUser(name: string) {
+    await this.page.getByTestId("logoutButton").click();
+    await this.gotoListePatients("Admin");
+    await this.delUser(name);
+    await this.page.getByTestId("logoutButton").click();
+  }
+
+  async autoAddUser(name: string, prenom: string, age: string, sexe: string, stade: string, requireBigText: boolean, requireBigButtons: boolean, isAdmin: boolean, photoPath: string) {
+    await this.page.getByTestId("logoutButton").click();
+    await this.gotoAjouterUtilisateur("Admin");
+    await this.addUser(name, prenom, age, sexe, stade, requireBigText, requireBigButtons, isAdmin, photoPath);
+    await this.page.getByTestId("logoutButton").click();
+  }
+
+  async autoModifyUser(oldName: string, nom: string, prenom: string, age: string, sexe: string, stade: string, requireBigText: boolean, requireBigButtons: boolean, isAdmin: boolean, photoPath: string) {
+    await this.page.getByTestId("logoutButton").click();
+    await this.gotoListePatients("Admin");
+    await this.modifyUser(oldName, nom, prenom, age, sexe, stade, requireBigText, requireBigButtons, isAdmin, photoPath);
+    await this.page.getByTestId("logoutButton").click();
+  }
 }
 
 
