@@ -43,7 +43,7 @@ test.describe('Test poubelle pour Simon Beurel', () => {
     await expect(page.getByTestId('Les acteurs du XXème siècle-edit')).toBeVisible();
   });
 
-  
+
 
   test("Modifier une question dans un quiz", async({page}) => {
     await page.goto(testUrl);
