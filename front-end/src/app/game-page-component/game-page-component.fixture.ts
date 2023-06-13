@@ -39,7 +39,11 @@ export class GamePageComponentFixture extends E2EComponentFixture {
       await this.page.getByRole("button", { name: response }).click();
       await this.page.click('text=Valider');
     }
+    if (pointsAttendus == 0) {
+      await expect(this.page.getByText('Dommage !')).toBeVisible();
+    } else {
     await expect(this.page.getByText(`${pointsAttendus} points`)).toBeVisible();
+    }
     await this.page.click('text=Accueil');
     await this.page.getByTestId("logoutButton").click();
   }

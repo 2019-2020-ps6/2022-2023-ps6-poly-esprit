@@ -35,10 +35,10 @@
             <button class="btn" data-testid="user.nom+'-stats-btn'" [ngClass]="user.nom+'-stats-btn'"> Voir les statistiques </button>
           </a>
           <a class="navigation" [routerLink]="['/user-edit', user.id, id_user]">
-            <button class="btn" data-testid=`${user.name}-modify-btn` [ngClass]="user.nom+'-modify-btn'">Modifier le patient</button>
+            <button class="btn" data-testid="user.nom+'-modify-btn'" [ngClass]="user.nom+'-modify-btn'">Modifier le patient</button>
           </a>
           <a class="navigation" >
-            <button class="btn" data-testid=`${user.name}-delete-btn` (click)="openDelete(user.id)" [ngClass]="user.nom+'-delete-btn'">Supprimer le patient</button>
+            <button class="btn" data-testid="user.nom+'-delete-btn'" (click)="openDelete(user.id)" [ngClass]="user.nom+'-delete-btn'">Supprimer le patient</button>
           </a>
         </div>
       </div>
