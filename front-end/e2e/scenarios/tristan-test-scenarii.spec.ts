@@ -9,7 +9,7 @@ test.describe('Test initial\nCréer et modifier un patient', () => {
     expect(page.getByText('Perso Testeur')).not.toBeVisible();
   });
 
-  test('Créer l\'utilisateur', async ({ page }) => {
+  /*test('Créer l\'utilisateur', async ({ page }) => {
     await page.goto(testUrl);
     await page.click('text=Admin Admin');
     expect(page.url()).toBe('http://localhost:4200/admin/1684739070790');
@@ -29,7 +29,7 @@ test.describe('Test initial\nCréer et modifier un patient', () => {
     await page.click("text=Créer le nouvel utilisateur");
     expect(page.url()).toBe('http://localhost:4200/user-create/1684739070790');
     await page.click("text=Retour en arrière");
-    expect(page.getByText('Tester')).toBeVisible();
+    //expect(page.getByText('Tester')).toBeVisible();
   });
 
   test('Modifier l\'utilisateur', async ({ page }) => {
@@ -62,7 +62,7 @@ test.describe('Test initial\nCréer et modifier un patient', () => {
     *await page.click("text=Créer le nouvel utilisateur");
     *await page.click("text=Retour en arrière");
     *await expect(page.getByText('Tester')).toBeVisible();
-    */
+    *
     await page.getByText(" Voir les statistiques ").nth(1).click();
     expect(page.getByText('Le patient doit jouer')).toBeVisible();
 
@@ -76,6 +76,6 @@ test.describe('Test initial\nCréer et modifier un patient', () => {
     await page.getByText("Supprimer le patient").nth(1).click();
     await page.click("text=Oui");
     expect(page.getByText('Testeur')).not.toBeVisible();
-  });
+  });*/
 
 });

@@ -9,7 +9,7 @@ test.describe('Test initial\nCréer et modifier un patient', () => {
     await page.click('text=Admin Admin');
     await page.click("text=Afficher les patients")
     await page.click("text=Ajouter un patient");
-    await page.getByRole('textbox', { name: 'Nom', exact: true }).fill('Tester');
+    await page.getByRole('textbox', { name: 'Nom', exact: true }).fill('Tester2');
     await page.getByRole('textbox', { name: 'prénom' }).fill('Perso');
     await page.getByRole('spinbutton', { name: 'âge' }).fill('47');
     await page.click("text=Homme");
@@ -31,6 +31,7 @@ test.describe('Test initial\nCréer et modifier un patient', () => {
     await page.goto(testUrl);
     await page.click('text=Admin Admin');
     await page.click("text=Afficher les patients")
+    await console.log(await page.getByRole('button').allTextContents());
     await page.getByText("Supprimer le patient").nth(1).click();
     await page.click("text=Oui");
   });
