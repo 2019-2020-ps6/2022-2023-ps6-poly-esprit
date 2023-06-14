@@ -7,12 +7,12 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  @Input() title?: string;
   //title = 'Votre titre';
+  @Input() title?: string;
   id_user: string | null = "";
   isRedirected = false;
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.id_user = this.route.snapshot.paramMap.get('id_user');
