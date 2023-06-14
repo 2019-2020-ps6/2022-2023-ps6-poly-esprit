@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { testUrl } from 'e2e/e2e.config';
+import { testUrl } from '../e2e.config';
 
 test.describe('Nom de votre suite de tests', () => {
 
@@ -64,6 +64,7 @@ test.describe('Nom de votre suite de tests', () => {
     await expect(page.getByText('Internet')).toBeVisible();
 
   });
+
 
 
 

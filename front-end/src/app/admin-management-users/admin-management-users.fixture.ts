@@ -3,10 +3,8 @@ import {test, expect, Page, ElementHandle} from '@playwright/test';
 
 export class adminManagementUsersFixture extends E2EComponentFixture {
   async addUser(nom: string, prenom: string, age: string, sexe: string, stade: string, requireBigText: boolean, requireBigButtons: boolean, isAdmin: boolean, photoPath: string) {
-    this.page.goto('http://localhost:4200/user-create/1684739070790');
+    // this.page.goto('http://localhost:4200/user-create/1684739070790');
 
-    // const inputNom = await this.page.$('#nom');
-    // inputNom?.type(nom);
     await this.page.fill('input[formControlName="nom"]', nom);
     await this.page.fill('input[formControlName="prenom"]', prenom);
     await this.page.fill('input[formControlName="age"]', age);
@@ -21,15 +19,15 @@ export class adminManagementUsersFixture extends E2EComponentFixture {
   }
 
   async delUser(nom: string) {
-    await this.page.goto('http://localhost:4200/admin/1684739070790');
-    await this.page.click('text=Afficher les patients');
+    // await this.page.goto('http://localhost:4200/admin/1684739070790');
+    // await this.page.click('text=Afficher les patients');
     await this.page.locator(`.${nom}-delete-btn`)?.click();
     await this.page.click('text=oui');
   }
 
   async modifyUser(oldName: string, nom: string, prenom: string, age: string, sexe: string, stade: string, requireBigText: boolean, requireBigButtons: boolean, isAdmin: boolean, photoPath: string) {
-    await this.page.goto('http://localhost:4200/admin/1684739070790');
-    await this.page.click('text=Afficher les patients');
+    // await this.page.goto('http://localhost:4200/admin/1684739070790');
+    // await this.page.click('text=Afficher les patients');
     await this.page.locator(`.${oldName}-modify-btn`).click();
 
     await this.page.fill('input[formControlName="nom"]', nom);
@@ -40,6 +38,39 @@ export class adminManagementUsersFixture extends E2EComponentFixture {
     await this.page.fill('input[formControlName="path_pp"]', photoPath);
 
     await this.page.click('text=Appliquer les modifications');
+  }
+
+  async gotoAjouterUtilisateur(adminName: string) {
+    this.gotoListePatients(adminName);
+    await this.page.click('text=Ajouter un patient');
+
+  }
+
+  async gotoListePatients(adminName: string) {
+    await this.page.locator('.logout').click();
+    await this.page.click(`text=${adminName}`);
+    await this.page.click('text=Afficher les patients');
+  }
+
+  async autoDeleteUser(name: string) {
+    await this.page.getByTestId("logoutButton").click();
+    await this.gotoListePatients("Admin");
+    await this.delUser(name);
+    await this.page.getByTestId("logoutButton").click();
+  }
+
+  async autoAddUser(name: string, prenom: string, age: string, sexe: string, stade: string, requireBigText: boolean, requireBigButtons: boolean, isAdmin: boolean, photoPath: string) {
+    await this.page.getByTestId("logoutButton").click();
+    await this.gotoAjouterUtilisateur("Admin");
+    await this.addUser(name, prenom, age, sexe, stade, requireBigText, requireBigButtons, isAdmin, photoPath);
+    await this.page.getByTestId("logoutButton").click();
+  }
+
+  async autoModifyUser(oldName: string, nom: string, prenom: string, age: string, sexe: string, stade: string, requireBigText: boolean, requireBigButtons: boolean, isAdmin: boolean, photoPath: string) {
+    await this.page.getByTestId("logoutButton").click();
+    await this.gotoListePatients("Admin");
+    await this.modifyUser(oldName, nom, prenom, age, sexe, stade, requireBigText, requireBigButtons, isAdmin, photoPath);
+    await this.page.getByTestId("logoutButton").click();
   }
 }
 
