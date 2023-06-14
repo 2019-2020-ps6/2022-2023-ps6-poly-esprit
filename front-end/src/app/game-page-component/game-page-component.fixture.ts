@@ -71,7 +71,7 @@ export class GamePageComponentFixture extends E2EComponentFixture {
       await this.missClick();
       await this.page.getByRole("button", { name: response }).click();
       await this.missClick();
-      await this.page.click('text=Valider');
+      await this.page.getByRole("button", { name: "Valider" }).click();
     }
     if (pointsAttendus == 0) {
       await expect(this.page.getByText('Dommage !')).toBeVisible();
