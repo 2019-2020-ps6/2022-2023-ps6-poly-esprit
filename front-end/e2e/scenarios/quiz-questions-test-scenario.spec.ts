@@ -1,16 +1,16 @@
 import { test, expect } from '@playwright/test';
-import { testUrl } from 'e2e/e2e.config';
-import { AdminMainPageFixture} from "../../src/app/admin-main-page/admin-main-page.fixture";
-import {EditQuizFixture} from "../../src/app/edit-quiz-component/edit-quiz.fixture";
-import {EditQuestionComponentFixture} from "../../src/app/edit-question-component/edit-question-component.fixture";
+import { testUrl } from '../e2e.config';
+import { AdminMainPageFixture } from "../../src/app/admin-main-page/admin-main-page.fixture";
+import { EditQuizFixture } from "../../src/app/edit-quiz-component/edit-quiz.fixture";
+import { EditQuestionComponentFixture } from "../../src/app/edit-question-component/edit-question-component.fixture";
 
 test.describe('Tests réalisés sur les questions et les quizs', () => {
 
-  test.beforeEach(async ({page}) => {
-      await page.goto(testUrl);
+  test.beforeEach(async ({ page }) => {
+    await page.goto(testUrl);
   });
 
-  test("Ajouter un quiz à la base de donnée", async({page}) => {
+  test("Ajouter un quiz à la base de donnée", async ({ page }) => {
     const AdminMainPageFI = new AdminMainPageFixture(page);
     await page.click('text=Admin Admin');
 
@@ -25,7 +25,7 @@ test.describe('Tests réalisés sur les questions et les quizs', () => {
   });
 
 
-  test("Modifier un quiz déjà présent", async({page}) => {
+  test("Modifier un quiz déjà présent", async ({ page }) => {
     const AdminMainPageFI = new AdminMainPageFixture(page);
     const EditQuizFI = new EditQuizFixture(page);
 
@@ -44,7 +44,7 @@ test.describe('Tests réalisés sur les questions et les quizs', () => {
   });
 
 
-  test("Modifier une question dans un quiz", async({page}) => {
+  test("Modifier une question dans un quiz", async ({ page }) => {
     const AdminMainPageFI = new AdminMainPageFixture(page);
     const EditQuizFI = new EditQuizFixture(page);
     const EditQuestionFI = new EditQuestionComponentFixture(page);
@@ -56,7 +56,7 @@ test.describe('Tests réalisés sur les questions et les quizs', () => {
 
 
     let tab = ['Pamela rose !', "", "", ""];
-    await EditQuestionFI.changeValuesQuestionAndGoBack("Quel personnage meurt dans la comédie policière de Kad&Olivier ?",tab);
+    await EditQuestionFI.changeValuesQuestionAndGoBack("Quel personnage meurt dans la comédie policière de Kad&Olivier ?", tab);
 
     await AdminMainPageFI.launchQuiz('Les acteurs', 'Acteurs');
 
@@ -71,17 +71,17 @@ test.describe('Tests réalisés sur les questions et les quizs', () => {
   });
 
 
-  test("Ajouter une question dans un quiz", async({page}) => {
+  test("Ajouter une question dans un quiz", async ({ page }) => {
     const AdminMainPageFI = new AdminMainPageFixture(page);
     const EditQuizFI = new EditQuizFixture(page);
 
     await page.click('text=Admin Admin');
 
-    await AdminMainPageFI.goOnEditQuiz('Les Acteurs','Acteurs');
+    await AdminMainPageFI.goOnEditQuiz('Les Acteurs', 'Acteurs');
 
 
     let tab = ["Simon Beurel", "Arnaud Dumanois", "Quentin Maurois", "Lorenzo Froment"];
-    await EditQuizFI.addQuestionAndGoBack('Qui est né le 10 Mai 2001 ?',tab);
+    await EditQuizFI.addQuestionAndGoBack('Qui est né le 10 Mai 2001 ?', tab);
 
     await AdminMainPageFI.launchQuiz('Les acteurs', 'Acteurs');
 
@@ -98,12 +98,12 @@ test.describe('Tests réalisés sur les questions et les quizs', () => {
   });
 
 
-  test("Supprimer un quiz déjà présent", async({page}) => {
+  test("Supprimer un quiz déjà présent", async ({ page }) => {
     const AdminMainPageFI = new AdminMainPageFixture(page);
     await page.click('text=Admin Admin');
-    await AdminMainPageFI.deleteQuiz('Les Acteurs','Acteurs');
+    await AdminMainPageFI.deleteQuiz('Les Acteurs', 'Acteurs');
     await page.getByText('Acteurs').click();
-    await expect(AdminMainPageFI.isQuizNotVisible('Les Acteurs','Acteurs')).toBeTruthy();
+    await expect(AdminMainPageFI.isQuizNotVisible('Les Acteurs', 'Acteurs')).toBeTruthy();
   });
 
   test('Supprimer une question (quiz acteur)', async ({ page }) => {
