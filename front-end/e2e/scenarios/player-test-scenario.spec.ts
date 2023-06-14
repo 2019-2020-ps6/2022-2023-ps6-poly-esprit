@@ -94,9 +94,9 @@ test.describe('Vérifier le changement de taille', () => {
     await bouton.hover(); // Passage de la souris sur le bouton
     const tailleAfterHover = await bouton.boundingBox();
     // @ts-ignore
-    expect(tailleBeforeEdit.height < tailleAfterHover.height).toBeTruthy();
+    await expect(tailleBeforeEdit.height < tailleAfterHover.height).toBeTruthy();
     // @ts-ignore
-    expect(tailleBeforeEdit.width < tailleAfterHover.width).toBeTruthy();
+    await expect(tailleBeforeEdit.width < tailleAfterHover.width).toBeTruthy();
   });
 
 });
