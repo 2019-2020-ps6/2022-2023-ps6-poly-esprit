@@ -47,4 +47,35 @@ export class GamePageComponentFixture extends E2EComponentFixture {
     await this.page.click('text=Accueil');
     await this.page.getByTestId("logoutButton").click();
   }
+
+  async missClick() {
+    await this.page.locator("h3").click();
+  }
+
+  async PlayQuizHalfMissclick(nom: string, categorie: string, quiz: string, responses: string[], pointsAttendus: number, modeCarre: Boolean | null = null): Promise<void> {
+    await this.page.click(`text=${nom}`);
+    await this.page.click(`text=${categorie}`);
+    await this.page.click(`text=${quiz}`);
+    if (modeCarre != null) {
+      if (modeCarre) {
+        await this.page.click('text=Carré');
+      } else {
+        await this.page.click('text=Duo');
+      }
+    }
+    await this.missClick();
+    for (const response of responses) {
+      await this.missClick();
+      await this.page.getByRole("button", { name: response }).click();
+      await this.missClick();
+      await this.page.click('text=Valider');
+    }
+    if (pointsAttendus == 0) {
+      await expect(this.page.getByText('Dommage !')).toBeVisible();
+    } else {
+    await expect(this.page.getByText(`${pointsAttendus} points`)).toBeVisible();
+    }
+    await this.page.click('text=Accueil');
+    await this.page.getByTestId("logoutButton").click();
+  }
 }

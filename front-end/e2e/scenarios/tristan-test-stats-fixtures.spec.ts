@@ -12,11 +12,12 @@ test.describe('Tests concernants les statistiques', () => {
 
     await fixture.autoAddUser("Terteur", "booh", "36", "Femme", "0", false, false, false, "");
     await fixtureStats.goToStats("Terteur");
+    await expect(page.locator('apx-chart')).not.toBeVisible();
     await expect(page.getByText('Les statistiques de cet utilisateur ne sont pas encore disponibles.')).toBeVisible();
     await fixture.autoDeleteUser("Terteur");
   });
 
-test('Test pour un utilisateur avec bonnes réponses et bon click', async ({page}) => {
+test('Test pour un utilisateur avec bonnes réponses et bon clicks', async ({page}) => {
   await page.goto(testUrl);
   const fixture = new adminManagementUsersFixture(page);
   const fixtureStats = new statsFixture(page);
@@ -27,10 +28,11 @@ test('Test pour un utilisateur avec bonnes réponses et bon click', async ({page
   await fixture.autoAddUser(name, "Martin", "68", "Homme", "1", false, false, false, "");
   await fixtureQuiz.PlayQuiz(name, "Acteurs", "Les Acteurs", ["François Cluzet", "Men in Black"], 2, true);
   await fixtureStats.goToStats(name);
+  await expect(page.locator('apx-chart')).toBeVisible();
   await fixture.autoDeleteUser(name);
 });
 
-test('Test pour un utilisateur avec mauvaises réponses et mauvais click', async ({page}) => {
+test('Test pour un utilisateur avec mauvaises réponses et bons clicks', async ({page}) => {
   await page.goto(testUrl);
   const fixture = new adminManagementUsersFixture(page);
   const fixtureStats = new statsFixture(page);
@@ -40,6 +42,35 @@ test('Test pour un utilisateur avec mauvaises réponses et mauvais click', async
   await fixture.autoAddUser(name, "baah", "36", "Femme", "0", false, false, false, "");
   await fixtureQuiz.PlayQuiz(name, "Acteurs", "Les Acteurs", ["Jean Dujardin", "Winnie l'ourson"], 0, true);
   await fixtureStats.goToStats(name);
+  await expect(page.locator('apx-chart')).toBeVisible();
+  await fixture.autoDeleteUser(name);
+});
+
+test('Test pour un utilisateur avec bonnes réponses et mauvais clicks', async ({page}) => {
+  await page.goto(testUrl);
+  const fixture = new adminManagementUsersFixture(page);
+  const fixtureStats = new statsFixture(page);
+  const fixtureQuiz = new GamePageComponentFixture(page);
+  const name = "Lingrant"
+
+  await fixture.autoAddUser(name, "baah", "96", "Femme", "4", false, false, false, "");
+  await fixtureQuiz.PlayQuizHalfMissclick(name, "Acteurs", "Les Acteurs", ["François Cluzet", "Men in Black"], 2, null);
+  await fixtureStats.goToStats(name);
+  await expect(page.locator('apx-chart')).toBeVisible();
+  await fixture.autoDeleteUser(name);
+});
+
+test('Test pour un utilisateur avec mauvaises réponses et mauvais clicks', async ({page}) => {
+  await page.goto(testUrl);
+  const fixture = new adminManagementUsersFixture(page);
+  const fixtureStats = new statsFixture(page);
+  const fixtureQuiz = new GamePageComponentFixture(page);
+  const name = "ZZSeven"
+
+  await fixture.autoAddUser(name, "baah", "77", "Femme", "0", false, false, false, "");
+  await fixtureQuiz.PlayQuizHalfMissclick(name, "Acteurs", "Les Acteurs", ["Jean Dujardin", "Winnie l'ourson"], 0, true);
+  await fixtureStats.goToStats(name);
+  await expect(page.locator('apx-chart')).toBeVisible();
   await fixture.autoDeleteUser(name);
 });
 

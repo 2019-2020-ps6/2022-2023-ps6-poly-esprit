@@ -1,7 +1,7 @@
 import { PlaywrightTestConfig} from "@playwright/test";
 
 const config: PlaywrightTestConfig = {
-  reporter: [['html', { open: 'always'}]],
+  reporter: [['html', { open: 'only-on-failure'}]],//'always'
   use: {
     headless: false,
     viewport: { width: 1280, height: 720},
