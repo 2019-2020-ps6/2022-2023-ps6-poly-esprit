@@ -4,7 +4,7 @@
     "nom": "Admin",
     "prenom": "Admin",
     "age": 76,
-    "sex": "male",
+    "sex": "F",
     "pathology": 0,
     "path_pp": "https://master.salamandre.net/media/21903/loiseau-furtif-2-1800x1156.jpg",
     "id": 1684739070790,
@@ -12,6 +12,7 @@
     "need_big_text": false
   },
   {
+    "id": 1684739166638,
     "isAdmin": false,
     "nom": "Beurel",
     "prenom": "Simon",
