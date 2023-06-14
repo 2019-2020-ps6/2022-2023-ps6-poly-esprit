@@ -32,7 +32,7 @@ export class ThemeService {
         // });
     }
 
-    getThemes(): Observable<Theme[]> {  //returns all themes
+    getThemes(): BehaviorSubject<Theme[]> {  //returns all themes
         return this.themes$;
     }
 

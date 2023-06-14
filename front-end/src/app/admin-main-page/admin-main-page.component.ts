@@ -7,6 +7,7 @@ import {ActivatedRoute} from "@angular/router";
 import { Router } from '@angular/router';
 import {FormBuilder, FormGroup} from '@angular/forms'
 import {Theme} from "../../models/theme.models";
+import {BehaviorSubject} from "rxjs";
 
 @Component({
   selector: 'app-admin-main-page',
@@ -22,12 +23,11 @@ export class AdminMainPageComponent implements OnInit {
   private QCService: QuizService;
   public quizForm: FormGroup;
 
-  public currentQuiz?: Quiz;
   formulaire: FormGroup;
   id_quiz: string | null = "";
 
   public THService : ThemeService;
-  themes: any[] = [];
+  themes :Theme[] =[]
 
   idUser: any;
   quizVisible = false;
@@ -35,7 +35,6 @@ export class AdminMainPageComponent implements OnInit {
   inputValueName = "";
   inputValueTheme = "";
   constructor(private router: Router,private route: ActivatedRoute, private userService : UserService, private themeService: ThemeService, private quizService: QuizService ,public quizCreateService: QuizService, public formBuilder: FormBuilder) {
-
     this.admin_id = this.route.snapshot.paramMap.get('id');
     this.UService=userService;
     this.QCService = quizService;
@@ -45,9 +44,7 @@ export class AdminMainPageComponent implements OnInit {
     this.quizForm = this.formBuilder.group({
       name: [''],
       theme: [''],
-
     });
-
   }
 
 
@@ -56,8 +53,11 @@ export class AdminMainPageComponent implements OnInit {
     this.THService.getThemes().subscribe((themes)=> {
       this.themes = themes;
     });
+    if(this.themes.length != 0){
+      window.location.reload();
+      console.log(this.themes.length);
 
-
+    }
   }
 
   redirectToRoute() {
