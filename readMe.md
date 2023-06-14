@@ -7,7 +7,7 @@ Membres du groupe :
 - LARGUIER Tristan
 
 ## Préambule : 
-Au cours du projet PS6 réalisé dans le cadre de la formation Ingénieur en Informatique à Polytech Nice-Sophia, nous avons du réaliser un site internet proposant des quizs pouvant être réalisés par des personnes âgées comportant une pathologie particulière.
+Au cours du projet PS6 réalisé dans le cadre de la formation Ingénieur en Informatique à Polytech Nice-Sophia, nous avons du réaliser un site internet proposant des quizs pouvant être réalisés par des personnes âgées comportant une pathologie particulière.  
 Notre groupe a décidé de traiter la maladie de Parkinson. Selon l'OMS (Organisation Mondiale de la Santé), la maladie de Parkinson est "une maladie **dégénérative** du cerveau associée à des **symptômes moteurs** (mouvements lents, **tremblements**, rigidité et déséquilibre) et à d'autres complications, notamment des troubles cognitifs, de la santé mentale, du sommeil ainsi que des douleurs et des troubles sensoriels."
 Le but de notre site web sera donc de permettre aux différents patients d'un EPHAD ou maison de santé de pouvoir jouer à différents quizs en faisant en sorte d'implémenter différentes fonctionnalités pour faciliter l'utilisation du site aux patients gravement atteint de la maladie de Parkinson. Ce site sera également utile et utilisé par le personnel de santé pour que ces derniers puissent gérer la liste des patients, mais également évoluer les différentes statistiques liées à un utilisateur comme par exemple le *pourcentage de bonnes réponses* ou alors le *pourcentage de clics ratés*. 
 ## Partie 1 : Personas et scénarios réalisés
