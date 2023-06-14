@@ -46,7 +46,7 @@
     <br>
     <h3>Liste de questions déjà présentes</h3>
     <ul>
-      <li *ngFor="let question of questions">
+      <li *ngFor="let question of questions.value">
         <a class="navigation" class="questions" [routerLink]="['/edit-question', question.id, id_quiz, id_user]">
           Question : {{ question.label }}
         </a>

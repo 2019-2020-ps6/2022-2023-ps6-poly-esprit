@@ -6,6 +6,8 @@ import {QuizService} from "../../service/quiz.service";
 import {ActivatedRoute} from "@angular/router";
 import {Question} from "../../models/question.models";
 import {QuestionService} from "../../service/question.service";
+import {BehaviorSubject} from "rxjs";
+import {AnswerService} from "../../service/answer.service";
 
 
 @Component({
@@ -20,13 +22,13 @@ export class EditQuizComponent {
   private QUESTION_Service: QuestionService;
   formulaire: FormGroup;
   formulaireNom: FormGroup;
-  questions: Question[] | undefined = [];
+  public questions = new BehaviorSubject<Question[]>([])
   public id_user: string | null = "";
   public id_quiz: string | null = "";
   private idTheme = 0;
 
 
-  constructor(private questionService : QuestionService, private quizService: QuizService, private route: ActivatedRoute, private formBuilder: FormBuilder, private formBuilder2: FormBuilder) {
+  constructor(private questionService : QuestionService, private answerService: AnswerService, private quizService: QuizService, private route: ActivatedRoute, private formBuilder: FormBuilder, private formBuilder2: FormBuilder) {
     this.QUESTION_Service=questionService;
     this.formulaire = this.formBuilder.group({
       title: '',
@@ -46,6 +48,8 @@ export class EditQuizComponent {
 
     this.idTheme = Number(localStorage.getItem('idTheme'));
 
+    this.QUESTION_Service.initialize(this.idTheme, Number(this.id_quiz));
+
     this.quizService.getQuizFromEditQuiz(this.idTheme, this.id_quiz).then(()=>{
       localStorage.removeItem('idTheme');
 
@@ -53,7 +57,9 @@ export class EditQuizComponent {
         this.currentQuiz = this.quizService.getQuiz(this.id_quiz);
       }
 
-      this.questions=this.currentQuiz?.questions;
+      if (this.currentQuiz?.questions){
+        this.questions.next(this.currentQuiz?.questions);
+      }
 
       this.formulaireNom.patchValue({
         title_quiz: this.currentQuiz?.name
@@ -78,30 +84,24 @@ export class EditQuizComponent {
       alert("Veuillez remplir tous les champs");
       return;
     }
+    let answers = [{type: 'text', value: this.formulaire.value.good_answer, isCorrect: true},
+      {type: 'text', value: this.formulaire.value.bad_answer1, isCorrect: false},
+      {type: 'text', value: this.formulaire.value.bad_answer2, isCorrect: false},
+      {type: 'text', value: this.formulaire.value.bad_answer3, isCorrect: false}];
 
     // push the new question in bdd with question service
-
-    this.currentQuiz?.questions?.push(
+    this.QUESTION_Service.addQuestion(
       {id: (this.QUESTION_Service.getSize()).toString(),
         label: this.formulaire.value.title,
-        answers: [
-          {type: 'text', value: this.formulaire.value.good_answer, isCorrect: true},
-          {type: 'text', value: this.formulaire.value.bad_answer1, isCorrect: false},
-          {type: 'text', value: this.formulaire.value.bad_answer2, isCorrect: false},
-          {type: 'text', value: this.formulaire.value.bad_answer3, isCorrect: false}
-        ],
-      path_picture: "nothing_we_need_to_change"});
-
-    //Push the new question to the database of question
-    if(this.currentQuiz?.questions){
-      this.questionService.addQuestion(this.currentQuiz?.questions[this.currentQuiz?.questions?.length - 1] as Question);
-
-    }
-
-    console.log("Done");
-    console.log("TAILLE"  +this.QUESTION_Service.getSize());
+        path_picture: "nothing_we_need_to_change"}
+    )
     alert("Question ajoutée ! Le quizz possède maintenant "+this.currentQuiz?.questions?.length+" questions");
     this.formulaire.reset();
+    this.questions.next(this.QUESTION_Service.getQuestions().value);
+    console.log("question dans composant : ",this.questions.value);
+    console.log("question dans service : ",this.QUESTION_Service.getQuestions().value)
+
+
 
   }
 
@@ -117,10 +117,10 @@ export class EditQuizComponent {
 
   deleteQuestion(question_id: String){
     //Loop on this.questions and if the question got the same id you delete it
-    if(this.questions){
-      for(let i=0; i<this.questions.length; i++){
-        if(this.questions[i].id==question_id){
-          this.questions.splice(i,1);
+    if(this.questions.value){
+      for(let i=0; i<this.questions.value.length; i++){
+        if(this.questions.value[i].id==question_id){
+          this.questions.value.splice(i,1);
           alert("Question supprimée ! ");
         }
       }
