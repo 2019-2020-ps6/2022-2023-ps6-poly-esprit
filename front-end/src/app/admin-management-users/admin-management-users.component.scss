@@ -25,9 +25,9 @@
   border-width: 1px;
   border-color: black;
   background-color: rgba(58, 175, 169, 0.36);
-  margin: 10px 80px;
+  margin-top:40px;
   border-radius: 5px;
-  padding: 5px 120px;
+  padding: 5px 30px;
   transition: 0.2s;
   display: flex;
   flex-direction: column;
@@ -36,8 +36,10 @@
   margin-bottom: 1rem;
   gap: 20px;
 }
+
 ul {
   display: flex;
+  justify-content: space-around ;
   flex-wrap: wrap;
 }
 .user_container img {
@@ -58,7 +60,6 @@ li {
   margin-right: 20px;
   display: flex;
   flex-direction: row;
-  gap: 30px;
   align-items: center;
   justify-content: center;
   margin-left: 30px;
@@ -80,6 +81,7 @@ button {
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 4px;
+
 }
 
 button:hover {
@@ -154,3 +156,14 @@ button{
   border-radius: 5px;
   text-align: center;
 }
+
+.btn{
+  width: 60px;
+  height: 60px;
+}
+.btn-image{
+  max-width: 95%;
+  max-height: 95%;
+}
+
+
