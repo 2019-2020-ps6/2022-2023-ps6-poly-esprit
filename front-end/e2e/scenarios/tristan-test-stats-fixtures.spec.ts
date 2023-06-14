@@ -14,6 +14,13 @@ test.describe('Tests concernants les statistiques', () => {
     await fixtureStats.goToStats("Terteur");
     await expect(page.locator('apx-chart')).not.toBeVisible();
     await expect(page.getByText('Les statistiques de cet utilisateur ne sont pas encore disponibles.')).toBeVisible();
+    let head = await page.locator('.title');
+    await expect(await head.getByText('précision')).toBeVisible();
+    await expect(await head.getByText('bonnes')).not.toBeVisible();
+    await page.getByRole("button", { name: "réponses" }).click();
+    head = await page.locator('.title');
+    await expect(await head.getByText('précision')).not.toBeVisible();
+    await expect(await head.getByText('bonnes')).toBeVisible();
     await fixture.autoDeleteUser("Terteur");
   });
 

@@ -7,17 +7,20 @@ export class GamePageComponentFixture extends E2EComponentFixture {
     await this.page.click(`text=${answer}`);
     await this.page.click('text=Valider');
   }
+
   async answerBadQuestion(): Promise<void> {
     const badAnswerButton = await this.page.$('.badAnswer')
     await badAnswerButton?.click();
     await this.page.click('text=Valider');
   }
+
   async StartQuizAsSimon(): Promise<void> {
     await this.page.click('text=Simon Beurel');
     await this.page.click('text=Acteurs');
     await this.page.click('text=Les Acteurs');
     await this.page.click('text=Carré (4 choix affichés)');
   }
+
   async StartQuizAsLorenzo(): Promise<void> {
     await this.page.click('text=Lorenzo Froment');
     await this.page.click('text=Acteurs');
@@ -42,7 +45,7 @@ export class GamePageComponentFixture extends E2EComponentFixture {
     if (pointsAttendus == 0) {
       await expect(this.page.getByText('Dommage !')).toBeVisible();
     } else {
-    await expect(this.page.getByText(`${pointsAttendus} points`)).toBeVisible();
+      await expect(this.page.getByText(`${pointsAttendus} points`)).toBeVisible();
     }
     await this.page.click('text=Accueil');
     await this.page.getByTestId("logoutButton").click();
@@ -72,8 +75,10 @@ export class GamePageComponentFixture extends E2EComponentFixture {
     }
     if (pointsAttendus == 0) {
       await expect(this.page.getByText('Dommage !')).toBeVisible();
+    } else if (pointsAttendus == 1) {
+      await expect(this.page.getByText(`1 point`)).toBeVisible();
     } else {
-    await expect(this.page.getByText(`${pointsAttendus} points`)).toBeVisible();
+      await expect(this.page.getByText(`${pointsAttendus} points`)).toBeVisible();
     }
     await this.page.click('text=Accueil');
     await this.page.getByTestId("logoutButton").click();
