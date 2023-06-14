@@ -1,4 +1,4 @@
-FROM node:16.16.0-alpine as build
+FROM
 
 RUN apk add curl
 
