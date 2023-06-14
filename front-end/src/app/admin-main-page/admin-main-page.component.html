@@ -69,7 +69,7 @@
           <span [ngClass]="{ 'arrow-up': quizListVisible && selectedTheme === theme, 'arrow-down': !quizListVisible || selectedTheme !== theme }"></span>
           Thème : {{ theme.name }}
         </h2>
-        <button class="addQuiz" (click)="addQuizForTheme(theme.name)">Ajouter un quiz: {{theme.name}}</button>
+        <button class="addQuiz" (click)="addQuizForTheme(theme.name)">Ajouter un quiz dans ce theme</button>
       </div>
       <ul *ngIf="selectedTheme === theme && quizListVisible">
         <li *ngFor="let quiz of theme.quizzes" class="quiz-item">

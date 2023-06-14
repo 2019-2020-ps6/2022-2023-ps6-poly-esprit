@@ -19,9 +19,10 @@ test.describe('Tests réalisés sur les questions et les quizs', () => {
 
     await expect(AdminMainPageFI.isThemeVisible('ThemeTest')).toBeTruthy();
 
-    await page.getByText('ThemeTest').click();
+    await page.getByRole('heading', { name: '► Thème : ThemeTest' }).click();
 
     await expect(AdminMainPageFI.isQuizVisibile('QuizTest', 'ThemeTest')).toBeTruthy();
+
   });
 
 
