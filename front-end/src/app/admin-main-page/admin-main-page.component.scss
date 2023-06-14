@@ -208,8 +208,16 @@ button{
 .arrow-down::before {
   content: "► ";
 }
-.theme>h2:hover{
+.theme>div>h2:hover{
   background-color: #acccca;
   cursor: pointer;
 }
-
+.theme>div>h2{
+  width: 70%;
+}
+#contenerh2AndButton{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 30px;
+}

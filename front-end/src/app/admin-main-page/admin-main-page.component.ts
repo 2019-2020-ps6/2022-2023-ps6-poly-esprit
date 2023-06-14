@@ -88,6 +88,12 @@ export class AdminMainPageComponent implements OnInit {
     this.deleteVisible=false;
   }
 
+  addQuizForTheme(theme: any) {
+    this.quizVisible=true;
+    this.deleteVisible=false;
+    this.inputValueTheme = theme;
+  }
+
   openDelete(id:string) {
     this.deleteVisible=true;
     this.quizVisible=false;
