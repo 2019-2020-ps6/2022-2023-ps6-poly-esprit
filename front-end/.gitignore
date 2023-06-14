@@ -50,4 +50,4 @@ Thumbs.db
 # report files
 /playwright-report
 playwright.config.ts
-test-results
+/test-results
