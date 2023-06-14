@@ -1,7 +1,9 @@
-.answers{
+.answers {
   display: none;
+  z-index: 950;
 }
-#question{
+
+#question {
   text-align: center;
   width: 80%;
   height: 40px;
@@ -12,15 +14,21 @@
   background-color: rgba(73, 159, 157, 0.84);
   border-radius: 15px;
 }
-.isVisible{
+
+.isVisible {
   display: grid;
-  grid-template-columns: repeat(2,1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 30px;
   align-items: center;
   justify-items: center;
-  margin : 20px 120px 20px 120px;
+  margin: 20px 120px 20px 120px;
 }
-.buttonChoice{
+
+.answers > div {
+  margin: 20px;
+}
+
+.buttonChoice {
   border-radius: 15%;
   width: 350px;
   height: 150px;
@@ -31,6 +39,7 @@
   transform: scale(1.5);
   transition: 0.2s;
 }
+
 #libele_quiz {
   display: flex;
   flex-direction: column;
@@ -42,12 +51,14 @@
   padding-right: 2%;
   background-color: #CCE2F5;
 }
-#libele_quiz>p {
+
+#libele_quiz > p {
   margin-top: 5px;
   margin-bottom: 1%;
   padding-left: 2%;
   padding-right: 2%;
 }
+
 h3 {
   display: flex;
   align-items: center;
@@ -61,9 +72,6 @@ h3 {
 }
 
 #picture img {
-  max-width: 350px; /* Vous pouvez ajuster cette valeur selon la taille souhaitée */
+  z-index: 900;
+  max-width: 350px;
 }
-
-
-
-

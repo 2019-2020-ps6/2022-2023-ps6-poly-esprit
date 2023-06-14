@@ -3,17 +3,18 @@
     <h3 id="question" *ngIf="question"> {{question.label}}</h3>
   </div>
 
+
+
   <div id="picture">
     <a *ngIf="question">
       <img [src]="question.path_picture" alt="Image de la question">
     </a>
-  </div>
 
-<article [ngClass]="{'isVisible': answerIsDuo}" class="answers">
-    <div *ngFor="let answer of getAnswerDuo()">
+  <article [ngClass]="{'isVisible': answerIsDuo}" class="answers">
+  <div *ngFor="let answer of getAnswerDuo()">
       <app-game-answer-component (valideClick)="onValideClick()" [answer]="answer" [isBadSelected]="!answer.isCorrect" [isGoodSelected]="answer.isCorrect" [isSelected]="currentValue==answer.value" (selected)="onSelected($event)"></app-game-answer-component>
     </div>
-  </article>
+</article>
   <article [ngClass]="{'isVisible': answerIsCarre}" class="answers">
     <div *ngFor="let answer of getAnswerCarre()">
       <app-game-answer-component (valideClick)="onValideClick()" [answer]="answer" [isBadSelected]="!answer.isCorrect" [isGoodSelected]="answer.isCorrect" [isSelected]="currentValue==answer.value" (selected)="onSelected($event)"></app-game-answer-component>
@@ -23,6 +24,7 @@
     <button appAdaptConfig (click)="isCarre()" class="buttonChoice">Carré (4 choix affichés)</button>
     <button appAdaptConfig (click)="isDuo()" class="buttonChoice">Duo (2 choix affichés) </button>
   </article>
+  </div>
 </div>
 
 
