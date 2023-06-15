@@ -5,33 +5,23 @@ import { statsFixture } from '../../src/app/stats-visualisation/stats-visualisat
 import { GamePageComponentFixture } from '../../src/app/game-page-component/game-page-component.fixture'
 
 test.describe('Tests concernants les statistiques', () => {
-  /*test('Création/comparaison d\'images', async ({ page }) => {
-    await page.goto(testUrl);
-    const fixture = new adminManagementUsersFixture(page);
-    const fixtureStats = new statsFixture(page);
-    const fixtureQuiz = new GamePageComponentFixture(page);
-    const name = "Niépce"
+  const timeOut = 2000
 
-    //await fixture.autoAddUser(name, "Nicéphore", "258", "Homme", "1", false, false, false, "");
-    //await fixtureQuiz.PlayQuiz(name, "Acteurs", "Les Acteurs", ["François Cluzet", "Winnie l'ourson"], 1, true);
-    await fixtureStats.goToStats("Beurel");
-    await expect(page.locator('apx-chart')).toBeVisible();
-    try {
-      await expect(page.locator('apx-chart')).toHaveScreenshot("stats100.png");
-    } catch (error) {
-      console.log(error);
-    }
-
-    await page.getByRole('button', { name: 'réponses' }).click();
-
-    try {
-      await expect(page.locator('apx-chart')).toHaveScreenshot("stats50.png");
-    } catch (error) {
-      console.log(error);
-    }
-
-    //await fixture.autoDeleteUser(name);
-  });*/
+  /*
+  *test('Vérification fonctionnement comparaison d\'image', async ({ page }) => {
+    *await page.goto(testUrl);
+    *const fixtureStats = new statsFixture(page);
+    *
+    *await fixtureStats.goToStats("onlyForStats");
+    *await expect(page.locator('apx-chart')).toBeVisible();
+    *await page.waitForTimeout(timeOut);
+    *await expect(page.locator('apx-chart')).toHaveScreenshot("stats100.png");
+    *
+    *await page.getByRole('button', { name: 'réponses' }).click();
+    *await page.waitForTimeout(timeOut);
+    *await expect(page.locator('apx-chart')).toHaveScreenshot("stats50.png");
+  *});
+  */
 
 
   test('test pour un nouvel utilisateur', async ({ page }) => {
@@ -65,15 +55,18 @@ test.describe('Tests concernants les statistiques', () => {
     await fixtureQuiz.PlayQuiz(name, "Acteurs", "Les Acteurs", ["François Cluzet", "Men in Black"], 2, true);
     await fixtureStats.goToStats(name);
     await expect(page.locator('apx-chart')).toBeVisible();
+    await page.waitForTimeout(timeOut);
     await expect(await page.locator('apx-chart')).toHaveScreenshot("stats100.png");
     await expect(await page.locator('apx-chart')).not.toHaveScreenshot("stats50.png");
     await page.getByRole('button', { name: 'réponses' }).click();
+    await expect(page.locator('apx-chart')).toBeVisible();
+    await page.waitForTimeout(timeOut);
     await expect(await page.locator('apx-chart')).toHaveScreenshot("stats100.png");
     await expect(await page.locator('apx-chart')).not.toHaveScreenshot("stats50.png");
     await fixture.autoDeleteUser(name);
   });
 
-  /*test('Test pour un utilisateur avec mauvaises réponses et bons clicks', async ({ page }) => {
+  test('Test pour un utilisateur avec mauvaises réponses et bons clicks', async ({ page }) => {
     await page.goto(testUrl);
     const fixture = new adminManagementUsersFixture(page);
     const fixtureStats = new statsFixture(page);
@@ -84,10 +77,14 @@ test.describe('Tests concernants les statistiques', () => {
     await fixtureQuiz.PlayQuiz(name, "Acteurs", "Les Acteurs", ["Jean Dujardin", "Winnie l'ourson"], 0, true);
     await fixtureStats.goToStats(name);
     await expect(page.locator('apx-chart')).toBeVisible();
+    await page.waitForTimeout(timeOut);
     await expect(await page.locator('apx-chart')).toHaveScreenshot("stats100.png");
+    await expect(await page.locator('apx-chart')).not.toHaveScreenshot("stats50.png");
     await page.getByRole('button', { name: 'réponses' }).click();
+    await expect(page.locator('apx-chart')).toBeVisible();
+    await page.waitForTimeout(timeOut);
     await expect(await page.locator('apx-chart')).not.toHaveScreenshot("stats100.png");
-    await expect(await page.locator('apx-chart')).toHaveScreenshot("stats50.png");
+    await expect(await page.locator('apx-chart')).not.toHaveScreenshot("stats50.png");
     await fixture.autoDeleteUser(name);
   });
 
@@ -102,6 +99,14 @@ test.describe('Tests concernants les statistiques', () => {
     await fixtureQuiz.PlayQuizHalfMissclick(name, "Acteurs", "Les Acteurs", ["François Cluzet", "Men in Black"], 2, null);
     await fixtureStats.goToStats(name);
     await expect(page.locator('apx-chart')).toBeVisible();
+    await page.waitForTimeout(timeOut);
+    await expect(await page.locator('apx-chart')).not.toHaveScreenshot("stats100.png");
+    await expect(await page.locator('apx-chart')).toHaveScreenshot("stats50.png");
+    await page.getByRole('button', { name: 'réponses' }).click();
+    await expect(page.locator('apx-chart')).toBeVisible();
+    await page.waitForTimeout(timeOut);
+    await expect(await page.locator('apx-chart')).toHaveScreenshot("stats100.png");
+    await expect(await page.locator('apx-chart')).not.toHaveScreenshot("stats50.png");
     await fixture.autoDeleteUser(name);
   });
 
@@ -116,6 +121,14 @@ test.describe('Tests concernants les statistiques', () => {
     await fixtureQuiz.PlayQuizHalfMissclick(name, "Acteurs", "Les Acteurs", ["Jean Dujardin", "Winnie l'ourson"], 0, true);
     await fixtureStats.goToStats(name);
     await expect(page.locator('apx-chart')).toBeVisible();
+    await page.waitForTimeout(timeOut);
+    await expect(await page.locator('apx-chart')).not.toHaveScreenshot("stats100.png");
+    await expect(await page.locator('apx-chart')).toHaveScreenshot("stats50.png");
+    await page.getByRole('button', { name: 'réponses' }).click();
+    await expect(page.locator('apx-chart')).toBeVisible();
+    await page.waitForTimeout(timeOut);
+    await expect(await page.locator('apx-chart')).not.toHaveScreenshot("stats100.png");
+    await expect(await page.locator('apx-chart')).not.toHaveScreenshot("stats50.png");
     await fixture.autoDeleteUser(name);
-  });*/
+  });
 });
