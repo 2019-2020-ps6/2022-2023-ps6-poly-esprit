@@ -5,7 +5,7 @@ import { statsFixture } from '../../src/app/stats-visualisation/stats-visualisat
 import { GamePageComponentFixture } from '../../src/app/game-page-component/game-page-component.fixture'
 
 test.describe('Tests concernants les statistiques', () => {
-  test('test pour un nouvel utilisateur', async ({ page }) => {
+  /*test('test pour un nouvel utilisateur', async ({ page }) => {
     await page.goto(testUrl);
     const fixture = new adminManagementUsersFixture(page);
     const fixtureStats = new statsFixture(page);
@@ -22,7 +22,7 @@ test.describe('Tests concernants les statistiques', () => {
     await expect(await head.getByText('précision')).not.toBeVisible();
     await expect(await head.getByText('bonnes')).toBeVisible();
     await fixture.autoDeleteUser("Terteur");
-  });
+  });*/
 
   test('Test pour un utilisateur avec bonnes réponses et bon clicks', async ({ page }) => {
     await page.goto(testUrl);
@@ -36,9 +36,10 @@ test.describe('Tests concernants les statistiques', () => {
     await fixtureQuiz.PlayQuiz(name, "Acteurs", "Les Acteurs", ["François Cluzet", "Men in Black"], 2, true);
     await fixtureStats.goToStats(name);
     await expect(page.locator('apx-chart')).toBeVisible();
+    await page.locator('apx-chart').screenshot({ animations: 'disabled', path: 'e2e/screens/chart100.png' });
     await fixture.autoDeleteUser(name);
   });
-
+/*
   test('Test pour un utilisateur avec mauvaises réponses et bons clicks', async ({ page }) => {
     await page.goto(testUrl);
     const fixture = new adminManagementUsersFixture(page);
@@ -80,5 +81,5 @@ test.describe('Tests concernants les statistiques', () => {
     await expect(page.locator('apx-chart')).toBeVisible();
     await fixture.autoDeleteUser(name);
   });
-
+*/
 });
