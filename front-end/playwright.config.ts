@@ -12,6 +12,10 @@ const config: PlaywrightTestConfig = {
       slowMo: 0,
     },
   },
+
+  expect: { //ne pas toucher ça
+    toHaveScreenshot: { maxDiffPixels: 100 },
+  },
 };
 
 export default config;

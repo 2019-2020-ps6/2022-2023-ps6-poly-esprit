@@ -50,3 +50,4 @@ Thumbs.db
 # report files
 ./front-end/playwright-report/
 ./backend/database/e2e
+./front-end/playwright-report
