@@ -1,16 +1,20 @@
-import { PlaywrightTestConfig} from "@playwright/test";
+import { PlaywrightTestConfig } from "@playwright/test";
 
 const config: PlaywrightTestConfig = {
-  reporter: [['html', { open: 'always'}]],//'only-on-failure'}]],//'always'
+  reporter: [['html', { open: 'only-on-failure' }]],//'only-on-failure'}]],//'always'
   use: {
-    headless: false,
-    viewport: { width: 1280, height: 720},
+    headless: true,
+    viewport: { width: 1280, height: 720 },
     ignoreHTTPSErrors: true,
     video: 'on',//'on-first-retry',
     screenshot: 'on',//'only-on-failure',
     launchOptions: {
-      slowMo: 400,
+      slowMo: 0,
     },
+  },
+
+  expect: { //ne pas toucher ça
+    toHaveScreenshot: { maxDiffPixels: 100 },
   },
 };
 
