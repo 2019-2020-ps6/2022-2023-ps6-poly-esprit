@@ -1,53 +1,53 @@
-### En cours !
-
-#version: '3'
-#services:
-#  front:
-#    image: front-poly-esprit:e1
-#    build:
-#      context: ../front-end
-#      dockerfile: ../front-end/Dockerfile
-#    user: nginx
-#    ports:
-#      - 8080:8080
-#    depends_on:
-#      back:
-#        condition: service_healthy
-#    healthcheck:
-#      test: ["CMD-SHELL", "curl -f http://localhost:8080/ || exit 1"]
-#      interval: 10s
-#      timeout: 10s
-#      start_period: 5s
-#      retries: 5
-#  back:
-#    image: back-poly-esprit:e1
-#    build:
-#      context: ../backend
-#      dockerfile: ../backend/Dockerfile
-#    user: node
-#    ports:
-#      - 9428:9428
-#    volumes:
-#      - back-storage:/home/node/database
-#    healthcheck:
-#      test: [ "CMD-SHELL", "curl -f http://localhost:9428/api/status || exit 1" ]
-#      interval: 10s
-#      timeout: 10s
-#      start_period: 5s
-#      retries: 5
-#  tests:
-#    image: tests-poly-esprit:e3
-#    build:
-#      context: ../front-end
-#      dockerfile: ../front-end/e2e/Dockerfile-e2e
-#    user: node
-#    depends_on:
-#      front:
-#        condition: service_healthy
-#    volumes:
-#      - test-results:/home/node/test-results
-#      - playwright-report:/home/node/playwright-report
-#volumes:
-#  back-storage:
-#  test-results:
-#  playwright-report:
+version: '3'
+services:
+  front:
+    image: front-poly-esprit:e1
+    build:
+      context: ../front-end
+      dockerfile: ../front-end/Dockerfile
+      args:
+        TESTURL: "http:\\/\\/back:9428"
+        ENVIRONMENT: e2e
+    user: nginx
+    ports:
+      - 8080:80
+    depends_on:
+      back:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:80/ || exit 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+  back:
+    image: back-poly-esprit:e1
+    build:
+      context: ../backend
+      dockerfile: ../backend/Dockerfile-e2e
+    user: node
+    ports:
+      - 9428:9428
+    healthcheck:
+      test: [ "CMD-SHELL", "curl -f http://localhost:9428/api/status || exit 1" ]
+      interval: 10s
+      timeout: 10s
+      start_period: 5s
+      retries: 5
+  tests:
+    image: tests-poly-esprit:e3
+    build:
+      context: ../front-end
+      dockerfile: ../front-end/Dockerfile-e2e
+    user: pwuser
+    ports:
+      - 45625:45625
+      - 9323:9323
+    depends_on:
+      front:
+        condition: service_healthy
+    volumes:
+      - test-results:/usr/local/app/test-results
+      - playwright-report:/usr/local/app/playwright-report
+volumes:
+  test-results:
+  playwright-report:

@@ -4,9 +4,9 @@ USER pwuser
 
 WORKDIR /usr/local/app
 
-RUN ls -lht ..
 COPY --chown=pwuser:pwuser ./ /usr/local/app/
-RUN ls -lht
+RUN rm playwright.config.ts
+RUN mv playwright.config.e2e.ts playwright.config.ts
 
 RUN mkdir test-results playwright-report
 RUN ls -lht

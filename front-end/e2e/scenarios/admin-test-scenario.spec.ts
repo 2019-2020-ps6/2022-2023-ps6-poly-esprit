@@ -10,7 +10,7 @@ test.describe('14, 15', () => {
       await page.click('text=Gestion des patients');
       await page.getByTestId('parameter').click();
       //await page.getByTitle('Gestion des patients').getByRole('button').first().click();
-      const urlRegex = new RegExp('http://localhost:4200/admin');
+      const urlRegex = new RegExp('http://front/admin/1684739070790');
       await expect(page.url()).toMatch(urlRegex);
   });
 

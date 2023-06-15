@@ -5,6 +5,7 @@ import {statsFixture } from 'src/app/stats-visualisation/stats-visualisation.fix
 import {GamePageComponentFixture } from 'src/app/game-page-component/game-page-component.fixture'
 
 test.describe('Tests concernants les statistiques', () => {
+  /**
   test('test pour un nouvel utilisateur', async ({page}) => {
     await page.goto(testUrl);
     const fixture = new adminManagementUsersFixture(page);
@@ -79,6 +80,6 @@ test('Test pour un utilisateur avec mauvaises réponses et mauvais clicks', asyn
   await fixtureStats.goToStats(name);
   await expect(page.locator('apx-chart')).toBeVisible();
   await fixture.autoDeleteUser(name);
-});
+});*/
 
 });

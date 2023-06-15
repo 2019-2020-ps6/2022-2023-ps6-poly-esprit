@@ -12,4 +12,4 @@ COPY --chown=node:node ./package* ./
 
 RUN npm install
 
-ENTRYPOINT ["npm", "run", "start"]
+ENTRYPOINT ["npm", "run", "start:e2e"]
