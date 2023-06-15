@@ -24,18 +24,6 @@
     "need_big_text": false
   },
   {
-    "id": 1685434796551,
-    "isAdmin": false,
-    "nom": "Délias",
-    "prenom": "Théa",
-    "age": 74,
-    "sex": "Female",
-    "pathology": 4,
-    "path_pp": "https://produits.bienmanger.com/37161-0w470h470_Grand_Humeau_Aop_Bordeaux_Vin_Rouge.jpg",
-    "need_big_button": true,
-    "need_big_text": false
-  },
-  {
     "isAdmin": false,
     "nom": "Cremy",
     "prenom": "La creme",

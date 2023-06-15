@@ -26,6 +26,7 @@ export class EditQuizComponent {
   public id_user: string | null = "";
   public id_quiz: string | null = "";
   private idTheme = 0;
+  private questionIndex = 0;
 
 
   constructor(private questionService : QuestionService, private answerService: AnswerService, private quizService: QuizService, private route: ActivatedRoute, private formBuilder: FormBuilder, private formBuilder2: FormBuilder) {
@@ -51,7 +52,6 @@ export class EditQuizComponent {
     this.QUESTION_Service.initialize(this.idTheme, Number(this.id_quiz));
 
     this.quizService.getQuizFromEditQuiz(this.idTheme, this.id_quiz).then(()=>{
-      localStorage.removeItem('idTheme');
 
       if(this.id_quiz){
         this.currentQuiz = this.quizService.getQuiz(this.id_quiz);
@@ -66,40 +66,37 @@ export class EditQuizComponent {
       })
     });
 
-  }
-
-  addQuestion() : void {
-    /**this.currentQuiz?.questions.push(
-      {id: '1', label: 'Question', answers: [{type: 'text', value: 'Answer', isCorrect: true}]});*/
 
   }
 
   // todo : ajouter une question a la bdd
   onSubmit() {
-    console.log(this.formulaire.value.title);
-
-    console.log("TAILLE"  +this.QUESTION_Service.getSize());
-
     if(this.formulaire.value.title=="" || this.formulaire.value.good_answer=="" || this.formulaire.value.bad_answer1=="" || this.formulaire.value.bad_answer2=="" || this.formulaire.value.bad_answer3==""){
       alert("Veuillez remplir tous les champs");
       return;
     }
-    let answers = [{type: 'text', value: this.formulaire.value.good_answer, isCorrect: true},
+    let answers = [
+      {type: 'text', value: this.formulaire.value.good_answer, isCorrect: true},
       {type: 'text', value: this.formulaire.value.bad_answer1, isCorrect: false},
       {type: 'text', value: this.formulaire.value.bad_answer2, isCorrect: false},
-      {type: 'text', value: this.formulaire.value.bad_answer3, isCorrect: false}];
+      {type: 'text', value: this.formulaire.value.bad_answer3, isCorrect: false}
+    ];
 
+    console.log(this.QUESTION_Service.getSize());
     // push the new question in bdd with question service
-    this.QUESTION_Service.addQuestion(
-      {id: (this.QUESTION_Service.getSize()).toString(),
-        label: this.formulaire.value.title,
-        path_picture: "nothing_we_need_to_change"}
-    )
-    alert("Question ajoutée ! Le quizz possède maintenant "+this.currentQuiz?.questions?.length+" questions");
-    this.formulaire.reset();
-    this.questions.next(this.QUESTION_Service.getQuestions().value);
-    console.log("question dans composant : ",this.questions.value);
-    console.log("question dans service : ",this.QUESTION_Service.getQuestions().value)
+    this.QUESTION_Service.addQuestion(this.formulaire.value.title, "nothing_we_need_to_change", answers).then(r =>{
+      alert("Question ajoutée ! Le quizz possède maintenant "+this.currentQuiz?.questions?.length+" questions");
+      this.formulaire.reset();
+      this.questions.next(this.QUESTION_Service.getQuestions().value);
+      window.location.reload();
+    });
+    //this.QUESTION_Service.initialize(this.idTheme, Number(this.id_quiz));
+    //console.log(this.QUESTION_Service.getSize());
+    /*this.questionIndex = Number(this.QUESTION_Service.getSize()-1);
+    this.answerService.initialize(this.idTheme, Number(this.id_quiz), Number(this.QUESTION_Service.getQuestions().value[this.QUESTION_Service.getSize()-1].id));
+    for(let i=0; i<answers.length; i++){
+      this.answerService.addAnswer(answers[i].type,answers[i].value, answers[i].isCorrect);
+    }*/
 
 
 
@@ -117,14 +114,12 @@ export class EditQuizComponent {
 
   deleteQuestion(question_id: String){
     //Loop on this.questions and if the question got the same id you delete it
-    if(this.questions.value){
-      for(let i=0; i<this.questions.value.length; i++){
-        if(this.questions.value[i].id==question_id){
-          this.questions.value.splice(i,1);
-          alert("Question supprimée ! ");
-        }
-      }
-    }
+    this.QUESTION_Service.deleteQuestion(Number(question_id));
+    window.location.reload();
+    alert("Question supprimée ! ");
   }
 
+  sendIdForComponent() {
+    localStorage.setItem('idTheme', String(this.idTheme));
+  }
 }

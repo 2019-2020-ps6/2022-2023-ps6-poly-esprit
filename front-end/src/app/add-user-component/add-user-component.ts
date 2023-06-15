@@ -107,7 +107,6 @@ export class AddUserComponent implements OnInit {
       userToAdd.need_big_text = false;
     }
 
-    console.log(userToAdd);
 
     if(userToAdd.nom == "" || userToAdd.prenom == "" || userToAdd.age <= 0){
       alert("Veuillez remplir tous les champs");

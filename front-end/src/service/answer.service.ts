@@ -31,7 +31,7 @@ export class AnswerService {
     this.themeId = themeId;
     this.quizId = quizId;
     this.questionId = questionId;
-    this.answerUrl = serverUrl + '/themes/' + this.themeId + '/quizzes/' + this.quizId + '/questions' + this.questionId + '/answers';
+    this.answerUrl = serverUrl + '/themes/' + this.themeId + '/quizzes/' + this.quizId + '/questions/' + this.questionId + '/answers';
     this.retrieveAnswers();
   }
   getAnswer(): BehaviorSubject<Answer[]> {
@@ -42,16 +42,15 @@ export class AnswerService {
   getSize(): number {
     return this.answers.length;
   }
-
+/*
   deleteQuestion(u: Question | undefined){
     if (u) {
       this.answers.splice(this.answers.indexOf(u), 1);
     }
-  }
+  }*/
 
-  addQuestion(u: Question){
-    this.http.post<Question>(this.answerUrl, u, this.httpOptions).subscribe(() => this.retrieveAnswers());
-    console.log("Question ajoutée : " + u.label);
+  addAnswer(type:string,value:string,isCorrect:boolean){
+    this.http.post<{type:string,value:string,isCorrect:boolean}>(this.answerUrl, {type:type,value:value,isCorrect:isCorrect}, this.httpOptions).subscribe(() => this.retrieveAnswers());
   }
 
   private retrieveAnswers() {

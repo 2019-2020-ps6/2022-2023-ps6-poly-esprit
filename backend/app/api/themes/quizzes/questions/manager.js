@@ -12,9 +12,11 @@ const {getAnswerFromQuestion} = require("./answers/manager");
  * This function filters among the questions to return only the question linked with the given quizId.
  * @param quizId
  */
+const deepCopy = (obj) => JSON.parse(JSON.stringify(obj))
+
 const filterQuestionsFromQuizz = (quizId) => {
-  const questions = Question.get()
-  const answers = Answer.get()
+  const questions = deepCopy(Question.get())
+  const answers = deepCopy(Answer.get())
   const parsedId = parseInt(quizId, 10)
   questions.forEach((question) => { question.answers = answers.filter((answer) => answer.questionId === question.id) })
   return questions.filter((question) => question.quizId === parsedId)
@@ -28,9 +30,9 @@ const filterQuestionsFromQuizz = (quizId) => {
  */
 const getQuestionFromQuiz = (quizId, questionId) => {
   // Check if quizId exists, if not it will throw a NotFoundError
-  const quiz = Quiz.getById(quizId)
+  const quiz = deepCopy(Quiz.getById(quizId))
   const quizIdInt = parseInt(quizId, 10)
-  const question = Question.getById(questionId)
+  const question = deepCopy(Question.getById(questionId))
   if (question.quizId !== quizIdInt) throw new NotFoundError(`${question.name} id=${questionId} was not found for ${quiz.name} id=${quiz.id} : not found`)
   return question
 }

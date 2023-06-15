@@ -90,9 +90,6 @@ export class GameEndComponentComponent implements AfterViewInit {
       return;
     }
     let score = ~~(this.gameInstance.score/this.gameInstance.gameQuestionsAnswers.length*100);
-    console.log("userId", this.userId);
-    console.log("score", score);
-    console.log("shared_clicks", this.shared_clicks);
     this.playerStatsService.endGame(this.userId, score, this.shared_clicks);
   }
 

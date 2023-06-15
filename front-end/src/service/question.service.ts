@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable} from "rxjs";
 import {Questions} from "../mocks/question.mock";
-import {Question} from "../models/question.models";
+import {Answer, Question} from "../models/question.models";
 import {User} from "../models/user.model";
 import {httpOptionsBase, serverUrl} from "../configs/server.config";
 import {HttpClient} from "@angular/common/http";
@@ -33,7 +33,6 @@ export class QuestionService {
     this.retrieveQuestions();
   }
   getQuestions(): BehaviorSubject<Question[]> {
-    console.log("getQuestions");
     return this.questions$
   }
 
@@ -41,15 +40,28 @@ export class QuestionService {
     return this.questions.length;
   }
 
-  deleteQuestion(u: Question | undefined){
-    if (u) {
-      this.questions.splice(this.questions.indexOf(u), 1);
-    }
+  deleteQuestion(idQuestion: number) {
+    this.http.delete<Question>(this.quizUrl + '/' + idQuestion, this.httpOptions).subscribe(() => this.retrieveQuestions());
   }
 
-  addQuestion(q:{label:string,path}){
-    this.http.post<Question>(this.quizUrl, u, this.httpOptions).subscribe(() => this.retrieveQuestions());
-    console.log("Question ajoutée : " + u.label);
+  async addQuestion(label: string, path_picture: string, answers: Answer[]) {
+    let question = await this.http.post<Question>(this.quizUrl, {
+      label: label,
+      path_picture: path_picture
+    }, this.httpOptions).toPromise();
+
+    console.log(question);
+    let lastQuestion = this.questions[this.questions.length - 1];
+    for (let i = 0; i < answers.length; i++) {
+      await this.http.post<{type:string,value:string,isCorrect:boolean}>(this.quizUrl + '/' + question?.id + '/answers', {
+        type: answers[i].type,
+        value: answers[i].value,
+        isCorrect: answers[i].isCorrect
+      }, this.httpOptions).subscribe(async () => {
+        await this.retrieveQuestions();
+        console.log("Ajout de la réponse");
+      });
+    }
   }
 
   private retrieveQuestions() {

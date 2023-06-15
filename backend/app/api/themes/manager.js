@@ -13,7 +13,6 @@ const deepCopy = (obj) => JSON.parse(JSON.stringify(obj))
 const buildTheme = (themeId) => {
     const theme = deepCopy(Theme.getById(themeId))
     const quizzes = filterQuizzesByTheme(themeId)
-    console.log("getQuizzes dans buildTheme", quizzes)
 }
 
 

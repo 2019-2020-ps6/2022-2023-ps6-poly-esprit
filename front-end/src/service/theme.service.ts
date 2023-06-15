@@ -38,7 +38,6 @@ export class ThemeService {
 
     getTheme(id: number): Observable<Theme> {
       const theme = this.themes.find(t => t.id == id);
-      console.log("theme " + this.themes[0].name);
       if (theme) {
         return of(theme);
       } else {

@@ -40,7 +40,6 @@ router.post('/', (req, res) => {
     res.status(201).json(answer)
   } catch (err) {
     if (err.name === 'NotFoundError') {
-      console.log(err)
       res.status(404).end()
     } else if (err.name === 'ValidationError') {
       res.status(400).json(err.extra)

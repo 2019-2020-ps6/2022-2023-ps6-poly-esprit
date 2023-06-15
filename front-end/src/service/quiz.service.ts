@@ -43,19 +43,19 @@ export class QuizService {
 
 
   deleteQuiz(id: String){
-    this.quizzes = this.quizzes.filter(quiz => quiz.id !== id);
+    // delete qui on bdd, not on mock
+    this.http.delete(this.quizUrl + '/' + id, this.httpOptions).subscribe(() => this.retrieveQuizs());
+    //this.quizzes = this.quizzes.filter(quiz => quiz.id !== id);
   }
 
   printQuiz(){
     for(let i=0; i<this.quizzes.length; i++){
-      console.log("Nom quiz : "+this.quizzes[i].name+" et d'id : "+this.quizzes[i].id);
     }
   }
 
 
   getQuiz(id: String): Quiz | undefined {
     let quiz = this.quizzes.find(quiz => quiz.id == id);
-    console.log("quiz : " + quiz);
     return quiz;
   }
 

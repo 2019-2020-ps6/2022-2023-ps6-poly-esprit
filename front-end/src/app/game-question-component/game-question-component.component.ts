@@ -36,7 +36,7 @@ export class GameQuestionComponentComponent implements OnInit{
     const id = this.route.snapshot.paramMap.get('idUser');
     const user = this.userService.getUserById(Number(id));
     user.subscribe((user) => { this.howPathology = user.pathology });
-    console.log("log dans gameQuestion",this.howPathology)
+
     this.random = Math.floor(Math.random() * 3);
 
 
@@ -52,7 +52,6 @@ export class GameQuestionComponentComponent implements OnInit{
     if(this.howPathology===1  || this.howPathology===0){
       this.answerIsChoice=true;
     }
-    console.log("log dans gameQuestion",this.question)
 
   }
   public onSelected(value:string){

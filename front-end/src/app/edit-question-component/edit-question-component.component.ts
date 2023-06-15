@@ -20,6 +20,7 @@ export class EditQuestionComponent {
   id_quiz: string | null = "";
   id_user: string | null = "";
   title = "Édition de question"
+  public idTheme = 0;
 
   constructor(private questionService: QuestionService, private route: ActivatedRoute, private formBuilder: FormBuilder) {
     this.QUService=questionService;
@@ -30,8 +31,6 @@ export class EditQuestionComponent {
       bad_answer2: '',
       bad_answer3: ''
     });
-
-
   }
 
   ngOnInit(): void {
@@ -39,13 +38,12 @@ export class EditQuestionComponent {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.id_quiz = this.route.snapshot.paramMap.get('id_quiz');
     this.id_user = this.route.snapshot.paramMap.get('id_user');
-    // todo : changer en bahavior, a vefirié
+    this.idTheme = Number(localStorage.getItem('idTheme'));
+    this.questionService.initialize(this.idTheme, Number(this.id_quiz));
     this.questionService.getQuestions().subscribe((questions) => {
-      this.currentQuestion = questions[id];
+      this.currentQuestion = questions.find((item) =>Number(item.id) == id);
     });
     this.updateForm();
-
-    console.log("question : ",this.questions);
   }
 
   updateForm(){
@@ -72,5 +70,9 @@ export class EditQuestionComponent {
       this.currentQuestion.answers[3].value = this.formulaire.value.bad_answer3;
     }
     alert("La question a été mise à jour !");
+  }
+
+  sendThemeId() {
+    localStorage.setItem('idTheme', this.idTheme.toString());
   }
 }
