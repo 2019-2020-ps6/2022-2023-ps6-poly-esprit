@@ -78,7 +78,7 @@
               <h3> Quiz : {{ quiz.name }}</h3>
             </a>
             <div class="button-container">
-              <a class="navigation" [routerLink]="['/edit-quiz', quiz.id, admin_id]">
+              <a class="navigation" (click)="idThemeOnLocalStorage()" [routerLink]="['/edit-quiz', quiz.id, admin_id]">
                 <button class="gestion_admin" id="edit_quiz" [attr.data-testid]="quiz.name + '-edit'">Modifier le quiz</button>
               </a>
               <a class="navigation">

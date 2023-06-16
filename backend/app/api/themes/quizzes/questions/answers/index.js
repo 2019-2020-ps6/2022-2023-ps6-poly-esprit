@@ -1,8 +1,9 @@
 const { Router } = require('express')
-const { Answer } = require('../../../../models')
+const { Answer } = require('../../../../../models')
 
 const { getQuestionFromQuiz } = require('../manager')
 const { filterAnswersFromQuestion, getAnswerFromQuestion } = require('./manager')
+const manageAllErrors = require("../../../../../utils/routes/error-management");
 
 const router = new Router({ mergeParams: true })
 
@@ -55,13 +56,7 @@ router.put('/:answerId', (req, res) => {
     const updatedAnswer = Answer.update(req.params.answerId, { ...req.body, questionId: answer.questionId })
     res.status(200).json(updatedAnswer)
   } catch (err) {
-    if (err.name === 'NotFoundError') {
-      res.status(404).end()
-    } else if (err.name === 'ValidationError') {
-      res.status(400).json(err.extra)
-    } else {
-      res.status(500).json(err)
-    }
+    manageAllErrors(res, err);
   }
 })
 

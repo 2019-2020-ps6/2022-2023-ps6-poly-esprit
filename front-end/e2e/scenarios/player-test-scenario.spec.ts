@@ -3,6 +3,7 @@ import { testUrl } from '../e2e.config';
 import { GamePageComponentFixture } from "../../src/app/game-page-component/game-page-component.fixture";
 
 test.describe('Jouer un quiz (stade 4)', () => {
+
   test('Jouer un quizz et avoir 2 points sur 2', async ({ page }) => {
     const fixtureAnswer = new GamePageComponentFixture(page);
     await page.goto(testUrl);
@@ -85,6 +86,7 @@ test.describe('Vérifier le changement de taille', () => {
   });
 
   test('Vérifier l\' aggrandissement du bouton lorsque la souris est dessus', async ({ page }) => {
+    const timeOut = 2000;
     await page.goto(testUrl);
     await page.click('text=Simon Beurel');
     await page.getByText('Acteurs').click();
@@ -93,6 +95,8 @@ test.describe('Vérifier le changement de taille', () => {
     const tailleBeforeEdit = await bouton.boundingBox();
     await bouton.hover(); // Passage de la souris sur le bouton
     const tailleAfterHover = await bouton.boundingBox();
+    await page.waitForTimeout(timeOut);
+
     // @ts-ignore
     await expect(tailleBeforeEdit.height < tailleAfterHover.height).toBeTruthy();
     // @ts-ignore

@@ -5,6 +5,8 @@ import {mockUser} from "../../mocks/user.mock";
 import {QuestionService} from "../../service/question.service";
 import {ActivatedRoute} from "@angular/router";
 import {UserService} from "../../service/user.service";
+import {of} from "rxjs";
+
 
 
 // Quizz list => PageComp
@@ -29,19 +31,14 @@ export class GameQuestionComponentComponent implements OnInit{
   public answerIsCash: boolean = false;
   public answerIsChoice: boolean = false;
 
-  
 
-  constructor(private route: ActivatedRoute, public userService: UserService) {
+  constructor(private route: ActivatedRoute, private userService: UserService) {
     const id = this.route.snapshot.paramMap.get('idUser');
-    /*for(let user of mockUser){
-      if(user.id===id){
-        this.howPathology=user.pathology;
-      }
-    }*/
-    
-    if(id) this.howPathology = userService.getUser(id)?.pathology;
+    const user = this.userService.getUserById(Number(id));
+    user.subscribe((user) => { this.howPathology = user.pathology });
 
     this.random = Math.floor(Math.random() * 3);
+
 
   }
 

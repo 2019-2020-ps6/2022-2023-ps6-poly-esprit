@@ -1,25 +1,38 @@
 import { Injectable } from '@angular/core';
-import { Observable } from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 import {Questions} from "../mocks/question.mock";
-import {Question} from "../models/question.models";
+import {Answer, Question} from "../models/question.models";
 import {User} from "../models/user.model";
+import {httpOptionsBase, serverUrl} from "../configs/server.config";
+import {HttpClient} from "@angular/common/http";
 @Injectable({
   providedIn: 'root'
 })
 export class QuestionService {
   //The list of quiz. The list is
   // retrieved from the mock.
-  private questions$ = new Observable<Question[]>();
-  public questions: Question[] = Questions; // Ici on initialise la valeur avec un mock QUIZ_LIST
+  private questions$ = new BehaviorSubject<Question[]>([]);
+  public questions: Question[] = []; // Ici on initialise la valeur avec un mock QUIZ_LIST
   // The service's constructor. Le constructeur peut prendre en paramètre les dépendances du service - comme ici,
   // HttpClient qui va permettre de récupérer les données d'un serveur
-  constructor() {
-    this.questions$ = new Observable(observer => {
-      observer.next(this.questions);
-      observer.complete();
-    });
+  private quizUrl;
+
+  private httpOptions = httpOptionsBase;
+  private themeId;
+  private quizId;
+
+  constructor(private http: HttpClient) {
+    this.quizId = 0;
+    this.themeId = 0;
+    this.quizUrl = serverUrl + '/themes/' + this.themeId + '/quizzes/' + this.quizId + '/questions';
   }
-  getQuestions(): Observable<Question[]> {
+  initialize(themeId: number, quizId: number) {
+    this.themeId = themeId;
+    this.quizId = quizId;
+    this.quizUrl = serverUrl + '/themes/' + this.themeId + '/quizzes/' + this.quizId + '/questions';
+    this.retrieveQuestions();
+  }
+  getQuestions(): BehaviorSubject<Question[]> {
     return this.questions$
   }
 
@@ -27,16 +40,43 @@ export class QuestionService {
     return this.questions.length;
   }
 
+  deleteQuestion(idQuestion: number) {
+    this.http.delete<Question>(this.quizUrl + '/' + idQuestion, this.httpOptions).subscribe(() => this.retrieveQuestions());
+  }
 
-  deleteQuestion(u: Question | undefined){
-    if (u) {
-      this.questions.splice(this.questions.indexOf(u), 1);
+  async addQuestion(label: string, path_picture: string, answers: Answer[]) {
+    let question = await this.http.post<Question>(this.quizUrl, {
+      label: label,
+      path_picture: path_picture
+    }, this.httpOptions).toPromise();
+
+    console.log(question);
+    let lastQuestion = this.questions[this.questions.length - 1];
+    for (let i = 0; i < answers.length; i++) {
+      await this.http.post<{type:string,value:string,isCorrect:boolean}>(this.quizUrl + '/' + question?.id + '/answers', {
+        type: answers[i].type,
+        value: answers[i].value,
+        isCorrect: answers[i].isCorrect
+      }, this.httpOptions).subscribe(async () => {
+        await this.retrieveQuestions();
+        console.log("Ajout de la réponse");
+      });
     }
   }
 
-  addQuestion(u: Question){
-    this.questions.push(u);
+  updateQuestion(question:Question){
+    // update answers
+    for (let i = 0; i < question.answers.length; i++) {
+      this.http.put<Answer>(this.quizUrl + '/' + question.id + '/answers/' +  question.answers[i].id,question.answers[i] ,this.httpOptions).subscribe(() => this.retrieveQuestions());
+    }
+    //update question
+    this.http.put<{label:string, path_picture:string}>(this.quizUrl + '/' + question.id, {label:question.label, path_picture:question.path_picture}, this.httpOptions).subscribe(() => this.retrieveQuestions());
   }
 
-
+  private retrieveQuestions() {
+    this.http.get<Question[]>(this.quizUrl, this.httpOptions).subscribe((questions) => {
+      this.questions = questions;
+      this.questions$.next(this.questions);
+    });
+  }
 }

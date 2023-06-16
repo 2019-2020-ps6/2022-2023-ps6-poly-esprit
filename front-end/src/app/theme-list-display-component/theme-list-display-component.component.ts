@@ -28,11 +28,8 @@ export class ThemeListDisplayComponentComponent implements OnInit {
     }
     ngOnInit(): void {
         if(this.currentUser){
-          console.log(this.currentUser);
-          console.log("ATTRIBUTS" +this.currentUser.need_big_text+" "+this.currentUser.need_big_button);
           this.configService.updateConfigration(!this.currentUser.need_big_text, this.currentUser.need_big_text,!this.currentUser.need_big_button, this.currentUser.need_big_button);
         }else{
-          console.log("Utilisateur non trouvé");
         }
         this.themeService.getThemes().subscribe((themes) => {
             this.themes = themes;

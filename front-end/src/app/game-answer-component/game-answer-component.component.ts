@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {} from "../../models/quizz.models"
 import {Answer} from "../../models/question.models";
 
@@ -7,7 +7,7 @@ import {Answer} from "../../models/question.models";
   templateUrl: './game-answer-component.component.html',
   styleUrls: ['./game-answer-component.component.scss']
 })
-export class GameAnswerComponentComponent {
+export class GameAnswerComponentComponent{
   @Input() answer?: Answer;
   @Output() selected=new EventEmitter<string>();
   @Output() valideClick = new EventEmitter<boolean>();
@@ -20,6 +20,7 @@ export class GameAnswerComponentComponent {
     this.selected.emit(value)
 
   }
+
 
 
   getButtonColor() {

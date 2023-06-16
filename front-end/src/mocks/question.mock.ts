@@ -1,81 +1,105 @@
 export const Answer = [
   {
+    id: '0',
     value: '1880',
     isCorrect: false,
   }, {
+    id: '1',
     value: "1980",
     isCorrect: false,
   }, {
+    id: '2',
     value: "1889",
     isCorrect: false,
   }, {
+    id: '3',
     value: "1789",
     isCorrect: true,
   }, {
+    id: "4",
     value: "Couronnement de Charlemagne",
     isCorrect: false,
   },{
+    id: "5",
     value: "Fin de la Seconde Guerre Mondiale",
     isCorrect: true,
   },{
+    id: '6',
     value: "Date de la prise de la Bastille",
     isCorrect: false,
   },{
+    id: '7',
     value: "Armistice de la Première Guerre Mondiale",
     isCorrect: false,
   },{
+    id: '8',
     value: "15 Juillet 1789",
     isCorrect: false,
   },{
+    id: '9',
     value: "14 Juillet 1789",
     isCorrect: true,
   },{
+    id: '10',
     value: "14 Août 1789",
     isCorrect: false,
   }, {
+    id: '11',
     value: "15 Août 1789",
     isCorrect: false,
   },{
+    id: '12',
     value: "Will Smith",
     isCorrect: false,
   },{
+    id: '13',
     value: "Jean Reno",
     isCorrect: false,
   },{
+    id: '14',
     value: "François Cluzet",
     isCorrect: true,
   }, {
+    id: '15',
     value: "Jean Dujardin",
     isCorrect: false,
   }, {
+    id: '16',
     value: "Men in Black",
     isCorrect: true,
   },
   {
+    id: '17',
     value: "Iron Man",
     isCorrect: false,
   },
   {
+    id: '18',
     value: "Le Parrain",
     isCorrect: false,
   },
   {
+    id: '19',
     value: "Winnie l'ourson",
     isCorrect: false,
   },
   {
+    id: '20',
     value: "React",
     isCorrect: false,
   },
   {
+    id: '21',
     value: "Angular",
     isCorrect: true,
   },
   {
+    id: '22',
     value: "Vue",
     isCorrect: false,
   },
   {
+    id: '23',
     value: "Svelte",
     isCorrect: false,
   },

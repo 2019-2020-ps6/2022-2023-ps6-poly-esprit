@@ -34,22 +34,19 @@ export class CreateQuizComponent implements OnInit {
   }
 
   addQuiz(){
-    const quizToCreate: Quiz = this.quizForm.getRawValue() as Quiz;
-    quizToCreate.id= this.quizCreateService.getIndexToCreate();
-    quizToCreate.questions=[];
+    const quizToCreate = this.quizForm.getRawValue() as Quiz;
+
     quizToCreate.name = this.quizForm.value.name;
 
     const themeToCreate : Theme = this.quizForm.getRawValue() as Theme;
-    themeToCreate.id=this.themeService.getIndexToCreate();
     themeToCreate.name=this.quizForm.value.theme;
-    themeToCreate.quizzes=[];
 
     if(quizToCreate.name == "" || themeToCreate.name == ""){
       alert("Veuillez remplir tous les champs");
       return;
     }
-    this.QCService.addQuiz(quizToCreate);
-    this.THService.addQuiz(quizToCreate, themeToCreate);
+    this.THService.addQuiz(this.quizForm.value.name, this.quizForm.value.theme);
+    this.QCService.addQuiz(this.quizForm.value.name);
   }
 
 }
