@@ -321,10 +321,10 @@ Implémentation de la séparation Patients/Personnels.
 Implémentation de la gestion des utilisateurs (ajout - modification - suppression).
 Implémentation de la gestion des quizs (ajout - modification - suppression).
 Implémentation de la partie back liée aux utilisateurs.
-Pendant la semaine à plein temps : 
-    - Intégration de la bibliothèque Playwright et créations de tests liés aux Questions/Quizs
-    - Réalisation de la partie Docker (3 premières parties)
-    - Rédaction du compte-rendu du projet et du compte-rendu de la partie Docker
+  - Pendant la semaine à plein temps : 
+      - Intégration de la bibliothèque Playwright et créations de tests liés aux Questions/Quizs
+      - Réalisation de la partie Docker (3 premières parties)
+      - Rédaction du compte-rendu du projet et du compte-rendu de la partie Docker
 
     
 - Théo Delias : 
@@ -332,32 +332,33 @@ Implémentation de "Jouer à un quiz" du début à la fin d'une partie
 Implementation d'un besoin utilisateur : agrandissement de la taille du bouton à l'approche de la souris. 
 Implémentation du back-end des thèmes/quiz/questions/réponses.
 Début de l'intégration du back-end des quiz au front-end
-
-    Pendant la semaine à plein temps :
-        - Fin d'intégration du back-end des quiz (thème => quiz => questions => réponses ) au front-end.
-        - Intégration du back-end pour la gestion des thèmes/quiz/questions/réponses au front-end
-        - Modification des tests déjà fait afin de répondre aux attentes du back-end (pour les quiz)
-        - Aide pour la modification par rapport aux remarques de l'évaluation croisée
-        - Compréhension de la partie 1 et 2 de Docker expliquée par Quentin
+  - Pendant la semaine à plein temps :
+      - Fin d'intégration du back-end des quiz (thème => quiz => questions => réponses ) au front-end.
+      - Intégration du back-end pour la gestion des thèmes/quiz/questions/réponses au front-end
+      - Modification des tests déjà fait afin de répondre aux attentes du back-end (pour les quiz)
+      - Aide pour la modification par rapport aux remarques de l'évaluation croisée
+      - Compréhension de la partie 1 et 2 de Docker expliquée par Quentin
 
 - Quentin Maurois : 
-
-Pendant la semaine à plein temps : 
-    - Implémentation de tests sur la partie gestion utilisateurs 
-    - Réalisation de la partie Docker (4 parties)
-    - Rédaction du compte-rendu du projet et du compte-rendu de la partie Docker
+Implémentation du service de thèmes ;
+Implémentation des pages de liste de thèmes et quiz ;
+Implémentation du backend des thèmes et début de leur intégration dans le front (grande partie faite par Théo) ;
+Css sur plusieurs pages
+  - Pendant la semaine à plein temps : 
+      - Implémentation de tests sur la partie gestion utilisateurs 
+      - Réalisation de la partie Docker (4 parties)
+      - Rédaction du compte-rendu du projet et du compte-rendu de la partie Docker
  
 - Lorenzo Froment : 
 Implémentation de "Jouer à un quiz" sans la page finale avec les points.
 Grande majorité du css du site.
 Header, page paramètre avec directive pour changer la taille des boutons et du texte.
 Pop-up dans la partie admin.
-
-    Pendant la semaine a plein temps :
-    -Modifications par rapport aux remarques de l'évaluation croisée
-    -Test avec play-right: Jouer à un quiz, Agrandissement des boutons et du texte, Suppresion d'une question, Retour page admin
-    -Partie 3 du rapport + Relecture avec correction
-    -Compréhension de la partie 1 et 2 de Docker expliquée par Quentin
+  - Pendant la semaine a plein temps :
+      - Modifications par rapport aux remarques de l'évaluation croisée
+      - Test avec play-right: Jouer à un quiz, Agrandissement des boutons et du texte, Suppresion d'une question, Retour page admin
+      - Partie 3 du rapport + Relecture avec correction
+      - Compréhension de la partie 1 et 2 de Docker expliquée par Quentin
 
 - Tristan Larguier : 
 J'ai rejoins le groupe PolyEsprit le 20 mars suite à des problèmes dans mon groupe initial.
