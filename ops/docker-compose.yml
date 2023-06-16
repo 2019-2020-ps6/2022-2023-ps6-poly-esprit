@@ -1,7 +1,7 @@
 version: '3'
 services:
   front:
-    image: front-poly-esprit:e1
+    image: front-poly-esprit:production
     build:
       context: ../front-end
       dockerfile: ../front-end/Dockerfile
@@ -19,7 +19,7 @@ services:
       timeout: 10s
       retries: 5
   back:
-    image: back-poly-esprit:e1
+    image: back-poly-esprit:production
     build:
       context: ../backend
       dockerfile: ../backend/Dockerfile

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo '[+] Lancement du build...\n'
+echo '[+] Lancement du build...'
 docker compose -f docker-compose-proxy.yml build
-echo '[+] Build fini....Lancement du up \n'
+echo '[+] Fin du build, compose up'
 docker compose -f docker-compose-proxy.yml up

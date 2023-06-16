@@ -1,13 +1,13 @@
 version: '3'
 services:
   front:
-    image: front-poly-esprit:e1
+    image: front-poly-esprit:proxy
     build:
       context: ../front-end
       dockerfile: ../front-end/Dockerfile
       args:
         ENVIRONMENT: proxy
-#        PROXYURL: "http:\\/\\/proxy.polyquiz.com:8888\\/back"
+        PROXYURL: "http:\\/\\/proxy.polyquiz.com:8888\\/back"
         DOMAIN: "proxy.polyQuiz.com"
     user: nginx
     depends_on:
@@ -19,7 +19,7 @@ services:
       timeout: 10s
       retries: 5
   back:
-    image: back-poly-esprit:e1
+    image: back-poly-esprit:proxy
     build:
       context: ../backend
       dockerfile: ../backend/Dockerfile
@@ -33,7 +33,7 @@ services:
       start_period: 5s
       retries: 5
   proxy:
-    image: proxy-poly-esprit:e4
+    image: proxy-poly-esprit:proxy
     build:
       context: .
       dockerfile: ./Dockerfile

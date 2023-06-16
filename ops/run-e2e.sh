@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo '[+] Lancement du build...\n'
+echo '[+] Lancement du build...'
 docker compose -f docker-compose-e2e.yml build
-echo '[+] Build fini....Lancement du up \n'
-docker compose -f docker-compose-e2e.yml up
+echo '[+] Fin du build, compose up'
+docker compose -f docker-compose-e2e.yml up --abort-on-container-exit

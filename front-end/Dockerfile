@@ -10,8 +10,8 @@ COPY ./ /usr/local/app/
 RUN apk add sed
 RUN sed -i "s/<TESTURL>/${TESTURL}/g" /usr/local/app/src/environments/environment.e2e.ts
 RUN cat /usr/local/app/src/environments/environment.e2e.ts
-#RUN sed -i "s/<PROXYURL>/${PROXYURL}/g" /usr/local/app/src/environments/environment.proxy.ts
-#RUN cat /usr/local/app/src/environments/environment.proxy.ts
+RUN sed -i "s/<PROXYURL>/${PROXYURL}/g" /usr/local/app/src/environments/environment.proxy.ts
+RUN cat /usr/local/app/src/environments/environment.proxy.ts
 COPY ./default.conf /usr/local/app/default.conf
 RUN sed -i "s/<DOMAIN>/${DOMAIN:-localhost}/g" /usr/local/app/default.conf
 RUN cat /usr/local/app/default.conf
