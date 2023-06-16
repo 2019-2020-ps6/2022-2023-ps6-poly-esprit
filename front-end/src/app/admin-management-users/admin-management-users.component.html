@@ -32,13 +32,19 @@
         </a>
         <div class="button-container">
           <a class="navigation" [routerLink]="['/stats', user.id]">
-            <button class="btn" data-testid="user.nom+'-stats-btn'" [ngClass]="user.nom+'-stats-btn'"> Voir les statistiques </button>
+            <button class="btn btn-stats" data-testid="user.nom+'-stats-btn'" [ngClass]="user.nom+'-stats-btn'">
+              <img src="../../assets/stat.png" class="btn-image">
+            </button>
           </a>
           <a class="navigation" [routerLink]="['/user-edit', user.id, id_user]">
-            <button class="btn" data-testid="user.nom+'-modify-btn'" [ngClass]="user.nom+'-modify-btn'">Modifier le patient</button>
+            <button class="btn btn-modify" data-testid="user.nom+'-stats-btn'" [ngClass]="user.nom+'-modify-btn'">
+              <img src="../../assets/edit.png" class="btn-image">
+            </button>
           </a>
           <a class="navigation" >
-            <button class="btn" data-testid="user.nom+'-delete-btn'" (click)="openDelete(user.id)" [ngClass]="user.nom+'-delete-btn'">Supprimer le patient</button>
+            <button class="btn btn-delete" data-testid="user.nom+'-stats-btn'" (click)="openDelete(user.id)" [ngClass]="user.nom+'-delete-btn'">
+              <img src="../../assets/bin.png" class="btn-image">
+            </button>
           </a>
         </div>
       </div>

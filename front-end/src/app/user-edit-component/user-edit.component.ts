@@ -40,7 +40,6 @@ export class UserEditComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
 
     this.id_user = this.route.snapshot.paramMap.get('id_user');
-    console.log(id)
 
     this.UService.getUsers().subscribe((users) => {
       if(id){
@@ -157,6 +156,9 @@ export class UserEditComponent implements OnInit {
       userToAdd.isAdmin=false;
     }
 
+    // todo : A changer quand on aura implémenté la fonctionnalité sur les photos de profil
+    userToAdd.path_pp="nothing";
+
 
     if(this.formulaire.value.needBigButton == true){
       userToAdd.need_big_button = true;
@@ -173,6 +175,7 @@ export class UserEditComponent implements OnInit {
     if(this.formulaire.value.path_pp == ""){
       userToAdd.path_pp="https://i.pinimg.com/222x/57/70/f0/5770f01a32c3c53e90ecda61483ccb08.jpg"
     }
+
 
 
     if(this.currentUser){

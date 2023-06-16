@@ -1,7 +1,7 @@
 <app-header [title]="title"></app-header>
   <div class="espace"></div>
 
-  <a class="retour" [routerLink]="['/edit-quiz', id_quiz, id_user]">
+  <a class="retour" (click)="sendThemeId()" [routerLink]="['/edit-quiz', id_quiz, id_user]">
     <button class="btnretour">Retour</button>
   </a>
 

@@ -44,6 +44,8 @@ export class GamePageComponentFixture extends E2EComponentFixture {
     }
     if (pointsAttendus == 0) {
       await expect(this.page.getByText('Dommage !')).toBeVisible();
+    } else if (pointsAttendus == 1) {
+      await expect(this.page.getByText(`1 point`)).toBeVisible();
     } else {
       await expect(this.page.getByText(`${pointsAttendus} points`)).toBeVisible();
     }

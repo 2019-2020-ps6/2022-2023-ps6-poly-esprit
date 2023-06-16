@@ -1,10 +1,11 @@
-const { Quiz, Question } = require('../../../models')
-const NotFoundError = require('../../../utils/errors/not-found-error.js')
-
+const { Quiz, Question, Answer} = require('../../../../models')
+const NotFoundError = require('../../../../utils/errors/not-found-error.js')
 /**
  * Questions Manager.
  * This file contains all the logic needed to by the question routes.
  */
+
+const deepCopy = (obj) => JSON.parse(JSON.stringify(obj))
 
 /**
  * filterQuestionsFromQuizz.
@@ -12,8 +13,10 @@ const NotFoundError = require('../../../utils/errors/not-found-error.js')
  * @param quizId
  */
 const filterQuestionsFromQuizz = (quizId) => {
-  const questions = Question.get()
+  const questions = deepCopy(Question.get())
+  const answers = deepCopy(Answer.get())
   const parsedId = parseInt(quizId, 10)
+  questions.forEach((question) => { question.answers = answers.filter((answer) => answer.questionId === question.id) })
   return questions.filter((question) => question.quizId === parsedId)
 }
 
@@ -23,11 +26,12 @@ const filterQuestionsFromQuizz = (quizId) => {
  * @param quizId
  * @param questionId
  */
+
 const getQuestionFromQuiz = (quizId, questionId) => {
   // Check if quizId exists, if not it will throw a NotFoundError
-  const quiz = Quiz.getById(quizId)
+  const quiz = deepCopy(Quiz.getById(quizId))
   const quizIdInt = parseInt(quizId, 10)
-  const question = Question.getById(questionId)
+  const question = deepCopy(Question.getById(questionId))
   if (question.quizId !== quizIdInt) throw new NotFoundError(`${question.name} id=${questionId} was not found for ${quiz.name} id=${quiz.id} : not found`)
   return question
 }

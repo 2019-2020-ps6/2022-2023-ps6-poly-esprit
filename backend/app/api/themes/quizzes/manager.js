@@ -1,4 +1,4 @@
-const { Quiz } = require('../../models')
+const { Quiz, Question } = require('../../../models')
 const { filterQuestionsFromQuizz } = require('./questions/manager')
 const { filterAnswersFromQuestion } = require('./questions/answers/manager')
 
@@ -7,8 +7,10 @@ const { filterAnswersFromQuestion } = require('./questions/answers/manager')
  * This function aggregates the questions and answers from the database to build a quizz with all the data needed by the clients.
  * @param quizId
  */
+const deepCopy = (obj) => JSON.parse(JSON.stringify(obj))
+
 const buildQuizz = (quizId) => {
-  const quiz = Quiz.getById(quizId)
+  const quiz = deepCopy(Quiz.getById(quizId))
   const questions = filterQuestionsFromQuizz(quiz.id)
   const questionWithAnswers = questions.map((question) => {
     const answers = filterAnswersFromQuestion(question.id)
@@ -21,12 +23,22 @@ const buildQuizz = (quizId) => {
  * Function buildQuizzes.
  * This function aggregates the questions and answers from the database to build entire quizzes.
  */
+
 const buildQuizzes = () => {
-  const quizzes = Quiz.get()
+  const quizzes = Quiz.get().map((quiz) => deepCopy(quiz));
   return quizzes.map((quiz) => buildQuizz(quiz.id))
+}
+const filterQuizzesByTheme = (themeId) => {
+  const quizzes = deepCopy(Quiz.get())
+  const questions = deepCopy(Question.get())
+  questions.forEach((question) => { question.answers = filterAnswersFromQuestion(question.id) })
+  quizzes.forEach((quiz) => { quiz.questions = questions.filter((question) => question.quizId === quiz.id) })
+  const parsedId = parseInt(themeId, 10)
+  return quizzes.filter((quiz) => quiz.themeId === parsedId)
 }
 
 module.exports = {
   buildQuizz,
   buildQuizzes,
+  filterQuizzesByTheme,
 }

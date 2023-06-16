@@ -7,6 +7,7 @@ import {ActivatedRoute} from "@angular/router";
 import { Router } from '@angular/router';
 import {FormBuilder, FormGroup} from '@angular/forms'
 import {Theme} from "../../models/theme.models";
+import {BehaviorSubject} from "rxjs";
 
 @Component({
   selector: 'app-admin-main-page',
@@ -22,12 +23,11 @@ export class AdminMainPageComponent implements OnInit {
   private QCService: QuizService;
   public quizForm: FormGroup;
 
-  public currentQuiz?: Quiz;
   formulaire: FormGroup;
   id_quiz: string | null = "";
 
   public THService : ThemeService;
-  themes: any[] = [];
+  themes :Theme[] =[]
 
   idUser: any;
   quizVisible = false;
@@ -35,8 +35,8 @@ export class AdminMainPageComponent implements OnInit {
   inputValueName = "";
   inputValueTheme = "";
   constructor(private router: Router,private route: ActivatedRoute, private userService : UserService, private themeService: ThemeService, private quizService: QuizService ,public quizCreateService: QuizService, public formBuilder: FormBuilder) {
-
     this.admin_id = this.route.snapshot.paramMap.get('id_user');
+
     this.UService=userService;
     this.QCService = quizService;
     this.THService = themeService;
@@ -45,9 +45,7 @@ export class AdminMainPageComponent implements OnInit {
     this.quizForm = this.formBuilder.group({
       name: [''],
       theme: [''],
-
     });
-
   }
 
 
@@ -56,8 +54,11 @@ export class AdminMainPageComponent implements OnInit {
     this.THService.getThemes().subscribe((themes)=> {
       this.themes = themes;
     });
+    if(this.themes.length != 0){
+      window.location.reload();
+      console.log(this.themes.length);
 
-
+    }
   }
 
   redirectToRoute() {
@@ -66,19 +67,20 @@ export class AdminMainPageComponent implements OnInit {
 
   // Modification de la méthode addQuiz pour rendre la div "first" visible
   addQuiz(){
-    const quizToCreate: Quiz = this.quizForm.getRawValue() as Quiz;
-    quizToCreate.id=this.quizCreateService.getIndexToCreate();
-    quizToCreate.questions=[];
-    quizToCreate.name = this.quizForm.value.name;
-    this.QCService.addQuiz(quizToCreate);
-
-
     const themeToCreate : Theme = this.quizForm.getRawValue() as Theme;
     themeToCreate.id=this.themeService.getIndexToCreate();
     themeToCreate.name=this.quizForm.value.theme;
     themeToCreate.quizzes=[];
+    console.log(themeToCreate.id, themeToCreate.name);
 
-    this.THService.addQuiz(quizToCreate, themeToCreate);
+    const quizToCreate: Quiz = this.quizForm.getRawValue() as Quiz;
+    quizToCreate.id=this.quizCreateService.getIndexToCreate();
+
+    quizToCreate.questions=[];
+    quizToCreate.name = this.quizForm.value.name;
+    this.QCService.addQuiz(this.quizForm.value.name);
+
+    this.THService.addQuiz(this.quizForm.value.name, this.quizForm.value.theme);
     this.quizVisible = true;
     this.deleteVisible=true;
   }
@@ -86,6 +88,12 @@ export class AdminMainPageComponent implements OnInit {
   openPopup() {
     this.quizVisible=true;
     this.deleteVisible=false;
+  }
+
+  addQuizForTheme(theme: any) {
+    this.quizVisible=true;
+    this.deleteVisible=false;
+    this.inputValueTheme = theme;
   }
 
   openDelete(id:string) {
@@ -123,5 +131,9 @@ export class AdminMainPageComponent implements OnInit {
       this.selectedTheme = theme;
       this.quizListVisible = true;
     }
+  }
+
+  idThemeOnLocalStorage() {
+    localStorage.setItem('idTheme', this.selectedTheme.id);
   }
 }

@@ -24,10 +24,8 @@ export class UserListDisplayComponent implements OnInit {
   ngOnInit(): void {
     this.userService.getUsers().subscribe((users) => {
       this.users = users;
-      console.log(this.users);
 
       for (let i = 0; i < this.users.length; i++) {
-        console.log(this.users[i].path_pp);
         if (this.users[i].path_pp == "to_change") {
           this.users[i].path_pp = "https://i.pinimg.com/originals/68/f2/ed/68f2ed76c22f4fa2f1d7b34737ce8e12.png";
         }

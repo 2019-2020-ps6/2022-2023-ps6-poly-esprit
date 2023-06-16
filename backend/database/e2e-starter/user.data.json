@@ -34,5 +34,17 @@
     "need_big_button": false,
     "need_big_text": false,
     "id": 1686557420312
+  },
+  {
+    "isAdmin": false,
+    "nom": "onlyForStats",
+    "prenom": "doNotUse",
+    "age": 55,
+    "sex": "Male",
+    "pathology": 0,
+    "path_pp": "https://th.bing.com/th/id/R.eb15201213448894b36785f8ce428646?rik=XdcKjPQHmighHw&pid=ImgRaw&r=0",
+    "need_big_button": false,
+    "need_big_text": false,
+    "id": -1
   }
 ]

@@ -78,7 +78,6 @@ export class GameEndComponentComponent implements AfterViewInit {
   }
 
   private updateMessage() {
-    //TODO : Quand le back-end sera implémenté pour la partie quiz, on pourra regarder si le score du patient > 50% des questions
     if (this.gameInstance) {
       let scorefinal = this.gameInstance.score;
       if (scorefinal > 0) {

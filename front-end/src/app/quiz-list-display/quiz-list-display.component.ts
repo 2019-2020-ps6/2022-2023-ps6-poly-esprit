@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import {Quiz} from "../../models/quizz.models";
 import {UserService} from "../../service/user.service";
 
+
 @Component({
   selector: 'app-quiz-list-display',
   templateUrl: './quiz-list-display.component.html',
@@ -23,7 +24,9 @@ export class QuizListDisplayComponent implements OnInit {
 
   constructor(private quizService: QuizService, private themeService: ThemeService, private route: ActivatedRoute, private userService : UserService) {
     this.idUser = this.route.snapshot.paramMap.get('idUser');
+    this.themeId = +this.route.snapshot.paramMap.get('idTheme')!;
     this.UService=userService;
+    this.quizService.setThemeId(this.themeId)
   }
 
   ngOnInit(): void {
@@ -32,7 +35,7 @@ export class QuizListDisplayComponent implements OnInit {
 
       this.themeName = theme.name;
       this.quizzes = theme.quizzes;
-    }))
+    }));
     if(this.idUser){
       if (this.userService.isAdmin(this.idUser)) {
         this.showDeleteButton = true;
