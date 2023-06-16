@@ -1,6 +1,6 @@
 import { testUrl } from "e2e/e2e.config";
 import { E2EComponentFixture } from "../../../e2e/e2e-component.fixture";
-
+import { testUrl } from '../../../e2e/e2e.config';
 
 export class statsFixture extends E2EComponentFixture {
   
