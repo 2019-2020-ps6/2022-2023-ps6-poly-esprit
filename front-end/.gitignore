@@ -1,9 +1,10 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
-
+/playwright-report
 # compiled output
 /dist
 /tmp
 /out-tsc
+
 # Only exists if Bazel was run
 /bazel-out
 /.angular/
@@ -45,3 +46,8 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# report files
+/playwright-report
+playwright.config.ts
+/test-results

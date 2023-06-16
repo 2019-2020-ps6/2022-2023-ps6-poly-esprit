@@ -91,11 +91,13 @@ export class GameQuestionComponentComponent implements OnInit{
     return this.question?.answers
   }
   isDuo() {
+    this.onValideClick();
     this.answerIsDuo = true;
     this.answerIsChoice = false;
 
   }
   isCarre() {
+    this.onValideClick();
     this.answerIsCarre = true;
     this.answerIsChoice = false;
 

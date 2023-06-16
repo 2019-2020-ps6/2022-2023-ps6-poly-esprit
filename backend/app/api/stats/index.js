@@ -64,10 +64,10 @@ router.get('/', (req, res) => {
       }
       const stats = Stats.get().find((i) => i.userId === userId)
       if (!stats) {
-        res.status(404).json("No stats found for this user")
+        return res.status(404).json("No stats found for this user")
       }
       if (stats.stats.clicks.length == 0 || stats.stats.responses.length == 0) {
-        res.status(204).json("No stats found for this user")
+        return res.status(204).json("No stats found for this user")
       }
       let clicks_data = new Array();
       let responses_data = new Array();
@@ -130,13 +130,13 @@ router.get('/', (req, res) => {
           ]
         }
       }
-      res.status(200).json(retour)
+      return res.status(200).json(retour)
     } catch (err) {
       manageAllErrors(res, err)
     }
   }
   else {
-    res.status(417).json("You must provide a userId in the query")
+    return res.status(417).json("You must provide a userId in the query")
   }
 })
 

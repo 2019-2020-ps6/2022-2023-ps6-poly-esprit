@@ -8,14 +8,18 @@
         Titre <br>
         <input class="input-custom" type="text" name="filterName" id="name"
                [formControlName]="'name'"
-               [(ngModel)]="inputValueName">
+               [(ngModel)]="inputValueName"
+               placeholder="Nom du quiz"
+        >
       </label>
       <br>
       <label for="theme">
         Thème <br>
         <input class="input-custom" type="text" name="filterName" id="theme"
                [formControlName]="'theme'"
-               [(ngModel)]="inputValueTheme">
+               [(ngModel)]="inputValueTheme"
+               placeholder="Thème du quiz"
+        >
       </label>
       <br>
       <br>
@@ -55,15 +59,18 @@
   <div class="title">
     <h2>Gestion des quiz</h2>
     <a class="navigation" >
-      <button class="gestion_admin" id="add_quiz" (click)="openPopup()">Ajouter un quiz</button>
+      <button class="gestion_admin" id="add_quiz" (click)="openPopup()" id="btnAddQuiz">Ajouter un quiz</button>
     </a>
   </div>
   <ul>
     <div class="theme" *ngFor="let theme of themes">
-      <h2 (click)="onSelectTheme(theme)">
-        <span [ngClass]="{ 'arrow-up': quizListVisible && selectedTheme === theme, 'arrow-down': !quizListVisible || selectedTheme !== theme }"></span>
-        Thème : {{ theme.name }}
-      </h2>
+      <div id="contenerh2AndButton">
+        <h2 (click)="onSelectTheme(theme)">
+          <span [ngClass]="{ 'arrow-up': quizListVisible && selectedTheme === theme, 'arrow-down': !quizListVisible || selectedTheme !== theme }"></span>
+          Thème : {{ theme.name }}
+        </h2>
+        <button class="addQuiz" (click)="addQuizForTheme(theme.name)">Ajouter un quiz dans ce theme</button>
+      </div>
       <ul *ngIf="selectedTheme === theme && quizListVisible">
         <li *ngFor="let quiz of theme.quizzes" class="quiz-item">
           <div class="quiz_container">
@@ -72,10 +79,10 @@
             </a>
             <div class="button-container">
               <a class="navigation" (click)="idThemeOnLocalStorage()" [routerLink]="['/edit-quiz', quiz.id, admin_id]">
-                <button class="gestion_admin" id="edit_quiz">Modifier le quiz</button>
+                <button class="gestion_admin" id="edit_quiz" [attr.data-testid]="quiz.name + '-edit'">Modifier le quiz</button>
               </a>
               <a class="navigation">
-                <button class="gestion_admin" id="delete_quiz" (click)="openDelete(quiz.id)">Supprimer le quiz</button>
+                <button class="gestion_admin" id="delete_quiz" (click)="openDelete(quiz.id)" [attr.data-testid]="quiz.name + '-delete'">Supprimer le quiz</button>
               </a>
             </div>
           </div>

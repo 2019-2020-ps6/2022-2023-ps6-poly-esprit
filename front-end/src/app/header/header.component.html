@@ -1,13 +1,13 @@
 <header class="header">
-  <button class="parameter" [routerLink]="['/parametre']">
+  <button *ngIf="!isRedirectRequired()" data-testid="parameter" class="parameter" [routerLink]="'/parametre'">
+  </button>
 
+  <button *ngIf="isRedirectRequired()" data-testid="parameter" class="parameter redirected" [routerLink]="'/admin/' + id_user">
   </button>
 
   <div class="title">
-    <h1 >{{title}}</h1>
+    <h1>{{title}}</h1>
   </div>
-  <button class="logout" [routerLink]="['']">
-
+  <button class="logout" data-testid="logoutButton" [routerLink]="['']">
   </button>
-
 </header>

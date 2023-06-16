@@ -2,19 +2,19 @@
 <div class="page">
   <div class="ligne">
     <p class="texte">Taille du texte:</p>
-    <button class="tailleTexteNormal" [ngClass]="{'selected': isTextNormalSelected}" (click)="selectText('normal')">{{texteNormal}}Normal</button>
-    <button class="tailleTexteGros" [ngClass]="{'selected': isTextGrosSelected}" (click)="selectText('gros')">{{texteGros}}Gros</button>
+    <button class="tailleTexteNormal"  data-testid="little_text" [ngClass]="{'selected': isTextNormalSelected}" (click)="selectText('normal')">{{texteNormal}}Normal</button>
+    <button class="tailleTexteGros"  data-testid="big_text" [ngClass]="{'selected': isTextGrosSelected}" (click)="selectText('gros')">{{texteGros}}Gros</button>
   </div>
 
   <div class="ligne">
     <p class="texte">Taille du bouton:</p>
-    <button class="tailleBoutonNormal" [ngClass]="{'selected': isButtonNormalSelected}" (click)="selectButton('normal')">{{boutonNormal}}Normal</button>
-    <button class="tailleBoutonGros" [ngClass]="{'selected': isButtonGrosSelected}" (click)="selectButton('gros')">{{boutonGros}}Gros</button>
+    <button class="tailleBoutonNormal"  data-testid="little_buttons" [ngClass]="{'selected': isButtonNormalSelected}" (click)="selectButton('normal')">{{boutonNormal}}Normal</button>
+    <button class="tailleBoutonGros"  data-testid="big_buttons" [ngClass]="{'selected': isButtonGrosSelected}" (click)="selectButton('gros')">{{boutonGros}}Gros</button>
   </div>
 
   <div class="ligne">
     <button class="retour" (click)="goBack()">
-      Retour
+      Valider
     </button>
   </div>
 </div>

@@ -22,6 +22,7 @@ export class StatsVisualisationComponent implements OnInit {
   reponseItem = "reponse";
   title = 'Statistiques du patient';
   statsAvailable = false;
+  displayAnalyse = false;
 
   constructor(private userService: UserService, private route: ActivatedRoute) {
     this.userId = Number(this.route.snapshot.paramMap.get("userId"))
@@ -31,13 +32,13 @@ export class StatsVisualisationComponent implements OnInit {
   ngOnInit(): void {
     const userId = Number(this.route.snapshot.paramMap.get("userId"));
     if (this.userId != null) {
-      this.userService.getUsers().subscribe((u) => {
-        if(u.length > 0){
-        this.userService.getUserById(userId).subscribe((user) => {
-          this.user = user
-          this.displayName = this.user.prenom + " " + this.user.nom
-        })
-      }
+      this.userService.users$.subscribe((u) => {
+        if (u.length > 0) {
+          this.userService.getUserById(userId).subscribe((user) => {
+            this.user = user
+            this.displayName = this.user.prenom + " " + this.user.nom
+          })
+        }
       });
     }
   }

@@ -9,13 +9,13 @@
 </div>
 
 <div class="centre" *ngIf="currentQuiz && currentQuiz.questions && currentQuiz.questions[currentIndex]">
-  <button class="valider" appAdaptConfig (click)="validate()">
+  <button class="valider" appAdaptConfig (click)="validate()" [disabled]="!selectedValue">
     Valider
   </button>
 
   <a [routerLink]="['/themes/', userId]">
     <button class="retour" appAdaptConfig>
-      Retour
+      Quitter le quiz
     </button>
   </a>
 </div>

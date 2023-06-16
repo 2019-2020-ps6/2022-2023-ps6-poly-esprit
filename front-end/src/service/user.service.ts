@@ -22,6 +22,21 @@ export class UserService {
 
   private httpOptions = httpOptionsBase;
 
+  /*createUser(): User {
+   * const user: User = {
+   *   id: '1234567889',
+   *   isAdmin: false,
+   *   nom: 'Doe',
+   *   prenom: 'John',
+   *   age: 30,
+   *   sex: 'male',
+   *   pathology: 1,
+   *   path_pp: 'path/to/profile-picture.jpg'
+   * };
+   *
+   * return user;
+  }*/
+  
   constructor(private http: HttpClient) {
     this.retrieveUsers();
   }
@@ -35,6 +50,18 @@ export class UserService {
 
   getUsers(): BehaviorSubject<User[]> {
     return this.users$
+  }
+
+  getPatients(): Observable<User[]> {
+    const patients: User[] = [];
+
+    for (let i = 0; i < this.users.length; i++) {
+      if (!this.users[i].isAdmin) {
+        patients.push(this.users[i]);
+      }
+    }
+
+    return of(patients);
   }
 
   getUserById(Id : number | null) {
