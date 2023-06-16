@@ -1,27 +1,7 @@
 [
   {
-    "label": "nouvelle question",
-    "quizId": 1686829454644,
-    "id": 1686829534288
-  },
-  {
-    "label": "premiere question de test",
-    "quizId": 1686830803416,
-    "id": 1686839413518
-  },
-  {
-    "label": "Une autre?",
-    "quizId": 1686830803416,
-    "id": 1686839703057
-  },
-  {
-    "label": "test3",
-    "quizId": 1686830803416,
-    "id": 1686840266158
-  },
-  {
-    "label": "Question 1",
-    "quizId": 1686840380600,
-    "id": 1686840394836
+    "label": "Js",
+    "quizId": 1686897190238,
+    "id": 1686897284583
   }
 ]

@@ -2,13 +2,14 @@ const { Answer } = require('../../../../../models')
 const NotFoundError = require('../../../../../utils/errors/not-found-error.js')
 const { getQuestionFromQuiz } = require('../manager')
 
+
+const deepCopy = (obj) => JSON.parse(JSON.stringify(obj))
+
 /**
  * filterAnswersFromQuestion.
  * This function filters among the questions to return only the question linked with the given quizId.
  * @param questionId
  */
-const deepCopy = (obj) => JSON.parse(JSON.stringify(obj))
-
 const filterAnswersFromQuestion = (questionId) => deepCopy(Answer.get()).filter((answer) => (answer.questionId === questionId))
 
 /**
@@ -19,7 +20,7 @@ const filterAnswersFromQuestion = (questionId) => deepCopy(Answer.get()).filter(
  * @param answerId
  */
 const getAnswerFromQuestion = (quizId, questionId, answerId) => {
-  const question = deepCopy(getQuestionFromQuiz(quizId, questionId))
+  const question = getQuestionFromQuiz(quizId, questionId)
   const answer = deepCopy(Answer.getById(answerId))
   if (answer.questionId !== question.id) throw new NotFoundError(`${answer.name} id=${answerId} was not found for ${question.name} id=${question.id} : not found`)
   return answer

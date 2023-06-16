@@ -64,6 +64,15 @@ export class QuestionService {
     }
   }
 
+  updateQuestion(question:Question){
+    // update answers
+    for (let i = 0; i < question.answers.length; i++) {
+      this.http.put<Answer>(this.quizUrl + '/' + question.id + '/answers/' +  question.answers[i].id,question.answers[i] ,this.httpOptions).subscribe(() => this.retrieveQuestions());
+    }
+    //update question
+    this.http.put<{label:string, path_picture:string}>(this.quizUrl + '/' + question.id, {label:question.label, path_picture:question.path_picture}, this.httpOptions).subscribe(() => this.retrieveQuestions());
+  }
+
   private retrieveQuestions() {
     this.http.get<Question[]>(this.quizUrl, this.httpOptions).subscribe((questions) => {
       this.questions = questions;

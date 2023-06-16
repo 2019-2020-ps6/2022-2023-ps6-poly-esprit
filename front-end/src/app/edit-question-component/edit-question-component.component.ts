@@ -56,6 +56,7 @@ export class EditQuestionComponent {
     })
   }
 
+  // todo : request put to bdd to update question/answers
   onSubmit() {
     //Get the value of the "title" in formulaire and assign it to the title of the current question
     if(this.currentQuestion){
@@ -68,6 +69,9 @@ export class EditQuestionComponent {
       this.currentQuestion.answers[1].value = this.formulaire.value.bad_answer1;
       this.currentQuestion.answers[2].value = this.formulaire.value.bad_answer2;
       this.currentQuestion.answers[3].value = this.formulaire.value.bad_answer3;
+    }
+    if (this.currentQuestion) {
+      this.QUService.updateQuestion(this.currentQuestion);
     }
     alert("La question a été mise à jour !");
   }
