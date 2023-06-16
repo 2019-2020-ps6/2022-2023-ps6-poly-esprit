@@ -1,9 +1,8 @@
-import { testUrl } from "e2e/e2e.config";
 import { E2EComponentFixture } from "../../../e2e/e2e-component.fixture";
 import { testUrl } from '../../../e2e/e2e.config';
 
 export class statsFixture extends E2EComponentFixture {
-  
+
   async generateScreenshots() {
     return;
     await this.page.goto(testUrl);
@@ -13,7 +12,7 @@ export class statsFixture extends E2EComponentFixture {
     await this.page.locator('apx-chart').screenshot({ animations : 'disabled', path: "e2e/screens/stats50.png" });
     await this.page.goto(testUrl);
   }
-  
+
   async goToStats(userName: string) {
     await this.page.goto(testUrl);
     await this.page.click('text=Admin Admin');
