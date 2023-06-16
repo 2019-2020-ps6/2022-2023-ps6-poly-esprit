@@ -16,7 +16,7 @@ Notre site web doit permettre aux différents patients d'un EHPAD, ou d'une mais
 Pour cela, nous avons implémenté différentes fonctionnalités visant à faciliter l'utilisation du site aux patients atteint de la maladie de Parkinson.
 Chaque résident peut avoir son propre compte, créé par le personnel de santé, permettant d'avoir un suivi de différentes statistiques, comme  le *pourcentage de bonnes réponses* ou le *pourcentage de clics ratés*.
 
-## Partie 1 : persona et scénarios réalisés
+## Partie 1 : Persona et scénarios réalisés
 Pour pouvoir réaliser une conception centrée utilisateur, nous avons dû réaliser différents persona, ainsi que des scénarios d'utilisation du site qui sont associés aux persona en question. 
 Les persona sont des représentations fictives d'utilisateurs "type" de notre site internet.
 Dans notre cas, nous avons décidé de créer 3 persona différents : 
@@ -39,30 +39,30 @@ Dans notre cas, nous avons décidé de créer 3 persona différents :
 |--|--|
 | Nom | Yvette LUCKAS |
 | Âge | 73 ans |
-|Pathologie | Elle ne sait pas comment fonctionne un ordinateur mais sait les utiliser. Elle a besoin d’aide pour certaines tâches de maintenance. |
-| Utilisation des technologies | Dans le temps quand elle n’était pas malade,elle utilisait son téléphone pour appeler son fils, prendre des photos et jouer a des jeux. Yvette a utilisé un ordinateur pour surfer sur internet, lire et envoyer des emails et lire des articles. Cependant, depuis l’aggravation de sa maladie, elle est dans la quasi incapacité de pouvoir faire des tâches complexes sur un ordinateur. |
-|Connaissance des technologies | Elle ne sait pas comment fonctionne un ordinateur mais sait les utiliser. Elle a besoin d’aide pour certaines tâches de maintenance. |
+|Pathologie | Yvette est atteinte de Parkinson avec des symptômes très handicapants. Elle tremble quasiment en permanence et a du mal à saisir la souris. Elle est également victime d'une lenteur de réflexion, et cela l'handicape beaucoup. |
+| Utilisation des technologies | Auparvant, quand elle n’était pas malade, elle utilisait son téléphone pour appeler son fils, prendre des photos et jouer à des jeux. Yvette utilisait un ordinateur pour naviguer sur Internet, lire/envoyer des emails et lire des articles. Cependant, depuis l’aggravation de sa maladie, elle est dans la quasi-incapacité de pouvoir faire des tâches complexes sur un ordinateur. |
+|Connaissance des technologies | Elle ne sait pas comment fonctionne un ordinateur mais sait s'en servir. Elle a besoin d’aide pour certaines tâches de maintenance. |
 | Passions et loisirs | Elle aime beaucoup lire des récits fantastiques et regarder des films d’auteurs. |
-| Famille | Yvette a un fils de 49 ans résidant aux États Unis. Lors du départ de son fils à l’étranger il y a 25 ans elle s’est débrouillée seule. Cependant quand les symptomes sont devenus très importants au point de l’handicaper au quotidien- il a été décidé de l’envoyer dans le centre, il y a 5 ans.
-| Travail | Dans le passé, elle a travaillé a été psychologue en lycées. Elle a beaucoup aidé les jeunes à rebondir après des épisodes difficiles.
+| Famille | Yvette a un fils de 49 ans résidant aux États Unis. Lors du départ de son fils à l’étranger, il y a 25 ans, elle s’est débrouillée seule. Cependant, quand les symptomes sont devenus très importants au point de l’handicaper au quotidien, il a été décidé de l’envoyer dans le centre, il y a 5 ans.
+| Travail | Dans le passé, elle a été psychologue dans un lycée. Elle a beaucoup aidé les jeunes à rebondir après des épisodes difficiles.
 
 
-#### Persona n°3 : Psychomotricienne
+#### Persona n°3 : Aide-soignante
 
 |  |  |
 |--|--|
 | Nom | Micheline MARTIN |
 | Âge | 45 ans |
-| But avec le site | Elle utilise le site pour créer des tests pour ses patients. Elle est également à disposition des résidants pour les aider à l'utiliser. |
+| But avec le site | Elle utilise le site pour créer des tests pour ses patients. Elle est également à disposition des résidents pour les aider à l'utiliser. |
 | Utilisation des technologies | Bien qu'elle ne soit pas très à l'aise avec la technologie, Micheline utilise un ordinateur pour saisir les informations médicales des résidents et communique avec les médecins et infirmières via l'application de suivi des patients. Elle utilise également un smartphone pour communiquer avec sa famille et ses amis, et pour prendre des photos lors de ses randonnées.
-| Connaissance des technologies | Elle utilise les technologies tous les jours mais ne comprends pas vraiment leur fonctionnement réel. Elle arrive toujours à se débrouiller pour faire ce qu’elle veut. |
+| Connaissance des technologies | Elle utilise les technologies tous les jours mais ne comprend pas vraiment leur fonctionnement. Elle arrive toujours à se débrouiller pour faire ce qu’elle souhaite. |
 | Travail | Micheline travaille depuis 10 ans dans le centre pour personnes âgées en tant qu'aide-soignante. Elle s'occupe principalement de la toilette et des repas des résidents, ainsi que de leur bien-être général. Elle apprécie son travail et s'engage à offrir un environnement sûr et confortable aux résidents. |
-| Passion et loisirs | En dehors de son travail, Micheline aime faire de la randonnée et passer du temps en famille. Elle aime également essayer de nouvelles recettes de cuisine et s'inscrire à des cours de cuisine. |
+| Passion et loisirs | En dehors de son travail, Micheline aime faire de la randonnée et passer du temps en famille. Elle aime également essayer de nouvelles recettes et suivre des cours de cuisine. |
 
 ---
 
 En résumé, nous avons donc 3 persona représentant chacun un utilisateur "type" de notre site web :
-- Un patient avec "peu" de rigidité dans les membres et une utilisation facile d'une souris,
+- Un patient avec "peu" de rigidité dans les membres et une utilisation aisé d'une souris,
 - Un patient atteint par la maladie de Parkinson en stade 4 et donc qui a des difficultés pour bouger la souris,
 - Un personnel de santé.
 
@@ -113,9 +113,9 @@ L'adaptation la plus importante de notre site est l'augmentation de la taille de
 En effet, quand on regarde les différentes conséquences provoquées par la maladie de Parkinson, on peut voir la **rigidité des membres**.
 Ainsi, sur notre quiz, lorsque les patients joueront à un quiz, les boutons sur lesquels ils voudront se diriger verront leur taille s'agrandir avant même que la souris ne passe dessus. 
 Voici un exemple avec ce schéma : 
-![enter image description here](https://drive.google.com/file/d/1jzs8UlcUcumrV_ip0Mes9Ju3JcDym6cD/view?usp=sharing)
+![enter image description here](https://hackmd-prod-images.s3-ap-northeast-1.amazonaws.com/uploads/upload_6602a412cbf939e63237ba4844e19a63.png?AWSAccessKeyId=AKIA3XSAAW6AWSKNINWO&Expires=1686928031&Signature=RF4wylR1ghYCGcsK2NiwMMS%2F8lA%3D)
 
-## Partie 2 : scénarios des tests mis en place et pertinence
+## Partie 2 : Scénarios des tests mis en place et pertinence
 Pour pouvoir tester les différentes fonctionnalités vues dans la Partie 1 de ce document, nous avons utilisé la bibliothèque Playwright qui nous permet d'écrire des codes de tests dans le but de tester notre site en analysant son interface.
 
 ### Stratégie de test : 
@@ -148,22 +148,23 @@ test("Modifier une question dans un quiz", async({page}) => {
   
 });
 ```
+Lors de cet exemple, on remarque bien qu'après avoir effectuer les différentes modifications propres au quiz, on va lancer une partie sur ce quiz pour s'assurer que les modifications ont été prises en compte et donc valider le comportement attendu.
 
 Pour tester nos scénarios nous avons donc écrit 30 tests au total : 
-- admin test
+- Admin test
 1) Redirection page admin depuis liste patient
 
-- initial test
+- Initial test
 2) Basic test
 
-- lorenzo test scenario
+- Lorenzo test scenario
 3) Jouer un quiz et avoir 2 points sur 2
 4) Jouer un quiz et avoir 1 point sur 2
 5) Jouer un quiz et avoir 0 point sur 2
 6) Test input filtrage, autres thèmes disparaissent
 7) Test input filtrage et defiltrage en vidant le input
 
-- player test scenario
+- Player test scenario
 8) Jouer un quiz et avoir 2 points sur 2 (stade 4)
 9) Jouer un quiz et avoir 1 point sur 2 (stade 4)
 10) Jouer un quiz et avoir 0 point sur 2 (stade 4)
@@ -174,7 +175,7 @@ Pour tester nos scénarios nous avons donc écrit 30 tests au total :
 15) Vérifier l' aggrandissement du bouton lorsque la souris est dessus
 
 
-- quiz questions test scenario
+- Quiz questions test scenario
 16) Ajouter un quiz à la base de donnée
 17) Modifier un quiz déjà présent
 18) Modifier une question dans un quiz
@@ -182,7 +183,7 @@ Pour tester nos scénarios nous avons donc écrit 30 tests au total :
 20) Supprimer un quiz déjà présent
 21) Supprimer une question (quiz acteur)
 
-- test Stats
+- Test Stats
 22) Vérification fonctionnement comparaison d'image
 23) test pour un nouvel utilisateur
 24) Test pour un utilisateur avec bonnes réponses et bon clicks
@@ -212,12 +213,12 @@ Il n'était pas possible de tester une année de pratique comme désiré initial
 Les tests 24 à 27 sont quasiment identiques, pour tester toutes les combinaisons possibles (chaque test intégrant la création du résident, une partie jouée, la consultation de toutes les statistiques et la suppression du résident).
 Le plus pertinent est très certainement le test 26. 
 En effet, celui-ci détecte que l'utilisateur a cliqué une fois sur deux en dehors et bouton mais que celui-ci a eu le maximum de points.
-Il permet donc de tester à la fois de tester la détection des clics ratés (statistique intéressante dans la gestion de Parkinson) et si les points sont correctement comptés.
+Il permet donc de tester à la fois la détection des clics ratés (statistique intéressante dans la gestion de Parkinson) et si les points sont correctement comptés.
 
 ### Scénario 4
 Les tests 6 et 7 peuvent représenter Jean-Marc cherchant un quiz par son nom.
 Les tests 11, 12 et 13 correspondent à Jean-Marc qui joue à un quiz avec plus ou moins de réussite et le test 14 vérifie l'adaptation du site selon les paramètres sélectionnés par l'utilisateur.
-Comme Jean-Marc est au stade 1 de parkinson à chaque question il peut choisir entre duo et carré.
+Comme Jean-Marc est au stade 1 de Parkinson, à chaque question, il peut choisir entre duo et carré.
 Les tests 3, 4 et 5 sont les originaux des tests 11, 12 et 13, initialement écrits dans un fichier pour prendre en main playwright.
 
 ### Scénario 5
@@ -225,7 +226,7 @@ Les tests 8, 9 et 10 correspondent à Yvette qui joue à un quiz avec plus ou mo
 
 ---
 ### Conclusion : 
-Cette stratégie de test a été choisie pour être plus efficace et plus complets sur les différentes fonctionnalités de gestion du trouble, mais ne nous a pas permis d'élaborer les tests exactement comme nous le voulions dans le temps imparti.
+Cette stratégie de test a été choisie pour être plus efficace et plus complet sur les différentes fonctionnalités de gestion du trouble, mais ne nous a pas permis d'élaborer les tests exactement comme nous le voulions dans le temps imparti.
 Quasiment tous les tests sont cependant au service des scénarios d'utilisation que nous avons mis en place.
 
 
@@ -292,19 +293,19 @@ Suite à cet exercice, nous avons rassemblé dans un Word, les différentes info
 
 Pour résumer un peu ces 5 tests croisés, plusieurs remarques pertinentes ont été évoquées ce qui nous a permis d'apporter des modifications à notre site pour l'améliorer, voici un condensé des remarques prises en comptes, mais également de celles qui ne l'ont pas été:
 
-1. La remarque bouton trop grisé est souvent revenu, nous avons donc rendu le bouton plus foncé pour qu'on le remarque plus facilement:![](https://hackmd.io/_uploads/HybjYFtPn.png)
+1. La remarque bouton trop grisé est souvent revenu, nous avons donc rendu le bouton plus foncé pour qu'on le remarque plus facilement:![](https://hackmd-prod-images.s3-ap-northeast-1.amazonaws.com/uploads/upload_47057812c90287d56c4f9fc18a940e40.png?AWSAccessKeyId=AKIA3XSAAW6AWSKNINWO&Expires=1686927841&Signature=og0%2FYu%2FOZcVhv4jF5Oqrl2RGGVY%3D)
 
 2. Le fait que l'image dans un quiz soit cliquable et ouvre une nouvelle fenêtre internet aurait pu perdre les utilisateurs, nous avons donc changé ceci en priorité.
 3. Les boutons de réponse lors d'un quiz étaient mal positionnés avec l'image au-dessus. Nous avons donc repensé ce placement:
 
 
-| ![](https://hackmd.io/_uploads/BkVnL9tv3.png)| ![](https://hackmd.io/_uploads/r1Ewrotvh.png) |
+| ![](https://hackmd-prod-images.s3-ap-northeast-1.amazonaws.com/uploads/upload_7655b884ffa547f4b16ee9bc58614f79.png?AWSAccessKeyId=AKIA3XSAAW6AWSKNINWO&Expires=1686927905&Signature=N7iIzcXLPUbYM8aVmP8evz%2BH0Zk%3D)| ![](https://hackmd-prod-images.s3-ap-northeast-1.amazonaws.com/uploads/upload_e107b307bb4b22bff872d4b6ae23ae2e.png?AWSAccessKeyId=AKIA3XSAAW6AWSKNINWO&Expires=1686927929&Signature=bVHw2edjJneCBWqZcS9PWm2pmo8%3D) |
 | -------- | -------- |
 
 
 
 4. Nous avons amélioré la page personnel de santé où la liste de quiz pouvait être longue et donc obliger la personne à scroller vers le bas pour retrouver un quiz. Nous avons donc ajouté une liste déroulante par thème:
-![](https://hackmd.io/_uploads/r13WKqtD2.png)
+![](https://hackmd-prod-images.s3-ap-northeast-1.amazonaws.com/uploads/upload_41cc3a021e08a3d56bd33cf7fd452b7a.png?AWSAccessKeyId=AKIA3XSAAW6AWSKNINWO&Expires=1686927945&Signature=TkS%2BTDq2FTRiRqiZKj4RxYO54Pw%3D)
 5. Pour le fait de ramener directement sur la liste des patients après l'ajout d'un nouveau, nous n'avons pas eu le temps de l'implémenter, mais nous savons pertinemment que c'est un axe d'amélioration important d'un point de vue utilisateur.
 6. La remarque de Nicolas disant de valider une réponse de quiz dès sa sélection ne nous a pas paru logique. En effet, nous avons bien réfléchi sur ce point et le fait de devoir valider une réponse sélectionnée nous paraît  logique pour des personnes souffrant de rigidité des membres. Elles pourraient cliquer sur une réponse sans faire exprès et finir par être frustré, d'où le fait de valider après la sélection pour éviter cela.  
 
@@ -315,17 +316,64 @@ Pour résumer un peu ces 5 tests croisés, plusieurs remarques pertinentes ont �
 
 
 ### Répartition du travail : 
-- Simon Beurel
-- Théo Delias
-- Quentin Maurois
-- Lorenzo Froment
-- Tristan Larguier
+- Simon Beurel : 
+Implémentation de la séparation Patients/Personnels. 
+Implémentation de la gestion des utilisateurs (ajout - modification - suppression).
+Implémentation de la gestion des quizs (ajout - modification - suppression).
+Implémentation de la partie back liée aux utilisateurs.
+Pendant la semaine à plein temps : 
+    - Intégration de la bibliothèque Playwright et créations de tests liés aux Questions/Quizs
+    - Réalisation de la partie Docker (3 premières parties)
+    - Rédaction du compte-rendu du projet et du compte-rendu de la partie Docker
+
+    
+- Théo Delias : 
+Implémentation de "Jouer à un quiz" du début à la fin d'une partie
+Implementation d'un besoin utilisateur : agrandissement de la taille du bouton à l'approche de la souris. 
+Implémentation du back-end des thèmes/quiz/questions/réponses.
+Début de l'intégration du back-end des quiz au front-end
+
+    Pendant la semaine à plein temps :
+        - Fin d'intégration du back-end des quiz (thème => quiz => questions => réponses ) au front-end.
+        - Intégration du back-end pour la gestion des thèmes/quiz/questions/réponses au front-end
+        - Modification des tests déjà fait afin de répondre aux attentes du back-end (pour les quiz)
+        - Aide pour la modification par rapport aux remarques de l'évaluation croisée
+        - Compréhension de la partie 1 et 2 de Docker expliquée par Quentin
+
+- Quentin Maurois : 
+
+Pendant la semaine à plein temps : 
+    - Implémentation de tests sur la partie gestion utilisateurs 
+    - Réalisation de la partie Docker (4 parties)
+    - Rédaction du compte-rendu du projet et du compte-rendu de la partie Docker
+ 
+- Lorenzo Froment : 
+Implémentation de "Jouer à un quiz" sans la page finale avec les points.
+Grande majorité du css du site.
+Header, page paramètre avec directive pour changer la taille des boutons et du texte.
+Pop-up dans la partie admin.
+
+    Pendant la semaine a plein temps :
+    -Modifications par rapport aux remarques de l'évaluation croisée
+    -Test avec play-right: Jouer à un quiz, Agrandissement des boutons et du texte, Suppresion d'une question, Retour page admin
+    -Partie 3 du rapport + Relecture avec correction
+    -Compréhension de la partie 1 et 2 de Docker expliquée par Quentin
+
+- Tristan Larguier : 
+J'ai rejoins le groupe PolyEsprit le 20 mars suite à des problèmes dans mon groupe initial.
 Implémentation de la visualisation des statistiques à l'aide du module ApexCharts. Ajout du chemin d'accès vers la page de tests.
 Implémentation de la gestion des résultats par le back.
 À la fin de chaque partie le score est récupéré et envoyé au back, qui se charge de le stocker en fonction de la date.
 Lorsque les statistiques sont appelées pour être affichées le back recherche le minimum, le maximum et calcul la moyenne avant de tout envoyer dans un format adapté pour être directement affiché.
 Rédaction de tests de création, modification et suppression d'utilisateurs. Création des tests relatifs aux statistiques, c'est tests implémentant la comparaison d'images (CF scénario 3 Partie 2).
 Co-Rédaction du rapport final.
+
+
+Ci-dessous, voici un tableau qui nous aura permis de réaliser une meilleure répartition des tâches pour la réalisation des tests : 
+
+![](https://hackmd-prod-images.s3-ap-northeast-1.amazonaws.com/uploads/upload_fa3d6086dd1d542bade8c0074f563899.png?AWSAccessKeyId=AKIA3XSAAW6AWSKNINWO&Expires=1686928073&Signature=g9zeRalwy3f85fjTWyJyknf5fjE%3D)
+
+
 
 
 
