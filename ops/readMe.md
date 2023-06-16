@@ -71,6 +71,59 @@ docker run -p 8080:8080 front-poly-esprit:e1
 INTEGRER IMAGE CAPTURE D'ECRAN
 Maintenant que nous arrivons à lancer ces deux conteneurs et que l'on vérifie que le comportement réalisé est bien celui attendu, nous pouvons donc encore rendre cette exécution plus "simple" grâce à Docker Compose 
 ## Partie II : Orchestrer le front et le back ! (Done)
+Dans la seconde partie du développement DevOps, nous allons simplifier le déploiement des conteneurs docker que nous avons créé jusque là en utilisant docker compose. C'est un moyen de décrire et gérer des applications multi-conteneurs avec Docker. Nous allons donc nous en servir pour lancer le back et le front avec une seule commande. Nous avons créé un fichier docker-compose.yml dans le répertoire ops.
+Docker compose permet de lancer plusieurs conteneurs et de les build avec des paramètres spécifiés dans le docker compose. Ainsi, le docker-compose.yml spécifie pour chaque conteneur : 
+- le nom de l'image 
+- le contexte de build 
+-  l'utilisateur utilisé dans l'image 
+-  le mappage des ports 
+- les dépendances : de quel(s) conteneurs ce conteneur a-t-il besoins pour se lancer 
+- le healthcheck 
+- les volumes éventuels utilisés 
+
+Le back est monté avec un volume pour permettre de sauvegarder les données sur la machine. Dans cette partie, le front et le back sont toujours port forwarded sur les ports de la machine. Nous avons donc toujours le front et le back qui discutent entre eux via le réseau de la machine hôte et les conteneurs sont donc toujours accessibles par l'extérieur
+
+Voici le code de notre Docker compose : 
+```Docker
+version: '3'  
+services:  
+  front:  
+    image: front-poly-esprit:e1  
+    build:  
+      context: ../front-end  
+      dockerfile: ../front-end/Dockerfile  
+      args:  
+        ENVIRONMENT: production  
+    user: nginx  
+    ports:  
+      - 8080:80  
+    depends_on:  
+      back:  
+        condition: service_healthy  
+    healthcheck:  
+      test: ["CMD-SHELL", "curl -f http://localhost:80/ || exit 1"]  
+      interval: 10s  
+      timeout: 10s  
+      retries: 5  
+  back:  
+    image: back-poly-esprit:e1  
+    build:  
+      context: ../backend  
+      dockerfile: ../backend/Dockerfile  
+    user: node  
+    ports:  
+      - 9428:9428  
+    volumes:  
+      - back-storage:/home/node/database  
+    healthcheck:  
+      test: [ "CMD-SHELL", "curl -f http://localhost:9428/api/status || exit 1" ]  
+      interval: 10s  
+      timeout: 10s  
+      start_period: 5s  
+      retries: 5  
+volumes:  
+  back-storage:
+  ```
 
 ## Partie III : Dockeriser l'exécution des tests ! (Done)
 Grâce aux deux dernières parties, nous avons pu observer plus en profondeur la notion de Dockerfile et nous avons également pu découvrir le fonctionnement de Dockercompose qui nous permet donc de pouvoir gérer plusieurs Dockerfile différents.
