@@ -28,5 +28,15 @@
     "label": "Quelle est la date de la prise de la Bastille ?",
     "quizId": 1686903905774,
     "id": 1686904389621
+  },
+  {
+    "label": "Question",
+    "quizId": 1686906147658,
+    "id": 1686906185221
+  },
+  {
+    "label": "Comment importer une image dans un Dockerfile ?",
+    "quizId": 1686906574981,
+    "id": 1686906600127
   }
 ]
