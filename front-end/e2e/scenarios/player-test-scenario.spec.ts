@@ -75,7 +75,7 @@ test.describe('Vérifier le changement de taille', () => {
     await page.getByTestId('parameter').click();
     await page.getByTestId('big_buttons').click();
     await page.getByTestId('big_text').click();
-    await page.click('text=Retour');
+    await page.click('text=Valider');
     const bouton2 = page.getByRole('button', { name: 'Carré (4 choix affichés)' });
     const tailleAfterEdit = await bouton2.boundingBox();
     const texteAfterEdit = await bouton2.evaluateHandle((e: any) => e.textContent);
