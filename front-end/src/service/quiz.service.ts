@@ -78,7 +78,7 @@ export class QuizService {
     });
   }
 
-  getQuizFromEditQuiz(idTheme: number, idQuiz: string | null) {
+  public getQuizFromEditQuiz(idTheme: number, idQuiz: string | null) {
     // utiliser les promises faire le get et retourner ensuite le quiz, d'id idQuiz et d'idTheme idTheme
     let newQuizUrl = serverUrl + '/themes/' + idTheme + '/quizzes';
     return new Promise(resolve => {
