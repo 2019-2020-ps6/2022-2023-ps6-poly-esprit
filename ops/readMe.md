@@ -158,7 +158,7 @@ Maintenant, intéressons-nous au Dockerfile-e2e que nous avons créé :
 - On exécute la commande en ENTRYPOINT : `npx playwright test --config playwright.config.ts`
 
 Grâce à ce docker, les tests seront joués automatiquement à l'exécution, cependant (nous allons le voir tout de suite) il est nécessaire que les Dockers correspondants au frontend au backend soient activés et déjà prêts.
-Maintenant, intéressons nous à notre fichier Docker-compose-e2e pour voir comment ce dernier orchestre l'organisation des différentes images : 
+Maintenant, intéressons-nous à notre fichier Docker-compose-e2e pour voir comment ce dernier orchestre l'organisation des différentes images : 
 ```Docker
 version: '3'  
 services:  
@@ -225,14 +225,130 @@ Pour finir sur cette partie, nous nous intéressons au service tests. Pour const
 On déclare 2 volumes : *test-results* et *playwright-report*. Ces deux volumes nous permettent de stocker les résultats des tests une fois la commande d'exécution lancée. On spécifie que le service *tests* ne doit démarrer que quand le front est healthy. On a donc en ordre de lancement : 
 backend -> frontend -> tests
 
-## Partie IV : Proxifier l'ensemble des appels (En cours)
-Le but de cette partie finale est de reprendre la partie 2 et d'intégrer un nouveau conteneur pour pouvoir accéder au site internet depuis notre machine via un lien prédéfini et non via le localhost.
+## Partie IV : Proxifier l'ensemble des appels (Done)
+Le but de cette partie finale est de reprendre la partie 2 et d'intégrer un nouveau conteneur pour pouvoir accéder au site internet depuis notre machine via un lien prédéfini et non via le localhost. L'url vers laquelle notre proxy redirige est : proxy.polyquiz.com:8888
+
+Pour ce faire, nous allons créer un proxy qui permettra de communiquer avec le front et le back. Le front et le back ne communiqueront donc plus directement, mais en passant par le proxy. Ainsi, nous avons dû changer l'adresse à laquelle le front appelle le back pour passer par le proxy. 
+
+Voici le docker compose du proxy. Il est similaire aux précédents mais une URL du proxy a été spécifiée pour le front : c'est l'adresse à laquelle se trouvera le back et le conteneur n'a plus ses ports exposés. Pour le back, seuls les ports ne sont plus exposés. Le proxy a simplement son port 80 forwarded sur le port 8888 de la machine hôte. Le proxy dépend du front et du back.
+```
+version: '3'
+services:
+  front:
+    image: front-poly-esprit:proxy
+    build:
+      context: ../front-end
+      dockerfile: ../front-end/Dockerfile
+      args:
+        ENVIRONMENT: proxy
+        PROXYURL: "http:\\/\\/proxy.polyquiz.com:8888\\/back"
+        DOMAIN: "proxy.polyQuiz.com"
+    user: nginx
+    depends_on:
+      back:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:80/ || exit 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+  back:
+    image: back-poly-esprit:proxy
+    build:
+      context: ../backend
+      dockerfile: ../backend/Dockerfile
+    user: node
+    volumes:
+      - back-storage:/home/node/database
+    healthcheck:
+      test: [ "CMD-SHELL", "curl -f http://localhost:9428/api/status || exit 1" ]
+      interval: 10s
+      timeout: 10s
+      start_period: 5s
+      retries: 5
+  proxy:
+    image: proxy-poly-esprit:proxy
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 8888:80
+    depends_on:
+      - front
+      - back
+volumes:
+  back-storage:
+```
+
+Pour passer l'adresse du proxy, nous l'avons fait comme dans la partie 3 lorsque nous devions spécifier l'adresse du serveur de tests :
+
+```
+RUN sed -i "s/<PROXYURL>/${PROXYURL}/g" /usr/local/app/src/environments/environment.proxy.ts
+RUN cat /usr/local/app/src/environments/environment.proxy.ts
+```
+
+Nous avons également créé un nouveau fichier d'environnement pour le proxy. Encore une fois en se basant sur ce qui a été fait dans la partie précédente.
+```
+export const environment = {
+  production: true,
+  server_url: '<PROXYURL>/api'
+};
+```
+
+Nous avons créé une nouvelle configuration de build pour le site. Cette configuration est un peu spécifique : elle spécifie l'url à laquelle le front se trouvera :
+```
+"build:proxy": "ng build --configuration proxy --base-href /front/ --deploy-url /front/"
+```
+
+Voici la configuration angular appelée par le script ci-dessus : elle remplace le fichier environment.ts par environment.proxy.ts qui contiens l'adresse du back par le proxy 
+```
+            "proxy": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.proxy.ts"
+                }
+              ],
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "3mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
+            }
+```
+
+À ce point, le front et le back sont accessibles au travers du proxy, et le front peut également appeler le back.
+
+Il y a seulement un problème avec cette configuration qui est dû à une légère incompréhension au niveau des images : en effet au niveau d'angular le fichier assets est accessible depuis le fichier courant lors de l'execution. Bien que cela fonctionne en localhost, les images n'étaient plus trouvées au travers du proxy. Pour cela il a fallu changer le chemin des images locales pour commencer simplement par un point.
+
+Par exemple au départ, nous avions :
+```
+              <img src="../../assets/bin.png" class="btn-image">
+```
+Et maintenant nous avons :
+```
+              <img src="./assets/bin.png" class="btn-image">
+```
+
+
 
 ## Partie V : Conclusion 
-Lors des 3 jours consacrés à la partie DevOps de notre semaine à plein temps sur le projet PS6, nous avons réussi à réaliser les 3 premières parties et nous avons bien entamés la dernière partie sur la "proxification" de l'ensemble des appels. 
+Lors des 3 jours consacrés à la partie DevOps de notre semaine à plein temps sur le projet PS6, nous avons réussi à réaliser les 3 premières parties et nous avons même finis la dernière partie sur la "proxification" de l'ensemble des appels. 
 Comment fonctionne notre healthcheck ? 
 	- Pour le frontend : Commande *curl -f http://localhost:80 || exit 1* avec une start_period de 5 secondes, un interval de 10 secondes, un timeout de 10 secondes et 5 essais.
 	- Pour le backend : Commande *curl -f http://localhost:9428/api/status || exit 1* avec une start_period de 5 secondes, un interval de 10 secondes, un timeout de 10 secondes et 5 essais
-Dans ce dossier OPS, en plus de ce document et des différents fichiers compose, vous trouverez 2 scripts bash : 
-- run.sh : Script permettant de build et de lancer le Docker-compose.yml 
-- run-e2e.sh : Script permettant de build et de lancer le Docker-compose-e2e.yml
+Dans ce dossier OPS, en plus de ce document et des différents fichiers compose, vous trouverez 4 scripts bash : 
+- run.sh : Script permettant de build et de lancer le docker-compose.yml 
+- run-e2e.sh : Script permettant de build et de lancer le docker-compose-e2e.yml (les conteneurs s'arrêtent automatiquement à la fin des tests)
+- run-proxy.sh : Script permettant de build et de lancer le docker-compose-proxy.yml
+- init.sh : Script permettant de faire npm install dans le front et le back (sur la machine). En effet, les modules sont copiés dans les conteneurs, il est donc intéressant en termes de temps de build de copier les fichiers utilisés par angular pour notre site que de lancer la commande npm pour tout installer
+
+Un grand merci à toute l'équipe enseignante et en particulier à M. BOUNOUAS pour toute son aide sur la partie docker !
