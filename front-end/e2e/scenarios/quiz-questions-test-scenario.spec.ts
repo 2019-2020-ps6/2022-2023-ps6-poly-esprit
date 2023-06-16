@@ -32,7 +32,7 @@ test.describe('Tests réalisés sur les questions et les quizs', () => {
 
     await page.click('text=Admin Admin');
 
-    await AdminMainPageFI.goOnEditQuiz('Les technos Web', 'Internet');
+    await AdminMainPageFI.goOnEditQuiz('Les technos WEB', 'Internet');
 
     await EditQuizFI.changeNameQuiz("Les technologies du Web");
     await EditQuizFI.goBackOnAdmin();
@@ -55,16 +55,23 @@ test.describe('Tests réalisés sur les questions et les quizs', () => {
     await AdminMainPageFI.goOnEditQuiz('Mais qui a tué Pamela Rose ?', 'Acteurs');
     await EditQuizFI.goOnEditQuestion('Question');
 
-
     let tab = ['Pamela rose !', "", "", ""];
     await EditQuestionFI.changeValuesQuestionAndGoBack("Quel personnage meurt dans la comédie policière de Kad&Olivier ?", tab);
 
-    await AdminMainPageFI.launchQuiz('Mais qui a tué Pamela Rose ?', 'Acteurs');
+    await page.getByTestId('logoutButton').click()
+    await page.click('text=Simon Beurel');
+    await page.click('text=Acteurs');
+    await page.click('text=Mais qui a tué Pamela Rose ?');
+    await page.getByRole('button', { name: 'Carré (4 choix affichés)' }).click();
+    //click deconnexion -> click simon beurel -> click acteurs -> click pamela rose ->
+
+    //await AdminMainPageFI.launchQuiz('Mais qui a tué Pamela Rose ?', 'Acteurs');
 
     //PLAY THE GAME
     /**await page.click('text=Duo (2 choix affichés)');
     await page.click('text=François Cluzet');
     await page.click('text=Valider');*/
+
 
     await expect(page.getByRole('button', { name: 'Pamela rose !' })).toBeVisible();
     await expect(page.getByText('Quel personnage meurt dans la comédie policière de Kad&Olivier ?')).toBeVisible();
