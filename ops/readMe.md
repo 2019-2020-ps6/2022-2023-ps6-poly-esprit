@@ -95,7 +95,7 @@ Voici le code de notre Docker compose :
 version: '3'  
 services:  
   front:  
-    image: front-poly-esprit:e1  
+    image: front-poly-esprit:production  
     build:  
       context: ../front-end  
       dockerfile: ../front-end/Dockerfile  
@@ -113,7 +113,7 @@ services:
       timeout: 10s  
       retries: 5  
   back:  
-    image: back-poly-esprit:e1  
+    image: back-poly-esprit:production  
     build:  
       context: ../backend  
       dockerfile: ../backend/Dockerfile  
@@ -131,6 +131,15 @@ services:
 volumes:  
   back-storage:
   ```
+
+Maintenant, nous pouvons construire les deux conteneurs avec la simple commande (en étant dans le dossier ops) :
+```
+docker compose -f docker-compose.yml build
+```
+Et on peut les lancer avec :
+```
+docker compose -f docker-compose.yml up
+```
 
 ## Partie III : Dockeriser l'exécution des tests ! (Done)
 Grâce aux deux dernières parties, nous avons pu observer plus en profondeur la notion de Dockerfile et nous avons également pu découvrir le fonctionnement de *Dockercompose* qui permet de gérer plusieurs Dockerfile différents.
@@ -163,7 +172,7 @@ Maintenant, intéressons-nous à notre fichier Docker-compose-e2e pour voir comm
 version: '3'  
 services:  
   front:  
-    image: front-poly-esprit:e1  
+    image: front-poly-esprit:tests  
     build:  
       context: ../front-end  
       dockerfile: ../front-end/Dockerfile  
@@ -182,7 +191,7 @@ services:
       timeout: 10s  
       retries: 5  
   back:  
-    image: back-poly-esprit:e1  
+    image: back-poly-esprit:tests  
     build:  
       context: ../backend  
       dockerfile: ../backend/Dockerfile-e2e  
@@ -196,7 +205,7 @@ services:
       start_period: 5s  
       retries: 5  
   tests:  
-    image: tests-poly-esprit:e3  
+    image: tests-poly-esprit:tests  
     build:  
       context: ../front-end  
       dockerfile: ../front-end/Dockerfile-e2e  
@@ -279,6 +288,43 @@ services:
 volumes:
   back-storage:
 ```
+
+Voici le Dockerfile du proxy :
+```
+# proxy
+FROM httpd:2.4
+
+COPY ./proxy.conf /usr/local/apache2/conf/extra/proxy.conf
+
+COPY httpd.conf /usr/local/apache2/conf/httpd.conf
+
+EXPOSE 80
+
+CMD ["httpd-foreground"]
+```
+
+Nous partons de l'image httpd:2.4 comme base. En effet, elle permet simplement de créer un proxy avec notre configuration de proxy (quelle adresse en entrée du proxy mène où).
+
+Pour la configuration du proxy, nous redirigeons toutes les requêtes qui ont pour racine "http://proxy.polyquiz.com/front/" vers le front et "http://proxy.polyquiz.com/back/" vers le back. Ainsi, http://proxy.polyquiz.com/back/api/status permet maintenant d'accéder au statut du backend.
+
+Voici le fichier de configuration du VirtualHost :
+```
+<VirtualHost *:80>
+    ServerName proxy.polyQuiz.com
+    ProxyPreserveHost Off
+    ProxyAddHeaders Off
+
+    LogLevel trace3
+
+    ProxyPassMatch "/back/(.*)" "http://back:9428/$1"
+    ProxyPassReverse "/back/(.*)" "http://back:9428/$1"
+
+    ProxyPassMatch "/front/(.*)" "http://front/$1"
+    ProxyPassReverse "/front/(.*)" "http://front/$1"
+
+</VirtualHost>
+```
+On utilise des regex pour passer tout ce qui se trouve après front/ et back/ à la suite de http://front/ et http://back:9428/ . Ces adresses sont accessibles par le proxy car il fait partie du réseau virtuel mais elles ne sont pas accessibles au niveau de la machine
 
 Pour passer l'adresse du proxy, nous l'avons fait comme dans la partie 3 lorsque nous devions spécifier l'adresse du serveur de tests :
 
