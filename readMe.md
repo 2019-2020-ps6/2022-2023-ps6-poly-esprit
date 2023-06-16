@@ -16,7 +16,7 @@ Notre site web doit permettre aux différents patients d'un EHPAD, ou d'une mais
 Pour cela, nous avons implémenté différentes fonctionnalités visant à faciliter l'utilisation du site aux patients atteint de la maladie de Parkinson.
 Chaque résident peut avoir son propre compte, créé par le personnel de santé, permettant d'avoir un suivi de différentes statistiques, comme  le *pourcentage de bonnes réponses* ou le *pourcentage de clics ratés*.
 
-## Partie 1 : persona et scénarios réalisés
+## Partie 1 : Persona et scénarios réalisés
 Pour pouvoir réaliser une conception centrée utilisateur, nous avons dû réaliser différents persona, ainsi que des scénarios d'utilisation du site qui sont associés aux persona en question. 
 Les persona sont des représentations fictives d'utilisateurs "type" de notre site internet.
 Dans notre cas, nous avons décidé de créer 3 persona différents : 
@@ -115,7 +115,7 @@ Ainsi, sur notre quiz, lorsque les patients joueront à un quiz, les boutons sur
 Voici un exemple avec ce schéma : 
 ![enter image description here](https://hackmd-prod-images.s3-ap-northeast-1.amazonaws.com/uploads/upload_6602a412cbf939e63237ba4844e19a63.png?AWSAccessKeyId=AKIA3XSAAW6AWSKNINWO&Expires=1686928031&Signature=RF4wylR1ghYCGcsK2NiwMMS%2F8lA%3D)
 
-## Partie 2 : scénarios des tests mis en place et pertinence
+## Partie 2 : Scénarios des tests mis en place et pertinence
 Pour pouvoir tester les différentes fonctionnalités vues dans la Partie 1 de ce document, nous avons utilisé la bibliothèque Playwright qui nous permet d'écrire des codes de tests dans le but de tester notre site en analysant son interface.
 
 ### Stratégie de test : 
