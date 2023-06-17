@@ -64,16 +64,18 @@ server {
 ```
 (On peut notamment noter que l'on pourra spécifier le contenu de DOMAIN grâce à la commande sed, celle-ci étant *localhost* par défaut. 
 
-Une fois que ces deux fichiers ont été créé, nous pouvons construire les images : 
+Une fois que ces deux fichiers ont été créé, nous pouvons construire les images depuis leurs répertoires respectifs : 
 ```bash
-INTEGRER COMMMANDE POUR BUILD LES DEUX IMAGES
+docker build -f Dockerfile -t back-poly-esprit:production .
+docker build -f Dockerfile -t front-poly-esprit:production .
 ```
 Une fois les deux images créées, nous pouvons lancer les conteneurs avec : 
 ```bash
-docker run -p 9428:9428 back-poly-esprit:e1 
-docker run -p 8080:8080 front-poly-esprit:e1
+docker run -p 9428:9428 back-poly-esprit:production 
+docker run -p 8080:8080 front-poly-esprit:production
 ```
-<INTEGRER IMAGE CAPTURE D'ECRAN>
+![image](https://github.com/2019-2020-ps6/2022-2023-ps6-poly-esprit/assets/115250986/007fd62b-4150-40bb-bef0-83fb48aa2763)
+
 Après avoir lancé les conteneurs et vérifié que les comportements sont ceux attendus, nous pouvons rendre cette exécution plus "simple" grâce à Docker Compose.
 
 
