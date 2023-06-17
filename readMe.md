@@ -1,4 +1,4 @@
-# Rapport final projet PS6 : Poly'Esprit 
+# Rapport final projet PS6 : Poly'Esprit (avec les images)
 Membres du groupe : 
 - BEUREL Simon 
 - MAUROIS Quentin 
